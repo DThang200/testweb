@@ -1,0 +1,58 @@
+.list-remote-pc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.remote-pc-item {
+    position: relative;
+    min-height: 23px;
+    border-radius: 16px;
+    padding: 4px;
+    font-size: 24px;
+    background: green;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+.remote-pc-item-data {
+
+}
+.remote-pc-item.danger{
+    background: red;
+    color: white;
+}
+.remote-pc-item.warning{
+    background: yellow;
+}
+.remote-pc-item.disable{
+    background: black;
+    color: white;
+}
+.input-device {
+
+}
+.input-device_input {
+    font-size: 16px;
+}
+.input-device_save {
+    background: #4258ff;
+    border-radius: 16px;
+    font-size: 16px;
+    color: white;
+}
+.input-device_connect {
+    background: #4258ff;
+    border-radius: 16px;
+    color: white;
+    margin-left: auto;
+}
+.input-device_action {
+    position: absolute;
+    font-size: 16px;
+    top: 0;
+    right: 0;
+    padding: 8px;
+}
