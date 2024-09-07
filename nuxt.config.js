@@ -79,6 +79,7 @@ export default {
     modules: [
         '@nuxtjs/axios',
         '@nuxtjs/proxy',
+        'nuxt-i18n'
     ],
     i18n: {
         locales: [
