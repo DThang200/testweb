@@ -26,7 +26,6 @@ export default (context, inject) => {
   }
 
   context.$axios.setHeader('timezone', '' + timezone)
-  context.$axios.setHeader('locale', (context.store.$i18n.locale === 'vi' || context.store.$i18n.locale === 'vn') ? 'vi' : 'en')
 
   context.$axios.$get = async (url, config = {}) => {
     try {
@@ -274,12 +273,6 @@ export default (context, inject) => {
     },
 
     vt(value) {
-      if (value) value = value.replace(/&quot;/g, '"')
-      let json = this.isJsonString(value)
-      if (json) {
-        json = JSON.parse(value)
-        return json[context.store.$i18n.locale] || json[context.store.$i18n.defaultLocale] || json[Object.keys(json)[0]]
-      }
       return value
     },
 
@@ -417,7 +410,7 @@ export default (context, inject) => {
       await $('.is-invalid').removeClass('is-invalid')
 
       const str = Array.isArray(mess) ? mess[0] : mess
-      const trans = context.store.$i18n.t(str)
+      const trans = str
       const divErrorMessage = `<div class="invalid-feedback">${trans}</div>`
 
       let input = null

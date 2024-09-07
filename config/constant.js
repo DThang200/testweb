@@ -146,30 +146,31 @@ export default (context, inject) => {
         'ListPage': [5, 10, 20, 30, 40, 50],
         'Common': {
             'status': {
-                [c.STATUS_NEW]: i18n.t('status_new'),
-                [c.STATUS_AWAITING_APPROVAL]: i18n.t('awaiting_approval'),
-                [c.STATUS_REJECTED]: i18n.t('rejected'),
-                [c.STATUS_APPROVED]: i18n.t('approved'),
+                [c.STATUS_NEW]: ('status_new'),
+                [c.STATUS_AWAITING_APPROVAL]: ('awaiting_approval'),
+                [c.STATUS_REJECTED]: ('rejected'),
+                [c.STATUS_APPROVED]: ('approved'),
             },
 
             'permissions': [
                 {
-                    'name': i18n.t('Chức năng hệ thống'),
+                    'name': ('Chức năng hệ thống'),
                     'list': {
-                        // [c.PERMISSION_PERMISSION]: i18n.t('Chức năng'),
-                        [c.PERMISSION_GROUP]: i18n.t('Nhóm - Phòng ban'),
-                        [c.PERMISSION_USER]: i18n.t('Người dùng - Nhân sự'),
-                        [c.PERMISSION_ROLE]: i18n.t('Vai trò - Vị trí'),
-                        [c.PERMISSION_MASTER]: i18n.t('Master data'),
+                        // [c.PERMISSION_PERMISSION]: ('Chức năng'),
+                        [c.PERMISSION_GROUP]: ('Nhóm - Phòng ban'),
+                        [c.PERMISSION_USER]: ('Người dùng - Nhân sự'),
+                        [c.PERMISSION_ROLE]: ('Vai trò - Vị trí'),
+                        [c.PERMISSION_MASTER]: ('Master data'),
                     }
                 },
             ]
         },
+git add .
 
         'Sample': {
             'type': {
-                [c.SAMPLE_TYPE_A]: i18n.t('type_a'),
-                [c.SAMPLE_TYPE_B]: i18n.t('type_b'),
+                [c.SAMPLE_TYPE_A]: ('type_a'),
+                [c.SAMPLE_TYPE_B]: ('type_b'),
             }
         },
     }

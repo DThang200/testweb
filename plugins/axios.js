@@ -18,7 +18,7 @@ export default function({ $axios, store }) {
                 str = mess
             }
             // const str = typeof mess === 'object' && mess.index ? mess['message'] : mess[0]
-            const trans = store.$i18n.t(str)
+            const trans = str
             if (key === 'error-message') {
                 $('[role="content"]').prepend(`<div id="error-message" class="alert alert-block alert-danger"><p>${trans}</p></div>`);
             }
@@ -80,7 +80,7 @@ export default function({ $axios, store }) {
         });
     }
 
-    $axios.setHeader('lang', store.$i18n.locale !== 'en' ? 'vi' : 'en')
+    $axios.setHeader('lang', 'en')
 
     $axios.onError((error) => {
         switch (error.response.status) {
