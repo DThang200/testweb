@@ -4,7 +4,8 @@
     <select :disabled="!(roblox_data_account?.accounts?.length)" v-model="select_pc">
       <option :value="device.device_id" v-for="device in roblox_data.devices">{{device.device_code}}</option>
     </select>
-    Total Crystal : {{}}
+    Total Crystal : {{total_crystal_all}}
+    Total Gems : {{total_gems_all}}
     <div class="d-flex">
 <!--      <div class="px-2">-->
 <!--        <label>Username</label>-->
