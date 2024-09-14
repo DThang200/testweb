@@ -98,6 +98,8 @@ export default {
     ]),
     getDataByDeviceId(){
       this.roblox_data_account_display = []
+      this.total_crystal = 0
+      this.total_gems = 0
        this.roblox_data_account.accounts.forEach(item => {
         if (item.device_id === this.select_pc){
           this.roblox_data_account_display.push(item)
