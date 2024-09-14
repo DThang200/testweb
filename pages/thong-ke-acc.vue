@@ -4,7 +4,7 @@
     <select :disabled="!(roblox_data_account?.accounts?.length)" v-model="select_pc">
       <option :value="device.device_id" v-for="device in roblox_data.devices">{{device.device_code}}</option>
     </select>
-    {{copyField}}
+    Total Crystal : {{}}
     <div class="d-flex">
 <!--      <div class="px-2">-->
 <!--        <label>Username</label>-->
@@ -75,6 +75,8 @@ export default {
       roblox_data_account_display: '',
       total_crystal: 0,
       total_gems: 0,
+      total_crystal_all: 0,
+      total_gems_all: 0,
       copyField: [],
     };
   },
@@ -99,8 +101,14 @@ export default {
     getDataByDeviceId(){
       this.roblox_data_account_display = []
       this.total_crystal = 0
+      this.total_crystal_all = 0
+      this.total_gems_all = 0
       this.total_gems = 0
        this.roblox_data_account.accounts.forEach(item => {
+         if (item?.status){
+           this.total_crystal_all += JSON.parse(item.status).Items["Trait Crystal"]
+           this.total_gems_all += JSON.parse(item.status).Currencies["Gems"]
+         }
         if (item.device_id === this.select_pc){
           this.roblox_data_account_display.push(item)
           if (item?.status){
