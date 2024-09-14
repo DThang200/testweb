@@ -122,7 +122,7 @@ export default {
 
     copyFunction(){
       let copyContent = ''
-      this.roblox_data_account.accounts.forEach(item => {
+      this.roblox_data_account_display.forEach(item => {
         copyContent += item.cookie + '\n'
       })
       console.log('copyContent',copyContent)
