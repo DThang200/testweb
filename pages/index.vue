@@ -61,7 +61,7 @@ export default {
     }
   },
   mounted() {
-    this.getDataRoblox()
+    this.getDataRoblox();
     this.initData();
   },
   beforeDestroy() {

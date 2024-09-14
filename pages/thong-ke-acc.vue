@@ -1,7 +1,7 @@
 <template>
   <div>
     {{roblox_data_account?.accounts?.length? 'Đã xong' : ''}}
-    <select v-model="select_pc">
+    <select :disabled="!(roblox_data_account?.accounts?.length)" v-model="select_pc">
       <option :value="device.device_id" v-for="device in roblox_data.devices">{{device.device_code}}</option>
     </select>
     <table>
@@ -9,6 +9,7 @@
       <tr>
         <th>User name</th>
         <th>Crystal</th>
+        <th>Gold</th>
         <th>cookie</th>
       </tr>
       </thead>
@@ -17,7 +18,10 @@
         <tr v-for="item in roblox_data_account_display">
           <td>{{item.username}}</td>
           <td>{{getCrystal(item.status)}}</td>
-          <td style="width: 100px;overflow: hidden">{{item.cookie}}</td>
+          <td>{{getGold(item.status)}}</td>
+          <td>
+            <div style="width: 100px;max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" :title="item.cookie">{{item.cookie}}</div>
+          </td>
         </tr>
       </template>
       </tbody>
@@ -70,7 +74,13 @@ export default {
         return ''
       }
       return  JSON.parse(status).Items["Trait Crystal"]
-    }
+    },
+    getGold(status){
+      if (!status){
+        return ''
+      }
+      return  JSON.parse(status).Currencies["Gold"]
+    },
   }
 };
 </script>

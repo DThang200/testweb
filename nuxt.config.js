@@ -32,16 +32,11 @@ export default {
             {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.css'},
             {rel: 'stylesheet', href: '/css/flag.css'},
             {rel: 'stylesheet', href: '/css/themes/cust-theme-8.css'},
-            {rel: 'stylesheet', href: '/css/vueselect.css'},
             {rel: 'stylesheet', href: '/css/custom-template.css'},
             {rel: 'stylesheet', href: '/css/custom.css'},
 
         ],
         script: [
-            {src: '/js/vendors.bundle.js'},
-            {src: '/js/app.bundle.js'},
-            {src: '/js/notifications/toastr/toastr.js'},
-            {src: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.js'},
         ],
         bodyAttrs: {
             class: 'mod-bg-1'

@@ -26,6 +26,7 @@
 }
 .remote-pc-item.warning{
     background: yellow;
+    color: black;
 }
 .remote-pc-item.disable{
     background: black;

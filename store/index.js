@@ -54,13 +54,12 @@ export const actions = {
           map_device_id_code[item.device_id] = item.device_code
           map_code_device_id[item.device_code] = item.device_id
         })
-        // response.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
       }
       await commit('SET_DATA_ROBLOX', response)
       await commit('SET_MAP_DEVICE_ID_CODE', map_device_id_code)
       await commit('SET_MAP_CODE_DEVICE_ID', map_code_device_id)
     } catch (e) {
-      return false
+      console.log('Error',e)
     }
   },
   async getDataAccount({commit,state}, param = {}) {
