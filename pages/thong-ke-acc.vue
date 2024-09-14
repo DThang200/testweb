@@ -103,8 +103,10 @@ export default {
        this.roblox_data_account.accounts.forEach(item => {
         if (item.device_id === this.select_pc){
           this.roblox_data_account_display.push(item)
-          this.total_crystal += JSON.parse(item.status).Items["Trait Crystal"]
-          this.total_gems += JSON.parse(item.status).Currencies["Gems"]
+          if (item?.status){
+            this.total_crystal += JSON.parse(item.status).Items["Trait Crystal"]
+            this.total_gems += JSON.parse(item.status).Currencies["Gems"]
+          }
         }
       })
       console.log('roblox_data_account_display',this.roblox_data_account_display)
