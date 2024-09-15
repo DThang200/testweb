@@ -59,7 +59,7 @@
         </template>
         </tbody>
       </table>
-      <table v-if="viewTable.includes('pc')">
+      <table v-if="viewTable.includes('pc')" style="height: fit-content">
         <thead>
         <tr>
           <th>STT</th>
