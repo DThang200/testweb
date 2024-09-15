@@ -110,7 +110,7 @@ export default {
            this.total_crystal_all += JSON.parse(item.status).Items["Trait Crystal"]
            this.total_gems_all += JSON.parse(item.status).Currencies["Gems"]
          }
-        if (item.device_id === this.select_pc){
+        if (!this.select_pc || item.device_id === this.select_pc){
           this.roblox_data_account_display.push(item)
           if (item?.status){
             this.total_crystal += JSON.parse(item.status).Items["Trait Crystal"]
