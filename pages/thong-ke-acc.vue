@@ -73,8 +73,8 @@
           <tr v-for="(item,index) in map_code_detail_display">
             <td class="px-2">{{index + 1}}</td>
             <td class="px-2">{{item?.code}}</td>
-            <td class="px-2">{{item?.value?.Gems}}</td>
             <td class="px-2">{{item?.value?.Crystal}}</td>
+            <td class="px-2">{{item?.value?.Gems}}</td>
           </tr>
         </template>
         </tbody>
