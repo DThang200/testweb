@@ -85,15 +85,15 @@ export default {
       copyField: [],
     };
   },
-  // beforeMount() {
-  //   const correctPassword = "matkhau123@"; // Mật khẩu cố định
-  //   const userPassword = prompt("Vui lòng nhập mật khẩu để truy cập:");
-  //
-  //   if (userPassword !== correctPassword) {
-  //     alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
-  //     this.$router.push("/"); // Chuyển hướng về trang chủ nếu mật khẩu sai
-  //   }
-  // },
+  beforeMount() {
+    const correctPassword = "matkhau123@"; // Mật khẩu cố định
+    const userPassword = prompt("Vui lòng nhập mật khẩu để truy cập:");
+
+    if (userPassword !== correctPassword) {
+      alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
+      this.$router.push("/"); // Chuyển hướng về trang chủ nếu mật khẩu sai
+    }
+  },
   mounted() {
     this.getDataRoblox()
     this.getDataAccount()
