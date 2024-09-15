@@ -2,6 +2,7 @@
   <div>
     {{roblox_data_account?.accounts?.length? 'Đã xong' : ''}}
     <select :disabled="!(roblox_data_account?.accounts?.length)" v-model="select_pc">
+      <option value="">All</option>
       <option :value="device.device_id" v-for="device in roblox_data.devices">{{device.device_code}}</option>
     </select>
     Total Crystal : {{total_crystal_all}}
@@ -68,7 +69,10 @@ export default {
   watch: {
     select_pc(value){
       this.getDataByDeviceId();
-    }
+    },
+    roblox_data_account(value){
+      this.getDataByDeviceId();
+    },
   },
   data() {
     return {
@@ -81,15 +85,15 @@ export default {
       copyField: [],
     };
   },
-  beforeMount() {
-    const correctPassword = "matkhau123@"; // Mật khẩu cố định
-    const userPassword = prompt("Vui lòng nhập mật khẩu để truy cập:");
-
-    if (userPassword !== correctPassword) {
-      alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
-      this.$router.push("/"); // Chuyển hướng về trang chủ nếu mật khẩu sai
-    }
-  },
+  // beforeMount() {
+  //   const correctPassword = "matkhau123@"; // Mật khẩu cố định
+  //   const userPassword = prompt("Vui lòng nhập mật khẩu để truy cập:");
+  //
+  //   if (userPassword !== correctPassword) {
+  //     alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
+  //     this.$router.push("/"); // Chuyển hướng về trang chủ nếu mật khẩu sai
+  //   }
+  // },
   mounted() {
     this.getDataRoblox()
     this.getDataAccount()
