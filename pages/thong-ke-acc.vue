@@ -7,6 +7,12 @@
     </select>
     Total Crystal : {{total_crystal_all}}
     Total Gems : {{total_gems_all}}
+    <div class="d-flex" style="align-items: center">
+      <label for="checkbox_showAcc" style="margin-bottom: 0">Show Acc</label>
+      <input value="acc" type="checkbox" v-model="viewTable" id="checkbox_showAcc">
+      <label for="checkbox_showPc" style="margin-bottom: 0">Show Pc</label>
+      <input value="pc" type="checkbox" v-model="viewTable" id="checkbox_showPc">
+    </div>
     <div class="d-flex">
 <!--      <div class="px-2">-->
 <!--        <label>Username</label>-->
@@ -28,30 +34,52 @@
         Copy
       </button>
     </div>
-    <table>
-      <thead>
-      <tr>
-        <th>STT ({{roblox_data_account_display.length}})</th>
-        <th>User name</th>
-        <th>Crystal ({{total_crystal}})</th>
-        <th>Gems ({{total_gems}})</th>
-        <th>cookie</th>
-      </tr>
-      </thead>
-      <tbody>
-      <template>
-        <tr v-for="(item,index) in roblox_data_account_display">
-          <td class="px-2">{{index + 1}}</td>
-          <td class="px-2">{{item.username}}</td>
-          <td class="px-2">{{getCrystal(item.status)}}</td>
-          <td class="px-2">{{getGems(item.status)}}</td>
-          <td class="px-2">
-            <div style="width: 100px;max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" :title="item.cookie">{{item.cookie}}</div>
-          </td>
+    <div class="d-flex" style="justify-content: space-between">
+      <table v-if="viewTable.includes('acc')">
+        <thead>
+        <tr>
+          <th>STT ({{roblox_data_account_display.length}})</th>
+          <th>User name</th>
+          <th>Crystal ({{total_crystal}})</th>
+          <th>Gems ({{total_gems}})</th>
+          <th>cookie</th>
         </tr>
-      </template>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <template>
+          <tr v-for="(item,index) in roblox_data_account_display">
+            <td class="px-2">{{index + 1}}</td>
+            <td class="px-2">{{item.username}}</td>
+            <td class="px-2">{{getCrystal(item.status)}}</td>
+            <td class="px-2">{{getGems(item.status)}}</td>
+            <td class="px-2">
+              <div style="width: 100px;max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" :title="item.cookie">{{item.cookie}}</div>
+            </td>
+          </tr>
+        </template>
+        </tbody>
+      </table>
+      <table v-if="viewTable.includes('pc')">
+        <thead>
+        <tr>
+          <th>STT</th>
+          <th>PC</th>
+          <th>Crystal</th>
+          <th>Gems</th>
+        </tr>
+        </thead>
+        <tbody>
+        <template>
+          <tr v-for="(item,index) in map_code_detail_display">
+            <td class="px-2">{{index + 1}}</td>
+            <td class="px-2">{{item?.code}}</td>
+            <td class="px-2">{{item?.value?.Gems}}</td>
+            <td class="px-2">{{item?.value?.Crystal}}</td>
+          </tr>
+        </template>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -63,35 +91,49 @@ export default {
     ...mapState({
       roblox_data: state => state.roblox_data,
       roblox_data_account: state => state.roblox_data_account,
-      map_code_device_id: state => state.map_code_device_id,
+      map_device_id_code: state => state.map_device_id_code,
+      map_code_detail: state => state.map_code_detail,
     }),
   },
   watch: {
     select_pc(value){
       this.getDataByDeviceId();
     },
-    roblox_data_account(value){
-      this.getDataByDeviceId();
+    roblox_data_account(){
+      if (this.passPrivate){
+        this.getDataByDeviceId();
+      }
+    },
+    map_code_detail(){
+      if (this.passPrivate){
+        this.renderListPc();
+      }
     },
   },
   data() {
     return {
       select_pc: '',
+      map_code_detail_display: [],
       roblox_data_account_display: '',
       total_crystal: 0,
       total_gems: 0,
       total_crystal_all: 0,
       total_gems_all: 0,
       copyField: [],
+      passPrivate: false,
+      viewTable : ['acc','pc']
     };
   },
   beforeMount() {
+    this.passPrivate = false
     const correctPassword = "matkhau123@"; // Mật khẩu cố định
     const userPassword = prompt("Vui lòng nhập mật khẩu để truy cập:");
 
     if (userPassword !== correctPassword) {
       alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
       this.$router.push("/"); // Chuyển hướng về trang chủ nếu mật khẩu sai
+    }else {
+      this.passPrivate = true
     }
   },
   mounted() {
@@ -124,6 +166,11 @@ export default {
       })
       console.log('roblox_data_account_display',this.roblox_data_account_display)
     },
+    renderListPc(){
+      this.map_code_detail_display = Object.keys(this.map_code_detail).map(key => {
+        return { code: key, value: this.map_code_detail[key]};
+      });
+    },
     getCrystal(status){
       if (!status){
         return ''
@@ -148,3 +195,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
