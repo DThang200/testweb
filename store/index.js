@@ -154,15 +154,18 @@ export const actions = {
             }
             try {
               if (item.status && JSON.parse(item.status)) {
-                map_device_code_sum_acc[map_device_id_code[item.device_id]] += JSON.parse(item.status).Items["Trait Crystal"]
-                map_device_code_detail[map_device_id_code[item.device_id]].Gems += JSON.parse(item.status).Currencies["Gems"]
-                map_device_code_detail[map_device_id_code[item.device_id]].Crystal += JSON.parse(item.status).Items["Trait Crystal"]
+                const crystal = JSON.parse(item.status).Items["Trait Crystal"]
+                const gems = JSON.parse(item.status).Currencies["Gems"]
+                map_device_code_sum_acc[map_device_id_code[item.device_id]] += crystal ? crystal : 0
+                map_device_code_detail[map_device_id_code[item.device_id]].Gems += gems ? gems : 0
+                map_device_code_detail[map_device_id_code[item.device_id]].Crystal += crystal ? crystal : 0
               }
             } catch (e) {
               console.log('Error', e)
             }
           })
         }
+        console.log('map_device_code_detail',map_device_code_detail)
         await commit('SET_MAP_DEVICE_CODE_DETAIL', map_device_code_detail)
         await commit('SET_ACCOUNT_ROBLOX', response)
         await commit('SET_MAP_DEVICE_CODE_SUM_ACC', map_device_code_sum_acc)

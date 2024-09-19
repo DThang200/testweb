@@ -152,15 +152,19 @@ export default {
       this.total_gems_all = 0
       this.total_gems = 0
        this.roblox_data_account.accounts.forEach(item => {
+         let crystal = 0
+         let gems = 0
          if (item?.status){
-           this.total_crystal_all += JSON.parse(item.status).Items["Trait Crystal"]
-           this.total_gems_all += JSON.parse(item.status).Currencies["Gems"]
+           crystal = JSON.parse(item.status).Items["Trait Crystal"]
+           gems = JSON.parse(item.status).Currencies["Gems"]
+           this.total_crystal_all += crystal ? crystal : 0
+           this.total_gems_all += gems ? gems : 0
          }
         if (!this.select_pc || item.device_id === this.select_pc){
           this.roblox_data_account_display.push(item)
           if (item?.status){
-            this.total_crystal += JSON.parse(item.status).Items["Trait Crystal"]
-            this.total_gems += JSON.parse(item.status).Currencies["Gems"]
+            this.total_crystal += crystal ? crystal : 0
+            this.total_gems += gems ? gems : 0
           }
         }
       })
