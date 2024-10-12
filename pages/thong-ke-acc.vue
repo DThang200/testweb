@@ -59,26 +59,38 @@
         </template>
         </tbody>
       </table>
-      <table v-if="viewTable.includes('pc')" style="height: fit-content">
-        <thead>
-        <tr>
-          <th>STT</th>
-          <th>PC</th>
-          <th>Crystal</th>
-          <th>Gems</th>
-        </tr>
-        </thead>
-        <tbody>
-        <template>
-          <tr v-for="(item,index) in map_code_detail_display">
-            <td class="px-2">{{index + 1}}</td>
-            <td class="px-2">{{item?.code}}</td>
-            <td class="px-2">{{item?.value?.Crystal}}</td>
-            <td class="px-2">{{item?.value?.Gems}}</td>
-          </tr>
-        </template>
-        </tbody>
-      </table>
+      <template  v-if="viewTable.includes('pc')">
+        <div>
+          <div class="d-flex" style="align-items: center">
+            <label for="sort_pc_pc" style="margin-bottom: 0">Pc</label>
+            <input value="" type="radio" name="sort_pc" v-model="sort_pc" id="sort_pc_pc" style="margin-right: 10px">
+            <label for="sort_pc_crystal" style="margin-bottom: 0">Crystals</label>
+            <input value="crystal" type="radio" name="sort_pc" v-model="sort_pc" id="sort_pc_crystal" style="margin-right: 10px">
+            <label for="sort_pc_gems" style="margin-bottom: 0">Gems</label>
+            <input value="gems" type="radio" name="sort_pc" v-model="sort_pc" id="sort_pc_gems" style="margin-right: 10px">
+          </div>
+          <table style="height: fit-content">
+            <thead>
+            <tr>
+              <th>STT</th>
+              <th>PC</th>
+              <th>Crystal</th>
+              <th>Gems</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template>
+              <tr v-for="(item,index) in map_code_detail_display">
+                <td class="px-2">{{index + 1}}</td>
+                <td class="px-2">{{item?.code}}</td>
+                <td class="px-2">{{item?.value?.Crystal}}</td>
+                <td class="px-2">{{item?.value?.Gems}}</td>
+              </tr>
+            </template>
+            </tbody>
+          </table>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -98,6 +110,9 @@ export default {
   watch: {
     select_pc(value){
       this.getDataByDeviceId();
+    },
+    sort_pc(value){
+      this.renderListPc(value);
     },
     roblox_data_account(){
       if (this.passPrivate){
@@ -121,7 +136,8 @@ export default {
       total_gems_all: 0,
       copyField: [],
       passPrivate: false,
-      viewTable : ['acc','pc']
+      viewTable : ['acc','pc'],
+      sort_pc: ''
     };
   },
   beforeMount() {
@@ -170,9 +186,26 @@ export default {
       })
       console.log('roblox_data_account_display',this.roblox_data_account_display)
     },
-    renderListPc(){
+    renderListPc(sort = ''){
       this.map_code_detail_display = Object.keys(this.map_code_detail).map(key => {
         return { code: key, value: this.map_code_detail[key]};
+      });
+      this.map_code_detail_display.sort((a, b) => {
+        if (sort === 'crystal'){
+          if (!a.value?.Crystal) return 1;
+          if (!b.value?.Crystal) return -1;
+          return b.value?.Crystal - a.value?.Crystal;
+        } else if (sort === 'gems'){
+          if (!a.value?.Gems) return 1;
+          if (!b.value?.Gems) return -1;
+          return b.value?.Gems - a.value?.Gems ;
+        } else {
+          if (!a.code) return 1;
+          if (!b.code) return -1;
+          let numberA = parseInt(a.code.split('_')[1]);
+          let numberB = parseInt(b.code.split('_')[1]);
+          return numberA - numberB;
+        }
       });
     },
     getCrystal(status){
