@@ -41,7 +41,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(this.$config.API_ROBLOX, {
         headers: {
-          'x-auth-token': this.$config.TOKEN_ROBLOX,
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
       const device_remotes = JSON.parse(localStorage.getItem('device_remotes'));
@@ -93,7 +93,7 @@ export const actions = {
         // }
         const response = await this.$axios.$get(this.$config.API_ROBLOX_ACCOUNT, {
           headers: {
-            'x-auth-token': this.$config.TOKEN_ROBLOX,
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
         });
         // const response = {

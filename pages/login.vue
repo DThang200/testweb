@@ -31,8 +31,9 @@ export default {
         username: this.username,
         password: this.password,
       })
-      if (res) {
+      if (res && res?.session_id) {
         this.response = res
+        localStorage.setItem('token_roblox', JSON.stringify(res?.session_id));
       } else {
         this.response = 'Đăng nhập lại'
       }
