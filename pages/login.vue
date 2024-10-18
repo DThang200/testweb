@@ -5,6 +5,7 @@
     <label for="input_username">Password</label>
     <input id="input_username" type="password" v-model="password">
     <button @click="onLogin">Login</button>
+    <a href="/">Về home</a>
     <div>
       response : {{response}}
     </div>
