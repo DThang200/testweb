@@ -86,33 +86,33 @@ export const actions = {
   async getDataAccount({commit,state}, param = {}) {
     setTimeout(async () => {
       try {
-        // const cacheKey = 'response_API_ROBLOX_ACCOUNT';
-        // const cachedData = localStorage.getItem(cacheKey);
-        // let response = {}
-        // if (cachedData) {
-        //   // Dữ liệu đã được lưu trữ, chỉ cần lấy ra sử dụng
-        //   response = JSON.parse(cachedData);
-        // } else {
-        //   // Gọi API và lưu lại kết quả
-        //   try {
-        //     const responseApi = await this.$axios.$get(this.$config.API_ROBLOX_ACCOUNT, {
-        //       headers: {
-        //         'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-        //       },
-        //     });
-        //     responseApi.accounts = responseApi.accounts.slice(0,200)
-        //     response = responseApi
-        //     // Lưu vào localStorage
-        //     localStorage.setItem(cacheKey, JSON.stringify(response));
-        //   } catch (error) {
-        //     console.error('API call failed:', error);
-        //   }
-        // }
-        const response = await this.$axios.$get(this.$config.API_ROBLOX_ACCOUNT, {
-          headers: {
-            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          },
-        });
+        const cacheKey = 'response_API_ROBLOX_ACCOUNT';
+        const cachedData = localStorage.getItem(cacheKey);
+        let response = {}
+        if (cachedData) {
+          // Dữ liệu đã được lưu trữ, chỉ cần lấy ra sử dụng
+          response = JSON.parse(cachedData);
+        } else {
+          // Gọi API và lưu lại kết quả
+          try {
+            const responseApi = await this.$axios.$get(this.$config.API_ROBLOX_ACCOUNT, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            responseApi.accounts = responseApi.accounts.slice(0,200)
+            response = responseApi
+            // Lưu vào localStorage
+            localStorage.setItem(cacheKey, JSON.stringify(response));
+          } catch (error) {
+            console.error('API call failed:', error);
+          }
+        }
+        // const response = await this.$axios.$get(this.$config.API_ROBLOX_ACCOUNT, {
+        //   headers: {
+        //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        //   },
+        // });
         const map_device_id_code = {...state.map_device_id_code}
         const map_device_code_sum_acc = {}
         const map_device_code_detail = {}
@@ -151,9 +151,9 @@ export const actions = {
 
   },
   setStatusDevice({commit,state}, param = {device_id: '',key: '',value: ''}){
-    if (!param.device_id || !param.key || !param.value){
-      return false
-    }
+    let map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || []
+    // param.device_id
+    map_device_data
 
   },
   getKeyGom({commit,state}, param = {}){
