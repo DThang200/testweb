@@ -34,7 +34,7 @@
         <template v-if="map_device_data && map_device_data[data?.device_id]">
           {{map_device_data[data?.device_id]?.script}}
         </template>
-        <template v-else>Cày</template>
+        <template v-else>Farm</template>
       </div>
       <div v-show="editDevice == data.device_code">
         <select v-model="data.user_collect" @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
