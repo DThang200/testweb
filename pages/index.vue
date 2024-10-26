@@ -360,6 +360,7 @@ export default {
     },
 
     async saveScript(device_id, script, status = 'farm') {
+      return false
       const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
