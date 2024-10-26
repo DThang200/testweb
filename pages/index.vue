@@ -37,7 +37,7 @@
         <template v-else>Farm</template>
       </div>
       <div v-show="editDevice == data.device_code">
-        <select v-model="data.user_collect" @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
+        <select @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
           <option value="">Không</option>
           <template v-for="data in map_key_token_gom">
             <option :value="data?.key">{{data?.key}}</option>
