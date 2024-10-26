@@ -85,11 +85,18 @@ export default {
       roblox_data: [],
     }
   },
-  mounted() {
+  async mounted() {
+    const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs`, {
+      headers: {
+        'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+      },
+    });
+    console.log('resScript',resScript)
     this.getDataRoblox();
     this.initData();
     this.getKeyGom();
     this.getKeyFarm();
+
   },
   methods: {
     ...mapActions([
@@ -352,7 +359,8 @@ export default {
       }
     },
 
-    async saveScript(device_id, script) {
+    async saveScript(device_id, script, status = 'farm') {
+      return false
       const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
@@ -361,7 +369,7 @@ export default {
       const config_id = resConfig?.configs[0]?.config_id
       const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
         headers: {
-          'x-auth-token': this.$config.TOKEN_ROBLOX,
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
       const script_id = resScript?.scripts[0]?.script_id
@@ -369,7 +377,7 @@ export default {
         script_data: script
       },{
         headers: {
-          'x-auth-token': this.$config.TOKEN_ROBLOX,
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
       console.log('saveScript',device_id, script,resScript,resSetScript)

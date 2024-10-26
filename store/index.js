@@ -8,6 +8,7 @@ export const state = () => ({
   map_code_detail: {},
   map_key_token_gom: [],
   map_key_token_farm: [],
+  map_device_key_value: {},
   total: 0,
 })
 
@@ -38,6 +39,14 @@ export const mutations = {
   },
   SET_MAP_KEY_TOKEN_FARM(state, data) {
     state.map_key_token_farm= data
+  },
+  SET_MAP_DEVICE_KEY_VALUE(state, data) {
+    if (!state.map_device_key_value[data?.divice]){
+      state.map_device_key_value[data?.divice] = {
+
+      }
+    }
+    state.map_device_key_value[data?.divice] = data?.value
   },
 }
 
@@ -88,7 +97,7 @@ export const actions = {
           try {
             const responseApi = await this.$axios.$get(this.$config.API_ROBLOX_ACCOUNT, {
               headers: {
-                'x-auth-token': this.$config.TOKEN_ROBLOX,
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
             responseApi.accounts = responseApi.accounts.slice(0,200)
@@ -141,6 +150,12 @@ export const actions = {
     },500)
 
   },
+  setStatusDevice({commit,state}, param = {device_id: '',key: '',value: ''}){
+    if (!param.device_id || !param.key || !param.value){
+      return false
+    }
+
+  },
   getKeyGom({commit,state}, param = {}){
     let map_key_token_gom = JSON.parse(localStorage.getItem('map_key_token_gom'))
     if (!map_key_token_gom) {
@@ -158,8 +173,8 @@ export const actions = {
           token: 'LKrMEFsNREfYVCqwTqcFfpLEBySOFbhc'
         },
         {
-          key: 'dungckpt19',
-          token: 'bvdINvPBUAtEvQqYNCDKLdtQDYmApOak'
+          key: 'dungckpt123',
+          token: 'LKrMEFsNREfYVCqwTqcFfpLEBySOFbhc'
         },
       ]
       localStorage.setItem('map_key_token_gom', JSON.stringify(map_key_token_gom));
