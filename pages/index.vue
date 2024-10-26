@@ -30,6 +30,17 @@
           Connect
         </button>
       </div>
+      <div v-show="editDevice == data.device_code">
+        <select v-model="data.user_collect" @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
+          <option value="">Không</option>
+          <template v-for="data in map_key_token_gom">
+            <option :value="data?.key">{{data?.key}}</option>
+          </template>
+        </select>
+        <button @click="setFarmScript(data?.device_id,data?.device_name,'lava')">Farm Lava</button>
+        <button @click="setFarmScript(data?.device_id,data?.device_name,'princess')">Farm Công chúa</button>
+      </div>
+
       <div class="input-device_action" @click="() => {if(editDevice !== data.device_code){editDevice = data.device_code} else {editDevice = ''}}">
         edit
       </div>
@@ -45,6 +56,8 @@ export default {
     ...mapState({
       roblox_data_state: state => state.roblox_data,
       map_device_code_sum_acc: state => state.map_device_code_sum_acc,
+      map_key_token_gom: state => state.map_key_token_gom,
+      map_key_token_farm: state => state.map_key_token_farm,
     }),
   },
   watch:{
@@ -60,10 +73,7 @@ export default {
       },deep: true
     }
   },
-  mounted() {
-    this.getDataRoblox();
-    this.initData();
-  },
+
   beforeDestroy() {
     // Clear the interval when the component is destroyed to prevent memory leaks
     clearInterval(this.intervalId);
@@ -72,13 +82,21 @@ export default {
     return {
       editDevice: '',
       sortInactive: false,
-      roblox_data: []
+      roblox_data: [],
     }
+  },
+  mounted() {
+    this.getDataRoblox();
+    this.initData();
+    this.getKeyGom();
+    this.getKeyFarm();
   },
   methods: {
     ...mapActions([
       'getDataRoblox',
       'getDataAccount',
+      'getKeyGom',
+      'getKeyFarm',
     ]),
     getDataAccountRender (){
       this.getDataAccount()
@@ -109,7 +127,6 @@ export default {
       // window.open(`https://remotedesktop.google.com/access/session/${device_remote}`, '_blank');
     },
     saveDeviceId(data){
-      console.log('saveDeviceId',data)
       if (!data?.device_remote){
         alert('Chưa Nhập Device Id')
         return
@@ -122,6 +139,241 @@ export default {
       device_remotes[deviceId] = data.device_remote
       localStorage.setItem('device_remotes',JSON.stringify(device_remotes));
     },
+    setCollectScript(device_id,user_collect){
+      if (!user_collect){
+            this.setFarmScript(device_id)
+        return
+      }
+      this.roblox_data?.devices.forEach(item => {
+        if (!user_collect && item?.device_id === device_id){
+          this.setFarmScript(item?.device_id,item?.device_name,'lava')
+          return
+        }
+        if (item?.user_collect && item?.user_collect === user_collect){
+          item.user_collect = ''
+          this.setFarmScript(item?.device_id,item?.device_name,'lava')
+        }
+        if (item?.device_id === device_id){
+          item.user_collect = user_collect
+        }
+      })
+      const token = this.map_key_token_gom.find(data => data?.key == user_collect)?.token
+      console.log('token',token)
+      const script = `script_key = "${token}"
+            getgenv().SelectedPlayer = "${user_collect}"
+            getgenv().MainAccount = false
+            getgenv().AccountForMainToFolow = ""
+            getgenv().EnableAccountForMainFolow = false  # Nếu bạn muốn tài khoản chính tham gia một máy chủ ít người chơi với một tài khoản đã có sẵn trong máy chủ ít người chơi
+            getgenv().MainAccountSetting = {  # Đơn vị để bán
+                Units = false,
+                ManuallyClaimBooth = false,
+            }
+            getgenv().AltAccountSetting = {
+                Trade = true,
+                NotSendGem = true,
+                TradeItems = {"Trait Crystal", "Risky Dice", "Frost Bind"},
+                GiveBackUnit = true,
+                KickAfterDoneTrade = true,
+            }
+            loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()`;
+      this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+    },
+    setFarmScript(device_id,device_name,unit = 'lava'){
+      const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
+      if (unit === 'lava') {
+        const script =
+            `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+              getgenv().Key = "${token}"
+              getgenv().TargetUnitRoll = {
+                  "Admiral Of Lava"
+              }
+
+              getgenv().notRollUnitTarget = false
+              getgenv().UseSavePosition = {
+                  ["Enabled"] = false,
+                  ["File Name"] = ""
+              }
+              getgenv().GemRollUnit = 2500
+              getgenv().Speed = {
+                  ["Speed"] = 2,
+                  ["Wave Active Speed"] = 1,
+              }
+              getgenv()["Black Screen"] = true
+              getgenv()["Auto Leave Infinite"] = {
+                  ["Auto Leave"] = true,
+                  ["Method"] = {
+                      ["Sell"] = true,
+                      ["Leave"] = true,
+                  },
+                  ["Wave"] = 46
+              }
+              getgenv().Auto_Equip = {
+                  ["Equip Best"] = true,
+                  ["Custom Equip"] = {
+                      ["Enabled"] = false,
+                      ["Units"] = {
+                          "Chief Of Lava",
+                      },
+                  },
+              }
+              getgenv().Portal = {
+                  ["Enabled"] = false,
+                  ["Name Portal"] = "Demon Portal", -- support only 4 portal lunar and Demon and Ancient Dragon and Cursed Kingdom
+                  ["Auto Get Portal"] = false, ---- support only portal Ancient Dragon and Cursed Kingdom
+                  ["Rarity Portal"] = {
+                      ["Rare"] = true,
+                      ["Epic"] = true,
+                      ["Legendary"] = false,
+                      ["Mythical"] = false,
+                      ["Secret"] = false,
+                  },
+                  ["Unit"] = {
+                      ["Use All Unit"] = true,
+                      ["Custom Unit"] = {
+                          "Admiral Of Lava",
+                      }
+                  },
+              }
+              getgenv().Webhook =  {
+                  ["Webhook"] = false,
+                  ["Url"] = "",
+                  ["Roll Unit"] = true,
+                  ["Story/Infinite"] = true,
+              }
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
+        this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+      } else {
+        const script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+
+                        getgenv().Key = "${token}"
+
+                        getgenv().TargetUnitRoll = {
+
+                            "Princess Swordmaster"
+
+                        }
+
+
+
+                        getgenv().notRollUnitTarget = true
+
+                        getgenv().UseSavePosition = false
+
+                        getgenv().GemRollUnit = 20000
+
+                        getgenv().Speed = 2
+
+                        getgenv()["Black Screen"] = true
+
+                        getgenv()["Auto Leave Infinite"] = {
+
+                            ["Auto Leave"] = true,
+
+                            ["Method"] = {
+
+                                ["Sell"] = true,
+
+                                ["Leave"] = true,
+
+                            },
+
+                            ["Wave"] = 46
+
+                        }
+
+                        getgenv().Auto_Equip = {
+
+                            ["Equip Best"] = true,
+
+                            ["Custom Equip"] = {
+
+                                ["Enabled"] = false,
+
+                                ["Units"] = {
+
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight",
+
+                                },
+
+                            },
+
+                        }
+
+                        getgenv().Portal = {
+
+                            ["Enabled"] = true,
+
+                            ["Name Portal"] = "Demon Portal", -- support only 3 portal lunar and Demon and Ancient Dragon
+
+                            ["Auto Get Portal"] = false, ---- support only portal Ancient Dragon
+
+                            ["Rarity Portal"] = {
+
+                                ["Rare"] = true,
+
+                                ["Epic"] = true,
+
+                                ["Legendary"] = true,
+
+                                ["Mythical"] = true,
+
+                                ["Secret"] = false,
+
+                            },
+
+                            ["Unit"] = {
+
+                                ["Use All Unit"] = false,
+
+                                ["Custom Unit"] = {
+
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight",
+
+                                }
+
+                            },
+
+                        }
+
+                        getgenv().Webhook =  {
+
+                            ["Webhook"] = false,
+
+                            ["Url"] = "",
+
+                            ["Roll Unit"] = true,
+
+                            ["Story/Infinite"] = true,
+
+                        }
+
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
+        this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+      }
+    },
+
+    async saveScript(device_id, script) {
+      const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
+      const config_id = resConfig?.configs[0]?.config_id
+      const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+        headers: {
+          'x-auth-token': this.$config.TOKEN_ROBLOX,
+        },
+      });
+      const script_id = resScript?.scripts[0]?.script_id
+      const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
+        script_data: script
+      },{
+        headers: {
+          'x-auth-token': this.$config.TOKEN_ROBLOX,
+        },
+      });
+      console.log('saveScript',device_id, script,resScript,resSetScript)
+    }
   }
 };
 </script>
