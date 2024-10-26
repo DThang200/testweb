@@ -30,6 +30,12 @@
           Connect
         </button>
       </div>
+      <div style="width: 450px">
+        <template v-if="map_device_data && map_device_data[data?.device_id]">
+          {{map_device_data[data?.device_id]?.script}}
+        </template>
+        <template v-else>Cày</template>
+      </div>
       <div v-show="editDevice == data.device_code">
         <select v-model="data.user_collect" @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
           <option value="">Không</option>
@@ -58,6 +64,7 @@ export default {
       map_device_code_sum_acc: state => state.map_device_code_sum_acc,
       map_key_token_gom: state => state.map_key_token_gom,
       map_key_token_farm: state => state.map_key_token_farm,
+      map_device_data: state => state.map_device_data,
     }),
   },
   watch:{
@@ -90,6 +97,7 @@ export default {
     this.initData();
     this.getKeyGom();
     this.getKeyFarm();
+    this.initStatusDevice();
 
   },
   methods: {
@@ -98,6 +106,8 @@ export default {
       'getDataAccount',
       'getKeyGom',
       'getKeyFarm',
+      'setStatusDevice',
+      'initStatusDevice',
     ]),
     getDataAccountRender (){
       this.getDataAccount()
@@ -177,6 +187,7 @@ export default {
             }
             loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()`;
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+      this.setStatusDevice({device_id: device_id,key: 'script',value: `Trading to - ${user_collect}`})
     },
     setFarmScript(device_id,device_name,unit = 'lava'){
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
@@ -350,9 +361,10 @@ export default {
                         loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
         this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
       }
+      this.setStatusDevice({device_id: device_id,key: 'script',value: `Farm-${unit}`})
     },
 
-    async saveScript(device_id, script, status = 'farm') {
+    async saveScript(device_id, script) {
       const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,

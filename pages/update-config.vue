@@ -25,7 +25,7 @@ export default {
       setting: {
         "relaunch_delay": 130,
         "kill_idle_roblox_delay": 30,
-        "launch_delay": 50,
+        "launch_delay": 30,
         "avoid_joining_same_accounts": false
       },
       config : {
@@ -33,7 +33,7 @@ export default {
         "join_low_players_server": false,
       },
       responseAll :[],
-      link_private_data : []
+      link_private_data : [],
     }
   },
   mounted() {
@@ -58,7 +58,7 @@ export default {
       console.log('this.link_private',this.link_private_data)
     },
     async renderConfig() {
-      const handleData = this.roblox_data?.devices.slice(1,2)
+      const handleData = this.roblox_data?.devices.slice(1)
       for (const data of handleData) {
         const devices_id = data?.device_id
         const responseSetting = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/settings`, this.setting, {
@@ -71,19 +71,19 @@ export default {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
         });
-        const config_id = resConfig?.configs[0]?.config_id
-        const configData = {...this.config,private_server_link : this.link_private.find(item => {return `VPS ${item?.name}` == data?.device_name})?.link}
-        console.log('configData',configData)
-        const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
-          headers: {
-            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          },
-        });
-        this.responseAll.push({
-          name : data?.name,
-          sett8ing : responseSetting ? 'Ok' : 'False',
-          config : responseConfig ? 'Ok' : 'False',
-        })
+        // const config_id = resConfig?.configs[0]?.config_id
+        // const configData = {...this.config,private_server_link : this.link_private_data.find(item => {return `VPS ${item?.name}` == data?.device_name})?.link}
+        // console.log('configData',configData)
+        // const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
+        //   headers: {
+        //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        //   },
+        // });
+        // this.responseAll.push({
+        //   name : data?.name,
+        //   sett8ing : responseSetting ? 'Ok' : 'False',
+        //   config : responseConfig ? 'Ok' : 'False',
+        // })
       }
     }
   }

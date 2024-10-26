@@ -9,6 +9,7 @@ export const state = () => ({
   map_key_token_gom: [],
   map_key_token_farm: [],
   map_device_key_value: {},
+  map_device_data: {},
   total: 0,
 })
 
@@ -40,13 +41,8 @@ export const mutations = {
   SET_MAP_KEY_TOKEN_FARM(state, data) {
     state.map_key_token_farm= data
   },
-  SET_MAP_DEVICE_KEY_VALUE(state, data) {
-    if (!state.map_device_key_value[data?.divice]){
-      state.map_device_key_value[data?.divice] = {
-
-      }
-    }
-    state.map_device_key_value[data?.divice] = data?.value
+  SET_MAP_DEVICE_DATA(state, data) {
+    state.map_device_data= data
   },
 }
 
@@ -150,10 +146,22 @@ export const actions = {
     },500)
 
   },
+
+  initStatusDevice({commit,state}, param = {}){
+    commit('SET_MAP_DEVICE_DATA', JSON.parse(localStorage.getItem('map_device_data')) || {})
+
+  },
   setStatusDevice({commit,state}, param = {device_id: '',key: '',value: ''}){
-    let map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || []
+    let map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {}
     // param.device_id
-    map_device_data
+    if (!map_device_data[param.device_id]) {
+      map_device_data[param.device_id] = {
+        [param.key] : param.value
+      }
+    }
+    map_device_data[param.device_id][param.key] = param.value
+    localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
+    commit('SET_MAP_DEVICE_DATA', map_device_data)
 
   },
   getKeyGom({commit,state}, param = {}){
