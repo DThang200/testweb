@@ -169,8 +169,8 @@ export const actions = {
           token: 'btoGTLjvtGcoParGnXxsMrrhCWKOrFxT'
         },
         {
-          key: 'anhdungck',
-          token: 'LKrMEFsNREfYVCqwTqcFfpLEBySOFbhc'
+          key: 'dungckpt',
+          token: 'bvdINvPBUAtEvQqYNCDKLdtQDYmApOak'
         },
         {
           key: 'dungckpt123',

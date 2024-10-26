@@ -86,12 +86,6 @@ export default {
     }
   },
   async mounted() {
-    const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs`, {
-      headers: {
-        'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-      },
-    });
-    console.log('resScript',resScript)
     this.getDataRoblox();
     this.initData();
     this.getKeyGom();
@@ -165,13 +159,12 @@ export default {
         }
       })
       const token = this.map_key_token_gom.find(data => data?.key == user_collect)?.token
-      console.log('token',token)
       const script = `script_key = "${token}"
             getgenv().SelectedPlayer = "${user_collect}"
             getgenv().MainAccount = false
             getgenv().AccountForMainToFolow = ""
-            getgenv().EnableAccountForMainFolow = false  # Nếu bạn muốn tài khoản chính tham gia một máy chủ ít người chơi với một tài khoản đã có sẵn trong máy chủ ít người chơi
-            getgenv().MainAccountSetting = {  # Đơn vị để bán
+            getgenv().EnableAccountForMainFolow = false
+            getgenv().MainAccountSetting = {
                 Units = false,
                 ManuallyClaimBooth = false,
             }
@@ -225,8 +218,8 @@ export default {
               }
               getgenv().Portal = {
                   ["Enabled"] = false,
-                  ["Name Portal"] = "Demon Portal", -- support only 4 portal lunar and Demon and Ancient Dragon and Cursed Kingdom
-                  ["Auto Get Portal"] = false, ---- support only portal Ancient Dragon and Cursed Kingdom
+                  ["Name Portal"] = "Demon Portal",
+                  ["Auto Get Portal"] = false,
                   ["Rarity Portal"] = {
                       ["Rare"] = true,
                       ["Epic"] = true,
@@ -310,9 +303,9 @@ export default {
 
                             ["Enabled"] = true,
 
-                            ["Name Portal"] = "Demon Portal", -- support only 3 portal lunar and Demon and Ancient Dragon
+                            ["Name Portal"] = "Demon Portal",
 
-                            ["Auto Get Portal"] = false, ---- support only portal Ancient Dragon
+                            ["Auto Get Portal"] = false,
 
                             ["Rarity Portal"] = {
 
