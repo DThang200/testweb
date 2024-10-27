@@ -279,7 +279,7 @@ export default {
 
                         getgenv().Speed = 2
 
-                        getgenv()["Black Screen"] = false
+                        getgenv()["Black Screen"] = true
 
                         getgenv()["Auto Leave Infinite"] = {
 
