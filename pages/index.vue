@@ -279,7 +279,7 @@ export default {
 
                         getgenv().Speed = 2
 
-                        getgenv()["Black Screen"] = true
+                        getgenv()["Black Screen"] = false
 
                         getgenv()["Auto Leave Infinite"] = {
 
@@ -293,7 +293,7 @@ export default {
 
                             },
 
-                            ["Wave"] = 46
+                            ["Wave"] = 31
 
                         }
 
@@ -329,9 +329,9 @@ export default {
 
                                 ["Epic"] = true,
 
-                                ["Legendary"] = true,
+                                ["Legendary"] = false,
 
-                                ["Mythical"] = true,
+                                ["Mythical"] = false,
 
                                 ["Secret"] = false,
 
