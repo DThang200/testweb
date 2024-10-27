@@ -1,6 +1,11 @@
 <template>
 <main class="page-content">
   <button type="button" @click="getDataAccountRender">Render</button>
+  <div>
+    <nuxt-link to="/setup-key">
+      Setup Keys
+    </nuxt-link>
+  </div>
   <div style="margin-left: auto">
     <input v-model="sortInactive" id="sortInactive" type="checkbox">
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
