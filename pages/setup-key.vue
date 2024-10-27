@@ -89,6 +89,12 @@ export default {
     },
     onSave(key = '',localKey=''){
       localStorage.setItem(key, JSON.stringify(this.listData[localKey || key]));
+      if (localKey === 'map_key_token_gom'){
+        this.getKeyGom();
+      }
+      if (localKey === 'map_key_token_farm'){
+        this.getKeyFarm();
+      }
     }
   }
 };
