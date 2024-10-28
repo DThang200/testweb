@@ -307,7 +307,7 @@ export default {
 
                                 ["Units"] = {
 
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight",
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
 
                                 },
 
@@ -329,7 +329,7 @@ export default {
 
                                 ["Epic"] = true,
 
-                                ["Legendary"] = false,
+                                ["Legendary"] = true,
 
                                 ["Mythical"] = false,
 
@@ -343,7 +343,7 @@ export default {
 
                                 ["Custom Unit"] = {
 
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight",
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
 
                                 }
 
