@@ -157,7 +157,7 @@ export default {
     this.getDataAccount()
     this.intervalId = setInterval(() => {
       this.getDataAccount()
-    }, 180 * 1000);
+    }, 600 * 1000);
   },
   methods: {
     ...mapActions([
