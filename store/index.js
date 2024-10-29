@@ -11,6 +11,9 @@ export const state = () => ({
   map_device_key_value: {},
   map_device_data: {},
   total: 0,
+  device_history: {},
+  last_save_history_data: {},
+  today_save_history_data: {},
 })
 
 export const mutations = {
@@ -43,6 +46,15 @@ export const mutations = {
   },
   SET_MAP_DEVICE_DATA(state, data) {
     state.map_device_data= data
+  },
+  SET_DATA_HISTORY(state, data) {
+    state.device_history= data
+  },
+  SET_LAST_SAVE_DATA(state, data) {
+    state.last_save_history_data= data
+  },
+  SET_TODAY_SAVE_DATA(state, data) {
+    state.today_save_history_data= data
   },
 }
 
@@ -111,7 +123,7 @@ export const actions = {
         });
         const map_device_id_code = {...state.map_device_id_code}
         const map_device_code_sum_acc = {}
-        const map_device_code_detail = {}
+        let map_device_code_detail = {}
         const map_code_detail = {}
         if (response.accounts) {
           response.accounts.forEach(item => {
@@ -136,17 +148,85 @@ export const actions = {
             }
           })
         }
-        console.log('map_device_code_detail',map_device_code_detail)
         await commit('SET_MAP_DEVICE_CODE_DETAIL', map_device_code_detail)
         await commit('SET_ACCOUNT_ROBLOX', response)
         await commit('SET_MAP_DEVICE_CODE_SUM_ACC', map_device_code_sum_acc)
+
+        ///Save history by day
+
+        const date = new Date()
+        let last_day_save_history = localStorage.getItem('last_day_save_history') ?  new Date(localStorage.getItem('last_day_save_history')) : null
+        console.log('date',date,last_day_save_history,date > last_day_save_history )
+        if (date > last_day_save_history || !last_day_save_history) {
+          const today = new Date();
+          const options = {
+            timeZone: 'Asia/Ho_Chi_Minh',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          };
+          const formatter = new Intl.DateTimeFormat('en-CA', options);
+          localStorage.setItem('last_day_save_history', formatter.format(today).replace(/\//g, '-'));
+          const sum_all = {Crystal: 0,Gems : 0}
+          Object.entries(map_device_code_detail).forEach(data => {
+              sum_all.Gems += data[1].Gems
+              sum_all.Crystal += data[1].Crystal
+            })
+          const last_save_history_data = localStorage.getItem('today_save_history_data') || {...map_device_code_detail,time: date.getTime()}
+          localStorage.setItem('last_save_history_data',last_save_history_data);
+          await commit('SET_LAST_SAVE_DATA', last_save_history_data);
+          localStorage.setItem('today_save_history_data', JSON.stringify({...map_device_code_detail,All: sum_all,time: date.getTime()}));
+          await commit('SET_TODAY_SAVE_DATA', {...map_device_code_detail,All: sum_all,time: date.getTime()})
+        }
+
+
+
+
+        ///Save history
+
+        // const date = new Date()
+        // const timeIndex = date.getTime()
+        // const hourNow = (date.getUTCHours() + 7) % 24
+        // const saveTime = [6,12,18,24]
+        // let saveTimeNow = 6
+        // let last_time_save_history = JSON.parse(localStorage.getItem('last_time_save_history'))
+        // if (last_day_save_history){
+        //
+        // }
+        // if (!last_time_save_history) {
+        //   localStorage.setItem('last_time_save_history', '6');
+        // }
+        // if (hourNow > last_time_save_history || last_time_save_history === hourNow || (last_time_save_history === 24 && hourNow < 6) || true){
+        //   saveTime.forEach(time => {
+        //     if (time < hourNow || time == hourNow || ((last_time_save_history === 24 && hourNow < 6))) {
+        //       saveTimeNow = time
+        //     }
+        //   })
+        //   if (saveTimeNow !== 24) {
+        //     localStorage.setItem('last_time_save_history', JSON.stringify(parseInt(saveTimeNow) + 6));
+        //   } else {
+        //     localStorage.setItem('last_time_save_history', '6');
+        //   }
+        //   let device_history = JSON.parse(localStorage.getItem('device_history')) || {}
+        //   const sum_all = {Crystal: 0,Gems : 0}
+        //   Object.entries(map_device_code_detail).forEach(data => {
+        //     sum_all.Gems += data[1].Gems
+        //     sum_all.Crystal += data[1].Crystal
+        //   })
+        //   device_history[timeIndex] = {...map_device_code_detail,All: sum_all,time: timeIndex}
+        //   localStorage.setItem('device_history', JSON.stringify(device_history));
+        //   await commit('SET_DATA_HISTORY', device_history)
+        // }
       } catch (e) {
         return false
       }
     },500)
 
   },
-
+  initDataHistory({commit,state}, param = {}){
+    commit('SET_LAST_SAVE_DATA', JSON.parse(localStorage.getItem('last_save_history_data')) || {})
+    commit('SET_TODAY_SAVE_DATA', JSON.parse(localStorage.getItem('today_save_history_data')) || {})
+  },
   initStatusDevice({commit,state}, param = {}){
     commit('SET_MAP_DEVICE_DATA', JSON.parse(localStorage.getItem('map_device_data')) || {})
 

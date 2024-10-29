@@ -7,6 +7,22 @@
     </select>
     Total Crystal : {{total_crystal_all}}
     Total Gems : {{total_gems_all}}
+    1h Gems : {{total_gems_all}}
+<!--    <div style="margin: 16px 0">-->
+<!--      <div style="display: flex;flex-direction: row;gap: 8px;flex-wrap: wrap">-->
+<!--        History :-->
+<!--        <template v-for="history in device_history_show">-->
+<!--          <div v-for="history_data in  [history[select_pc ? map_device_id_code[select_pc] : 'All']]" style="border: black solid 1px; padding: 8px;white-space: nowrap">-->
+<!--            {{historyTime(history['time'])}}-->
+<!--            RR({{history_data?.Crystal}}(<span :style="`color: ${ total_crystal - history_data?.Crystal > 0 ? '#0ECB81' : '#F6465D'};`">-->
+<!--              {{total_crystal - history_data?.Crystal}}-->
+<!--            </span>)-G({{history_data?.Gems}}(<span :style="`color: ${ total_gems - history_data?.Gems > 0 ? '#0ECB81' : '#F6465D'};`">-->
+<!--              {{total_gems - history_data?.Gems}}-->
+<!--            </span>)-->
+<!--          </div>-->
+<!--        </template>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="d-flex" style="align-items: center">
       <label for="checkbox_showAcc" style="margin-bottom: 0">Show Acc</label>
       <input value="acc" type="checkbox" v-model="viewTable" id="checkbox_showAcc">
@@ -76,6 +92,8 @@
               <th>PC</th>
               <th>Crystal</th>
               <th>Gems</th>
+              <th colspan="2">1h</th>
+              <th colspan="2">Last Day</th>
             </tr>
             </thead>
             <tbody>
@@ -83,8 +101,12 @@
               <tr v-for="(item,index) in map_code_detail_display">
                 <td class="px-2">{{index + 1}}</td>
                 <td class="px-2">{{item?.code}}</td>
-                <td class="px-2">{{item?.value?.Crystal}}</td>
+                <td class="px-2" style="color: #9928f4">{{item?.value?.Crystal}}</td>
                 <td class="px-2">{{item?.value?.Gems}}</td>
+                <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Crystal,today_save_history_data[item?.code].Crystal,today_save_history_data['time'])}}</td>
+                <td class="px-2" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Gems,today_save_history_data[item?.code].Gems,today_save_history_data['time'])}}</td>
+                <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
+                <td class="px-2" :style="`color: ${(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '#0ECB81' : '#F6465D'}`" v-if="today_save_history_data">{{(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '+' : '-'}} {{item?.value?.Gems - last_save_history_data[item?.code]?.Gems}}</td>
               </tr>
             </template>
             </tbody>
@@ -105,6 +127,8 @@ export default {
       roblox_data_account: state => state.roblox_data_account,
       map_device_id_code: state => state.map_device_id_code,
       map_code_detail: state => state.map_code_detail,
+      today_save_history_data: state => state.today_save_history_data,
+      last_save_history_data: state => state.last_save_history_data,
     }),
   },
   watch: {
@@ -155,6 +179,7 @@ export default {
   mounted() {
     this.getDataRoblox()
     this.getDataAccount()
+    this.initDataHistory()
     this.intervalId = setInterval(() => {
       this.getDataAccount()
     }, 600 * 1000);
@@ -163,6 +188,7 @@ export default {
     ...mapActions([
       'getDataRoblox',
       'getDataAccount',
+      'initDataHistory',
     ]),
     getDataByDeviceId(){
       this.roblox_data_account_display = []
@@ -231,6 +257,27 @@ export default {
       })
       console.log('copyContent',copyContent)
       navigator.clipboard.writeText(copyContent);
+    },
+    renderHistory(value){
+      let data_result = []
+      Object.entries(value).forEach(data => {
+        data_result.push(data[1])
+      })
+      data_result.sort((a, b) => b.time - a.time);
+      this.device_history_show = data_result
+    },
+    getProfitPerHour(now,start,start_timeStamp){
+      const timeStamp = new Date().getTime()
+      const timeChange = timeStamp - start_timeStamp
+      return ((now - start) * (3600000 / timeChange)).toFixed(1)
+    },
+    historyTime(timeStamp){
+      const now = new Date(timeStamp);
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const day = now.getDate().toString().padStart(2, '0');
+      const month = (now.getMonth() + 1).toString().padStart(2, '0');
+      return `${hours}:${minutes}(${day}/${month})`
     }
   }
 };
