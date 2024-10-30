@@ -50,6 +50,7 @@
         </select>
         <button @click="setFarmScript(data?.device_id,data?.device_name,'lava')">Farm Lava</button>
         <button @click="setFarmScript(data?.device_id,data?.device_name,'princess')">Farm Công chúa</button>
+        <button @click="setFarmScript(data?.device_id,data?.device_name,'no-legend')">Farm No Lengend</button>
       </div>
 
       <div class="input-device_action" @click="() => {if(editDevice !== data.device_code){editDevice = data.device_code} else {editDevice = ''}}">
@@ -257,6 +258,113 @@ export default {
                   ["Story/Infinite"] = true,
               }
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
+        this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+      } else if (unit === 'no-legend'){
+        const script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+
+                        getgenv().Key = "${token}"
+
+                        getgenv().TargetUnitRoll = {
+
+                            "Princess Swordmaster"
+
+                        }
+
+
+
+                        getgenv().notRollUnitTarget = true
+
+                        getgenv().UseSavePosition = false
+
+                        getgenv().GemRollUnit = 20000
+
+                        getgenv().Speed = 2
+
+                        getgenv()["Black Screen"] = true
+
+                        getgenv()["Auto Leave Infinite"] = {
+
+                            ["Auto Leave"] = true,
+
+                            ["Method"] = {
+
+                                ["Sell"] = true,
+
+                                ["Leave"] = true,
+
+                            },
+
+                            ["Wave"] = 31
+
+                        }
+
+                        getgenv().Auto_Equip = {
+
+                            ["Equip Best"] = true,
+
+                            ["Custom Equip"] = {
+
+                                ["Enabled"] = false,
+
+                                ["Units"] = {
+
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
+
+                                },
+
+                            },
+
+                        }
+
+                        getgenv().Portal = {
+
+                            ["Enabled"] = true,
+
+                            ["Name Portal"] = "Demon Portal",
+
+                            ["Auto Get Portal"] = false,
+
+                            ["Rarity Portal"] = {
+
+                                ["Rare"] = true,
+
+                                ["Epic"] = true,
+
+                                ["Legendary"] = false,
+
+                                ["Mythical"] = false,
+
+                                ["Secret"] = false,
+
+                            },
+
+                            ["Unit"] = {
+
+                                ["Use All Unit"] = false,
+
+                                ["Custom Unit"] = {
+
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
+
+                                }
+
+                            },
+
+                        }
+
+                        getgenv().Webhook =  {
+
+                            ["Webhook"] = false,
+
+                            ["Url"] = "",
+
+                            ["Roll Unit"] = true,
+
+                            ["Story/Infinite"] = true,
+
+                        }
+
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
         this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
       } else {
         const script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
