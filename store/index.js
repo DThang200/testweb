@@ -172,9 +172,9 @@ export const actions = {
               sum_all.Gems += data[1].Gems
               sum_all.Crystal += data[1].Crystal
             })
-          const last_save_history_data = localStorage.getItem('today_save_history_data') || {...map_device_code_detail,time: date.getTime()}
-          localStorage.setItem('last_save_history_data',JSON.stringify(last_save_history_data));
-          await commit('SET_LAST_SAVE_DATA', last_save_history_data);
+          const last_save_history_data = localStorage.getItem('today_save_history_data') || JSON.stringify({...map_device_code_detail,time: date.getTime()})
+          localStorage.setItem('last_save_history_data',last_save_history_data);
+          await commit('SET_LAST_SAVE_DATA', JSON.parse(last_save_history_data));
           localStorage.setItem('today_save_history_data', JSON.stringify({...map_device_code_detail,All: sum_all,time: date.getTime()}));
           await commit('SET_TODAY_SAVE_DATA', {...map_device_code_detail,All: sum_all,time: date.getTime()})
         }
