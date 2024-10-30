@@ -155,8 +155,8 @@ export const actions = {
         ///Save history by day
 
         const date = new Date()
+        date.setHours(24);
         let last_day_save_history = localStorage.getItem('last_day_save_history') ?  new Date(localStorage.getItem('last_day_save_history')) : null
-        console.log('date',date,last_day_save_history,date > last_day_save_history )
         if (date > last_day_save_history || !last_day_save_history) {
           const today = new Date();
           const options = {
@@ -172,11 +172,11 @@ export const actions = {
               sum_all.Gems += data[1].Gems
               sum_all.Crystal += data[1].Crystal
             })
-          const last_save_history_data = localStorage.getItem('today_save_history_data') || JSON.stringify({...map_device_code_detail,time: date.getTime()})
+          const last_save_history_data = localStorage.getItem('today_save_history_data') || JSON.stringify({...map_device_code_detail,time: today.getTime()})
           localStorage.setItem('last_save_history_data',last_save_history_data);
           await commit('SET_LAST_SAVE_DATA', JSON.parse(last_save_history_data));
-          localStorage.setItem('today_save_history_data', JSON.stringify({...map_device_code_detail,All: sum_all,time: date.getTime()}));
-          await commit('SET_TODAY_SAVE_DATA', {...map_device_code_detail,All: sum_all,time: date.getTime()})
+          localStorage.setItem('today_save_history_data', JSON.stringify({...map_device_code_detail,All: sum_all,time: today.getTime()}));
+          await commit('SET_TODAY_SAVE_DATA', {...map_device_code_detail,All: sum_all,time: today.getTime()})
         }
 
 
