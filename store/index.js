@@ -121,6 +121,7 @@ export const actions = {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
         });
+        console.log('response',response.accounts[0])
         const map_device_id_code = {...state.map_device_id_code}
         const map_device_code_sum_acc = {}
         let map_device_code_detail = {}

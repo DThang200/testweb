@@ -49,6 +49,9 @@
       <button class="px-2" @click="copyFunction" type="button">
         Copy
       </button>
+      <button class="px-2" @click="copyUserPassFunction" type="button">
+        Copy (user:pass:cookie)
+      </button>
     </div>
     <div class="d-flex" style="justify-content: space-between">
       <table v-if="viewTable.includes('acc')">
@@ -100,7 +103,12 @@
             <template>
               <tr v-for="(item,index) in map_code_detail_display">
                 <td class="px-2">{{index + 1}}</td>
-                <td class="px-2">{{item?.code}}</td>
+                <td class="px-2">
+                  <label :for="`checkbox_showPc_${item?.code}`">
+                    {{item?.code}}
+                  </label>
+                  <input :id="`checkbox_showPc_${item?.code}`" v-model="selectAccCopy" :value="map_code_device_id[item?.code]" type="checkbox">
+                </td>
                 <td class="px-2" style="color: #9928f4">{{item?.value?.Crystal}}</td>
                 <td class="px-2">{{item?.value?.Gems}}</td>
                 <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Crystal,today_save_history_data[item?.code].Crystal,today_save_history_data['time'])}}</td>
@@ -126,6 +134,7 @@ export default {
       roblox_data: state => state.roblox_data,
       roblox_data_account: state => state.roblox_data_account,
       map_device_id_code: state => state.map_device_id_code,
+      map_code_device_id: state => state.map_code_device_id,
       map_code_detail: state => state.map_code_detail,
       today_save_history_data: state => state.today_save_history_data,
       last_save_history_data: state => state.last_save_history_data,
@@ -161,6 +170,7 @@ export default {
       copyField: [],
       passPrivate: false,
       viewTable : ['acc','pc'],
+      selectAccCopy: [],
       sort_pc: ''
     };
   },
@@ -256,6 +266,15 @@ export default {
         copyContent += item.cookie + '\n'
       })
       console.log('copyContent',copyContent)
+      navigator.clipboard.writeText(copyContent);
+    },
+    copyUserPassFunction(){
+      let copyContent = ''
+      this.roblox_data_account.accounts.forEach(item => {
+        if (item?.device_id && this.selectAccCopy.includes(item?.device_id)){
+          copyContent += `${item.username}:${item.password}:${item.cookie}` + '\n'
+        }
+      })
       navigator.clipboard.writeText(copyContent);
     },
     renderHistory(value){
