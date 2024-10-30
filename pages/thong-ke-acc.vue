@@ -106,7 +106,7 @@
                 <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Crystal,today_save_history_data[item?.code].Crystal,today_save_history_data['time'])}}</td>
                 <td class="px-2" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Gems,today_save_history_data[item?.code].Gems,today_save_history_data['time'])}}</td>
                 <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
-                <td class="px-2" :style="`color: ${(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '#0ECB81' : '#F6465D'}`" v-if="today_save_history_data">{{(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '+' : '-'}} {{item?.value?.Gems - last_save_history_data[item?.code]?.Gems}}</td>
+                <td class="px-2" :style="`color: ${(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '#0ECB81' : '#F6465D'}`" v-if="today_save_history_data">{{(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '+' : ''}} {{item?.value?.Gems - last_save_history_data[item?.code]?.Gems}}</td>
               </tr>
             </template>
             </tbody>
