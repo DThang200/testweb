@@ -155,8 +155,9 @@ export const actions = {
         ///Save history by day
 
         const date = new Date()
-        date.setHours(24);
         let last_day_save_history = localStorage.getItem('last_day_save_history') ?  new Date(localStorage.getItem('last_day_save_history')) : null
+        last_day_save_history.setHours(24);
+        console.log(date,last_day_save_history,date > last_day_save_history)
         if (date > last_day_save_history || !last_day_save_history) {
           const today = new Date();
           const options = {
