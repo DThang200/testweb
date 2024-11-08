@@ -177,7 +177,7 @@ export default {
         top_device.forEach((device, index) => {
           const script  = map_device_data[this.map_code_device_id[device.code]] ? (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "") : 'lava';
           after_run[device.code] = {device_id:device,script :script}
-          // this.setCollectScript(this.map_code_device_id[device.code],map_key_token_gom[index].key)
+          this.setCollectScript(this.map_code_device_id[device.code],map_key_token_gom[index].key)
           current_run.push({device_id: this.map_code_device_id[device.code],target_user:map_key_token_gom[index].key})
           this.interval_auto_gom_device_name.push(device.code.replace(/_/g, " "))
         })
