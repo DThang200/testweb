@@ -140,7 +140,7 @@ export default {
         this.interval_auto_gom = setInterval(async () => {
           await this.handleAutoGom();
         }, this.interval_auto_gom_timeInterVal * 1000)
-        this.interval_auto_gom_time_count = this.interval_auto_gom_timeInterVal
+        this.interval_auto_gom_time_count = JSON.parse(JSON.stringify(this.interval_auto_gom_timeInterVal))
         this.interval_auto_gom_time = setInterval(() => {
           this.interval_auto_gom_time_count -= 1
         }, 1000)
