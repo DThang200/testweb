@@ -7,22 +7,21 @@
     </select>
     Total Crystal : {{total_crystal_all}}
     Total Gems : {{total_gems_all}}
-    1h Gems : {{total_gems_all}}
-<!--    <div style="margin: 16px 0">-->
-<!--      <div style="display: flex;flex-direction: row;gap: 8px;flex-wrap: wrap">-->
-<!--        History :-->
-<!--        <template v-for="history in device_history_show">-->
-<!--          <div v-for="history_data in  [history[select_pc ? map_device_id_code[select_pc] : 'All']]" style="border: black solid 1px; padding: 8px;white-space: nowrap">-->
-<!--            {{historyTime(history['time'])}}-->
-<!--            RR({{history_data?.Crystal}}(<span :style="`color: ${ total_crystal - history_data?.Crystal > 0 ? '#0ECB81' : '#F6465D'};`">-->
-<!--              {{total_crystal - history_data?.Crystal}}-->
-<!--            </span>)-G({{history_data?.Gems}}(<span :style="`color: ${ total_gems - history_data?.Gems > 0 ? '#0ECB81' : '#F6465D'};`">-->
-<!--              {{total_gems - history_data?.Gems}}-->
-<!--            </span>)-->
-<!--          </div>-->
-<!--        </template>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div style="margin: 16px 0">-->
+    <!--      <div style="display: flex;flex-direction: row;gap: 8px;flex-wrap: wrap">-->
+    <!--        History :-->
+    <!--        <template v-for="history in device_history_show">-->
+    <!--          <div v-for="history_data in  [history[select_pc ? map_device_id_code[select_pc] : 'All']]" style="border: black solid 1px; padding: 8px;white-space: nowrap">-->
+    <!--            {{historyTime(history['time'])}}-->
+    <!--            RR({{history_data?.Crystal}}(<span :style="`color: ${ total_crystal - history_data?.Crystal > 0 ? '#0ECB81' : '#F6465D'};`">-->
+    <!--              {{total_crystal - history_data?.Crystal}}-->
+    <!--            </span>)-G({{history_data?.Gems}}(<span :style="`color: ${ total_gems - history_data?.Gems > 0 ? '#0ECB81' : '#F6465D'};`">-->
+    <!--              {{total_gems - history_data?.Gems}}-->
+    <!--            </span>)-->
+    <!--          </div>-->
+    <!--        </template>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <div class="d-flex" style="align-items: center">
       <label for="checkbox_showAcc" style="margin-bottom: 0">Show Acc</label>
       <input value="acc" type="checkbox" v-model="viewTable" id="checkbox_showAcc">
@@ -30,27 +29,24 @@
       <input value="pc" type="checkbox" v-model="viewTable" id="checkbox_showPc">
     </div>
     <div class="d-flex">
-<!--      <div class="px-2">-->
-<!--        <label>Username</label>-->
-<!--        <input type="checkbox" value="username" v-model="copyField">-->
-<!--      </div>-->
-<!--      <div class="px-2">-->
-<!--        <label>Crystal</label>-->
-<!--        <input type="checkbox" value="Crystal" v-model="copyField">-->
-<!--      </div>-->
-<!--      <div class="px-2">-->
-<!--        <label>Gems</label>-->
-<!--        <input type="checkbox" value="Gems" v-model="copyField">-->
-<!--      </div>-->
-<!--      <div class="px-2">-->
-<!--        <label>Cookie</label>-->
-<!--        <input type="checkbox" value="Cookie" v-model="copyField">-->
-<!--      </div>-->
+      <!--      <div class="px-2">-->
+      <!--        <label>Username</label>-->
+      <!--        <input type="checkbox" value="username" v-model="copyField">-->
+      <!--      </div>-->
+      <!--      <div class="px-2">-->
+      <!--        <label>Crystal</label>-->
+      <!--        <input type="checkbox" value="Crystal" v-model="copyField">-->
+      <!--      </div>-->
+      <!--      <div class="px-2">-->
+      <!--        <label>Gems</label>-->
+      <!--        <input type="checkbox" value="Gems" v-model="copyField">-->
+      <!--      </div>-->
+      <!--      <div class="px-2">-->
+      <!--        <label>Cookie</label>-->
+      <!--        <input type="checkbox" value="Cookie" v-model="copyField">-->
+      <!--      </div>-->
       <button class="px-2" @click="copyFunction" type="button">
         Copy
-      </button>
-      <button class="px-2" @click="copyUserPassFunction" type="button">
-        Copy (user:pass:cookie)
       </button>
     </div>
     <div class="d-flex" style="justify-content: space-between">
@@ -80,6 +76,9 @@
       </table>
       <template  v-if="viewTable.includes('pc')">
         <div>
+          <button class="px-2" @click="copyUserPassFunction" type="button">
+            Copy (user:pass:cookie)
+          </button>
           <div class="d-flex" style="align-items: center">
             <label for="sort_pc_pc" style="margin-bottom: 0">Pc</label>
             <input value="" type="radio" name="sort_pc" v-model="sort_pc" id="sort_pc_pc" style="margin-right: 10px">
@@ -111,8 +110,8 @@
                 </td>
                 <td class="px-2" style="color: #9928f4">{{item?.value?.Crystal}}</td>
                 <td class="px-2">{{item?.value?.Gems}}</td>
-                <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Crystal,today_save_history_data[item?.code].Crystal,today_save_history_data['time'])}}</td>
-                <td class="px-2" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Gems,today_save_history_data[item?.code].Gems,today_save_history_data['time'])}}</td>
+                <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Crystal,today_save_history_data[item?.code]?.Crystal,today_save_history_data['time'])}}</td>
+                <td class="px-2" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Gems,today_save_history_data[item?.code]?.Gems,today_save_history_data['time'])}}</td>
                 <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
                 <td class="px-2" :style="`color: ${(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '#0ECB81' : '#F6465D'}`" v-if="today_save_history_data">{{(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '+' : ''}} {{item?.value?.Gems - last_save_history_data[item?.code]?.Gems}}</td>
               </tr>
@@ -206,15 +205,15 @@ export default {
       this.total_crystal_all = 0
       this.total_gems_all = 0
       this.total_gems = 0
-       this.roblox_data_account.accounts.forEach(item => {
-         let crystal = 0
-         let gems = 0
-         if (item?.status){
-           crystal = JSON.parse(item.status).Items["Trait Crystal"]
-           gems = JSON.parse(item.status).Currencies["Gems"]
-           this.total_crystal_all += crystal ? crystal : 0
-           this.total_gems_all += gems ? gems : 0
-         }
+      this.roblox_data_account.accounts.forEach(item => {
+        let crystal = 0
+        let gems = 0
+        if (item?.status){
+          crystal = JSON.parse(item.status).Items["Trait Crystal"]
+          gems = JSON.parse(item.status).Currencies["Gems"]
+          this.total_crystal_all += crystal ? crystal : 0
+          this.total_gems_all += gems ? gems : 0
+        }
         if (!this.select_pc || item.device_id === this.select_pc){
           this.roblox_data_account_display.push(item)
           if (item?.status){

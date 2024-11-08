@@ -121,7 +121,6 @@ export const actions = {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
         });
-        console.log('response',response.accounts[0])
         const map_device_id_code = {...state.map_device_id_code}
         const map_device_code_sum_acc = {}
         let map_device_code_detail = {}
@@ -158,7 +157,6 @@ export const actions = {
         const date = new Date()
         let last_day_save_history = localStorage.getItem('last_day_save_history') ?  new Date(localStorage.getItem('last_day_save_history')) : null
         last_day_save_history.setHours(24);
-        console.log(date,last_day_save_history,date > last_day_save_history)
         if (date > last_day_save_history || !last_day_save_history) {
           const today = new Date();
           const options = {
@@ -223,6 +221,7 @@ export const actions = {
         return false
       }
     },500)
+    return true
 
   },
   initDataHistory({commit,state}, param = {}){

@@ -1,6 +1,9 @@
 <template>
 <main class="page-content">
-  <button type="button" @click="getDataAccountRender">Render</button>
+  <div style="display: flex;flex-direction: row; gap: 16px">
+    <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
+    <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
+  </div>
   <div>
     <nuxt-link to="/setup-key">
       Setup Keys
@@ -71,6 +74,8 @@ export default {
       map_key_token_gom: state => state.map_key_token_gom,
       map_key_token_farm: state => state.map_key_token_farm,
       map_device_data: state => state.map_device_data,
+      map_code_detail: state => state.map_code_detail,
+      map_code_device_id: state => state.map_code_device_id,
     }),
   },
   watch:{
@@ -90,12 +95,21 @@ export default {
   beforeDestroy() {
     // Clear the interval when the component is destroyed to prevent memory leaks
     clearInterval(this.intervalId);
+    clearInterval(this.interval_auto_gom);
+    clearInterval(this.interval_auto_gom_time);
   },
   data () {
     return {
       editDevice: '',
       sortInactive: false,
       roblox_data: [],
+      is_auto_gom: false,
+      intervalId: null,
+      interval_auto_gom: null,
+      interval_auto_gom_device_name: "",
+      interval_auto_gom_time: null,
+      interval_auto_gom_time_count: 5400,
+      interval_auto_gom_timeInterVal: 300,
     }
   },
   async mounted() {
@@ -117,6 +131,88 @@ export default {
     ]),
     getDataAccountRender (){
       this.getDataAccount()
+    },
+    async handleAutoCollect() {
+      this.is_auto_gom = !this.is_auto_gom
+      if (this.is_auto_gom) {
+        await this.handleAutoGom();
+        this.interval_auto_gom = setInterval(async () => {
+          await this.handleAutoGom();
+        }, this.interval_auto_gom_timeInterVal * 1000)
+        this.interval_auto_gom_time_count = this.interval_auto_gom_timeInterVal
+        this.interval_auto_gom_time = setInterval(() => {
+          this.interval_auto_gom_time_count -= 1
+        }, 1000)
+      } else {
+        clearInterval(this.interval_auto_gom);
+        clearInterval(this.interval_auto_gom_time);
+        this.interval_auto_gom_device_name = ""
+        this.endTaskAutoGom()
+      }
+    },
+    async handleAutoGom() {
+
+      // Farm-princess
+
+      // list máy theo gem giảm dần
+      await this.getDataAccount();
+      setTimeout(() => {
+        const map_key_token_gom = JSON.parse(localStorage.getItem('map_key_token_gom')) || [];
+        const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
+        let top_device = Object.keys(this.map_code_detail).map(key => {
+          return {code: key, value: this.map_code_detail[key]};
+        });
+        top_device.sort((a, b) => {
+          if (!a.value?.Crystal) return 1;
+          if (!b.value?.Crystal) return -1;
+          return b.value?.Crystal - a.value?.Crystal;
+        });
+        top_device = top_device.slice(0, map_key_token_gom.length)
+
+        this.endTaskAutoGom();
+        let current_run = []
+        let after_run = {}
+        this.interval_auto_gom_device_name = []
+        top_device.forEach((device, index) => {
+          const script  = map_device_data[this.map_code_device_id[device.code]] ? (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "") : 'lava';
+          after_run[device.code] = {device_id:device,script :script}
+          this.setCollectScript(this.map_code_device_id[device.code],map_key_token_gom[index].key)
+          current_run.push({device_id: this.map_code_device_id[device.code],target_user:map_key_token_gom[index].key})
+          this.interval_auto_gom_device_name.push(device.code.replace(/_/g, " "))
+        })
+        localStorage.setItem('after_run_auto_gom', JSON.stringify(after_run));
+        localStorage.setItem('run_auto_gom', JSON.stringify(current_run));
+        this.interval_auto_gom_time_count = this.interval_auto_gom_timeInterVal
+        this.interval_auto_gom_device_name = this.interval_auto_gom_device_name.join("  ,")
+      },15 * 1000)
+    },
+    endTaskAutoGom(){
+      const after_current_run = JSON.parse(localStorage.getItem('after_run_auto_gom')) || {};
+      let current_run = JSON.parse(localStorage.getItem('run_auto_gom')) || [];
+      if (current_run?.length > 0) {
+        // current_run.forEach()
+        current_run.forEach(item => {
+          if (after_current_run[item.device_code]){
+            this.setFarmScript(this.map_code_device_id[item.device_code], item.device_code.replace(/_/g, " "),after_current_run[item.device_code].script)
+          } else {
+            this.setFarmScript(this.map_code_device_id[item.device_code], item.device_code.replace(/_/g, " "))
+          }
+        })
+        // const script  = (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "");
+      }
+    },
+    secToTime(seconds) {
+      // Calculate hours, minutes, and seconds from total seconds
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+
+      // Format hours, minutes, and seconds to always show two digits
+      const formattedHours = hours.toString().padStart(2, '0');
+      const formattedMinutes = minutes.toString().padStart(2, '0');
+      const formattedSeconds = secs.toString().padStart(2, '0');
+
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     },
     initData() {
       this.intervalId = setInterval(() => {
@@ -196,6 +292,7 @@ export default {
       this.setStatusDevice({device_id: device_id,key: 'script',value: `Trading to - ${user_collect}`})
     },
     setFarmScript(device_id,device_name,unit = 'lava'){
+      console.log('device_id,device_name,unit',device_id,device_name,unit)
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
       if (unit === 'lava') {
         const script =
