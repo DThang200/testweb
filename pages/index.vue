@@ -76,6 +76,7 @@ export default {
       map_device_data: state => state.map_device_data,
       map_code_detail: state => state.map_code_detail,
       map_code_device_id: state => state.map_code_device_id,
+      map_device_id_code: state => state.map_device_id_code,
     }),
   },
   watch:{
@@ -176,7 +177,7 @@ export default {
         top_device.forEach((device, index) => {
           const script  = map_device_data[this.map_code_device_id[device.code]] ? (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "") : 'lava';
           after_run[device.code] = {device_id:device,script :script}
-          this.setCollectScript(this.map_code_device_id[device.code],map_key_token_gom[index].key)
+          // this.setCollectScript(this.map_code_device_id[device.code],map_key_token_gom[index].key)
           current_run.push({device_id: this.map_code_device_id[device.code],target_user:map_key_token_gom[index].key})
           this.interval_auto_gom_device_name.push(device.code.replace(/_/g, " "))
         })
@@ -189,17 +190,21 @@ export default {
     endTaskAutoGom(){
       const after_current_run = JSON.parse(localStorage.getItem('after_run_auto_gom')) || {};
       let current_run = JSON.parse(localStorage.getItem('run_auto_gom')) || [];
+      // [{device_id:"", target_user: ""}]
       if (current_run?.length > 0) {
+        console.log('map_device_id_code',this.map_device_id_code)
         // current_run.forEach()
         current_run.forEach(item => {
           if (after_current_run[item.device_code]){
-            this.setFarmScript(this.map_code_device_id[item.device_code], item.device_code.replace(/_/g, " "),after_current_run[item.device_code].script)
+            this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "),after_current_run[this.map_device_id_code[item.device_id]].script)
           } else {
-            this.setFarmScript(this.map_code_device_id[item.device_code], item.device_code.replace(/_/g, " "))
+            this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "))
           }
         })
         // const script  = (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "");
       }
+      localStorage.setItem('after_run_auto_gom', JSON.stringify({}));
+      localStorage.setItem('run_auto_gom', JSON.stringify([]));
     },
     secToTime(seconds) {
       // Calculate hours, minutes, and seconds from total seconds
@@ -594,7 +599,6 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
-      console.log('saveScript',device_id, script,resScript,resSetScript)
     }
   }
 };
