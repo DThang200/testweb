@@ -95,6 +95,7 @@ export default {
 
   beforeDestroy() {
     // Clear the interval when the component is destroyed to prevent memory leaks
+    this.endTaskAutoGom();
     clearInterval(this.intervalId);
     clearInterval(this.interval_auto_gom);
     clearInterval(this.interval_auto_gom_time);
