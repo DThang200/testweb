@@ -196,7 +196,7 @@ export default {
         console.log('map_device_id_code',this.map_device_id_code)
         // current_run.forEach()
         current_run.forEach(item => {
-          if (after_current_run[item.device_code]){
+          if (after_current_run[this.map_device_id_code[item.device_id]]){
             this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "),after_current_run[this.map_device_id_code[item.device_id]].script)
           } else {
             this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "))
