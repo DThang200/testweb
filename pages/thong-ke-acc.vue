@@ -76,7 +76,7 @@
       </table>
       <template  v-if="viewTable.includes('pc')">
         <div>
-          <button class="px-2" @click="copyUserPassFunction" type="button">
+          <button class="px-2" @click="copyUserPassFunction" type="button" style="margin-bottom: 24px">
             Copy (user:pass:cookie)
           </button>
           <div class="d-flex" style="align-items: center">

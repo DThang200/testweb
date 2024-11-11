@@ -1,6 +1,9 @@
 <template>
 <main class="page-content">
   <div style="display: flex;flex-direction: row; gap: 16px">
+    <button type="button" @click="refreshScript()">
+      Refresh script
+    </button>
     <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
     <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
   </div>
@@ -318,7 +321,7 @@ export default {
                   ["Speed"] = 2,
                   ["Wave Active Speed"] = 1,
               }
-              getgenv()["Black Screen"] = true
+              getgenv()["Black Screen"] = false
               getgenv()["Auto Leave Infinite"] = {
                   ["Auto Leave"] = true,
                   ["Method"] = {
@@ -362,7 +365,7 @@ export default {
               }
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
         this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
-      } else if (unit === 'no-legend'){
+      } else if (unit === 'princess'){
         const script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 
                         getgenv().Key = "${token}"
@@ -383,7 +386,7 @@ export default {
 
                         getgenv().Speed = 2
 
-                        getgenv()["Black Screen"] = true
+                        getgenv()["Black Screen"] = false
 
                         getgenv()["Auto Leave Infinite"] = {
 
@@ -469,7 +472,7 @@ export default {
 
                         loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
         this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
-      } else {
+      } else if (unit === 'no-legend'){
         const script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 
                         getgenv().Key = "${token}"
@@ -490,7 +493,7 @@ export default {
 
                         getgenv().Speed = 2
 
-                        getgenv()["Black Screen"] = true
+                        getgenv()["Black Screen"] = false
 
                         getgenv()["Auto Leave Infinite"] = {
 
@@ -504,7 +507,7 @@ export default {
 
                             },
 
-                            ["Wave"] = 31
+                            ["Wave"] = 46
 
                         }
 
@@ -579,7 +582,15 @@ export default {
       }
       this.setStatusDevice({device_id: device_id,key: 'script',value: `Farm-${unit}`})
     },
-
+    refreshScript(){
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      Object.entries(map_device_data).forEach((device,index) => {
+        if (device[1]?.script){
+          console.log(device[0],this.map_device_id_code[device[0]],device[1]?.script.replace("Farm-", "") || 'lava')
+          this.setFarmScript(device[0],this.map_device_id_code[device[0]],device[1]?.script.replace("Farm-", "") || 'lava')
+        }
+      })
+    },
     async saveScript(device_id, script) {
       const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
         headers: {
