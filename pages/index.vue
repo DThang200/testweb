@@ -332,7 +332,7 @@ export default {
                   ["Custom Equip"] = {
                       ["Enabled"] = false,
                       ["Units"] = {
-                          "Chief Of Lava",
+                          "Chief Of Lava","Grand Aether Knight","Aether Knight","The Demon Lord"
                       },
                   },
               }
@@ -350,7 +350,7 @@ export default {
                   ["Unit"] = {
                       ["Use All Unit"] = true,
                       ["Custom Unit"] = {
-                          "Admiral Of Lava",
+                          "Admiral Of Lava","Grand Aether Knight","Aether Knight","The Demon Lord"
                       }
                   },
               }
@@ -411,7 +411,7 @@ export default {
 
                                 ["Units"] = {
 
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
 
                                 },
 
@@ -447,7 +447,7 @@ export default {
 
                                 ["Custom Unit"] = {
 
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
 
                                 }
 
@@ -518,7 +518,7 @@ export default {
 
                                 ["Units"] = {
 
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
 
                                 },
 
@@ -554,7 +554,7 @@ export default {
 
                                 ["Custom Unit"] = {
 
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade"
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
 
                                 }
 
