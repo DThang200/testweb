@@ -333,7 +333,7 @@ export default {
                       ["Sell"] = true,
                       ["Leave"] = true,
                   },
-                  ["Wave"] = 31
+                  ["Wave"] = 46
               }
               getgenv().Auto_Equip = {
                   ["Equip Best"] = true,
@@ -588,6 +588,13 @@ export default {
       this.setStatusDevice({device_id: device_id,key: 'script',value: `Farm-${unit}`})
     },
     refreshScript(){
+      const correctPassword = "matkhau123@"; // Mật khẩu cố định
+      const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
+
+      if (userPassword !== correctPassword) {
+        alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
+        return false
+      }
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       Object.entries(map_device_data).forEach((device,index) => {
         if (device[1]?.script){
