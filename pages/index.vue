@@ -333,7 +333,7 @@ export default {
                       ["Sell"] = true,
                       ["Leave"] = true,
                   },
-                  ["Wave"] = 46
+                  ["Wave"] = 31
               }
               getgenv().Auto_Equip = {
                   ["Equip Best"] = true,
@@ -405,7 +405,7 @@ export default {
 
                             },
 
-                            ["Wave"] = 31
+                            ["Wave"] = 46
 
                         }
 
