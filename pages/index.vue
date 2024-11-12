@@ -7,9 +7,14 @@
     <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
     <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
   </div>
-  <div>
+  <div style="display: flex;flex-direction: row;gap: 8px">
+    Menu
     <nuxt-link to="/setup-key">
       Setup Keys
+    </nuxt-link>
+    -
+    <nuxt-link to="/history">
+      History
     </nuxt-link>
   </div>
   <div style="margin-left: auto">

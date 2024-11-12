@@ -87,6 +87,50 @@ export const actions = {
       await commit('SET_DATA_ROBLOX', response)
       await commit('SET_MAP_DEVICE_ID_CODE', map_device_id_code)
       await commit('SET_MAP_CODE_DEVICE_ID', map_code_device_id)
+      ///Save history 1h
+      console.log('Save history 1h')
+      let currentTime = new Date().getTime();
+      let next_time_save_history = localStorage.getItem('next_time_save_history') ?  new Date(parseInt(localStorage.getItem('next_time_save_history'))).getTime() : ''
+      //timestamp
+      if (currentTime > next_time_save_history || !next_time_save_history){
+        next_time_save_history = new Date();
+        next_time_save_history.setHours(next_time_save_history.getHours() + 1);
+        next_time_save_history.setMinutes(0);
+        next_time_save_history.setSeconds(0);
+        localStorage.setItem('next_time_save_history', next_time_save_history.getTime());
+        let device_history_1h = localStorage.getItem('device_history_1h') ?  JSON.parse(localStorage.getItem('device_history_1h')) : []
+        let offlineList = [];
+        let totalAcc = 0;
+        let totalInactiveAcc = 0;
+        response.devices.forEach(data => {
+          totalAcc += data?.total_accounts
+          totalInactiveAcc += data?.inactive_accounts
+          if (data?.inactive_accounts > data?.total_accounts - 5){
+            offlineList.push(data?.device_name)
+          }
+        })
+        next_time_save_history.setHours(next_time_save_history.getHours() - 1);
+
+        const date = new Date("2024-11-12T00:00:00Z"); // Giả sử thời gian là 2024-11-12, giờ UTC
+        const options = {
+          timeZone: 'Asia/Ho_Chi_Minh',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        };
+
+        const formattedDate = new Intl.DateTimeFormat('vi-VN', options).format(date);
+        device_history_1h.push({time: next_time_save_history.getTime(),date: formattedDate,
+          data: {
+            total: response?.devices?.length ,
+            offlineList: offlineList,
+            totalAcc: totalAcc,
+            totalActiveAcc: totalAcc - totalInactiveAcc,
+            totalInactiveAcc: totalInactiveAcc,
+            rate: parseFloat(((totalAcc - totalInactiveAcc) / totalAcc).toFixed(3)) * 100,
+          }})
+        localStorage.setItem('device_history_1h', JSON.stringify(device_history_1h));
+      }
     } catch (e) {
       console.log('Error',e)
     }
@@ -178,9 +222,6 @@ export const actions = {
           localStorage.setItem('today_save_history_data', JSON.stringify({...map_device_code_detail,All: sum_all,time: today.getTime()}));
           await commit('SET_TODAY_SAVE_DATA', {...map_device_code_detail,All: sum_all,time: today.getTime()})
         }
-
-
-
 
         ///Save history
 

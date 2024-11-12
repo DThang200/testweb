@@ -110,9 +110,9 @@
                 </td>
                 <td class="px-2" style="color: #9928f4">{{item?.value?.Crystal}}</td>
                 <td class="px-2">{{item?.value?.Gems}}</td>
-                <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Crystal,today_save_history_data[item?.code]?.Crystal,today_save_history_data['time'])}}</td>
-                <td class="px-2" v-if="today_save_history_data">{{getProfitPerHour(item?.value?.Gems,today_save_history_data[item?.code]?.Gems,today_save_history_data['time'])}}</td>
-                <td class="px-2" style="color: #9928f4" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
+                <td class="px-2" :style="`color: ${item.colorPerHourCrystal ? item.colorPerHourCrystal : '#9928f4'}`" v-if="today_save_history_data">{{item.profitPerHourCrystal}}</td>
+                <td class="px-2" v-if="today_save_history_data">{{item.profitPerHourGems}}</td>
+                <td class="px-2" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
                 <td class="px-2" :style="`color: ${(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '#0ECB81' : '#F6465D'}`" v-if="today_save_history_data">{{(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '+' : ''}} {{item?.value?.Gems - last_save_history_data[item?.code]?.Gems}}</td>
               </tr>
             </template>
@@ -245,6 +245,16 @@ export default {
           return numberA - numberB;
         }
       });
+      this.map_code_detail_display.forEach(item => {
+        item.profitPerHourCrystal = this.getProfitPerHour(item?.value?.Crystal,this.today_save_history_data[item?.code]?.Crystal,this.today_save_history_data['time'])
+        item.profitPerHourGems = this.getProfitPerHour(item?.value?.Gems,this.today_save_history_data[item?.code]?.Gems,this.today_save_history_data['time'])
+        if (item.profitPerHourCrystal < 251) {
+          item.colorPerHourCrystal = '#ff8f00'
+        }
+        if (item.profitPerHourCrystal < 151) {
+          item.colorPerHourCrystal = 'red'
+        }
+      })
     },
     getCrystal(status){
       if (!status){
