@@ -17,7 +17,7 @@
       History
     </nuxt-link>
   </div>
-  <div style="margin-left: auto">
+  <div style="margin-left: auto;font-size: 24px">
     <input v-model="sortInactive" id="sortInactive" type="checkbox">
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
@@ -548,7 +548,7 @@ export default {
 
                                 ["Epic"] = true,
 
-                                ["Legendary"] = true,
+                                ["Legendary"] = false,
 
                                 ["Mythical"] = false,
 

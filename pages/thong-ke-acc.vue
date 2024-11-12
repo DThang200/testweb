@@ -5,8 +5,20 @@
       <option value="">All</option>
       <option :value="device.device_id" v-for="device in roblox_data.devices">{{device.device_code}}</option>
     </select>
-    Total Crystal : {{total_crystal_all}}
-    Total Gems : {{total_gems_all}}
+    <div style="display: flex;flex-direction: row;gap: 12px">
+      <div>
+        Total Crystal : <span style="font-weight: bold;font-size: 20px">{{total_crystal_all.toLocaleString('de-DE')}}</span>
+      </div>
+      <div>
+        Total Gems : <span style="font-weight: bold;font-size: 20px">{{total_gems_all.toLocaleString('de-DE')}}</span>
+      </div>
+      <div style="margin-left: 40px">
+        Last day Crystal : <span style="font-weight: bold;font-size: 20px">{{last_save_history_data['All']?.Crystal.toLocaleString('de-DE')}}(<span :style="`color: ${total_crystal_all - last_save_history_data['All']?.Crystal > 0 ?'#0ECB81' : '#F6465D'}`">{{(total_crystal_all - last_save_history_data['All']?.Crystal).toLocaleString('de-DE')}}</span>)</span>
+      </div>
+      <div>
+        Last day Gems : <span style="font-weight: bold;font-size: 20px">{{last_save_history_data['All']?.Gems.toLocaleString('de-DE')}}(<span :style="`color: ${total_gems_all - last_save_history_data['All']?.Gems > 0 ?'#0ECB81' : '#F6465D'}`">{{(total_gems_all - last_save_history_data['All']?.Gems).toLocaleString('de-DE')}}</span>)</span>
+      </div>
+    </div>
     <!--    <div style="margin: 16px 0">-->
     <!--      <div style="display: flex;flex-direction: row;gap: 8px;flex-wrap: wrap">-->
     <!--        History :-->
@@ -110,7 +122,7 @@
                 </td>
                 <td class="px-2" style="color: #9928f4">{{item?.value?.Crystal}}</td>
                 <td class="px-2">{{item?.value?.Gems}}</td>
-                <td class="px-2" :style="`color: ${item.colorPerHourCrystal ? item.colorPerHourCrystal : '#9928f4'}`" v-if="today_save_history_data">{{item.profitPerHourCrystal}}</td>
+                <td class="px-2" :style="`${item.colorPerHourCrystal ? 'background:' + item.colorPerHourCrystal + ';color: white' : 'color:#9928f4'}`" v-if="today_save_history_data">{{item.profitPerHourCrystal}}</td>
                 <td class="px-2" v-if="today_save_history_data">{{item.profitPerHourGems}}</td>
                 <td class="px-2" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
                 <td class="px-2" :style="`color: ${(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '#0ECB81' : '#F6465D'}`" v-if="today_save_history_data">{{(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '+' : ''}} {{item?.value?.Gems - last_save_history_data[item?.code]?.Gems}}</td>
