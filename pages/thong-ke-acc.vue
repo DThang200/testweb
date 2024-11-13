@@ -67,7 +67,7 @@
         Copy
       </button>
     </div>
-    <div class="d-flex" style="justify-content: space-between">
+    <div class="d-flex" style="justify-content: space-between;text-align: center">
       <table v-if="viewTable.includes('acc')">
         <thead>
         <tr>
@@ -85,8 +85,8 @@
             <td class="px-2">{{index + 1}}</td>
             <td class="px-2">{{item.username}}</td>
             <td class="px-2">{{map_device_id_code[item.device_id]}}</td>
-            <td class="px-2">{{item.Crystal || 0}}</td>
-            <td class="px-2">{{item.Gems || 0}}</td>
+            <td class="px-2" style="font-weight: bold;font-size: 18px">{{(item?.Crystal || 0).toLocaleString('de-DE')}}</td>
+            <td class="px-2">{{(item?.Gems || 0)?.toLocaleString('de-DE')}}</td>
             <td class="px-2">
               <div style="width: 100px;max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" :title="item.cookie">{{item.cookie}}</div>
             </td>
@@ -114,7 +114,10 @@
               <th>PC</th>
               <th>Crystal</th>
               <th>Gems</th>
-              <th colspan="2">1h</th>
+              <th colspan="2">
+                <label for="sort_pc_1h">1h</label>
+                <input value="crystal_1h" type="radio" name="sort_pc" v-model="sort_pc" id="sort_pc_1h" style="margin-right: 10px">
+              </th>
               <th colspan="2">Last Day</th>
             </tr>
             </thead>
@@ -129,12 +132,12 @@
                   <input :id="`checkbox_showPc_${item?.code}`" v-model="selectAccCopy" :value="map_code_device_id[item?.code]" type="checkbox">
                 </td>
                 <td class="px-2" style="color: #9928f4">
-                  <div style="border: #9928f4 dashed 2px;border-radius: 4px">
-                    <img src="/img/icon/icon-trait-crystal.webp" style="width: 30px;height: 30px" alt="">
-                    {{item?.value?.Crystal}}
+                  <div style="font-size: 18px;font-weight: bold">
+<!--                    <img src="/img/icon/icon-trait-crystal.webp" style="width: 30px;height: 30px" alt="">-->
+                    {{item?.value?.Crystal.toLocaleString('de-DE')}}
                   </div>
                 </td>
-                <td class="px-2">{{item?.value?.Gems}}</td>
+                <td class="px-2">{{item?.value?.Gems.toLocaleString('de-DE')}}</td>
                 <td class="px-2" :style="`${item.colorPerHourCrystal ? 'background:' + item.colorPerHourCrystal + ';color: white' : 'color:#9928f4'}`" v-if="today_save_history_data">{{item.profitPerHourCrystal}}</td>
                 <td class="px-2" v-if="today_save_history_data">{{item.profitPerHourGems}}</td>
                 <td class="px-2" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
@@ -261,23 +264,6 @@ export default {
       this.map_code_detail_display = Object.keys(this.map_code_detail).map(key => {
         return { code: key, value: this.map_code_detail[key]};
       });
-      this.map_code_detail_display.sort((a, b) => {
-        if (sort === 'crystal'){
-          if (!a.value?.Crystal) return 1;
-          if (!b.value?.Crystal) return -1;
-          return b.value?.Crystal - a.value?.Crystal;
-        } else if (sort === 'gems'){
-          if (!a.value?.Gems) return 1;
-          if (!b.value?.Gems) return -1;
-          return b.value?.Gems - a.value?.Gems ;
-        } else {
-          if (!a.code) return 1;
-          if (!b.code) return -1;
-          let numberA = parseInt(a.code.split('_')[1]);
-          let numberB = parseInt(b.code.split('_')[1]);
-          return numberA - numberB;
-        }
-      });
       this.map_code_detail_display.forEach(item => {
         item.profitPerHourCrystal = this.getProfitPerHour(item?.value?.Crystal,this.today_save_history_data[item?.code]?.Crystal,this.today_save_history_data['time'])
         item.profitPerHourGems = this.getProfitPerHour(item?.value?.Gems,this.today_save_history_data[item?.code]?.Gems,this.today_save_history_data['time'])
@@ -292,6 +278,29 @@ export default {
           item.colorPerHourCrystal = 'red'
         }
       })
+      this.map_code_detail_display.sort((a, b) => {
+        if (sort === 'crystal'){
+          if (!a.value?.Crystal) return 1;
+          if (!b.value?.Crystal) return -1;
+          return b.value?.Crystal - a.value?.Crystal;
+        } else if (sort === 'gems'){
+          if (!a.value?.Gems) return 1;
+          if (!b.value?.Gems) return -1;
+          return b.value?.Gems - a.value?.Gems ;
+        } else if (sort === 'crystal_1h'){
+          const av = parseFloat(a?.profitPerHourCrystal);
+          const bv = parseFloat(b?.profitPerHourCrystal);
+          if (!av && !(av < 0 || av > 0) || av === 0) return 1;
+          if (!bv && !(bv < 0 || bv > 0) || bv === 0) return -1;
+          return av - bv;
+        } else {
+          if (!a.code) return 1;
+          if (!b.code) return -1;
+          let numberA = parseInt(a.code.split('_')[1]);
+          let numberB = parseInt(b.code.split('_')[1]);
+          return numberA - numberB;
+        }
+      });
     },
     getCrystal(status){
       if (!status){
