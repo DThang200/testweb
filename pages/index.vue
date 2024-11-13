@@ -162,7 +162,7 @@ export default {
       interval_auto_gom_device_name: "",
       interval_auto_gom_time: null,
       interval_auto_gom_time_count: 5400,
-      interval_auto_gom_timeInterVal: 60,
+      interval_auto_gom_timeInterVal: 5400,
     }
   },
   async mounted() {
