@@ -266,6 +266,9 @@ export default {
       this.map_code_detail_display.forEach(item => {
         item.profitPerHourCrystal = this.getProfitPerHour(item?.value?.Crystal,this.today_save_history_data[item?.code]?.Crystal,this.today_save_history_data['time'])
         item.profitPerHourGems = this.getProfitPerHour(item?.value?.Gems,this.today_save_history_data[item?.code]?.Gems,this.today_save_history_data['time'])
+        if (item.profitPerHourCrystal > 299) {
+          item.colorPerHourCrystal = '#1e40af'
+        }
         if (item.profitPerHourCrystal < 251) {
           item.colorPerHourCrystal = '#ff8f00'
         }
