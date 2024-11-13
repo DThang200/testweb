@@ -11,7 +11,7 @@
     <div style="display: flex;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
       From :
       <template v-if="is_auto_gom">
-        ({{autoGomFrom || 'None'}})
+        ({{(autoGomFrom || autoGomFrom === 0) ? roblox_data.devices[autoGomFrom].device_name : 'None'}})
       </template>
       <template v-else>
         <select v-model="autoGomFrom">
@@ -23,7 +23,7 @@
       </template>
       To :
       <template v-if="is_auto_gom">
-        ({{autoGomTo || 'None'}})
+        ({{(autoGomTo || autoGomTo === 0) ? roblox_data.devices[autoGomTo - 1].device_name : 'None'}})
       </template>
       <template v-else>
         <select v-model="autoGomTo">
@@ -59,7 +59,7 @@
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'font-size: 48px'}`">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}}
       </div>
@@ -152,7 +152,7 @@ export default {
       autoGomActive: [],
       autoGomFrom: '',
       autoGomTo: '',
-      autoGomLastCurrent: '',
+      autoGomLastCurrent: 0,
       editDevice: '',
       sortInactive: false,
       roblox_data: [],
@@ -162,7 +162,7 @@ export default {
       interval_auto_gom_device_name: "",
       interval_auto_gom_time: null,
       interval_auto_gom_time_count: 5400,
-      interval_auto_gom_timeInterVal: 5400,
+      interval_auto_gom_timeInterVal: 60,
     }
   },
   async mounted() {
@@ -216,21 +216,23 @@ export default {
         const map_key_token_gom_lc = JSON.parse(localStorage.getItem('map_key_token_gom')) || [];
         const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
         let top_device = []
+        const map_key_token_gom = []
+        map_key_token_gom_lc.forEach(acc => {
+          if (this.autoGomActive.includes(acc?.key)){
+            map_key_token_gom.push(acc)
+          }
+        })
         if( this.autoGomFrom || this.autoGomTo){
           console.log('this.roblox_data_state',this.roblox_data_state)
           this.roblox_data_state.devices.slice(this.autoGomFrom || 0, this.autoGomTo || this.roblox_data_state.devices.length + 1).forEach((device) => {
-            top_device.push({code: device?.device_name})
+            top_device.push({code: device?.device_name.replace(/ /g, "_")})
           })
+          top_device = top_device.slice(this.autoGomLastCurrent, this.autoGomLastCurrent + map_key_token_gom.length)
+          this.autoGomLastCurrent = this.autoGomLastCurrent + map_key_token_gom.length
         } else {
           top_device = Object.keys(this.map_code_detail).map(key => {
             return {code: key, value: this.map_code_detail[key]};
           });
-          const map_key_token_gom = []
-          map_key_token_gom_lc.forEach(acc => {
-            if (this.autoGomActive.includes(acc?.key)){
-              map_key_token_gom.push(acc)
-            }
-          })
           top_device.sort((a, b) => {
             if (!a.value?.Crystal) return 1;
             if (!b.value?.Crystal) return -1;
