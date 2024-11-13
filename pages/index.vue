@@ -211,7 +211,7 @@ export default {
 
       // list máy theo gem giảm dần
 
-      // await this.getDataAccount();
+      await this.getDataAccount();
       setTimeout(() => {
         const map_key_token_gom_lc = JSON.parse(localStorage.getItem('map_key_token_gom')) || [];
         const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
@@ -240,7 +240,6 @@ export default {
         }
 
         console.log('top_device',top_device)
-        return false
 
         this.endTaskAutoGom();
         let current_run = []
