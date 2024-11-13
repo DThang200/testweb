@@ -83,8 +83,8 @@
           <tr v-for="(item,index) in roblox_data_account_display">
             <td class="px-2">{{index + 1}}</td>
             <td class="px-2">{{item.username}}</td>
-            <td class="px-2">{{getCrystal(item.status)}}</td>
-            <td class="px-2">{{getGems(item.status)}}</td>
+            <td class="px-2">{{item.Crystal || 0}}</td>
+            <td class="px-2">{{item.Gems || 0}}</td>
             <td class="px-2">
               <div style="width: 100px;max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" :title="item.cookie">{{item.cookie}}</div>
             </td>
@@ -126,7 +126,12 @@
                   </label>
                   <input :id="`checkbox_showPc_${item?.code}`" v-model="selectAccCopy" :value="map_code_device_id[item?.code]" type="checkbox">
                 </td>
-                <td class="px-2" style="color: #9928f4">{{item?.value?.Crystal}}</td>
+                <td class="px-2" style="color: #9928f4">
+                  <div style="border: #9928f4 dashed 2px;border-radius: 4px">
+                    <img src="/img/icon/icon-trait-crystal.webp" style="width: 30px;height: 30px" alt="">
+                    {{item?.value?.Crystal}}
+                  </div>
+                </td>
                 <td class="px-2">{{item?.value?.Gems}}</td>
                 <td class="px-2" :style="`${item.colorPerHourCrystal ? 'background:' + item.colorPerHourCrystal + ';color: white' : 'color:#9928f4'}`" v-if="today_save_history_data">{{item.profitPerHourCrystal}}</td>
                 <td class="px-2" v-if="today_save_history_data">{{item.profitPerHourGems}}</td>
@@ -219,6 +224,7 @@ export default {
     ]),
     getDataByDeviceId(){
       this.roblox_data_account_display = []
+      const roblox_data_account_display = []
       this.total_crystal = 0
       this.total_crystal_all = 0
       this.total_gems_all = 0
@@ -231,15 +237,21 @@ export default {
           gems = JSON.parse(item.status).Currencies["Gems"]
           this.total_crystal_all += crystal ? crystal : 0
           this.total_gems_all += gems ? gems : 0
+          item.Crystal = crystal
+          item.Gems = gems
         }
         if (!this.select_pc || item.device_id === this.select_pc){
-          this.roblox_data_account_display.push(item)
+          roblox_data_account_display.push(item)
           if (item?.status){
             this.total_crystal += crystal ? crystal : 0
             this.total_gems += gems ? gems : 0
           }
         }
       })
+      roblox_data_account_display.sort((a, b) => {
+        return a?.Crystal - b?.Crystal;
+      })
+      this.roblox_data_account_display = roblox_data_account_display
       console.log('roblox_data_account_display',this.roblox_data_account_display)
     },
     renderListPc(sort = ''){
@@ -266,6 +278,7 @@ export default {
       this.map_code_detail_display.forEach(item => {
         item.profitPerHourCrystal = this.getProfitPerHour(item?.value?.Crystal,this.today_save_history_data[item?.code]?.Crystal,this.today_save_history_data['time'])
         item.profitPerHourGems = this.getProfitPerHour(item?.value?.Gems,this.today_save_history_data[item?.code]?.Gems,this.today_save_history_data['time'])
+        item.colorPerHourCrystal = '#0c630e'
         if (item.profitPerHourCrystal > 299) {
           item.colorPerHourCrystal = '#1e40af'
         }
