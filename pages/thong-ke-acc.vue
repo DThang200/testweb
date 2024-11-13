@@ -13,10 +13,16 @@
         Total Gems : <span style="font-weight: bold;font-size: 20px">{{total_gems_all.toLocaleString('de-DE')}}</span>
       </div>
       <div style="margin-left: 40px">
-        Last day Crystal : <span style="font-weight: bold;font-size: 20px">{{last_save_history_data['All']?.Crystal.toLocaleString('de-DE')}}(<span :style="`color: ${total_crystal_all - last_save_history_data['All']?.Crystal > 0 ?'#0ECB81' : '#F6465D'}`">{{(total_crystal_all - last_save_history_data['All']?.Crystal).toLocaleString('de-DE')}}</span>)</span>
+        0h Crystal : <span style="font-weight: bold;font-size: 20px">{{today_save_history_data['All']?.Crystal.toLocaleString('de-DE')}}(<span :style="`color: ${total_crystal_all - today_save_history_data['All']?.Crystal > 0 ?'#0ECB81' : '#F6465D'}`">{{(total_crystal_all - today_save_history_data['All']?.Crystal).toLocaleString('de-DE')}}</span>)</span>
       </div>
       <div>
-        Last day Gems : <span style="font-weight: bold;font-size: 20px">{{last_save_history_data['All']?.Gems.toLocaleString('de-DE')}}(<span :style="`color: ${total_gems_all - last_save_history_data['All']?.Gems > 0 ?'#0ECB81' : '#F6465D'}`">{{(total_gems_all - last_save_history_data['All']?.Gems).toLocaleString('de-DE')}}</span>)</span>
+        0h Gems : <span style="font-weight: bold;font-size: 20px">{{today_save_history_data['All']?.Gems.toLocaleString('de-DE')}}(<span :style="`color: ${total_gems_all - today_save_history_data['All']?.Gems > 0 ?'#0ECB81' : '#F6465D'}`">{{(total_gems_all - today_save_history_data['All']?.Gems).toLocaleString('de-DE')}}</span>)</span>
+      </div>
+      <div style="margin-left: 40px">
+        Last day Crystal : <span style="font-weight: bold;font-size: 20px">{{last_save_history_data['All']?.Crystal.toLocaleString('de-DE')}}(<span :style="`color: ${today_save_history_data['All']?.Crystal - last_save_history_data['All']?.Crystal > 0 ?'#0ECB81' : '#F6465D'}`">{{(today_save_history_data['All']?.Crystal - last_save_history_data['All']?.Crystal).toLocaleString('de-DE')}}</span>)</span>
+      </div>
+      <div>
+        Last day Gems : <span style="font-weight: bold;font-size: 20px">{{last_save_history_data['All']?.Gems.toLocaleString('de-DE')}}(<span :style="`color: ${today_save_history_data['All']?.Gems - last_save_history_data['All']?.Gems > 0 ?'#0ECB81' : '#F6465D'}`">{{(today_save_history_data['All']?.Gems - last_save_history_data['All']?.Gems).toLocaleString('de-DE')}}</span>)</span>
       </div>
     </div>
     <!--    <div style="margin: 16px 0">-->
