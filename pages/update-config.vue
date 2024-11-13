@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       setting: {
-        "relaunch_delay": 130,
-        "kill_idle_roblox_delay": 30,
-        "launch_delay": 30,
+        "relaunch_delay": 100,
+        "kill_idle_roblox_delay": 20,
+        "launch_delay": 20,
         "avoid_joining_same_accounts": false
       },
       config : {
@@ -58,6 +58,13 @@ export default {
       console.log('this.link_private',this.link_private_data)
     },
     async renderConfig() {
+      const correctPassword = "matkhau123@"; // Mật khẩu cố định
+      const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
+
+      if (userPassword !== correctPassword) {
+        alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
+        return false
+      }
       const handleData = this.roblox_data?.devices.slice(1)
       for (const data of handleData) {
         const devices_id = data?.device_id
