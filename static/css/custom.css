@@ -57,3 +57,6 @@
     right: 0;
     padding: 8px;
 }
+html label {
+    margin-bottom:0;
+}

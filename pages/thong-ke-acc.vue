@@ -138,8 +138,8 @@
                   </div>
                 </td>
                 <td class="px-2">{{item?.value?.Gems.toLocaleString('de-DE')}}</td>
-                <td class="px-2" :style="`${item.colorPerHourCrystal ? 'background:' + item.colorPerHourCrystal + ';color: white' : 'color:#9928f4'}`" v-if="today_save_history_data">{{item.profitPerHourCrystal}}</td>
-                <td class="px-2" v-if="today_save_history_data">{{item.profitPerHourGems}}</td>
+                <td class="px-2" :style="`${item.colorPerHourCrystal ? 'background:' + item.colorPerHourCrystal + ';color: white' : 'color:#9928f4'}`" v-if="today_save_history_data">{{item.profitPerHourCrystal.toLocaleString('de-DE')}}</td>
+                <td class="px-2" v-if="today_save_history_data">{{item.profitPerHourGems.toLocaleString('de-DE')}}</td>
                 <td class="px-2" v-if="today_save_history_data">{{item?.value?.Crystal - last_save_history_data[item?.code]?.Crystal}}</td>
                 <td class="px-2" :style="`color: ${(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '#0ECB81' : '#F6465D'}`" v-if="today_save_history_data">{{(item?.value?.Gems - last_save_history_data[item?.code]?.Gems) > 0 ? '+' : ''}} {{item?.value?.Gems - last_save_history_data[item?.code]?.Gems}}</td>
               </tr>
@@ -181,7 +181,7 @@ export default {
     },
     map_code_detail(){
       if (this.passPrivate){
-        this.renderListPc();
+        this.renderListPc(this.sort_pc);
       }
     },
   },
@@ -261,10 +261,10 @@ export default {
       console.log('roblox_data_account_display',this.roblox_data_account_display)
     },
     renderListPc(sort = ''){
-      this.map_code_detail_display = Object.keys(this.map_code_detail).map(key => {
+      let map_code_detail_display = Object.keys(this.map_code_detail).map(key => {
         return { code: key, value: this.map_code_detail[key]};
       });
-      this.map_code_detail_display.forEach(item => {
+      map_code_detail_display.forEach(item => {
         item.profitPerHourCrystal = this.getProfitPerHour(item?.value?.Crystal,this.today_save_history_data[item?.code]?.Crystal,this.today_save_history_data['time'])
         item.profitPerHourGems = this.getProfitPerHour(item?.value?.Gems,this.today_save_history_data[item?.code]?.Gems,this.today_save_history_data['time'])
         item.colorPerHourCrystal = '#0c630e'
@@ -278,7 +278,7 @@ export default {
           item.colorPerHourCrystal = 'red'
         }
       })
-      this.map_code_detail_display.sort((a, b) => {
+      map_code_detail_display.sort((a, b) => {
         if (sort === 'crystal'){
           if (!a.value?.Crystal) return 1;
           if (!b.value?.Crystal) return -1;
@@ -301,6 +301,7 @@ export default {
           return numberA - numberB;
         }
       });
+      this.map_code_detail_display = JSON.parse(JSON.stringify(map_code_detail_display))
     },
     getCrystal(status){
       if (!status){

@@ -10,6 +10,7 @@ export default {
             baseURL: process.env.API_URL
         },
         API_URL: process.env.API_URL,
+        DEVICE_ROLE: process.env.DEVICE_ROLE,
         BASE_DOMAIN: process.env.BASE_DOMAIN,
         API_ROBLOX: process.env.API_ROBLOX,
         TOKEN_ROBLOX: process.env.TOKEN_ROBLOX,

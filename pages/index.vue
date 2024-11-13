@@ -1,28 +1,65 @@
 <template>
 <main class="page-content">
-  <div style="display: flex;flex-direction: row; gap: 16px">
-    <button type="button" @click="refreshScript()">
-      Refresh script
-    </button>
-    <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
-    <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
-  </div>
-  <div style="display: flex;flex-direction: row;gap: 8px">
-    Menu
-    <nuxt-link to="/setup-key">
-      Setup Keys
-    </nuxt-link>
-    -
-    <nuxt-link to="/history">
-      History
-    </nuxt-link>
-  </div>
-  <div style="margin-left: auto;font-size: 24px">
+  <template  v-if="$config.DEVICE_ROLE === 'manager'">
+    <div style="display: flex;flex-direction: row; gap: 16px">
+      <button type="button" @click="refreshScript()">
+        Refresh script
+      </button>
+      <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
+      <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
+    </div>
+    <div style="display: flex;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
+      From :
+      <template v-if="is_auto_gom">
+        ({{autoGomFrom || 'None'}})
+      </template>
+      <template v-else>
+        <select v-model="autoGomFrom">
+          <option value="">None</option>
+          <template v-for="(devices,index) in roblox_data_state.devices">
+            <option :value="index">{{devices?.device_name}}</option>
+          </template>
+        </select>
+      </template>
+      To :
+      <template v-if="is_auto_gom">
+        ({{autoGomTo || 'None'}})
+      </template>
+      <template v-else>
+        <select v-model="autoGomTo">
+          <option value="">None</option>
+          <template v-for="(devices,index) in roblox_data_state.devices">
+            <option :value="index + 1">{{devices?.device_name}}</option>
+          </template>
+        </select>
+      </template>
+      <div style="margin-left: 40px">
+        Collect Acc :
+      </div>
+      <template v-for="acc in map_key_token_gom">
+        <div>
+          <input v-if="!is_auto_gom" v-model="autoGomActive" type="checkbox" :id="'autoGom-' + acc.key" :value="acc?.key" />
+          <label v-if="!(is_auto_gom && !autoGomActive.includes(acc.key))" :for="'autoGom-' + acc.key" style="margin-right: 12px">{{acc?.key}}</label>
+        </div>
+      </template>
+    </div>
+    <div style="display: flex;flex-direction: row;gap: 8px">
+      Menu
+      <nuxt-link to="/setup-key">
+        Setup Keys
+      </nuxt-link>
+      -
+      <nuxt-link to="/history">
+        History
+      </nuxt-link>
+    </div>
+  </template>
+  <div style="margin-left: auto;font-size: 24px" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'transform: scale(3);margin-bottom: 32px'}`">
     <input v-model="sortInactive" id="sortInactive" type="checkbox">
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'font-size: 48px'}`">
       <div>
         {{data.device_name}}
       </div>
@@ -46,27 +83,29 @@
           Connect
         </button>
       </div>
-      <div style="width: 450px">
-        <template v-if="map_device_data && map_device_data[data?.device_id]">
-          {{map_device_data[data?.device_id]?.script}}
-        </template>
-        <template v-else>Farm</template>
-      </div>
-      <div v-show="editDevice == data.device_code">
-        <select @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
-          <option value="">Không</option>
-          <template v-for="data in map_key_token_gom">
-            <option :value="data?.key">{{data?.key}}</option>
+      <template v-if="$config.DEVICE_ROLE === 'manager'">
+        <div style="width: 450px">
+          <template v-if="map_device_data && map_device_data[data?.device_id]">
+            {{map_device_data[data?.device_id]?.script}}
           </template>
-        </select>
-        <button @click="setFarmScript(data?.device_id,data?.device_name,'lava')">Farm Lava</button>
-        <button @click="setFarmScript(data?.device_id,data?.device_name,'princess')">Farm Công chúa</button>
-        <button @click="setFarmScript(data?.device_id,data?.device_name,'no-legend')">Farm No Lengend</button>
-      </div>
+          <template v-else>Farm</template>
+        </div>
+        <div v-show="editDevice == data.device_code">
+          <select @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
+            <option value="">Không</option>
+            <template v-for="data in map_key_token_gom">
+              <option :value="data?.key">{{data?.key}}</option>
+            </template>
+          </select>
+          <button @click="setFarmScript(data?.device_id,data?.device_name,'lava')">Farm Lava</button>
+          <button @click="setFarmScript(data?.device_id,data?.device_name,'princess')">Farm Công chúa</button>
+          <button @click="setFarmScript(data?.device_id,data?.device_name,'no-legend')">Farm No Lengend</button>
+        </div>
 
-      <div class="input-device_action" @click="() => {if(editDevice !== data.device_code){editDevice = data.device_code} else {editDevice = ''}}">
-        edit
-      </div>
+        <div class="input-device_action" @click="() => {if(editDevice !== data.device_code){editDevice = data.device_code} else {editDevice = ''}}">
+          edit
+        </div>
+      </template>
     </div>
   </div>
 </main>
@@ -94,7 +133,7 @@ export default {
           let data = JSON.parse(JSON.stringify(value))
           data.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
           this.roblox_data = data
-        }else {
+        } else {
           this.roblox_data = JSON.parse(JSON.stringify(value))
         }
       },deep: true
@@ -110,6 +149,10 @@ export default {
   },
   data () {
     return {
+      autoGomActive: [],
+      autoGomFrom: '',
+      autoGomTo: '',
+      autoGomLastCurrent: '',
       editDevice: '',
       sortInactive: false,
       roblox_data: [],
@@ -128,7 +171,9 @@ export default {
     this.getKeyGom();
     this.getKeyFarm();
     this.initStatusDevice();
-
+    this.map_key_token_gom.forEach(acc => {
+      this.autoGomActive.push(acc.key)
+    })
   },
   methods: {
     ...mapActions([
@@ -165,19 +210,37 @@ export default {
       // Farm-princess
 
       // list máy theo gem giảm dần
-      await this.getDataAccount();
+
+      // await this.getDataAccount();
       setTimeout(() => {
-        const map_key_token_gom = JSON.parse(localStorage.getItem('map_key_token_gom')) || [];
+        const map_key_token_gom_lc = JSON.parse(localStorage.getItem('map_key_token_gom')) || [];
         const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
-        let top_device = Object.keys(this.map_code_detail).map(key => {
-          return {code: key, value: this.map_code_detail[key]};
-        });
-        top_device.sort((a, b) => {
-          if (!a.value?.Crystal) return 1;
-          if (!b.value?.Crystal) return -1;
-          return b.value?.Crystal - a.value?.Crystal;
-        });
-        top_device = top_device.slice(0, map_key_token_gom.length)
+        let top_device = []
+        if( this.autoGomFrom || this.autoGomTo){
+          console.log('this.roblox_data_state',this.roblox_data_state)
+          this.roblox_data_state.devices.slice(this.autoGomFrom || 0, this.autoGomTo || this.roblox_data_state.devices.length + 1).forEach((device) => {
+            top_device.push({code: device?.device_name})
+          })
+        } else {
+          top_device = Object.keys(this.map_code_detail).map(key => {
+            return {code: key, value: this.map_code_detail[key]};
+          });
+          const map_key_token_gom = []
+          map_key_token_gom_lc.forEach(acc => {
+            if (this.autoGomActive.includes(acc?.key)){
+              map_key_token_gom.push(acc)
+            }
+          })
+          top_device.sort((a, b) => {
+            if (!a.value?.Crystal) return 1;
+            if (!b.value?.Crystal) return -1;
+            return b.value?.Crystal - a.value?.Crystal;
+          });
+          top_device = top_device.slice(0, map_key_token_gom.length)
+        }
+
+        console.log('top_device',top_device)
+        return false
 
         this.endTaskAutoGom();
         let current_run = []
