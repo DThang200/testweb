@@ -73,6 +73,7 @@
         <tr>
           <th>STT ({{roblox_data_account_display.length}})</th>
           <th>User name</th>
+          <th>Device</th>
           <th>Crystal ({{total_crystal}})</th>
           <th>Gems ({{total_gems}})</th>
           <th>cookie</th>
@@ -83,6 +84,7 @@
           <tr v-for="(item,index) in roblox_data_account_display">
             <td class="px-2">{{index + 1}}</td>
             <td class="px-2">{{item.username}}</td>
+            <td class="px-2">{{map_device_id_code[item.device_id]}}</td>
             <td class="px-2">{{item.Crystal || 0}}</td>
             <td class="px-2">{{item.Gems || 0}}</td>
             <td class="px-2">
@@ -229,6 +231,7 @@ export default {
       this.total_crystal_all = 0
       this.total_gems_all = 0
       this.total_gems = 0
+      console.log('this.roblox_data_account',this.roblox_data_account.accounts[0])
       this.roblox_data_account.accounts.forEach(item => {
         let crystal = 0
         let gems = 0
