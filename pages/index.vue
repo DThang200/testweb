@@ -505,7 +505,7 @@ export default {
 
                                 ["Epic"] = true,
 
-                                ["Legendary"] = false,
+                                ["Legendary"] = true
 
                                 ["Mythical"] = false,
 
