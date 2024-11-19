@@ -200,7 +200,9 @@ export const actions = {
 
         const date = new Date()
         let last_day_save_history = localStorage.getItem('last_day_save_history') ?  new Date(localStorage.getItem('last_day_save_history')) : null
-        last_day_save_history.setHours(24);
+        if (last_day_save_history) {
+          last_day_save_history.setHours(24);
+        }
         if (date > last_day_save_history || !last_day_save_history) {
           const today = new Date();
           const options = {
