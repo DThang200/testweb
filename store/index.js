@@ -24,6 +24,7 @@ export const mutations = {
     state.roblox_data= data
   },
   SET_ACCOUNT_ROBLOX(state, data) {
+    console.log('SET_ACCOUNT_ROBLOX',data)
     state.roblox_data_account= data
   },
   SET_MAP_DEVICE_ID_CODE(state, data) {
@@ -181,8 +182,24 @@ export const actions = {
             }
             try {
               if (item.status && JSON.parse(item.status)) {
-                const crystal = JSON.parse(item.status).Items["Trait Crystal"]
-                const gems = JSON.parse(item.status).Currencies["Gems"]
+                // const crystal = this.getCrystal(item.status)
+                // const gems = this.getGems(item.status)
+                let gems = 0
+                let crystal = 0
+                try {
+                  const statusParse = item.status ? JSON.parse(item.status) : false
+                  if (!statusParse || !statusParse || !statusParse?.Items || !statusParse?.Items["Trait Crystal"]){
+                    crystal = 0
+                  }
+                  if (!statusParse || !statusParse || !statusParse?.Currencies || !statusParse?.Currencies["Gems"]){
+                    gems = 0
+                  }
+                  crystal = statusParse?.Items["Trait Crystal"] || 0
+                  gems = statusParse?.Currencies["Gems"] || 0
+                } catch (e) {
+                  crystal = 0
+                  gems = 0
+                }
                 map_device_code_sum_acc[map_device_id_code[item.device_id]] += crystal ? crystal : 0
                 map_device_code_detail[map_device_id_code[item.device_id]].Gems += gems ? gems : 0
                 map_device_code_detail[map_device_id_code[item.device_id]].Crystal += crystal ? crystal : 0
@@ -555,6 +572,29 @@ export const actions = {
       localStorage.setItem('map_key_token_farm', JSON.stringify(map_key_token_farm));
     }
     commit('SET_MAP_KEY_TOKEN_FARM', map_key_token_farm)
-  }
+  },
 
+  getCrystal(status){
+    try {
+      const statusParse = status ? JSON.parse(status) : false
+      if (!statusParse || !statusParse || !statusParse?.Items || !statusParse?.Items["Trait Crystal"]){
+        return 0
+      }
+      return statusParse?.Items["Trait Crystal"] || 0
+    } catch (e) {
+      return 0
+    }
+  },
+  getGems(status){
+    try {
+      const statusParse = status ? JSON.parse(status) : false
+      if (!statusParse || !statusParse || !statusParse?.Currencies || !statusParse?.Currencies["Gems"]){
+        return 0
+      }
+      console.log('statusParse?.Currencies',statusParse?.Currencies)
+      return statusParse?.Currencies["Gems"] || 0
+    } catch (e) {
+      return 0
+    }
+  },
 }

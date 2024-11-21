@@ -220,6 +220,9 @@ export default {
     this.intervalId = setInterval(() => {
       this.getDataAccount()
     }, 600 * 1000);
+    setTimeout(() => {
+      console.log('roblox_data_account',this.roblox_data_account)
+    },30000)
   },
   methods: {
     ...mapActions([
@@ -227,6 +230,28 @@ export default {
       'getDataAccount',
       'initDataHistory',
     ]),
+    getCrystal(status){
+      try {
+        const statusParse = status ? JSON.parse(status) : false
+        if (!statusParse || !statusParse?.Items || !statusParse?.Items["Trait Crystal"]){
+          return 0
+        }
+        return statusParse?.Items["Trait Crystal"] || 0
+      } catch (e) {
+        return 0
+      }
+    },
+    getGems(status){
+      try {
+        const statusParse = status ? JSON.parse(status) : false
+        if (!statusParse || !statusParse?.Currencies || !statusParse?.Currencies["Gems"]){
+          return 0
+        }
+        return statusParse?.Currencies["Gems"] || 0
+      } catch (e) {
+        return 0
+      }
+    },
     getDataByDeviceId(){
       this.roblox_data_account_display = []
       const roblox_data_account_display = []
@@ -234,13 +259,12 @@ export default {
       this.total_crystal_all = 0
       this.total_gems_all = 0
       this.total_gems = 0
-      console.log('this.roblox_data_account',this.roblox_data_account.accounts[0])
       this.roblox_data_account.accounts.forEach(item => {
         let crystal = 0
         let gems = 0
         if (item?.status){
-          crystal = JSON.parse(item.status).Items["Trait Crystal"]
-          gems = JSON.parse(item.status).Currencies["Gems"]
+          crystal = this.getCrystal(item.status)
+          gems = this.getGems(item.status)
           this.total_crystal_all += crystal ? crystal : 0
           this.total_gems_all += gems ? gems : 0
           item.Crystal = crystal
@@ -258,7 +282,6 @@ export default {
         return a?.Crystal - b?.Crystal;
       })
       this.roblox_data_account_display = roblox_data_account_display
-      console.log('roblox_data_account_display',this.roblox_data_account_display)
     },
     renderListPc(sort = ''){
       let map_code_detail_display = Object.keys(this.map_code_detail).map(key => {
@@ -303,19 +326,6 @@ export default {
       });
       this.map_code_detail_display = JSON.parse(JSON.stringify(map_code_detail_display))
     },
-    getCrystal(status){
-      if (!status){
-        return ''
-      }
-      return  JSON.parse(status).Items["Trait Crystal"]
-    },
-    getGems(status){
-      if (!status){
-        return ''
-      }
-      return new Intl.NumberFormat().format(JSON.parse(status).Currencies["Gems"]);
-    },
-
     copyFunction(){
       let copyContent = ''
       this.roblox_data_account_display.forEach(item => {
