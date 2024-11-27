@@ -373,8 +373,8 @@ export default {
       }
       this.finishRender = false
       if (this.roblox_data && this.roblox_data.devices && this.roblox_data.devices?.length > 0){
-        // for (let i = 0; i < this.roblox_data.devices?.length; i++) {
-        for (let i = 10; i < 15; i++) {
+        for (let i = 0; i < this.roblox_data.devices?.length; i++) {
+        // for (let i = 10; i < 15; i++) {
           console.log('this.roblox_data.devices[i]',this.roblox_data.devices[i])
           const device = this.roblox_data.devices[i]
           const data = await this.renderDevice(device.device_id)
