@@ -59,7 +59,7 @@
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'font-size: 32px'}`">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}}
       </div>
@@ -99,7 +99,7 @@
           </select>
           <button @click="setFarmScript(data?.device_id,data?.device_name,'lava')">Farm Lava</button>
           <button @click="setFarmScript(data?.device_id,data?.device_name,'princess')">Farm Công chúa</button>
-          <button @click="setFarmScript(data?.device_id,data?.device_name,'no-legend')">Farm No Lengend</button>
+          <button @click="setFarmScript(data?.device_id,data?.device_name,'wave-61')">Farm wave-61</button>
         </div>
 
         <div class="input-device_action" @click="() => {if(editDevice !== data.device_code){editDevice = data.device_code} else {editDevice = ''}}">
@@ -470,6 +470,113 @@ export default {
                             },
 
                             ["Wave"] = 46
+
+                        }
+
+                        getgenv().Auto_Equip = {
+
+                            ["Equip Best"] = true,
+
+                            ["Custom Equip"] = {
+
+                                ["Enabled"] = false,
+
+                                ["Units"] = {
+
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
+
+                                },
+
+                            },
+
+                        }
+
+                        getgenv().Portal = {
+
+                            ["Enabled"] = true,
+
+                            ["Name Portal"] = "Demon Portal",
+
+                            ["Auto Get Portal"] = false,
+
+                            ["Rarity Portal"] = {
+
+                                ["Rare"] = true,
+
+                                ["Epic"] = true,
+
+                                ["Legendary"] = true,
+
+                                ["Mythical"] = false,
+
+                                ["Secret"] = false,
+
+                            },
+
+                            ["Unit"] = {
+
+                                ["Use All Unit"] = false,
+
+                                ["Custom Unit"] = {
+
+                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
+
+                                }
+
+                            },
+
+                        }
+
+                        getgenv().Webhook =  {
+
+                            ["Webhook"] = false,
+
+                            ["Url"] = "",
+
+                            ["Roll Unit"] = true,
+
+                            ["Story/Infinite"] = true,
+
+                        }
+
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
+        this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+      } else if (unit === 'wave-61'){
+        const script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+
+                        getgenv().Key = "${token}"
+
+                        getgenv().TargetUnitRoll = {
+
+                            "Princess Swordmaster"
+
+                        }
+
+
+
+                        getgenv().notRollUnitTarget = true
+
+                        getgenv().UseSavePosition = false
+
+                        getgenv().GemRollUnit = 20000
+
+                        getgenv().Speed = 2
+
+                        getgenv()["Black Screen"] = true
+
+                        getgenv()["Auto Leave Infinite"] = {
+
+                            ["Auto Leave"] = true,
+
+                            ["Method"] = {
+
+                                ["Sell"] = true,
+
+                                ["Leave"] = true,
+
+                            },
+
+                            ["Wave"] = 61
 
                         }
 
