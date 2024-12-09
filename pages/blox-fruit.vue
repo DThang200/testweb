@@ -59,7 +59,7 @@
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
+    <div v-for="data in roblox_data.devices" v-if="show_device.includes(data.device_name)" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}}
       </div>
@@ -91,22 +91,16 @@
           <template v-else>Farm</template>
         </div>
         <div v-show="editDevice == data.device_code">
-          <select @change="(e) => {setCollectScript(data?.device_id,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
+          <select @change="(e) => {setToiletScript(data?.device_id,data?.device_name,e?.target?.value)}" v-if="toiletUsername?.length > 0">
             <option value="">Không</option>
-            <template v-for="data in map_key_token_gom">
-              <option :value="data?.key">{{data?.key}}</option>
+            <template v-for="username in toiletUsername">
+              <option :value="username" >{{username}}</option>
             </template>
+<!--            <template v-for="data in map_key_token_gom">-->
+<!--              <option :value="data?.key">{{data?.key}}</option>-->
+<!--            </template>-->
           </select>
-          <select @change="(e) => {setFarmScript(data?.device_id,data?.device_name,e?.target?.value)}" v-if="map_key_token_gom?.length > 0">
-            <option value="">Select Script Farm</option>
-            <template v-for="data in farmOption">
-              <option :value="data?.code">{{data?.label}}</option>
-            </template>
-          </select>
-<!--          <button @click="setFarmScript(data?.device_id,data?.device_name,'lava')">Farm Lava</button>-->
-<!--          <button @click="setFarmScript(data?.device_id,data?.device_name,'princess')">Farm Công chúa</button>-->
-<!--          <button @click="setFarmScript(data?.device_id,data?.device_name,'wave-61')">Farm wave-61</button>-->
-<!--          <button @click="setFarmScript(data?.device_id,data?.device_name,'Roll-unit')">Roll-unit</button>-->
+          <button @click="setFarmScript(data?.device_id,data?.device_name,'blox-fruit')">Farm script</button>
         </div>
 
         <div class="input-device_action" @click="() => {if(editDevice !== data.device_code){editDevice = data.device_code} else {editDevice = ''}}">
@@ -156,14 +150,8 @@ export default {
   },
   data () {
     return {
-      farmOption : [
-        {code : 'lava',label : 'AD-Lava',game_id: '17017769292',private_server : true},
-        {code : 'princess',label : 'AD-Princess',game_id: '17017769292',private_server : true},
-        {code : 'wave-61',label : 'AD-Wave-61',game_id: '17017769292',private_server : true},
-        {code : 'Roll-unit',label : 'AD-Roll-unit',game_id: '17017769292',private_server : true},
-        {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',private_server : false},
-        {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
-      ],
+      toiletUsername: ["lindseychristopher76","marylopez355","lunabobby7"],
+      show_device: ["VPS 1","VPS 2","VPS 3","VPS 4","VPS 5","VPS 235","VPS 236","VPS 237","VPS 238","VPS 239","VPS 240","VPS 241","VPS 242","VPS 243","VPS 244","VPS 245","VPS 246","VPS 247","VPS 248","VPS 249","VPS 250"],
       autoGomActive: [],
       autoGomFrom: '',
       autoGomTo: '',
@@ -345,6 +333,111 @@ export default {
       device_remotes[deviceId] = data.device_remote
       localStorage.setItem('device_remotes',JSON.stringify(device_remotes));
     },
+    setToiletScript(device_id,device_name,user_collect){
+      if (!user_collect){
+        return
+      }
+      const token = this.map_key_token_farm.find(data => data.key == device_name)?.nousigi
+      console.log('this.map_key_token_farm',this.map_key_token_farm,token,device_name)
+      const script = `getgenv().Key = "${token}"
+                      getgenv().ImportMacro = {
+                          "https://cdn.discordapp.com/attachments/1290994164179144734/1290994222316519497/okkkkkkkkkkk.txt?ex=66fe7b90&is=66fd2a10&hm=e212b079ae492eb4fd9ca9e2e21d5d419b87782e01274168c7b78fa945a5ac02&"
+                      }
+                      getgenv().EquipMacroTroop = true
+                      getgenv().Config = {
+                        ["JoinFailsafe"] = true,
+                        ["AutoSave"] = true,
+                        ["SellRarities"] = {
+                          ["Legendary"] = true,
+                          ["Basic"] = true,
+                          ["Epic"] = true,
+                          ["Mythic"] = false,
+                          ["Uncommon"] = true,
+                          ["Rare"] = true
+                        },
+                        ["DelayReplay"] = 5,
+                        ["EventType"] = "Drill Type",
+                        ["WH_MatchComplete"] = false,
+                        ["AutoSkip"] = true,
+                        ["AutoClaimQuest"] = true,
+                        ["TPLobbyIfPlayer"] = false,
+                        ["SelectBuyCrate"] = "GoldenGladiatorCrate",
+                        ["BuyAmount"] = "Buy3",
+                        ["WH_MailSent"] = true,
+                        ["IgnoreMacroTiming"] = true,
+                        ["SelectMacro"] = "Macro105Action",
+                        ["ALFS_DelayHop"] = 30,
+                        ["BuyCrateName"] = "${user_collect}",
+                        ["AutoClaimPlaytimeReward"] = true,
+                        ["PlaceFailsafe"] = true,
+                        ["AutoJoinEndless"] = false,
+                        ["PlayMacro"] = true,
+                        ["AutoBuyCrate"] = true,
+                        ["AutoMail"] = true,
+                        ["BoostFPS"] = true,
+                        ["Summon10"] = false,
+                        ["AutoUseBoost"] = false,
+                        ["AutoJoinPVP"] = true,
+                        ["AutoReturnToLobby"] = true,
+                        ["AutoReplay"] = false,
+                        ["ABE_Gift"] = false,
+                        ["BlackScreen"] = false,
+                        ["SellWave"] = 1,
+                        ["AutoClaimEventPass"] = false,
+                        ["DelayJoin"] = 25,
+                        ["DeleteMap"] = true,
+                        ["RequireRoll"] = 0,
+                        ["AutoJoinMatch"] = false,
+                        ["ALFS_HopServer"] = false,
+                        ["UseAll"] = false,
+                        ["SelectCase"] = "BasicCrate",
+                        ["AutoSellOW"] = false,
+                        ["WalkAround"] = false,
+                        ["MailName"] = "Thangcachepp02",
+                        ["AutoClaimVIP"] = false,
+                        ["AutoBuyEvent"] = false,
+                        ["AutoListForSale"] = false,
+                        ["AutoVoteDifficulty"] = false,
+                        ["AutoClaimEventQuest"] = true,
+                        ["AutoRejoin"] = true,
+                        ["WebhookURL"] = "https://discord.com/api/webhooks/1311003539438571630/B4vyCwjlQnfBGM1a4GeKGVVdH9Zp32e9uxI_bc1LcK-f2N3Es_aMosz0L6UObuNGmlgk",
+                        ["SummonDelay"] = 0.3,
+                        ["SelectMap"] = "HalloweenGraveyard",
+                        ["AutoClaimDailyReward"] = true,
+                        ["GiftCrate"] = true,
+                        ["RequiredGem"]=100,
+                        ["UseBoosts"] = {
+                          ["2xLuckBoost_1"] = false,
+                          ["2xEggsBoost"] = false,
+                          ["2xLuckBoost_10"] = false,
+                          ["2xHalloweenCandyBoost_1"] = false,
+                          ["2xEventXPBoost"] = false,
+                          ["2xXPBoost"] = false,
+                          ["2xCoinsBoost"] = false,
+                          ["2xClocksBoost"] = false,
+                          ["2xCoinsBoost_1"] = false,
+                          ["2xHalloweenCandyBoost_10"] = false,
+                          ["2xEventXPBoost_1"] = false,
+                          ["2xHalloweenEventXPBoost"] = false,
+                          ["Weekend_2xCoinsBoost"] = false,
+                          ["2xXPBoost_10"] = false,
+                          ["2xCoinsBoost_10"] = false,
+                          ["2xXPBoost_Easter2024"] = false,
+                          ["2xCloversBoost"] = false,
+                          ["2xLuckBoost"] = false,
+                          ["Weekend_2xEndlessXPBoost"] = false,
+                          ["2xEventXPBoost_10"] = false,
+                          ["2xDrillBoost"] = false,
+                          ["2xDrillXPBoost"] = false,
+                          ["2xXPBoost_1"] = false,
+                          ["2xHalloweenCandyBoost"] = false
+                        },
+                        ["AutoSummonTroop"] = false
+                      }
+                      repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`;
+      this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+      this.setStatusDevice({device_id: device_id,key: 'script',value: `Farm-Toilet - ${user_collect}`})
+    },
     setCollectScript(device_id,user_collect){
       if (!user_collect){
             this.setFarmScript(device_id)
@@ -384,275 +477,12 @@ export default {
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
       this.setStatusDevice({device_id: device_id,key: 'script',value: `Trading to - ${user_collect}`})
     },
-    handleSelectScript(device_id,device_name,script){
-    },
     setFarmScript(device_id,device_name,unit = 'lava'){
       console.log('device_id,device_name,unit',device_id,device_name,unit)
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
-      let script = ''
-      let scriptOption = {}
-      this.farmOption.forEach(option => {
-        if (option?.code === unit){
-          scriptOption = option
-        }
-      })
-      switch (unit) {
-        case 'princess' :
-          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-
-                        getgenv().Key = "${token}"
-
-                        getgenv().TargetUnitRoll = {
-
-                            "Princess Swordmaster"
-
-                        }
-
-
-
-                        getgenv().notRollUnitTarget = true
-
-                        getgenv().UseSavePosition = false
-
-                        getgenv().GemRollUnit = 20000
-
-                        getgenv().Speed = 2
-
-                        getgenv()["Black Screen"] = true
-
-                        getgenv()["Auto Leave Infinite"] = {
-
-                            ["Auto Leave"] = true,
-
-                            ["Method"] = {
-
-                                ["Sell"] = true,
-
-                                ["Leave"] = true,
-
-                            },
-
-                            ["Wave"] = 46
-
-                        }
-
-                        getgenv().Auto_Equip = {
-
-                            ["Equip Best"] = true,
-
-                            ["Custom Equip"] = {
-
-                                ["Enabled"] = false,
-
-                                ["Units"] = {
-
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
-
-                                },
-
-                            },
-
-                        }
-
-                        getgenv().Portal = {
-
-                            ["Enabled"] = true,
-
-                            ["Name Portal"] = "Demon Portal",
-
-                            ["Auto Get Portal"] = false,
-
-                            ["Rarity Portal"] = {
-
-                                ["Rare"] = true,
-
-                                ["Epic"] = true,
-
-                                ["Legendary"] = true,
-
-                                ["Mythical"] = false,
-
-                                ["Secret"] = false,
-
-                            },
-
-                            ["Unit"] = {
-
-                                ["Use All Unit"] = false,
-
-                                ["Custom Unit"] = {
-
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
-
-                                }
-
-                            },
-
-                        }
-
-                        getgenv().Webhook =  {
-
-                            ["Webhook"] = false,
-
-                            ["Url"] = "",
-
-                            ["Roll Unit"] = true,
-
-                            ["Story/Infinite"] = true,
-
-                        }
-
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
-          break;
-        case 'wave-61' :
-          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-
-                        getgenv().Key = "${token}"
-
-                        getgenv().TargetUnitRoll = {
-
-                            "Princess Swordmaster"
-
-                        }
-
-
-
-                        getgenv().notRollUnitTarget = true
-
-                        getgenv().UseSavePosition = false
-
-                        getgenv().GemRollUnit = 20000
-
-                        getgenv().Speed = 2
-
-                        getgenv()["Black Screen"] = true
-
-                        getgenv()["Auto Leave Infinite"] = {
-
-                            ["Auto Leave"] = true,
-
-                            ["Method"] = {
-
-                                ["Sell"] = true,
-
-                                ["Leave"] = true,
-
-                            },
-
-                            ["Wave"] = 61
-
-                        }
-
-                        getgenv().Auto_Equip = {
-
-                            ["Equip Best"] = true,
-
-                            ["Custom Equip"] = {
-
-                                ["Enabled"] = false,
-
-                                ["Units"] = {
-
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
-
-                                },
-
-                            },
-
-                        }
-
-                        getgenv().Portal = {
-
-                            ["Enabled"] = true,
-
-                            ["Name Portal"] = "Demon Portal",
-
-                            ["Auto Get Portal"] = false,
-
-                            ["Rarity Portal"] = {
-
-                                ["Rare"] = true,
-
-                                ["Epic"] = true,
-
-                                ["Legendary"] = true,
-
-                                ["Mythical"] = false,
-
-                                ["Secret"] = false,
-
-                            },
-
-                            ["Unit"] = {
-
-                                ["Use All Unit"] = false,
-
-                                ["Custom Unit"] = {
-
-                                    "Queen Swordmaster","Princess Swordmaster","Grand Jadefire Knight","Jadefire Knight","Ice Nightshade","Grand Aether Knight","Aether Knight","The Demon Lord"
-
-                                }
-
-                            },
-
-                        }
-
-                        getgenv().Webhook =  {
-
-                            ["Webhook"] = false,
-
-                            ["Url"] = "",
-
-                            ["Roll Unit"] = true,
-
-                            ["Story/Infinite"] = true,
-
-                        }
-
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
-          break;
-        case 'Roll-unit' :
-            script =
-                ` repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-                  getgenv().Key = "${token}"
-                  getgenv().TargetUnitRoll = {
-                      "Divine Tyrant"
-                  }
-                  getgenv().SelectMethodRoll = {
-                      ["Standard"] = false,
-                      ["Special"] = true,
-                  }
-                  getgenv().SellUnitShiny = {
-                      ["Rare"]  = true,
-                      ["Epic"] = true,
-                      ["Legendary"] = true,
-                  }
-                  getgenv().notRollUnitTarget = false
-                  getgenv().RollWish = {
-                      ["Enabled"] = false,
-                      ["Select Wish"] = {
-                          ["Wish"] = true,
-                          ["Divine Wish"] = false,
-                      }
-                  }
-                  getgenv().UseSavePosition = {
-                      ["Enabled"] = false,
-                      ["File Name"] = ""
-                  }
-                  getgenv().GemRollUnit = 2000000 --if select method roll special it will is Ancient Relic
-                  getgenv().AutoUseMiniLuck = true
-                  getgenv()["Black Screen"] = false
-                  getgenv().Webhook =  {
-                      ["Webhook"] = false,
-                      ["Url"] = "https://discord.com/api/webhooks/1312263286221443133/noPim23Yj9-hL_KQWHJPsIsgxocsJ27rGBkl03T-bUrDeijAfnL7Sjv1tEw5XTb0Noam",
-                      ["Roll Unit"] = true,
-                      ["Story/Infinite"] = true,
-                  }
-                  loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`
-          break;
-        case 'bloxFruit-2550' :
-          script = `
-          repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+      if (unit === 'blox-fruit') {
+        const script =
+            `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm ={
                   ["Hide UI"] = true,
@@ -728,76 +558,10 @@ export default {
                       ["WebhookUrl"] = "https://discord.com/api/webhooks/1311701624258957332/OsXZAora0_xGXXtbMCBtE1ugioi4blAI_1NI7bWpxeWMt_9pJ5ApuJwv14J-wAjqEuh-",
                   }
               }
-              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
-          break;
-        case 'Fisch-lv500' :
-          script = `
-              repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-              getgenv().Key = "${token}"
-              getgenv().SettingFarm = {
-                  ["Hide UI"] = false,
-                  ["White Screen"] = false,
-                  ["Auto Sell"] = {
-                      ["Enabled"] = true,
-                      ["Rarity"] = {
-                          Legendary = true,
-                          Mythical = true,
-                          Exotic = true,
-                          Limited = false,
-                          Divine = false,
-                          Relic = false,
-                      }
-                  },
-                  ["Webhook"] = {
-                      ["Fish Catched"] = {
-                          ["Enable"] = false,
-                          ["Minimum Weight"] = 30000,
-                          ["Rarity"] = {
-                              ["Mythical"] = false,
-                              ["Exotic"] = true,
-                              ["Divine"] = true,
-                              ["Relic"] = true,
-                              ["Limited"] = true
-                          }
-                      },
-                      ["URL"] = "https://discord.com/api/webhooks/1315692077580947527/lzCBIZzRNlwa18HxJdT7hf39QU2ciPVg4iBbqA_VcODpIiK5gvRCq4CsL_wp3Zf-OCMQ"
-                  },
-                  ["Auto Buy Luck"] = true, -- have trident rod
-                  ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
-                      ["Aurora Rod"] = {
-                          ["Enabled"] = true,
-                          ["Auto Buy Aurora Totem"] = false --- if have  rod of the depth it will buy
-                      },
-                      ["Sunken Rod"] = false,
-
-                  },
-                  ["Auto Bait"] = {
-                      ["Buy Bait"] = false,
-                      ["Amount Buy Bait"] = 10,
-                      ["Use Bait Random"] = false,
-                      ["Select Bait"] = {
-                          ["Enabled"] = false,
-                          ["Bait"]  = "Rapid Catcher",
-                      }
-                  },
-                  ["Rejoin"] = {
-                      ["Enabled"] = false,
-                      ["Time"] = 20 ---minute
-                  },
-                  ["Hop Server"] = {
-                      ["Hop Find WhirlPool Get Isonade"] = true,
-                      ["Hop Server When Hight Ping"] = {
-                          ["Enabled"] = false,
-                          ["Ping"] = 100,
-                      }
-                  }
-              }
-
-              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
-          break;
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`;
+        this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
       }
-      this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
-      this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.label})
+      this.setStatusDevice({device_id: device_id,key: 'script',value: `Farm-${unit}`})
     },
     refreshScript(){
       const correctPassword = "matkhau123@"; // Mật khẩu cố định
@@ -814,24 +578,13 @@ export default {
         }
       })
     },
-    async saveScript(device_id, script,option = null) {
+    async saveScript(device_id, script) {
       const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
       const config_id = resConfig?.configs[0]?.config_id
-      if (option){
-        const gameConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs/${config_id}`, {
-          use_private_server: option.private_server,
-          join_low_players_server: !option.private_server,
-          place_id: option.game_id,
-        },{
-          headers: {
-            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          },
-        });
-      }
       const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,

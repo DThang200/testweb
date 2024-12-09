@@ -32,7 +32,8 @@
                   {{data?.key}}
                 </div>
                 <input v-else v-model="data.key" style="width: 250px" placeholder="Name">
-                <input v-model="data.token" style="width: 50%">
+                <input v-model="data.token" style="width: 25%" placeholder="Banana">
+                <input v-model="data.nousigi" style="width: 25%" placeholder="Nousigi">
               </div>
             </template>
           </template>
