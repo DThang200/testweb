@@ -389,6 +389,7 @@ export default {
     setFarmScript(device_id,device_name,unit = 'lava'){
       console.log('device_id,device_name,unit',device_id,device_name,unit)
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
+      const nousigi = this.map_key_token_farm.find(data => data.key == device_name)?.nousigi || "keabc481d8e57b0bc872c89d"
       let script = ''
       let scriptOption = {}
       this.farmOption.forEach(option => {
@@ -613,42 +614,41 @@ export default {
           break;
         case 'Roll-unit' :
             script =
-                ` repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-                  getgenv().Key = "${token}"
-                  getgenv().TargetUnitRoll = {
-                      "Divine Tyrant"
-                  }
-                  getgenv().SelectMethodRoll = {
-                      ["Standard"] = false,
-                      ["Special"] = true,
-                  }
-                  getgenv().SellUnitShiny = {
-                      ["Rare"]  = true,
-                      ["Epic"] = true,
-                      ["Legendary"] = true,
-                  }
-                  getgenv().notRollUnitTarget = false
-                  getgenv().RollWish = {
-                      ["Enabled"] = false,
-                      ["Select Wish"] = {
-                          ["Wish"] = true,
-                          ["Divine Wish"] = false,
-                      }
-                  }
-                  getgenv().UseSavePosition = {
-                      ["Enabled"] = false,
-                      ["File Name"] = ""
-                  }
-                  getgenv().GemRollUnit = 2000000 --if select method roll special it will is Ancient Relic
-                  getgenv().AutoUseMiniLuck = true
-                  getgenv()["Black Screen"] = false
-                  getgenv().Webhook =  {
-                      ["Webhook"] = false,
-                      ["Url"] = "https://discord.com/api/webhooks/1312263286221443133/noPim23Yj9-hL_KQWHJPsIsgxocsJ27rGBkl03T-bUrDeijAfnL7Sjv1tEw5XTb0Noam",
-                      ["Roll Unit"] = true,
-                      ["Story/Infinite"] = true,
-                  }
-                  loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`
+                `
+                getgenv().Key = "${nousigi}"
+                getgenv().Config = {
+                ["AutoSave"] = true,
+                ["ItemPrice"] = 1,
+                ["JoinerList"] = {
+                  [1] = "No joiner in the list"
+                },
+                ["UnitPrice"] = 1,
+                ["FeedLevel"] = 79,
+                ["AutoDeleteUnit"] = true,
+                ["SpecialSummonUnit"] = {
+                  ["Divine Tyrant"] = true
+                },
+                ["LSLoop"] = 2,
+                ["LeaveSellWave"] = 1,
+                ["LSImplosion"] = 100000,
+                ["LSBomb"] = 1,
+                ["AutoSummonSpecial"] = true,
+                ["RequiredGem"] = 3000,
+                ["JoinerCooldown"] = 0,
+                ["ABBHopDelay"] = 0,
+                ["LSDelay"] = 0.4,
+                ["SelectDeleteRarity"] = {
+                  ["Exclusive"] = true,
+                  ["Mythic"] = true,
+                  ["Rare"] = true,
+                  ["Shiny Exclusive"] = true,
+                  ["Legendary"] = true,
+                  ["Shiny Epic"] = true,
+                  ["Epic"] = true,
+                  ["Shiny Rare"] = true,
+                  ["Shiny Legendary"] = true
+                }
+              }`
           break;
         case 'bloxFruit-2550' :
           script = `
@@ -766,9 +766,9 @@ export default {
                   ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
                       ["Aurora Rod"] = {
                           ["Enabled"] = true,
-                          ["Auto Buy Aurora Totem"] = false --- if have  rod of the depth it will buy
+                          ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
                       },
-                      ["Sunken Rod"] = false,
+                      ["Sunken Rod"] = true,
 
                   },
                   ["Auto Bait"] = {
