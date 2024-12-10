@@ -86,7 +86,7 @@
       <template v-if="$config.DEVICE_ROLE === 'manager'">
         <div style="width: 450px">
           <template v-if="map_device_data && map_device_data[data?.device_id]">
-            {{map_device_data[data?.device_id]?.script}}
+            {{map_device_data[data?.device_id]?.script_label}}
           </template>
           <template v-else>Farm</template>
         </div>
@@ -162,6 +162,7 @@ export default {
         {code : 'wave-61',label : 'AD-Wave-61',game_id: '17017769292',private_server : true},
         {code : 'Roll-unit',label : 'AD-Roll-unit',game_id: '17017769292',private_server : true},
         {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',private_server : false},
+        {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
       ],
       autoGomActive: [],
@@ -683,7 +684,7 @@ export default {
                   ["Auto Awaken Fruit"] = false, -- dont support  phoenix
                   ["GodHuman"] = true,
                   ["Priority Get Melee Sea 3"] = false,
-                  ["Auto Saber"] = false,
+                  ["Auto Saber"] = true,
                   ["Auto Pole"] = false,
                   ["Cursed Dual Katana"] = false,
                   ["SoulGuitar"] = false,
@@ -730,6 +731,86 @@ export default {
               }
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
           break;
+        case 'bloxFruit-magma' :
+          script = `
+          repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+              getgenv().Key = "${token}"
+              getgenv().SettingFarm ={
+                  ["Hide UI"] = true,
+                  ["Fast Attack"] = {
+                      ["Speed Attack"] = 0,
+                      ["Attack Duration"] = 5,
+                      ["Speed Attack if Cooldown"] = 0.25,
+                      ["Attack Cooldown"] = 7,
+                  },
+                  ["Reset Teleport"] = {
+                      ["Enabled"] = false,
+                      ["Delay Reset"] = 3,
+                      ["Item Dont Reset"] = {
+                          ["Fruit"] = {
+                              ["Enabled"] = true,
+                              ["All Fruit"] = true,
+                              ["Select Fruit"] = {
+                                  ["Enabled"] = false,
+                                  ["Fruit"] = {},
+                              },
+                          },
+                      },
+                  },
+                  ["Lock FPS"] = {
+                      ["Enabled"] = false,
+                      ["FPS"] = 60,
+                  },
+                  ["Auto Awaken Fruit"] = false, -- dont support  phoenix
+                  ["GodHuman"] = true,
+                  ["Priority Get Melee Sea 3"] = false,
+                  ["Auto Saber"] = true,
+                  ["Auto Pole"] = false,
+                  ["Cursed Dual Katana"] = false,
+                  ["SoulGuitar"] = false,
+                  ["Shark Anchor"] = false, --i have cdk and god and soulguitar
+                  ["Farm Mastery Fruit If Lvl Max"] = false,
+                  ["Farm Max All Mastery Sword"] = false, --- i need have cdk and godhuman
+                  ["Hop Fruit 1M Quest Third Sea"] = false,
+                  ["White Screen"] = false,
+                  ["Hop if Near Farm Area"] = true,
+                  ["Auto Race V2-V3"] = false,
+                  ["Auto Pull Lever"] = false,
+                  ["Auto Get Mirror Fractal"] = false,
+                  ["Lock Fragment"] = {
+                      ["Enabled"] = false,
+                      ["Fragments"] = 25000
+                  },
+                  ["Buy Haki Color Legendary"] = false, --- it will buy if u have sgt and godhuman and dont have Valkyrie Helm
+                  ["Select Hop"] = { -- 70% will have it
+                      ["Hop Find Rip Indra Get Valkyrie Helm"] = false, -- u need have godhuman and max level
+                      ["Hop Find Full Moon Soul Guitar"] = false,
+                      ["Hop Find Rip Indra Get Tushita"] = false, --- u need have sgt and godhuman
+                      ["Hop Find Raids Castle [CDK]"] = false,
+                      ["Hop Find Cake Queen [CDK]"] = false,
+                      ["Hop Find Soul Reaper [CDK]"] = false,
+                      ["Hop Find Darkbeard [SG]"] = false,
+                  },
+                  ["Race"] = {
+                      ["Enabled"] = false,
+                      ["Auto Roll Race"] = false,
+                      ["Select Race"] =  "", -- Human, Mink, Fishman
+                  },
+                  ["Buy Haki"] = {
+                      ["Enhancement"] = true,
+                      ["Skyjump"] = true,
+                      ["Flash Step"] = true,
+                      ["Observation"] = true,
+                  },
+                  ["Blox Fruit Sniper"] = {"Magma-Magma"},
+                  ["Lock Fruit"] = {"Kitsune-Kitsune","Leopard-Leopard","Dough-Dough","T-Rex-T-Rex","Buddha-Buddha","Dragon-Dragon","Mammoth-Mammoth","Spirit-Spirit","Control-Control","Venom-Venom","Shadow-Shadow","Gravity-Gravity","Blizzard-Blizzard","Pain-Pain","Rumble-Rumble","Portal-Portal","Phoenix-Phoenix"},
+                  ["Webhook"] = {
+                      ["Enabled"] = true,
+                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1311701624258957332/OsXZAora0_xGXXtbMCBtE1ugioi4blAI_1NI7bWpxeWMt_9pJ5ApuJwv14J-wAjqEuh-",
+                  }
+              }
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
+          break;
         case 'Fisch-lv500' :
           script = `
               repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
@@ -742,7 +823,7 @@ export default {
                       ["Rarity"] = {
                           Legendary = true,
                           Mythical = true,
-                          Exotic = true,
+                          Exotic = false,
                           Limited = false,
                           Divine = false,
                           Relic = false,
@@ -797,7 +878,8 @@ export default {
           break;
       }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
-      this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.label})
+      this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
+      this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
     },
     refreshScript(){
       const correctPassword = "matkhau123@"; // Mật khẩu cố định
