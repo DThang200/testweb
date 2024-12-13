@@ -164,6 +164,13 @@ export default {
         {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',private_server : false},
         {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
+        {code : 'ttd-pvp-lindseychristopher76',label : 'TTD-PvP-lind',game_id: '13775256536',private_server : false},
+        {code : 'ttd-pvp-marylopez355',label : 'TTD-PvP-mary',game_id: '13775256536',private_server : false},
+        {code : 'ttd-pvp-lunabobby7',label : 'TTD-PvP-luna',game_id: '13775256536',private_server : false},
+        {code : 'ttd-drill-carrie79912',label : 'TTD-Drill-carrie',game_id: '13775256536',private_server : false},
+        {code : 'ttd-drill-wharris187',label : 'TTD-Drill-wharis',game_id: '13775256536',private_server : false},
+        {code : 'ttd-dice-richardbarrett314',label : 'TTD-Dice-richar',game_id: '13775256536',private_server : false},
+        {code : 'ttd-dice-uevans031',label : 'TTD-Dice-uevan',game_id: '13775256536',private_server : false},
       ],
       autoGomActive: [],
       autoGomFrom: '',
@@ -387,20 +394,149 @@ export default {
     },
     handleSelectScript(device_id,device_name,script){
     },
-    setFarmScript(device_id,device_name,unit = 'lava'){
-      console.log('device_id,device_name,unit',device_id,device_name,unit)
+    setFarmScript(device_id,device_name,script_sl = 'lava',option=null){
+      console.log('device_id,device_name,script_sl',device_id,device_name,script_sl)
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
       const nousigi = this.map_key_token_farm.find(data => data.key == device_name)?.nousigi || "keabc481d8e57b0bc872c89d"
       let script = ''
       let scriptOption = {}
       this.farmOption.forEach(option => {
-        if (option?.code === unit){
+        if (option?.code === script_sl){
           scriptOption = option
         }
       })
-      switch (unit) {
-        case 'princess' :
-          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+      if (script_sl.includes('ttd-pvp-') || script_sl.includes('ttd-drill-') || script_sl.includes('ttd-dice-')){
+        // RNGCrate  UltraDrillCrate
+        let user_collect = ''
+        let marcoUrl = ''
+        let SelectMacro = ''
+        let SelectBuyCrate = ''
+        let SelectMap = ''
+        let AutoJoinPVP = false
+        let AutoJoinMatch = true
+        let AutoReplay = true
+        let WH_MatchComplete = false
+        let EventType = 'Drill Type'
+        if (script_sl.includes('ttd-pvp-')){
+          user_collect = script_sl.replace('ttd-pvp-','')
+          SelectBuyCrate = 'GoldenGladiatorCrate'
+          AutoJoinPVP = true
+          AutoJoinMatch = false
+        }
+        if (script_sl.includes('ttd-drill-')){
+          user_collect = script_sl.replace('ttd-drill-','')
+          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1316959954606887014/message.txt?ex=675cf209&is=675ba089&hm=5680f457bce5637f389631fea759444b42b4aecc804d89d27884ade737b8cac1&'
+          SelectMacro= 'message'
+          SelectBuyCrate = 'UltraDrillCrate'
+          SelectMap= 'DrillWorld'
+          WH_MatchComplete= true
+        }
+        if (script_sl.includes('ttd-dice-')){
+          user_collect = script_sl.replace('ttd-dice-','')
+          SelectBuyCrate = 'RNGCrate'
+          SelectMap= 'DiceWorld'
+          WH_MatchComplete= true
+        }
+        script = `getgenv().Key = "${nousigi}"
+                      getgenv().ImportMacro = {
+                          "${marcoUrl}"
+                      }
+                      getgenv().EquipMacroTroop = true
+                      getgenv().Config = {
+                        ["JoinFailsafe"] = true,
+                        ["AutoSave"] = true,
+                        ["SellRarities"] = {
+                          ["Legendary"] = true,
+                          ["Basic"] = true,
+                          ["Epic"] = true,
+                          ["Mythic"] = false,
+                          ["Uncommon"] = true,
+                          ["Rare"] = true
+                        },
+                        ["DelayReplay"] = 5,
+                        ["EventType"] = "${EventType}",
+                        ["WH_MatchComplete"] = ${WH_MatchComplete},
+                        ["AutoSkip"] = true,
+                        ["AutoClaimQuest"] = true,
+                        ["TPLobbyIfPlayer"] = false,
+                        ["SelectBuyCrate"] = "${SelectBuyCrate}",
+                        ["BuyAmount"] = "Buy3",
+                        ["WH_MailSent"] = true,
+                        ["IgnoreMacroTiming"] = true,
+                        ["SelectMacro"] = "${SelectMacro}",
+                        ["ALFS_DelayHop"] = 30,
+                        ["BuyCrateName"] = "${user_collect}",
+                        ["AutoClaimPlaytimeReward"] = true,
+                        ["PlaceFailsafe"] = true,
+                        ["AutoJoinEndless"] = false,
+                        ["PlayMacro"] = true,
+                        ["AutoBuyCrate"] = true,
+                        ["AutoMail"] = true,
+                        ["BoostFPS"] = true,
+                        ["Summon10"] = false,
+                        ["AutoUseBoost"] = false,
+                        ["AutoJoinPVP"] = ${AutoJoinPVP},
+                        ["AutoReturnToLobby"] = false,
+                        ["AutoReplay"] = ${AutoReplay},
+                        ["ABE_Gift"] = false,
+                        ["BlackScreen"] = false,
+                        ["SellWave"] = 1,
+                        ["AutoClaimEventPass"] = true,
+                        ["DelayJoin"] = 25,
+                        ["DeleteMap"] = true,
+                        ["RequireRoll"] = 0,
+                        ["AutoJoinMatch"] = ${AutoJoinMatch},
+                        ["ALFS_HopServer"] = false,
+                        ["UseAll"] = false,
+                        ["SelectCase"] = "BasicCrate",
+                        ["AutoSellOW"] = false,
+                        ["WalkAround"] = false,
+                        ["MailName"] = "Thangcachepp02",
+                        ["AutoClaimVIP"] = false,
+                        ["AutoBuyEvent"] = false,
+                        ["AutoListForSale"] = false,
+                        ["AutoVoteDifficulty"] = false,
+                        ["AutoClaimEventQuest"] = true,
+                        ["AutoRejoin"] = true,
+                        ["WebhookURL"] = "https://discord.com/api/webhooks/1311003539438571630/B4vyCwjlQnfBGM1a4GeKGVVdH9Zp32e9uxI_bc1LcK-f2N3Es_aMosz0L6UObuNGmlgk",
+                        ["SummonDelay"] = 0.3,
+                        ["SelectMap"] = "${SelectMap}",
+                        ["AutoClaimDailyReward"] = true,
+                        ["GiftCrate"] = true,
+                        ["RequiredGem"]=500,
+                        ["UseBoosts"] = {
+                          ["2xLuckBoost_1"] = false,
+                          ["2xEggsBoost"] = false,
+                          ["2xLuckBoost_10"] = false,
+                          ["2xHalloweenCandyBoost_1"] = false,
+                          ["2xEventXPBoost"] = false,
+                          ["2xXPBoost"] = false,
+                          ["2xCoinsBoost"] = false,
+                          ["2xClocksBoost"] = false,
+                          ["2xCoinsBoost_1"] = false,
+                          ["2xHalloweenCandyBoost_10"] = false,
+                          ["2xEventXPBoost_1"] = false,
+                          ["2xHalloweenEventXPBoost"] = false,
+                          ["Weekend_2xCoinsBoost"] = false,
+                          ["2xXPBoost_10"] = false,
+                          ["2xCoinsBoost_10"] = false,
+                          ["2xXPBoost_Easter2024"] = false,
+                          ["2xCloversBoost"] = false,
+                          ["2xLuckBoost"] = false,
+                          ["Weekend_2xEndlessXPBoost"] = false,
+                          ["2xEventXPBoost_10"] = false,
+                          ["2xDrillBoost"] = true,
+                          ["2xDrillXPBoost"] = true,
+                          ["2xXPBoost_1"] = false,
+                          ["2xHalloweenCandyBoost"] = false
+                        },
+                        ["AutoSummonTroop"] = false
+                      }
+                      repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
+      } else {
+        switch (script_sl) {
+          case 'princess' :
+            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 
                         getgenv().Key = "${token}"
 
@@ -505,9 +641,9 @@ export default {
                         }
 
                         loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
-          break;
-        case 'wave-61' :
-          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+            break;
+          case 'wave-61' :
+            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 
                         getgenv().Key = "${token}"
 
@@ -612,8 +748,8 @@ export default {
                         }
 
                         loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
-          break;
-        case 'Roll-unit' :
+            break;
+          case 'Roll-unit' :
             script =
                 `
                 getgenv().Key = "${nousigi}"
@@ -651,9 +787,9 @@ export default {
                 }
               }
               repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`;
-          break;
-        case 'bloxFruit-2550' :
-          script = `
+            break;
+          case 'bloxFruit-2550' :
+            script = `
           repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm ={
@@ -731,9 +867,9 @@ export default {
                   }
               }
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
-          break;
-        case 'bloxFruit-magma' :
-          script = `
+            break;
+          case 'bloxFruit-magma' :
+            script = `
           repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm ={
@@ -811,9 +947,9 @@ export default {
                   }
               }
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
-          break;
-        case 'Fisch-lv500' :
-          script = `
+            break;
+          case 'Fisch-lv500' :
+            script = `
               repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm = {
@@ -832,7 +968,7 @@ export default {
                   },
                   ["Webhook"] = {
                       ["Fish Catched"] = {
-                          ["Enable"] = false,
+                          ["Enable"] = true,
                           ["Minimum Weight"] = 30000,
                           ["Rarity"] = {
                               ["Mythical"] = false,
@@ -850,13 +986,23 @@ export default {
                           ["Enabled"] = true,
                           ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
                       },
+                      ["Rod of The Forgotten Fang"] = true,
                       ["Sunken Rod"] = true,
 
                   },
+                  ["Auto Equip Rod"] = {
+                      ["Rapid Rod"] = 1,
+                      ["Aurora Rod"] = 2,
+                      ["Trident Rod"] = 3,
+                      ["Sunken Rod"] = 4,
+                      ["Rod Of The Depths"] = 6,
+                      ["No-Life Rod"] = 7,
+                      ["Rod Of The Forgotten Fang"] = 5,
+                  },
                   ["Auto Bait"] = {
-                      ["Buy Bait"] = false,
+                      ["Buy Bait"] = true,
                       ["Amount Buy Bait"] = 10,
-                      ["Use Bait Random"] = false,
+                      ["Use Bait Random"] = true,
                       ["Select Bait"] = {
                           ["Enabled"] = false,
                           ["Bait"]  = "Rapid Catcher",
@@ -865,6 +1011,15 @@ export default {
                   ["Rejoin"] = {
                       ["Enabled"] = false,
                       ["Time"] = 20 ---minute
+                  },
+                  ["Auto Enchant"] = { -- have rod of the depths
+                      ["Enabled"] = true,
+                      ["Name Rod"] = "Rod Of The Depths",
+                      ["Enchant"] = {"Clever"},
+                      ["Auto Buy Relic"] = {
+                          ["Enabled"] = true,
+                          ["Amount"] = 10
+                      }
                   },
                   ["Hop Server"] = {
                       ["Hop Find WhirlPool Get Isonade"] = true,
@@ -876,7 +1031,8 @@ export default {
               }
 
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
-          break;
+            break;
+        }
       }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})

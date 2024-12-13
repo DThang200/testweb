@@ -150,8 +150,8 @@ export default {
   },
   data () {
     return {
-      toiletUsername: ["lindseychristopher76","marylopez355","lunabobby7"],
-      show_device: ["VPS 1","VPS 2","VPS 3","VPS 4","VPS 5","VPS 235","VPS 236","VPS 237","VPS 238","VPS 239","VPS 240","VPS 241","VPS 242","VPS 243","VPS 244","VPS 245","VPS 246","VPS 247","VPS 248","VPS 249","VPS 250"],
+      toiletUsername: ["lindseychristopher76","marylopez355","lunabobby7","carrie79912"],
+      show_device: ["VPS 1","VPS 2","VPS 3","VPS 4","VPS 5","VPS 6","VPS 7","VPS 8","VPS 9","VPS 10","VPS 235","VPS 236","VPS 237","VPS 238","VPS 239","VPS 240","VPS 241","VPS 242","VPS 243","VPS 244","VPS 245","VPS 246","VPS 247","VPS 248","VPS 249","VPS 250"],
       autoGomActive: [],
       autoGomFrom: '',
       autoGomTo: '',
@@ -405,7 +405,7 @@ export default {
                         ["SelectMap"] = "HalloweenGraveyard",
                         ["AutoClaimDailyReward"] = true,
                         ["GiftCrate"] = true,
-                        ["RequiredGem"]=100,
+                        ["RequiredGem"]=500,
                         ["UseBoosts"] = {
                           ["2xLuckBoost_1"] = false,
                           ["2xEggsBoost"] = false,
