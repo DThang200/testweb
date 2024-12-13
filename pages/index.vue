@@ -949,10 +949,9 @@ export default {
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
             break;
           case 'Fisch-lv500' :
-            script = `
-              repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-              getgenv().Key = "${token}"
-              getgenv().SettingFarm = {
+            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+                  getgenv().Key = "${token}"
+                  getgenv().SettingFarm = {
                   ["Hide UI"] = false,
                   ["White Screen"] = false,
                   ["Auto Sell"] = {
@@ -960,9 +959,9 @@ export default {
                       ["Rarity"] = {
                           Legendary = true,
                           Mythical = true,
-                          Exotic = false,
-                          Limited = false,
-                          Divine = false,
+                          Exotic = true,
+                          Limited = true,
+                          Divine = true,
                           Relic = false,
                       }
                   },
@@ -986,9 +985,12 @@ export default {
                           ["Enabled"] = true,
                           ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
                       },
-                      ["Rod of The Forgotten Fang"] = true,
                       ["Sunken Rod"] = true,
 
+                  },
+                      ["Set CFrame"] = { -- if have Rod Of the depths then will work
+                      ["Enabled"] = true,
+                      ["CFrame"] = CFrame.new(5802.84424, 135.301468, 403.946533, 0.991938531, -1.18916499e-09, -0.126719773, -8.93702778e-10, 1, -1.63799463e-08, 0.126719773, 1.63611507e-08, 0.991938531)
                   },
                   ["Auto Equip Rod"] = {
                       ["Rapid Rod"] = 1,
@@ -999,18 +1001,23 @@ export default {
                       ["No-Life Rod"] = 7,
                       ["Rod Of The Forgotten Fang"] = 5,
                   },
-                  ["Auto Bait"] = {
-                      ["Buy Bait"] = true,
-                      ["Amount Buy Bait"] = 10,
-                      ["Use Bait Random"] = true,
-                      ["Select Bait"] = {
-                          ["Enabled"] = false,
-                          ["Bait"]  = "Rapid Catcher",
-                      }
+                  ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
+                      ["Rod of The Forgotten Fang"] = true,
+                      ["Aurora Rod"] = {
+                          ["Enabled"] = true,
+                          ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
+                      },
+                      ["Sunken Rod"] = true,
                   },
-                  ["Rejoin"] = {
-                      ["Enabled"] = false,
-                      ["Time"] = 20 ---minute
+                  ["Auto Buy Luck"] = true, -- have trident rod
+                  ["Event"] = {
+                      ["Megalodon"] = {  --- have rod of the depth
+                          ["Enabled"] = true,
+                          ["Prioritize Rod"] = {
+                              ["Enabled"] = true,
+                              ["Name Rod"] = "No-Life Rod"
+                          },
+                      }
                   },
                   ["Auto Enchant"] = { -- have rod of the depths
                       ["Enabled"] = true,
@@ -1021,16 +1028,18 @@ export default {
                           ["Amount"] = 10
                       }
                   },
+                  ["Auto Bait"] = {
+                      ["Buy Bait"] = true,
+                      ["Amount Buy Bait"] = 10,
+                      ["Use Bait Random"] = true
+                  },
+                  ["Rejoin"] = {
+                      ["Enabled"] = true,
+                      ["Time"] = 10 ---minute
+                  },
                   ["Hop Server"] = {
                       ["Hop Find WhirlPool Get Isonade"] = true,
-                      ["Hop Server When Hight Ping"] = {
-                          ["Enabled"] = false,
-                          ["Ping"] = 100,
-                      }
-                  }
-              }
-
-              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
+                      ["Hop Server When Hight Ping"] = {`
             break;
         }
       }
