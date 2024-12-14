@@ -171,6 +171,7 @@ export default {
         {code : 'ttd-drill-wharris187',label : 'TTD-Drill-wharis',game_id: '13775256536',private_server : false},
         {code : 'ttd-dice-richardbarrett314',label : 'TTD-Dice-richar',game_id: '13775256536',private_server : false},
         {code : 'ttd-dice-uevans031',label : 'TTD-Dice-uevan',game_id: '13775256536',private_server : false},
+        {code : 'ttd-noel-carrie79912',label : 'TTD-Noel-carrie',game_id: '13775256536',private_server : false},
       ],
       autoGomActive: [],
       autoGomFrom: '',
@@ -405,36 +406,44 @@ export default {
           scriptOption = option
         }
       })
-      if (script_sl.includes('ttd-pvp-') || script_sl.includes('ttd-drill-') || script_sl.includes('ttd-dice-')){
+      if (script_sl.includes('ttd-pvp-') || script_sl.includes('ttd-drill-') || script_sl.includes('ttd-dice-') || script_sl.includes('ttd-noel-')){
         // RNGCrate  UltraDrillCrate
         let user_collect = ''
         let marcoUrl = ''
-        let SelectMacro = ''
+        let SelectMacro = 'message'
         let SelectBuyCrate = ''
         let SelectMap = ''
         let AutoJoinPVP = false
         let AutoJoinMatch = true
         let AutoReplay = true
         let WH_MatchComplete = false
+        let AutoReturnToLobby = false
         let EventType = 'Drill Type'
         if (script_sl.includes('ttd-pvp-')){
           user_collect = script_sl.replace('ttd-pvp-','')
           SelectBuyCrate = 'GoldenGladiatorCrate'
           AutoJoinPVP = true
           AutoJoinMatch = false
+          AutoReturnToLobby = true
         }
         if (script_sl.includes('ttd-drill-')){
           user_collect = script_sl.replace('ttd-drill-','')
-          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1316959954606887014/message.txt?ex=675cf209&is=675ba089&hm=5680f457bce5637f389631fea759444b42b4aecc804d89d27884ade737b8cac1&'
+          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1317542358342045706/message.txt?ex=675f1070&is=675dbef0&hm=2591c406fb64267d133ce5d55543e931b0c43f726bec4c5a74360e6250f9bd64&'
           SelectMacro= 'message'
           SelectBuyCrate = 'UltraDrillCrate'
           SelectMap= 'DrillWorld'
-          WH_MatchComplete= true
         }
         if (script_sl.includes('ttd-dice-')){
           user_collect = script_sl.replace('ttd-dice-','')
           SelectBuyCrate = 'RNGCrate'
           SelectMap= 'DiceWorld'
+        }
+        if (script_sl.includes('ttd-noel-')){
+          user_collect = script_sl.replace('ttd-noel-','')
+          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1317542358342045706/message.txt?ex=675f1070&is=675dbef0&hm=2591c406fb64267d133ce5d55543e931b0c43f726bec4c5a74360e6250f9bd64&'
+          SelectMacro= 'message'
+          SelectBuyCrate = 'ChristmasCrate'
+          SelectMap= 'ChristmasMap2024'
           WH_MatchComplete= true
         }
         script = `getgenv().Key = "${nousigi}"
@@ -465,6 +474,8 @@ export default {
                         ["IgnoreMacroTiming"] = true,
                         ["SelectMacro"] = "${SelectMacro}",
                         ["ALFS_DelayHop"] = 30,
+                        ["AutoVoteDifficulty"]=true
+                        ["SelectDifficulty"]="Hard"
                         ["BuyCrateName"] = "${user_collect}",
                         ["AutoClaimPlaytimeReward"] = true,
                         ["PlaceFailsafe"] = true,
@@ -476,12 +487,12 @@ export default {
                         ["Summon10"] = false,
                         ["AutoUseBoost"] = false,
                         ["AutoJoinPVP"] = ${AutoJoinPVP},
-                        ["AutoReturnToLobby"] = false,
+                        ["AutoReturnToLobby"] = ${AutoReturnToLobby},
                         ["AutoReplay"] = ${AutoReplay},
                         ["ABE_Gift"] = false,
                         ["BlackScreen"] = false,
                         ["SellWave"] = 1,
-                        ["AutoClaimEventPass"] = true,
+                        ["AutoClaimEventPass"] = false,
                         ["DelayJoin"] = 25,
                         ["DeleteMap"] = true,
                         ["RequireRoll"] = 0,
