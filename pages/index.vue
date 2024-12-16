@@ -166,12 +166,13 @@ export default {
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
         {code : 'ttd-pvp-lindseychristopher76',label : 'TTD-PvP-lind',game_id: '13775256536',private_server : false},
         {code : 'ttd-pvp-marylopez355',label : 'TTD-PvP-mary',game_id: '13775256536',private_server : false},
-        {code : 'ttd-pvp-lunabobby7',label : 'TTD-PvP-luna',game_id: '13775256536',private_server : false},
+        {code : 'ttd-pvp-angelacardenas989',label : 'TTD-PvP-angel',game_id: '13775256536',private_server : false},
         {code : 'ttd-drill-carrie79912',label : 'TTD-Drill-carrie',game_id: '13775256536',private_server : false},
         {code : 'ttd-drill-wharris187',label : 'TTD-Drill-wharis',game_id: '13775256536',private_server : false},
         {code : 'ttd-dice-richardbarrett314',label : 'TTD-Dice-richar',game_id: '13775256536',private_server : false},
         {code : 'ttd-dice-uevans031',label : 'TTD-Dice-uevan',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-carrie79912',label : 'TTD-Noel-carrie',game_id: '13775256536',private_server : false},
+        {code : 'ttd-pvp-CyanSabrinad410',label : 'TTD-PvP-GOM',game_id: '13775256536',private_server : false},
       ],
       autoGomActive: [],
       autoGomFrom: '',
@@ -428,7 +429,7 @@ export default {
         }
         if (script_sl.includes('ttd-drill-')){
           user_collect = script_sl.replace('ttd-drill-','')
-          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1317542358342045706/message.txt?ex=675f1070&is=675dbef0&hm=2591c406fb64267d133ce5d55543e931b0c43f726bec4c5a74360e6250f9bd64&'
+          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1318054663597064262/message.txt?ex=6760ed90&is=675f9c10&hm=9afa4cc086aa20ca235e58e80a741d551df8a2b990af458ad962bdb5808f45c3&'
           SelectMacro= 'message'
           SelectBuyCrate = 'UltraDrillCrate'
           SelectMap= 'DrillWorld'
@@ -440,7 +441,7 @@ export default {
         }
         if (script_sl.includes('ttd-noel-')){
           user_collect = script_sl.replace('ttd-noel-','')
-          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1317542358342045706/message.txt?ex=675f1070&is=675dbef0&hm=2591c406fb64267d133ce5d55543e931b0c43f726bec4c5a74360e6250f9bd64&'
+          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1318054663597064262/message.txt?ex=6760ed90&is=675f9c10&hm=9afa4cc086aa20ca235e58e80a741d551df8a2b990af458ad962bdb5808f45c3&'
           SelectMacro= 'message'
           SelectBuyCrate = 'ChristmasCrate'
           SelectMap= 'ChristmasMap2024'
@@ -474,8 +475,8 @@ export default {
                         ["IgnoreMacroTiming"] = true,
                         ["SelectMacro"] = "${SelectMacro}",
                         ["ALFS_DelayHop"] = 30,
-                        ["AutoVoteDifficulty"]=true
-                        ["SelectDifficulty"]="Hard"
+                        ["AutoVoteDifficulty"]=true,
+                        ["SelectDifficulty"]="Hard",
                         ["BuyCrateName"] = "${user_collect}",
                         ["AutoClaimPlaytimeReward"] = true,
                         ["PlaceFailsafe"] = true,
@@ -1050,7 +1051,14 @@ export default {
                   },
                   ["Hop Server"] = {
                       ["Hop Find WhirlPool Get Isonade"] = true,
-                      ["Hop Server When Hight Ping"] = {`
+                      ["Hop Server When Hight Ping"] = {
+                      ["Enabled"] = false,
+                  ["Ping"] = 100,
+              }
+          }
+      }
+
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
             break;
         }
       }
