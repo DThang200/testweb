@@ -998,6 +998,7 @@ export default {
                   },
                   ["Auto Buy Luck"] = true, -- have trident rod
                   ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
+                      ["Rod of The Forgotten Fang"] = true,
                       ["Aurora Rod"] = {
                           ["Enabled"] = true,
                           ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
@@ -1005,6 +1006,7 @@ export default {
                       ["Sunken Rod"] = true,
 
                   },
+                      ["Rod of The Forgotten Fang"] = true,
                       ["Set CFrame"] = { -- if have Rod Of the depths then will work
                       ["Enabled"] = true,
                       ["CFrame"] = CFrame.new(5802.84424, 135.301468, 403.946533, 0.991938531, -1.18916499e-09, -0.126719773, -8.93702778e-10, 1, -1.63799463e-08, 0.126719773, 1.63611507e-08, 0.991938531)
@@ -1017,14 +1019,6 @@ export default {
                       ["Rod Of The Depths"] = 5,
                       ["No-Life Rod"] = 6,
                       ["Rod Of The Forgotten Fang"] = 7,
-                  },
-                  ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
-                      ["Rod of The Forgotten Fang"] = true,
-                      ["Aurora Rod"] = {
-                          ["Enabled"] = true,
-                          ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
-                      },
-                      ["Sunken Rod"] = true,
                   },
                   ["Auto Buy Luck"] = true, -- have trident rod
                   ["Event"] = {
@@ -1101,6 +1095,7 @@ export default {
                   },
                   ["Auto Buy Luck"] = true, -- have trident rod
                   ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
+                      ["Rod of The Forgotten Fang"] = true,
                       ["Aurora Rod"] = {
                           ["Enabled"] = true,
                           ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
@@ -1120,14 +1115,6 @@ export default {
                       ["Rod Of The Depths"] = 5,
                       ["No-Life Rod"] = 6,
                       ["Rod Of The Forgotten Fang"] = 7,
-                  },
-                  ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
-                      ["Rod of The Forgotten Fang"] = true,
-                      ["Aurora Rod"] = {
-                          ["Enabled"] = true,
-                          ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
-                      },
-                      ["Sunken Rod"] = true,
                   },
                   ["Auto Buy Luck"] = true, -- have trident rod
                   ["Event"] = {
