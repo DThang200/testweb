@@ -1016,8 +1016,8 @@ export default {
                       ["Aurora Rod"] = 2,
                       ["Trident Rod"] = 3,
                       ["Sunken Rod"] = 4,
-                      ["Rod Of The Depths"] = 5,
-                      ["No-Life Rod"] = 6,
+                      ["Rod Of The Depths"] = 6,
+                      ["No-Life Rod"] = 5,
                       ["Rod Of The Forgotten Fang"] = 7,
                   },
                   ["Auto Buy Luck"] = true, -- have trident rod
