@@ -434,6 +434,7 @@ export default {
           SelectMacro= 'message'
           SelectBuyCrate = 'UltraDrillCrate'
           SelectMap= 'DrillWorld'
+          WH_MatchComplete = true
         }
         if (script_sl.includes('ttd-dice-')){
           user_collect = script_sl.replace('ttd-dice-','')
@@ -969,13 +970,16 @@ export default {
                   ["White Screen"] = false,
                   ["Auto Sell"] = {
                       ["Enabled"] = true,
+                      ["Maximum Weight"] = 30000,
                       ["Rarity"] = {
                           Legendary = true,
                           Mythical = true,
-                          Exotic = true,
-                          Limited = true,
+                          Exotic = false,
                           Divine = true,
                           Relic = false,
+                          Fragment = false,
+                          Gemstone = false,
+                          Limited = false,
                       }
                   },
                   ["Webhook"] = {
@@ -1069,13 +1073,16 @@ export default {
                   ["White Screen"] = false,
                   ["Auto Sell"] = {
                       ["Enabled"] = true,
+                      ["Maximum Weight"] = 30000,
                       ["Rarity"] = {
                           Legendary = true,
                           Mythical = true,
-                          Exotic = true,
-                          Limited = true,
+                          Exotic = false,
                           Divine = true,
                           Relic = false,
+                          Fragment = false,
+                          Gemstone = false,
+                          Limited = false,
                       }
                   },
                   ["Webhook"] = {
