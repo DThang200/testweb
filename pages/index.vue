@@ -164,6 +164,7 @@ export default {
         {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',private_server : false},
         {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
+        {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
         {code : 'ttd-pvp-lindseychristopher76',label : 'TTD-PvP-lind',game_id: '13775256536',private_server : false},
         {code : 'ttd-pvp-marylopez355',label : 'TTD-PvP-mary',game_id: '13775256536',private_server : false},
         {code : 'ttd-pvp-angelacardenas989',label : 'TTD-PvP-angel',game_id: '13775256536',private_server : false},
@@ -1051,6 +1052,106 @@ export default {
                   },
                   ["Hop Server"] = {
                       ["Hop Find WhirlPool Get Isonade"] = true,
+                      ["Hop Server When Hight Ping"] = {
+                      ["Enabled"] = false,
+                  ["Ping"] = 100,
+              }
+          }
+      }
+
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
+            break;
+          case 'Fisch-lv750' :
+            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+                  getgenv().Key = "${token}"
+                  getgenv().SettingFarm = {
+                  ["Hide UI"] = false,
+                  ["White Screen"] = false,
+                  ["Auto Sell"] = {
+                      ["Enabled"] = true,
+                      ["Rarity"] = {
+                          Legendary = true,
+                          Mythical = true,
+                          Exotic = true,
+                          Limited = true,
+                          Divine = true,
+                          Relic = false,
+                      }
+                  },
+                  ["Webhook"] = {
+                      ["Fish Catched"] = {
+                          ["Enable"] = true,
+                          ["Minimum Weight"] = 30000,
+                          ["Rarity"] = {
+                              ["Mythical"] = false,
+                              ["Exotic"] = true,
+                              ["Divine"] = true,
+                              ["Relic"] = true,
+                              ["Limited"] = true
+                          }
+                      },
+                      ["URL"] = "https://discord.com/api/webhooks/1315692077580947527/lzCBIZzRNlwa18HxJdT7hf39QU2ciPVg4iBbqA_VcODpIiK5gvRCq4CsL_wp3Zf-OCMQ"
+                  },
+                  ["Auto Buy Luck"] = true, -- have trident rod
+                  ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
+                      ["Aurora Rod"] = {
+                          ["Enabled"] = true,
+                          ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
+                      },
+                      ["Sunken Rod"] = true,
+
+                  },
+                      ["Set CFrame"] = { -- if have Rod Of the depths then will work
+                      ["Enabled"] = true,
+                      ["CFrame"] = CFrame.new(5802.84424, 135.301468, 403.946533, 0.991938531, -1.18916499e-09, -0.126719773, -8.93702778e-10, 1, -1.63799463e-08, 0.126719773, 1.63611507e-08, 0.991938531)
+                  },
+                  ["Auto Equip Rod"] = {
+                      ["Rapid Rod"] = 1,
+                      ["Aurora Rod"] = 2,
+                      ["Trident Rod"] = 3,
+                      ["Sunken Rod"] = 4,
+                      ["Rod Of The Depths"] = 5,
+                      ["No-Life Rod"] = 6,
+                      ["Rod Of The Forgotten Fang"] = 7,
+                  },
+                  ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
+                      ["Rod of The Forgotten Fang"] = true,
+                      ["Aurora Rod"] = {
+                          ["Enabled"] = true,
+                          ["Auto Buy Aurora Totem"] = true --- if have  rod of the depth it will buy
+                      },
+                      ["Sunken Rod"] = true,
+                  },
+                  ["Auto Buy Luck"] = true, -- have trident rod
+                  ["Event"] = {
+                      ["Megalodon"] = {  --- have rod of the depth
+                          ["Enabled"] = true,
+                          ["Prioritize Rod"] = {
+                              ["Enabled"] = true,
+                              ["Name Rod"] = "No-Life Rod"
+                          },
+                      }
+                  },
+                  ["Auto Enchant"] = { -- have rod of the depths
+                      ["Enabled"] = true,
+                      ["Name Rod"] = "No-Life Rod",
+                      ["Enchant"] = {"Clever"},
+                      ["Auto Buy Relic"] = {
+                          ["Enabled"] = true,
+                          ["Amount"] = 50
+                      }
+                  },
+                  ["Auto Bait"] = {
+                      ["Buy Bait"] = true,
+                      ["Amount Buy Bait"] = 10,
+                      ["Use Bait Random"] = true
+                  },
+                  ["Rejoin"] = {
+                      ["Enabled"] = true,
+                      ["Time"] = 10 ---minute
+                  },
+                  ["Hop Server"] = {
+                      ["Hop Find WhirlPool Get Isonade"] = false,
                       ["Hop Server When Hight Ping"] = {
                       ["Enabled"] = false,
                   ["Ping"] = 100,
