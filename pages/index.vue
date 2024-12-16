@@ -1009,9 +1009,9 @@ export default {
                       ["Aurora Rod"] = 2,
                       ["Trident Rod"] = 3,
                       ["Sunken Rod"] = 4,
-                      ["Rod Of The Depths"] = 6,
-                      ["No-Life Rod"] = 7,
-                      ["Rod Of The Forgotten Fang"] = 5,
+                      ["Rod Of The Depths"] = 5,
+                      ["No-Life Rod"] = 6,
+                      ["Rod Of The Forgotten Fang"] = 7,
                   },
                   ["Get Rod"] = { --- Trident Rod and Rod of the depth it will auto get dont need config
                       ["Rod of The Forgotten Fang"] = true,
