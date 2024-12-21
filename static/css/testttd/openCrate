@@ -91,7 +91,7 @@ function CheckRarity(rarity)
 end
 function SendWebHook(v)
    local msg = {
-       ['content'] = v.Holder.RarityFrame.Rarity.Text == "Ultimate" ? '@everyone' : ||,
+       ['content'] = (v.Holder.RarityFrame.Rarity.Text == "Ultimate") and "@everyone" or nil,
        ["embeds"] = {{
            ["title"] = "Toilet Tower Defense",
            ["description"] = "Crate Opened",
