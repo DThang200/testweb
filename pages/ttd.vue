@@ -174,7 +174,6 @@ export default {
         {code : 'ttd-noel-richardbarrett314',label : 'TTD-Noel-richardbarrett314',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-wharris187',label : 'TTD-Noel-wharris187',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-rjohnson700',label : 'TTD-Noel-rjohnson700',game_id: '13775256536',private_server : false},
-        {code : 'ttd-noel-snyderjeffrey',label : 'TTD-Noel-snyderjeffrey',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-Thangcachepp02',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
       ],
       autoGomActive: [],
