@@ -124,7 +124,7 @@ export default {
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
           }
-          // console.log('listAccFill',device?.deviceName,listAccFill)
+          console.log('listAccFill',device?.device_name,listAccFill,listAccFill)
           if (listAccFill?.length > 0){
             await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
               headers: {
