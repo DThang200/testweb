@@ -92,8 +92,8 @@ export default {
             }
           })
           console.log('display',list_device)
-          // this.roblox_data = JSON.parse(JSON.stringify(list_device))
-          this.roblox_data = JSON.parse(JSON.stringify(list_device.slice(0,5)))
+          this.roblox_data = JSON.parse(JSON.stringify(list_device))
+          // this.roblox_data = JSON.parse(JSON.stringify(list_device.slice(0,5)))
 
         }
       },deep: true
