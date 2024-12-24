@@ -163,6 +163,7 @@ export default {
         {code : 'Roll-unit',label : 'AD-Roll-unit',game_id: '17017769292',private_server : true},
         {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false},
         {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',private_server : false},
+        {code : 'bloxFruit-fruit',label : 'Blox Fruit-Fruit',game_id: '2753915549',private_server : false},
         {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
         {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
@@ -814,6 +815,111 @@ export default {
                       ["Enabled"] = true, -- _____________
                       ["Url"] = "https://discord.com/api/webhooks/1311701624258957332/OsXZAora0_xGXXtbMCBtE1ugioi4blAI_1NI7bWpxeWMt_9pJ5ApuJwv14J-wAjqEuh-", -- _____________
                       ["Delay"] = 60 -- ______
+                  }
+                  _G.MainSettings = {
+                          ["EnabledHOP"] = true, -- ____ HOP ( _______________________ )
+                          ['FPSBOOST'] = true, -- ______
+                          ["FPSLOCKAMOUNT"] = 60, -- _____ FPS
+                          ['WhiteScreen'] = false, -- _____
+                          ['CloseUI'] = true, -- ___ Ui
+                          ["NotifycationExPRemove"] = true, -- __ ExP ________________
+                          ['AFKCheck'] = 150, -- _________________________________
+                          ["LockFragments"] = 100000, -- ____________
+                          ["LockFruitsRaid"] = { -- ______________________
+                              [1] = "Dough-Dough",
+                              [2] = "Dragon-Dragon"
+                          }
+                      }
+                  _G.Fruits_Settings = { -- _________
+                      ['Main_Fruits'] = {'Magma-Magma'}, -- ______ _________________________________________________
+                      ['Select_Fruits'] = {"Magma-Magma"} -- _____________________
+                  }
+                  _G.Quests_Settings = { -- ________________
+                      ['Rainbow_Haki'] = false,
+                      ["MusketeerHat"] = false,
+                      ["PullLever"] = false,
+                      ['DoughQuests_Mirror'] = {
+                          ['Enabled'] = false,
+                          ['UseFruits'] = false
+                      }
+                  }
+                  _G.Races_Settings = { -- ___________
+                      ['Race'] = {
+                          ['EnabledEvo'] = false,
+                          ["v2"] = true,
+                          ["v3"] = true,
+                          ["Races_Lock"] = {
+                              ["Races"] = { -- Select Races U want
+                                  ["Mink"] = true,
+                                  ["Human"] = true,
+                                  ["Fishman"] = true
+                              },
+                              ["RerollsWhenFragments"] = 20000 -- Random Races When Your Fragments is >= Settings
+                          }
+                      }
+                  }
+                  _G.Settings_Melee = { -- ___________
+                      ['Superhuman'] = true,
+                      ['DeathStep'] = true,
+                      ['SharkmanKarate'] = true,
+                      ['ElectricClaw'] = true,
+                      ['DragonTalon'] = true,
+                      ['Godhuman'] = true
+                  }
+                  _G.FarmMastery_Settings = {
+                      ['Melee'] = true,
+                      ['Sword'] = true,
+                      ['DevilFruits'] = true,
+                      ['Select_Swords'] = {
+                          ["AutoSettings"] = true, -- ______________________________________________________
+                          ["ManualSettings"] = { -- _______ AutoSettings ____ false ___________________________ ________________
+                              "Saber",
+                              "CursedDualKatana",
+                              "Buddy Sword"
+                          }
+                      }
+                  }
+                  _G.SwordSettings = { -- __________
+                      ['Saber'] = false,
+                      ["Pole"] = false,
+                      ['MidnightBlade'] = false,
+                      ['Shisui'] = false,
+                      ['Saddi'] = false,
+                      ['Wando'] = false,
+                      ['Yama'] = false,
+                      ['Rengoku'] = false,
+                      ['Canvander'] = false,
+                      ['BuddySword'] = false,
+                      ['TwinHooks'] = false,
+                      ['HallowScryte'] = false,
+                      ['TrueTripleKatana'] = false,
+                      ['CursedDualKatana'] = false
+                  }
+                  _G.SharkAnchor_Settings = {
+                      ["Enabled_Farm"] = fasle,
+                      ['FarmAfterMoney'] = 2500000
+                  }
+                  _G.GunSettings = { -- __________
+                      ['Kabucha'] = false,
+                      ['SerpentBow'] = false,
+                      ['SoulGuitar'] = false
+                  }
+                  getgenv().Key = "MARU-TED5P-GFU7-U6FJ-C70HX-C37Z9"
+                  getgenv().id = "663236418499379240"
+                  getgenv().Script_Mode = "Kaitun_Script"
+                  loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
+            break;
+          case 'bloxFruit-fruit' :
+            script =
+                ` repeat task.wait() until game:IsLoaded()
+                  repeat task.wait() until game.Players
+                  repeat task.wait() until game.Players.LocalPlayer
+                  _G.Team = "Pirate" -- Marine / Pirate
+                  getgenv().Script_Mode = "Kaitun_Script"
+                  _G.WebHook = {
+                      ["Enabled"] = true, -- _____________
+                      ["Url"] = "https://discord.com/api/webhooks/1320735545881788562/tNecmWZF6JS0kqYLflRO9k-XLYKMIEI_KDhLGv-ZXCwhPvHGggIlNZePPlOE01ntP9vK", -- _____________
+                      ["Delay"] = 300 -- ______
                   }
                   _G.MainSettings = {
                           ["EnabledHOP"] = true, -- ____ HOP ( _______________________ )
