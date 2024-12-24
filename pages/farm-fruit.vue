@@ -19,7 +19,7 @@
         Circle : {{circle}} ({{circle * active_account}} - {{(circle + 1) * active_account}})
       </div>
       <div>
-        Countdown Circle In : {{countdown_circle}}
+        Countdown Circle: {{secToTime(countdown_circle)}}
       </div>
       <button type="button" @click="runFarmFruit()">
         runFarmFruit
@@ -69,7 +69,8 @@ export default {
       total_account : 66,
       circle : -1,
       time_circle : 40 * 60 * 1000,
-      countdown_circle : 40 * 60 * 1000,
+      countdown_circle : 40 * 60,
+      interval_countdown : null,
       interval_farm : null,
       script_code : 'bloxFruit-fruit',
       device_stat: [],
@@ -111,6 +112,7 @@ export default {
     if (this.interval_farm || this.intervalId) {
       clearInterval(this.interval_farm);
       clearInterval(this.intervalId);
+      clearInterval(this.interval_countdown);
       console.log('Đã xóa công việc setInterval');
     }
   },
@@ -160,6 +162,11 @@ export default {
         });
       }
       //start all
+      clearInterval(this.interval_countdown);
+      this.countdown_circle = JSON.parse(JSON.stringify(this.time_circle / 1000))
+      this.interval_countdown = setInterval(() => {
+        this.countdown_circle -= 1
+      }, 1000)
       setTimeout(async () => {
         for (let i = 0; i < this.roblox_data.length; i++) {
           if (this.roblox_data[i] && this.roblox_data[i]?.device_id) {
@@ -264,6 +271,20 @@ export default {
           return 'warning'
         }
       }
+    },
+    secToTime(seconds) {
+      console.log('seconds',seconds)
+      // Calculate hours, minutes, and seconds from total seconds
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+
+      // Format hours, minutes, and seconds to always show two digits
+      const formattedHours = hours.toString().padStart(2, '0');
+      const formattedMinutes = minutes.toString().padStart(2, '0');
+      const formattedSeconds = secs.toString().padStart(2, '0');
+
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     },
   }
 }
