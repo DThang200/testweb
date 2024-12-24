@@ -118,8 +118,8 @@ export default {
           }
         })
         if (total_account > 0) {
-          if (device?.total_accounts < total_accounts) {
-            const needAcc = total_accounts - device?.total_accounts
+          if (device?.total_accounts < total_account) {
+            const needAcc = total_account - device?.total_accounts
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
           }
