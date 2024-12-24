@@ -138,7 +138,7 @@ export default {
       remain_acc.forEach(acc => {
         this.remain_acc.push(acc)
       })
-      await this.enableDevice();
+      // await this.enableDevice();
       this.copyRemainAcc();
       alert('Fill done');
     },
