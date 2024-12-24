@@ -328,10 +328,10 @@ export default {
       if (!(data?.total_accounts > 0)) {
         return 'disable'
       }
-      if (data?.inactive_accounts){
-        if (data?.inactive_accounts > 10) {
+      if (data?.inactive){
+        if (data?.inactive > 10) {
           return 'danger'
-        } else if (data?.inactive_accounts > 5){
+        } else if (data?.inactive > 5){
           return 'warning'
         }
       }

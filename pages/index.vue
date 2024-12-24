@@ -61,7 +61,7 @@
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
     <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
-        {{data.device_name}}
+        {{data.device_name}} {{data?.running ? '' : '(stop)'}}
       </div>
 <!--      <div>-->
 <!--        tổng {{data.total_accounts}} máy-->
@@ -326,6 +326,17 @@ export default {
       }, this.$config.INTERVAL_TIME);
     },
     getStatusClass(data = null){
+      if (this.map_device_data[data?.device_id]?.script === 'bloxFruit-fruit'){
+        console.log('data?.inactive',data?.inactive)
+        if (data?.inactive){
+          if (data?.inactive > 10) {
+            return 'danger'
+          } else if (data?.inactive > 5){
+            return 'warning'
+          }
+        }
+        return ''
+      }
       if (!(data?.total_accounts > 0)) {
         return 'disable'
       }

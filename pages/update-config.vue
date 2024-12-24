@@ -76,6 +76,7 @@
     <div style="padding: 32px">
       <button type="button" v-if="finishRender" @click="setupConfigChange">Setup Config Change</button>
       <button type="button" v-if="finishRender" @click="getEmptyAcc">Get Empty acc Bf</button>
+      <button type="button" v-if="finishRender" @click="deleteAcc">Delete acc</button>
     </div>
 
   </div>
@@ -437,7 +438,7 @@ export default {
         const device_id = device?.device_id
         const resSetScriptFisch = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device_id}/updateautochange`, {
           auto_change_config_id: "80bcdd12f58138ee2372182a0a4f6198f87115638aaa407095fb2cf408d7c2f7",
-          auto_change_enabled : false
+          auto_change_enabled : true
         }, {
           headers: {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
@@ -465,6 +466,25 @@ export default {
         copyContent += `${item.username}:${item.password}:${item.cookie}` + '\n'
       })
       navigator.clipboard.writeText(copyContent);
+    },
+    async deleteAcc() {
+      const accBf = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/emptyaccounts`, {
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
+      let deleteAcc = []
+      console.log('accBf',accBf)
+      accBf.accounts.forEach(item => {
+        deleteAcc.push({username_look_for:item.username})
+      })
+      console.log('deleteAcc',deleteAcc)
+      const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/bulk/accounts`,  {
+        data:deleteAcc,
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
     }
   }
 };

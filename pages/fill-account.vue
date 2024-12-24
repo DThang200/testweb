@@ -2,24 +2,18 @@
   <div style="padding: 8px">
     <div class="d-flex flex-row" style="gap: 8px;align-items: center">
       <div>
-        <label >active_account</label>
-        <input v-model="active_account">
-      </div>
-      <div>
-        <label >total_account</label>
-        <input v-model="total_account">
-      </div>
-      <div>
-        <label >time_circle</label>
-        <input v-model="time_circle">
-      </div>
-    </div>
-    <div class="d-flex flex-row" style="gap: 8px;align-items: center">
-      <div>
-        Circle : {{circle}}
-      </div>
-      <div>
-        Countdown Circle In : {{countdown_circle}}
+        <label>Fill acc</label>
+        <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
+        <button type="button" @click="fillAcc()">
+          Fill
+        </button>
+        <button type="button" @click="copyRemainAcc()">
+          Copy the remaining account
+        </button>
+        <template v-if="remain_acc_copy">
+          <label>Remain acc</label>
+          <textarea v-if="remain_acc_copy" v-model="remain_acc_copy" rows="5" style="width: 500px"/>
+        </template>
       </div>
     </div>
     <div v-for="data in roblox_data" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" style="margin: 10px">
@@ -32,19 +26,8 @@
       <div>
         {{data.active_accounts}} ({{data.total_accounts}})
       </div>
-    </div>
-    <div class="d-flex flex-row" style="gap: 8px;align-items: center">
-      <div>
-        <label>Fill acc</label>
-        <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
-        <button type="button" @click="fillAcc()">
-          Fill
-        </button>
-        <button type="button" @click="copyRemainAcc()">
-          Copy the remaining account
-        </button>
-        <label>Remain acc</label>
-        <textarea v-if="remain_acc_copy" v-model="remain_acc_copy" rows="5" style="width: 500px"/>
+      <div style="min-width: 300px">
+        {{map_device_data[data?.device_id]?.script_label}}
       </div>
     </div>
   </div>
@@ -74,18 +57,23 @@ export default {
       fill_acc: [],
       remain_acc: [],
       remain_acc_copy: '',
+      farmOption : [
+        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 22},
+        {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
+        {code : 'bloxFruit-fruit',label : 'Blox Fruit-Fruit',game_id: '2753915549',total_account: 66},
+        {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 22},
+        {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
+        {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
+      ],
     }
   },
   watch:{
     roblox_data_state: {
       handler(value){
-        const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
         const list_device = []
         if (value?.devices){
           value?.devices.forEach(device => {
-            if (map_device_data[device?.device_id] && map_device_data[device?.device_id]?.script == this.script_code){
-              list_device.push(device)
-            }
+            list_device.push(device)
           })
           console.log('display',list_device)
           this.roblox_data = JSON.parse(JSON.stringify(list_device))
@@ -97,47 +85,18 @@ export default {
     this.getDataRoblox();
     // this.runFarmFruit();
     this.initData();
+    this.initStatusDevice();
     // this.interval_farm = setInterval(async () => {
     //   await this.runFarmFruit()
     // }, this.time_circle);
   },
   beforeDestroy() {
-    // Xóa công việc khi component bị hủy
-    if (this.interval_farm || this.intervalId) {
-      clearInterval(this.interval_farm);
-      clearInterval(this.intervalId);
-      console.log('Đã xóa công việc setInterval');
-    }
   },
   methods: {
     ...mapActions([
       'getDataRoblox',
+      'initStatusDevice',
     ]),
-    async runFarmFruit() {
-      console.log('next circle', this.roblox_data)
-      for (let i = 0; i < this.roblox_data.length; i++) {
-        if (this.roblox_data[i] && this.roblox_data[i]?.device_id) {
-          const device = this.roblox_data[i]
-          await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/stop`, {}, {
-            headers: {
-              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-            },
-          });
-        }
-      }
-      setTimeout(async () => {
-        for (let i = 0; i < this.roblox_data.length; i++) {
-          if (this.roblox_data[i] && this.roblox_data[i]?.device_id) {
-            const device = this.roblox_data[i]
-            await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/start`, {}, {
-              headers: {
-                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-              },
-            });
-          }
-        }
-      }, 60 * 1000)
-    },
     async fillAcc() {
       const emptyAcc = this.fill_acc.split('\n')
       const listEmptyAcc = []
@@ -148,27 +107,38 @@ export default {
         const cookieAcc = arr_acc[2] + ':' + arr_acc[3]
         listEmptyAcc.push({username: username, password: password, cookie: cookieAcc})
       })
-      console.log('listEmptyAcc',listEmptyAcc)
       let getAccIndex = 0
       for (let i = 0; i < this.roblox_data.length; i++) {
       // for (let i = 0; i < 5; i++) {
         let listAccFill = []
         const device = this.roblox_data[i];
-        if (device?.total_accounts < this.total_account) {
-          const needAcc = this.total_account - device?.total_accounts
-          listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
-          getAccIndex = getAccIndex + needAcc
-        }
-        console.log('listAccFill',device?.device_code,getAccIndex,listAccFill)
-        if (listAccFill?.length > 0){
-          await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
-            headers: {
-              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-            },
-          });
+        let total_account = 0;
+        this.farmOption.forEach(scr => {
+          if (scr?.code === this.map_device_data[device?.device_id]?.script){
+            total_account = scr?.total_account
+          }
+        })
+        if (total_account > 0) {
+          if (device?.total_accounts < this.total_account) {
+            const needAcc = this.total_account - device?.total_accounts
+            listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
+            getAccIndex = getAccIndex + needAcc
+          }
+          console.log('listAccFill',device?.deviceName,listAccFill)
+          // if (listAccFill?.length > 0){
+          //   await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
+          //     headers: {
+          //       'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //     },
+          //   });
+          // }
         }
       }
-      this.remain_acc = listEmptyAcc.slice(getAccIndex, listEmptyAcc.length)
+      this.remain_acc = []
+      const remain_acc = listEmptyAcc.slice(getAccIndex, listEmptyAcc.length)
+      remain_acc.forEach(acc => {
+        this.remain_acc.push(acc)
+      })
       await this.enableDevice();
       this.copyRemainAcc();
       alert('Fill done');
@@ -208,7 +178,9 @@ export default {
     copyRemainAcc() {
       let copyContent = ''
       this.remain_acc.forEach(item => {
-        copyContent += `${item.username}:${item.password}:${item.cookie}` + '\n'
+        if (item && item?.username){
+          copyContent += `${item.username}:${item.password}:${item.cookie}` + '\n'
+        }
       })
       this.remain_acc_copy = copyContent
       navigator.clipboard.writeText(copyContent);

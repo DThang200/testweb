@@ -76,6 +76,9 @@ export const actions = {
       if (response.devices){
         response.devices.forEach(item => {
           item.device_code = item.device_name.replace(/ /g, '_')
+          const active_accounts_ar = item.active_accounts.split('/')
+          item.inactive = JSON.parse(active_accounts_ar[1] || 0) - JSON.parse(active_accounts_ar[0] || 0)
+          item.active = JSON.parse(active_accounts_ar[1] || 0)
           if (device_remotes && device_remotes[item.device_code]){
             item.device_remote = device_remotes[item.device_code]
           }else {
@@ -85,6 +88,7 @@ export const actions = {
           map_code_device_id[item.device_code] = item.device_id
         })
       }
+      console.log('response',response)
       await commit('SET_DATA_ROBLOX', response)
       await commit('SET_MAP_DEVICE_ID_CODE', map_device_id_code)
       await commit('SET_MAP_CODE_DEVICE_ID', map_code_device_id)
