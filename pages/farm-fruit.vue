@@ -16,11 +16,14 @@
     </div>
     <div class="d-flex flex-row" style="gap: 8px;align-items: center">
       <div>
-        Circle : {{circle}}
+        Circle : {{circle}} ({{circle * active_account}} - {{(circle + 1) * active_account}})
       </div>
       <div>
         Countdown Circle In : {{countdown_circle}}
       </div>
+      <button type="button" @click="runFarmFruit()">
+        runFarmFruit
+      </button>
     </div>
     <div v-for="data in roblox_data" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" style="margin: 10px">
       <div>
@@ -64,9 +67,9 @@ export default {
     return {
       active_account : 22,
       total_account : 66,
-      circle : 0,
-      time_circle : 120 * 60 * 1000,
-      countdown_circle : 120 * 60 * 1000,
+      circle : -1,
+      time_circle : 40 * 60 * 1000,
+      countdown_circle : 40 * 60 * 1000,
       interval_farm : null,
       script_code : 'bloxFruit-fruit',
       device_stat: [],
@@ -88,18 +91,20 @@ export default {
             }
           })
           console.log('display',list_device)
-          this.roblox_data = JSON.parse(JSON.stringify(list_device))
+          // this.roblox_data = JSON.parse(JSON.stringify(list_device))
+          this.roblox_data = JSON.parse(JSON.stringify(list_device.slice(0,5)))
+
         }
       },deep: true
     }
   },
   mounted() {
     this.getDataRoblox();
-    // this.runFarmFruit();
+    this.runFarmFruit();
     this.initData();
-    // this.interval_farm = setInterval(async () => {
-    //   await this.runFarmFruit()
-    // }, this.time_circle);
+    this.interval_farm = setInterval(async () => {
+      await this.runFarmFruit()
+    }, this.time_circle);
   },
   beforeDestroy() {
     // Xóa công việc khi component bị hủy
@@ -114,7 +119,13 @@ export default {
       'getDataRoblox',
     ]),
     async runFarmFruit() {
+      if (this.circle === 2){
+        this.circle = 0;
+      } else {
+        this.circle += 1;
+      }
       console.log('next circle', this.roblox_data)
+      // stopAll
       for (let i = 0; i < this.roblox_data.length; i++) {
         if (this.roblox_data[i] && this.roblox_data[i]?.device_id) {
           const device = this.roblox_data[i]
@@ -125,6 +136,30 @@ export default {
           });
         }
       }
+      for (let i = 0; i < this.roblox_data.length; i++) {
+        const device = this.roblox_data[i]
+        const listAccount = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/accounts`,{
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+        let listEnableAcc = []
+        if (listAccount && listAccount?.accounts?.length > 0){
+          listAccount.accounts.forEach((acc,index) => {
+            const enable = (index >= this.circle * this.active_account) && (index < ((this.circle + 1) * this.active_account))
+            listEnableAcc.push({
+              "username_look_for": acc?.username,
+              "enabled": enable
+            })
+          })
+        }
+        await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listEnableAcc,{
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+      }
+      //start all
       setTimeout(async () => {
         for (let i = 0; i < this.roblox_data.length; i++) {
           if (this.roblox_data[i] && this.roblox_data[i]?.device_id) {
@@ -136,7 +171,7 @@ export default {
             });
           }
         }
-      }, 60 * 1000)
+      }, 120 * 1000)
     },
     async fillAcc() {
       const emptyAcc = this.fill_acc.split('\n')
