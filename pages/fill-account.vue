@@ -124,14 +124,14 @@ export default {
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
           }
-          console.log('listAccFill',device?.deviceName,listAccFill)
-          // if (listAccFill?.length > 0){
-          //   await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
-          //     headers: {
-          //       'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //     },
-          //   });
-          // }
+          // console.log('listAccFill',device?.deviceName,listAccFill)
+          if (listAccFill?.length > 0){
+            await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
         }
       }
       this.remain_acc = []
@@ -146,6 +146,12 @@ export default {
     async enableDevice() {
       for (let i = 0; i < this.roblox_data.length; i++) {
         const device = this.roblox_data[i];
+        let total_account = 0;
+        this.farmOption.forEach(scr => {
+          if (scr?.code === this.map_device_data[device?.device_id]?.script){
+            total_account = scr?.total_account
+          }
+        })
         const listAccount = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/accounts`,{
           headers: {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
@@ -164,8 +170,8 @@ export default {
               })
             }
           })
-          console.log('listDisable.slice(0,(this.active_account - countEnable))',countEnable,listDisable.slice(0,(this.active_account - countEnable)))
-          await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`,listDisable.slice(0,(this.active_account - countEnable)),{
+          console.log('listDisable.slice(0,(this.active_account - countEnable))',countEnable,listDisable.slice(0,(total_account - countEnable)))
+          await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`,listDisable.slice(0,(total_account - countEnable)),{
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
             },
