@@ -14,6 +14,7 @@ export const state = () => ({
   device_history: {},
   last_save_history_data: {},
   today_save_history_data: {},
+  delete_account: {},
 })
 
 export const mutations = {
@@ -56,6 +57,9 @@ export const mutations = {
   },
   SET_TODAY_SAVE_DATA(state, data) {
     state.today_save_history_data= data
+  },
+  SET_DELETE_ACC(state, data) {
+    state.delete_account= data
   },
 }
 
@@ -307,6 +311,27 @@ export const actions = {
     map_device_data[param.device_id][param.key] = param.value
     localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
     commit('SET_MAP_DEVICE_DATA', map_device_data)
+
+  },
+  setSaveDeleteAccount({commit,state}, param= {key: '',value: ''}){
+    console.log('setSaveDeleteAccount',param)
+    let delete_account = JSON.parse(localStorage.getItem('delete_account')) || {}
+    // param.device_id
+    if (!delete_account[param.key]){
+      delete_account[param.key] = []
+    }
+    const listAcc = param.value.split('\n')
+    let listAccHandle = []
+    listAcc.forEach(acc => {
+      if (acc){
+        const acc_arr = acc.split(':')
+        console.log('acc_arr',acc_arr)
+        listAccHandle.push(acc_arr[0] + ':' + acc_arr[1])
+      }
+    })
+    delete_account[param.key].push({time: new Date().getTime(),value : JSON.stringify(listAccHandle) })
+    localStorage.setItem('delete_account', JSON.stringify(delete_account));
+    commit('SET_DELETE_ACC', delete_account)
 
   },
   getKeyGom({commit,state}, param = {}){

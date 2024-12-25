@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="field-acc">
       <div style="font-size: 24px;font-weight: bold">
         <button @click="copyContent(listNoMythicFruit)">Copy</button>
         List no fruit
@@ -9,7 +9,7 @@
 
       </textarea>
     </div>
-    <div>
+    <div class="field-acc">
       <div style="font-size: 24px;font-weight: bold">
         <button @click="copyContent(list3TrashMythic)">Copy</button>
         List 3 trash mythic
@@ -18,7 +18,17 @@
 
       </textarea>
     </div>
-    <div>
+    <div class="field-acc">
+      <div style="font-size: 24px;font-weight: bold">
+        <button @click="copyContent(list1TrashMythicGod)">Copy</button>
+        List 1 trash god-mythic
+        <button @click="deleteAccount(list1TrashMythicGod,'list1TrashMythicGod')">Delete</button>
+      </div>
+      <textarea  style="width: 500px;height: 300px" disabled v-model="list1TrashMythicGod">
+
+      </textarea>
+    </div>
+    <div class="field-acc">
       <div style="font-size: 24px;font-weight: bold">
         <button @click="copyContent(ListBothMythic)">Copy</button>
         List both mythic
@@ -28,10 +38,33 @@
       </textarea>
       {{countListBoth}}
     </div>
+    <div class="field-acc">
+      <div style="font-size: 24px;font-weight: bold">
+        User pass cookie => user pass
+        <button @click="copyContent(user_pass)">Copy</button>
+      </div>
+      <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie" @change="renderUPCtoUP">
+
+      </textarea>
+      <textarea  style="width: 500px;height: 300px" v-model="user_pass">
+
+      </textarea>
+    </div>
+    <div class="field-acc" style="background: red">
+      <div style="font-size: 24px;font-weight: bold">
+        Delete acc per row
+        <button @click="deleteAccPerRow()">Delete</button>
+      </div>
+      <textarea  style="width: 500px;height: 300px" v-model="delete_acc">
+
+      </textarea>
+    </div>
   </div>
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   beforeDestroy() {
   },
@@ -39,10 +72,14 @@ export default {
     return {
       listCompletedAcc : [],
       listNoMythicFruit : '',
+      list1TrashMythicGod : '',
       list3TrashMythic : '',
-      listVipMythic : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Dough-Dough","Gas-Gas"],
+      listVipMythic : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Dough-Dough","Gas-Gas","Yeti-Yeti"],
       ListBothMythic : [],
-      countListBoth: {}
+      countListBoth: {},
+      user_pass_cookie: '',
+      user_pass: '',
+      delete_acc: '',
     }
   },
   async mounted() {
@@ -58,8 +95,11 @@ export default {
     await this.getCompletedAccount();
   },
   methods: {
+    ...mapActions([
+      'setSaveDeleteAccount',
+    ]),
     async getCompletedAccount() {
-      const listCompleted = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/accounts`, {
+      const listCompleted = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/completedaccounts`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
@@ -67,6 +107,8 @@ export default {
       if (listCompleted && listCompleted?.accounts?.length > 0){
         this.listCompletedAcc = listCompleted.accounts
         this.listNoMythicFruit = ''
+        const statusTest = JSON.parse(listCompleted.accounts[0]?.status)
+        console.log('statusTest',statusTest,listCompleted.accounts[0])
         listCompleted.accounts.forEach((item) => {
           if (item && item?.status){
             const status = JSON.parse(item?.status)
@@ -102,6 +144,16 @@ export default {
               if (isTrashMythic && status?.Fruits?.Mythical?.length >= 3){
                 this.list3TrashMythic += `${item.username}:${item.password}:${item.cookie}` + '\n'
               }
+            } else if (status?.Fruits?.Mythical?.length === 1 && status?.Melees.includes("Godhuman")){
+              let isTrashMythic = true
+              this.listVipMythic.forEach(fruit => {
+                if (status?.Fruits?.Mythical.includes(fruit)){
+                  isTrashMythic = false
+                }
+              })
+              if (isTrashMythic){
+                this.list1TrashMythicGod += `${item.username}:${item.password}:${item.cookie}` + '\n'
+              }
             }
           }
         })
@@ -109,10 +161,76 @@ export default {
     },
     copyContent(content) {
       navigator.clipboard.writeText(content);
+    },
+    async deleteAccount(content, key) {
+      if (!key) {
+        return false
+      }
+      await this.setSaveDeleteAccount(key, content);
+      const listAcc = content.split('\n')
+      const listUsername = listAcc.map(user => {
+        return  user.split(':')[0]
+      })
+      console.log('listUsername',listUsername)
+
+      // const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/bulk/accounts`, {
+      //   data: deleteAcc,
+      //   headers: {
+      //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+      //   },
+      // });
+    },
+    renderUPCtoUP(){
+      const user_pass_cookie = this.user_pass_cookie.split('\n')
+      let result = ''
+      user_pass_cookie.forEach(item => {
+        if (item){
+          const acc_arr = item.split(':')
+          if (acc_arr?.length > 0){
+            result += `${acc_arr[0]}:${acc_arr[1]}` + '\n'
+          }
+        }
+      })
+      this.user_pass = result
+    },
+    async deleteAccPerRow() {
+      if (confirm("Bạn có muốn xóa tài khoản")){
+        const correctPassword = "matkhau123@"; // Mật khẩu cố định
+        const userPassword = prompt("Vui lòng nhập mật khẩu để xóa tài khoản");
+
+        if (userPassword !== correctPassword) {
+          alert("Mật khẩu không chính xác");
+          return false
+        }
+      } else {
+        return false
+      }
+      await this.setSaveDeleteAccount({key: 'deleteAccPerRow',value: this.delete_acc});
+      const user_pass_cookie = this.delete_acc.split('\n')
+      let deleteAcc = []
+      user_pass_cookie.forEach(item => {
+        if (item) {
+          const acc_arr = item.split(':')
+          if (acc_arr?.length > 0) {
+            deleteAcc.push({username_look_for:acc_arr[0]})
+          }
+        }
+      })
+      const resDelete = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/bulk/accounts`, {
+        data: deleteAcc,
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
+      // deleteAcc
+      alert("Delete done");
     }
   }
 };
 </script>
 
 <style>
+.field-acc {
+  border: ;
+}
 </style>
