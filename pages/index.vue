@@ -879,8 +879,8 @@ export default {
                   }
                   _G.FarmMastery_Settings = {
                       ['Melee'] = true,
-                      ['Sword'] = true,
-                      ['DevilFruits'] = true,
+                      ['Sword'] = false,
+                      ['DevilFruits'] = false,
                       ['Select_Swords'] = {
                           ["AutoSettings"] = true, -- ______________________________________________________
                           ["ManualSettings"] = { -- _______ AutoSettings ____ false ___________________________ ________________
@@ -891,7 +891,7 @@ export default {
                       }
                   }
                   _G.SwordSettings = { -- __________
-                      ['Saber'] = false,
+                      ['Saber'] = true,
                       ["Pole"] = false,
                       ['MidnightBlade'] = false,
                       ['Shisui'] = false,
@@ -984,8 +984,8 @@ export default {
                   }
                   _G.FarmMastery_Settings = {
                       ['Melee'] = true,
-                      ['Sword'] = true,
-                      ['DevilFruits'] = true,
+                      ['Sword'] = false,
+                      ['DevilFruits'] = false,
                       ['Select_Swords'] = {
                           ["AutoSettings"] = true, -- ______________________________________________________
                           ["ManualSettings"] = { -- _______ AutoSettings ____ false ___________________________ ________________

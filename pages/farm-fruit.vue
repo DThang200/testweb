@@ -16,7 +16,7 @@
     </div>
     <div class="d-flex flex-row" style="gap: 8px;align-items: center">
       <div>
-        Circle : {{circle}} ({{circle * active_account}} - {{(circle + 1) * active_account}})
+        Circle : {{circle}} ({{circle * active_account}} - {{((circle + 1) * active_account) - 1}})
       </div>
       <div>
         Countdown Circle: {{secToTime(countdown_circle)}}
