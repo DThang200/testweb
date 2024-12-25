@@ -327,7 +327,6 @@ export default {
     },
     getStatusClass(data = null){
       if (this.map_device_data[data?.device_id]?.script === 'bloxFruit-fruit'){
-        console.log('data?.inactive',data?.inactive)
         if (data?.inactive){
           if (data?.inactive > 10) {
             return 'danger'
@@ -1395,7 +1394,8 @@ export default {
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       Object.entries(map_device_data).forEach((device,index) => {
         if (device[1]?.script){
-          this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script.replace("Farm-", "") || 'lava')
+          console.log('device?.device_id,device?.device_name,device[1]?.script',device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
+          // this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
         }
       })
     },

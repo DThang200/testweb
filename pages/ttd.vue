@@ -1,48 +1,6 @@
 <template>
 <main class="page-content">
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
-    <div style="display: flex;flex-direction: row; gap: 16px">
-      <button type="button" @click="refreshScript()">
-        Refresh script
-      </button>
-      <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
-      <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
-    </div>
-    <div style="display: flex;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
-      From :
-      <template v-if="is_auto_gom">
-        ({{(autoGomFrom || autoGomFrom === 0) ? roblox_data.devices[autoGomFrom].device_name : 'None'}})
-      </template>
-      <template v-else>
-        <select v-model="autoGomFrom">
-          <option value="">None</option>
-          <template v-for="(devices,index) in roblox_data_state.devices">
-            <option :value="index">{{devices?.device_name}}</option>
-          </template>
-        </select>
-      </template>
-      To :
-      <template v-if="is_auto_gom">
-        ({{(autoGomTo || autoGomTo === 0) ? roblox_data.devices[autoGomTo - 1].device_name : 'None'}})
-      </template>
-      <template v-else>
-        <select v-model="autoGomTo">
-          <option value="">None</option>
-          <template v-for="(devices,index) in roblox_data_state.devices">
-            <option :value="index + 1">{{devices?.device_name}}</option>
-          </template>
-        </select>
-      </template>
-      <div style="margin-left: 40px">
-        Collect Acc :
-      </div>
-      <template v-for="acc in map_key_token_gom">
-        <div>
-          <input v-if="!is_auto_gom" v-model="autoGomActive" type="checkbox" :id="'autoGom-' + acc.key" :value="acc?.key" />
-          <label v-if="!(is_auto_gom && !autoGomActive.includes(acc.key))" :for="'autoGom-' + acc.key" style="margin-right: 12px">{{acc?.key}}</label>
-        </div>
-      </template>
-    </div>
     <div style="display: flex;flex-direction: row;gap: 8px">
       Menu
       <nuxt-link to="/setup-key">
