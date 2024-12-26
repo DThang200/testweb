@@ -74,7 +74,7 @@ export default {
       listNoMythicFruit : '',
       list1TrashMythicGod : '',
       list3TrashMythic : '',
-      listVipMythic : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Dough-Dough","Gas-Gas","Yeti-Yeti"],
+      listVipMythic : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Gas-Gas","Yeti-Yeti"],
       ListBothMythic : [],
       countListBoth: {},
       user_pass_cookie: '',
@@ -99,7 +99,7 @@ export default {
       'setSaveDeleteAccount',
     ]),
     async getCompletedAccount() {
-      const listCompleted = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/completedaccounts`, {
+      const listCompleted = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/accounts`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
@@ -133,11 +133,12 @@ export default {
                   isTrashMythic = false
                 }
               })
-              if (countVipMythic > 2){
+              if (countVipMythic >= 2){
                 const result = {};
                 for (const key in this.countListBoth) {
                   result[key] = this.countListBoth[key] + (countVipMythicObj[key] || 0); // Nếu obj2[key] không tồn tại, sử dụng 0
                 }
+                console.log('result',result)
                 this.countListBoth = result
                 this.ListBothMythic += `${item.username}:${item.password}:${item.cookie}` + '\n'
               }
