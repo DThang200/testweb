@@ -52,6 +52,14 @@
       <nuxt-link to="/history">
         History
       </nuxt-link>
+      -
+      <nuxt-link to="/fill-account">
+        Fill account
+      </nuxt-link>
+      -
+      <nuxt-link to="/account">
+        Track stat Account bf
+      </nuxt-link>
     </div>
   </template>
   <div style="margin-left: auto;font-size: 24px" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'transform: scale(3);margin-bottom: 32px'}`">
