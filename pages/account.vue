@@ -50,6 +50,18 @@
 
       </textarea>
     </div>
+    <div class="field-acc">
+      <div style="font-size: 24px;font-weight: bold">
+        User pass cookie => user pass
+        <button @click="copyContent(input_ck)">Copy</button>
+      </div>
+      <textarea  style="width: 500px;height: 300px" v-model="input_ck" @change="getCk">
+
+      </textarea>
+      <textarea  style="width: 500px;height: 300px" v-model="output_ck">
+
+      </textarea>
+    </div>
     <div class="field-acc" style="background: red">
       <div style="font-size: 24px;font-weight: bold">
         Delete acc per row
@@ -79,6 +91,8 @@ export default {
       countListBoth: {},
       user_pass_cookie: '',
       user_pass: '',
+      input_ck: '',
+      output_ck: '',
       delete_acc: '',
     }
   },
@@ -153,6 +167,7 @@ export default {
                 }
               })
               if (isTrashMythic){
+                console.log('item',status?.Level,item?.username,item?.device_id)
                 this.list1TrashMythicGod += `${item.username}:${item.password}:${item.cookie}` + '\n'
               }
             }
@@ -189,6 +204,21 @@ export default {
           const acc_arr = item.split(':')
           if (acc_arr?.length > 0){
             result += `${acc_arr[0]}:${acc_arr[1]}` + '\n'
+          }
+        }
+      })
+      this.user_pass = result
+    },
+    getCk(){
+      const user_pass_cookie = this.user_pass_cookie.split('\n')
+      let result = ''
+      user_pass_cookie.forEach(item => {
+        if (item){
+          const acc_arr = item.split(':')
+          if (acc_arr?.length > 0){
+            // result +=  `${acc_arr[0]}:${acc_arr[1]}` + '\n'
+            result = acc_arr.match(/:_\|WARNING:(.*?)\n/g).map(match => match.trim().slice(11).trim())[0] + + '\n';
+            console.log('result',result)
           }
         }
       })

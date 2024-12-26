@@ -62,8 +62,8 @@ export default {
         {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-fruit',label : 'Blox Fruit-Fruit',game_id: '2753915549',total_account: 66},
         {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 22},
-        {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
-        {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
+        // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
+        // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
     }
   },
