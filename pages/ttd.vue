@@ -379,6 +379,7 @@ export default {
         let AutoReplay = true
         let AutoReturnToLobby = false
         let WH_MatchComplete = false
+        let AutoBuyCrate = true
         let EventType = 'Drill Type'
         let SelectDifficulty = 'Easy'
         if (script_sl.includes('ttd-pvp-')){
@@ -407,6 +408,7 @@ export default {
           SelectBuyCrate = 'ChristmasCrate'
           SelectMap= 'Christmas2024'
           WH_MatchComplete= true
+          AutoBuyCrate= false
         }
         script = `getgenv().Key = "${nousigi}"
                       getgenv().ImportMacro = {
@@ -443,7 +445,7 @@ export default {
                         ["PlaceFailsafe"] = true,
                         ["AutoJoinEndless"] = false,
                         ["PlayMacro"] = true,
-                        ["AutoBuyCrate"] = true,
+                        ["AutoBuyCrate"] = ${AutoBuyCrate},
                         ["AutoMail"] = true,
                         ["BoostFPS"] = true,
                         ["Summon10"] = false,

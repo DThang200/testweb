@@ -66,9 +66,9 @@ export default {
   data() {
     return {
       active_account : 22,
-      total_account : 66,
+      total_account : 44,
       circle : -1,
-      time_circle : 40 * 60 * 1000,
+      time_circle : 60 * 60 * 1000,
       countdown_circle : 40 * 60,
       interval_countdown : null,
       interval_farm : null,
