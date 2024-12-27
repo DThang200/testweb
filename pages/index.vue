@@ -170,7 +170,7 @@ export default {
         {code : 'wave-61',label : 'AD-Wave-61',game_id: '17017769292',private_server : true},
         {code : 'Roll-unit',label : 'AD-Roll-unit',game_id: '17017769292',private_server : true},
         {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false},
-        {code : 'bloxFruit-25maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false},
+        {code : 'bloxFruit-25maru',label : 'Blox Fruit-Maruv2',game_id: '2753915549',private_server : false},
         {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',private_server : false},
         {code : 'bloxFruit-fruit',label : 'Blox Fruit-Fruit',game_id: '2753915549',private_server : false},
         {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
