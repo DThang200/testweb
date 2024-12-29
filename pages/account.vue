@@ -139,6 +139,7 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
       if (listCompleted && listCompleted?.accounts?.length > 0){
         this.listCompletedAcc = listCompleted.accounts
         this.listNoMythicFruit = ''
@@ -146,9 +147,6 @@ export default {
         listCompleted.accounts.forEach((item) => {
           if (item && item?.status){
             const status = JSON.parse(item?.status)
-            if (status?.melee_statuses && !item?.enabled && !item?.done){
-              this.listDisable += `${item.username}:${item.password}:${item.cookie}` + '\n'
-            }
             /// acc no fruit
             if (status?.Fruits?.Mythical?.length === 0){
               this.listNoMythicFruit += `${item.username}:${item.password}:${item.cookie}` + '\n'
@@ -207,6 +205,9 @@ export default {
                 this.listGodMaxNoMythicFruit += `${item.username}:${item.password}:${item.cookie}` + '\n'
               }
             }
+          }
+          if (!item?.enabled && ['bloxFruit-25maru','bloxFruit-fruit','bloxFruit-2550','bloxFruit-maru'].includes(map_device_data[item?.device_id]?.script)){
+            this.listDisable += `${item.username}:${item.password}:${item.cookie}` + '\n'
           }
         })
       }
