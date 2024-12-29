@@ -408,7 +408,6 @@ export default {
           SelectBuyCrate = 'ChristmasCrate'
           SelectMap= 'Christmas2024'
           WH_MatchComplete= true
-          AutoBuyCrate= false
         }
         script = `getgenv().Key = "${nousigi}"
                       getgenv().ImportMacro = {
