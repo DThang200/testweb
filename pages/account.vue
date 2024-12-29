@@ -61,7 +61,7 @@
     </div>
     <div class="field-acc">
       <div style="font-size: 24px;font-weight: bold">
-        User pass cookie => user pass
+        User pass cookie => cookie
         <button @click="copyContent(input_ck)">Copy</button>
       </div>
       <textarea  style="width: 500px;height: 300px" v-model="input_ck" @change="getCk">
