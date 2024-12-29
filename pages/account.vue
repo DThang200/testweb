@@ -190,7 +190,9 @@ export default {
               })
               if (isTrashMythic){
                 this.list1TrashMythicGod += `${item.username}:${item.password}:${item.cookie}` + '\n'
-                this.listGodMaxNoMythicFruit += `${item.username}:${item.password}:${item.cookie}` + '\n'
+                if (status?.Level === 2600){
+                  this.listGodMaxNoMythicFruit += `${item.username}:${item.password}:${item.cookie}` + '\n'
+                }
               }
             } else if (status?.Level === 2600 &&  status?.Melees.includes("Godhuman")){
               let isTrashMythic = true
