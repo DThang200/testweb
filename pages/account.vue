@@ -20,6 +20,15 @@
     </div>
     <div class="field-acc">
       <div style="font-size: 24px;font-weight: bold">
+        <button @click="copyContent(listGodMaxNoMythicFruit)">Copy</button>
+        List god max no mythic
+      </div>
+      <textarea  style="width: 500px;height: 300px" disabled v-model="listGodMaxNoMythicFruit">
+
+      </textarea>
+    </div>
+    <div class="field-acc">
+      <div style="font-size: 24px;font-weight: bold">
         <button @click="copyContent(list1TrashMythicGod)">Copy</button>
         List 1 trash god-mythic
         <button @click="deleteAccount(list1TrashMythicGod,'list1TrashMythicGod')">Delete</button>
@@ -84,9 +93,11 @@ export default {
     return {
       listCompletedAcc : [],
       listNoMythicFruit : '',
+      listGodMaxNoMythicFruit : '',
       list1TrashMythicGod : '',
       list3TrashMythic : '',
       listVipMythic : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Gas-Gas","Yeti-Yeti"],
+      listVipMythic2 : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Gas-Gas","Yeti-Yeti","Dough-Dough","T-Rex-T-Rex"],
       ListBothMythic : [],
       countListBoth: {},
       user_pass_cookie: '',
@@ -122,7 +133,6 @@ export default {
         this.listCompletedAcc = listCompleted.accounts
         this.listNoMythicFruit = ''
         const statusTest = JSON.parse(listCompleted.accounts[0]?.status)
-        console.log('statusTest',statusTest,listCompleted.accounts[0])
         listCompleted.accounts.forEach((item) => {
           if (item && item?.status){
             const status = JSON.parse(item?.status)
@@ -131,8 +141,9 @@ export default {
               this.listNoMythicFruit += `${item.username}:${item.password}:${item.cookie}` + '\n'
             }
 
-            /// acc 3 mythic trash
+            let isTrashMythic = true
 
+            /// acc 3 mythic trash
             if (status?.Fruits?.Mythical?.length >= 2){
               let isTrashMythic = true
               let countVipMythic = 0
@@ -152,7 +163,6 @@ export default {
                 for (const key in this.countListBoth) {
                   result[key] = this.countListBoth[key] + (countVipMythicObj[key] || 0); // Nếu obj2[key] không tồn tại, sử dụng 0
                 }
-                console.log('result',result)
                 this.countListBoth = result
                 this.ListBothMythic += `${item.username}:${item.password}:${item.cookie}` + '\n'
               }
@@ -167,8 +177,21 @@ export default {
                 }
               })
               if (isTrashMythic){
-                console.log('item',status?.Level,item?.username,item?.device_id)
                 this.list1TrashMythicGod += `${item.username}:${item.password}:${item.cookie}` + '\n'
+                this.listGodMaxNoMythicFruit += `${item.username}:${item.password}:${item.cookie}` + '\n'
+              }
+            } else if (status?.Level === 2600 &&  status?.Melees.includes("Godhuman")){
+              let isTrashMythic = true
+              this.listVipMythic2.forEach(fruit => {
+                if (status?.Fruits?.Mythical.includes(fruit)){
+                  isTrashMythic = false
+                }
+              })
+              if (isTrashMythic){
+                console.log('status?.Fruits?.Mythical',status?.Fruits?.Mythical)
+              }
+              if (isTrashMythic || status?.Fruits?.Mythical?.length === 0){
+                this.listGodMaxNoMythicFruit += `${item.username}:${item.password}:${item.cookie}` + '\n'
               }
             }
           }
@@ -187,7 +210,6 @@ export default {
       const listUsername = listAcc.map(user => {
         return  user.split(':')[0]
       })
-      console.log('listUsername',listUsername)
 
       // const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/bulk/accounts`, {
       //   data: deleteAcc,
@@ -262,6 +284,5 @@ export default {
 
 <style>
 .field-acc {
-  border: ;
 }
 </style>
