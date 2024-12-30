@@ -80,6 +80,18 @@
 
       </textarea>
     </div>
+    <div class="field-acc">
+      <div style="font-size: 24px;font-weight: bold">
+        User pass cookie => File Format
+        <button @click="copyContent(input_ck)">Copy</button>
+      </div>
+      <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie2" @change="renderUPCtoFileFormat">
+
+      </textarea>
+      <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie_file">
+
+      </textarea>
+    </div>
     <div class="field-acc" style="background: red">
       <div style="font-size: 24px;font-weight: bold">
         Delete acc per row
@@ -111,6 +123,8 @@ export default {
       ListBothMythic : [],
       countListBoth: {},
       user_pass_cookie: '',
+      user_pass_cookie2: '',
+      user_pass_cookie_file: '',
       user_pass: '',
       input_ck: '',
       output_ck: '',
@@ -248,18 +262,31 @@ export default {
       this.user_pass = result
     },
     getCk(){
-      const user_pass_cookie = this.user_pass_cookie.split('\n')
+      console.log('getCk')
+      const user_pass_cookie = this.input_ck.split('\n')
       let result = ''
       user_pass_cookie.forEach(item => {
         if (item){
-          const acc_arr = item.split(':')
-          if (acc_arr?.length > 0){
-            // result +=  `${acc_arr[0]}:${acc_arr[1]}` + '\n'
-            result = acc_arr.match(/:_\|WARNING:(.*?)\n/g).map(match => match.trim().slice(11).trim())[0] + + '\n';
-          }
+          result += item.substring(item.indexOf('_|WARNING')) + '\n'
         }
       })
-      this.user_pass = result
+      this.output_ck = result
+    },
+    renderUPCtoFileFormat(){
+      console.log('getCk')
+      const user_pass_cookie = this.user_pass_cookie2.split('\n')
+      let resultup = ''
+      let resultck = ''
+      let count = 0
+      user_pass_cookie.forEach(item => {
+        if (item){
+          const acc_arr = item.split(':')
+          resultup += `${acc_arr[0]}:${acc_arr[1]}` + '\n'
+          resultck += item.substring(item.indexOf('_|WARNING')) + '\n'
+          count += 1
+        }
+      })
+      this.user_pass_cookie_file = resultup + '\n' + `Số dòng của cookie sẽ bằng dòng userpass + ${count + 2} ` + '\n' + resultck
     },
     async deleteAccPerRow() {
       if (confirm("Bạn có muốn xóa tài khoản")){
