@@ -83,7 +83,7 @@
     <div class="field-acc">
       <div style="font-size: 24px;font-weight: bold">
         User pass cookie => File Format
-        <button @click="copyContent(input_ck)">Copy</button>
+        <button @click="copyContent(user_pass_cookie2)">Copy</button>
       </div>
       <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie2" @change="renderUPCtoFileFormat">
 
