@@ -275,18 +275,20 @@ export default {
     renderUPCtoFileFormat(){
       console.log('getCk')
       const user_pass_cookie = this.user_pass_cookie2.split('\n')
+      let result = ''
       let resultup = ''
       let resultck = ''
       let count = 0
       user_pass_cookie.forEach(item => {
         if (item){
           const acc_arr = item.split(':')
+          result += item + '\n'
           resultup += `${acc_arr[0]}:${acc_arr[1]}` + '\n'
           resultck += item.substring(item.indexOf('_|WARNING')) + '\n'
           count += 1
         }
       })
-      this.user_pass_cookie_file = resultup + '\n' + `Số dòng của cookie sẽ bằng dòng userpass + ${count + 2} ` + '\n' + resultck
+      this.user_pass_cookie_file = result + '\n' + resultup + '\n' + `Số dòng của cookie sẽ bằng dòng (line cookie by) userpass + ${count + 1} ` + '\n' + resultck
     },
     async deleteAccPerRow() {
       if (confirm("Bạn có muốn xóa tài khoản")){
