@@ -288,7 +288,7 @@ export default {
           count += 1
         }
       })
-      this.user_pass_cookie_file = result + '\n' + resultup + '\n' + `Số dòng của cookie sẽ bằng dòng (line cookie by) userpass + ${count + 1} ` + '\n' + resultck
+      this.user_pass_cookie_file = result + '\n' + resultup + '\n' + `Số dòng của cookie sẽ bằng dòng (line cookie by) userpass + ${count + 1} ` + '\n' + resultck + '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n' + 'link shop fb : https://www.facebook.com/profile.php?id=61571050329694'
     },
     async deleteAccPerRow() {
       if (confirm("Bạn có muốn xóa tài khoản")){
