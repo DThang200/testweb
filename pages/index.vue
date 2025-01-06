@@ -687,216 +687,6 @@ export default {
               }
               repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`;
           break;
-        case 'bloxFruit-2600' :
-          script =
-              ` repeat task.wait() until game:IsLoaded()
-                  repeat task.wait() until game.Players
-                  repeat task.wait() until game.Players.LocalPlayer
-                  _G.Team = "Pirate" -- Marine / Pirate
-                  getgenv().Script_Mode = "Kaitun_Script"
-                  _G.WebHook = {
-                      ["Enabled"] = true, -- _____________
-                      ["Url"] = "https://discord.com/api/webhooks/1311701624258957332/OsXZAora0_xGXXtbMCBtE1ugioi4blAI_1NI7bWpxeWMt_9pJ5ApuJwv14J-wAjqEuh-", -- _____________
-                      ["Delay"] = 60 -- ______
-                  }
-                  _G.MainSettings = {
-                          ["EnabledHOP"] = true, -- ____ HOP ( _______________________ )
-                          ['FPSBOOST'] = true, -- ______
-                          ["FPSLOCKAMOUNT"] = 60, -- _____ FPS
-                          ['WhiteScreen'] = false, -- _____
-                          ['CloseUI'] = true, -- ___ Ui
-                          ["NotifycationExPRemove"] = true, -- __ ExP ________________
-                          ['AFKCheck'] = 150, -- _________________________________
-                          ["LockFragments"] = 100000, -- ____________
-                          ["LockFruitsRaid"] = { -- ______________________
-                              [1] = "Dough-Dough",
-                              [2] = "Dragon-Dragon"
-                          }
-                      }
-                  _G.Fruits_Settings = { -- _________
-                      ['Main_Fruits'] = {'Magma-Magma'}, -- ______ _________________________________________________
-                      ['Select_Fruits'] = {"Magma-Magma"} -- _____________________
-                  }
-                  _G.Quests_Settings = { -- ________________
-                      ['Rainbow_Haki'] = false,
-                      ["MusketeerHat"] = false,
-                      ["PullLever"] = false,
-                      ['DoughQuests_Mirror'] = {
-                          ['Enabled'] = false,
-                          ['UseFruits'] = false
-                      }
-                  }
-                  _G.Races_Settings = { -- ___________
-                      ['Race'] = {
-                          ['EnabledEvo'] = false,
-                          ["v2"] = true,
-                          ["v3"] = true,
-                          ["Races_Lock"] = {
-                              ["Races"] = { -- Select Races U want
-                                  ["Mink"] = true,
-                                  ["Human"] = true,
-                                  ["Fishman"] = true
-                              },
-                              ["RerollsWhenFragments"] = 20000 -- Random Races When Your Fragments is >= Settings
-                          }
-                      }
-                  }
-                  _G.Settings_Melee = { -- ___________
-                      ['Superhuman'] = true,
-                      ['DeathStep'] = true,
-                      ['SharkmanKarate'] = true,
-                      ['ElectricClaw'] = true,
-                      ['DragonTalon'] = true,
-                      ['Godhuman'] = true
-                  }
-                  _G.FarmMastery_Settings = {
-                      ['Melee'] = true,
-                      ['Sword'] = false,
-                      ['DevilFruits'] = false,
-                      ['Select_Swords'] = {
-                          ["AutoSettings"] = true, -- ______________________________________________________
-                          ["ManualSettings"] = { -- _______ AutoSettings ____ false ___________________________ ________________
-                              "Saber",
-                              "CursedDualKatana",
-                              "Buddy Sword"
-                          }
-                      }
-                  }
-                  _G.SwordSettings = { -- __________
-                      ['Saber'] = true,
-                      ["Pole"] = false,
-                      ['MidnightBlade'] = false,
-                      ['Shisui'] = false,
-                      ['Saddi'] = false,
-                      ['Wando'] = false,
-                      ['Yama'] = false,
-                      ['Rengoku'] = false,
-                      ['Canvander'] = false,
-                      ['BuddySword'] = false,
-                      ['TwinHooks'] = false,
-                      ['HallowScryte'] = false,
-                      ['TrueTripleKatana'] = false,
-                      ['CursedDualKatana'] = false
-                  }
-                  _G.SharkAnchor_Settings = {
-                      ["Enabled_Farm"] = fasle,
-                      ['FarmAfterMoney'] = 2500000
-                  }
-                  _G.GunSettings = { -- __________
-                      ['Kabucha'] = false,
-                      ['SerpentBow'] = false,
-                      ['SoulGuitar'] = false
-                  }
-                  getgenv().Key = "MARU-TED5P-GFU7-U6FJ-C70HX-C37Z9"
-                  getgenv().id = "663236418499379240"
-                  getgenv().Script_Mode = "Kaitun_Script"
-                  loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
-          break;
-        case 'bloxFruit-25tab' :
-          script =
-              ` repeat task.wait() until game:IsLoaded()
-                  repeat task.wait() until game.Players
-                  repeat task.wait() until game.Players.LocalPlayer
-                  _G.Team = "Pirate" -- Marine / Pirate
-                  getgenv().Script_Mode = "Kaitun_Script"
-                  _G.WebHook = {
-                      ["Enabled"] = true, -- _____________
-                      ["Url"] = "https://discord.com/api/webhooks/1311701624258957332/OsXZAora0_xGXXtbMCBtE1ugioi4blAI_1NI7bWpxeWMt_9pJ5ApuJwv14J-wAjqEuh-", -- _____________
-                      ["Delay"] = 60 -- ______
-                  }
-                  _G.MainSettings = {
-                          ["EnabledHOP"] = true, -- ____ HOP ( _______________________ )
-                          ['FPSBOOST'] = true, -- ______
-                          ["FPSLOCKAMOUNT"] = 60, -- _____ FPS
-                          ['WhiteScreen'] = false, -- _____
-                          ['CloseUI'] = true, -- ___ Ui
-                          ["NotifycationExPRemove"] = true, -- __ ExP ________________
-                          ['AFKCheck'] = 150, -- _________________________________
-                          ["LockFragments"] = 100000, -- ____________
-                          ["LockFruitsRaid"] = { -- ______________________
-                              [1] = "Dough-Dough",
-                              [2] = "Dragon-Dragon"
-                          }
-                      }
-                  _G.Fruits_Settings = { -- _________
-                      ['Main_Fruits'] = {'Magma-Magma'}, -- ______ _________________________________________________
-                      ['Select_Fruits'] = {"Magma-Magma"} -- _____________________
-                  }
-                  _G.Quests_Settings = { -- ________________
-                      ['Rainbow_Haki'] = false,
-                      ["MusketeerHat"] = false,
-                      ["PullLever"] = false,
-                      ['DoughQuests_Mirror'] = {
-                          ['Enabled'] = false,
-                          ['UseFruits'] = false
-                      }
-                  }
-                  _G.Races_Settings = { -- ___________
-                      ['Race'] = {
-                          ['EnabledEvo'] = false,
-                          ["v2"] = true,
-                          ["v3"] = true,
-                          ["Races_Lock"] = {
-                              ["Races"] = { -- Select Races U want
-                                  ["Mink"] = true,
-                                  ["Human"] = true,
-                                  ["Fishman"] = true
-                              },
-                              ["RerollsWhenFragments"] = 20000 -- Random Races When Your Fragments is >= Settings
-                          }
-                      }
-                  }
-                  _G.Settings_Melee = { -- ___________
-                      ['Superhuman'] = true,
-                      ['DeathStep'] = true,
-                      ['SharkmanKarate'] = true,
-                      ['ElectricClaw'] = true,
-                      ['DragonTalon'] = true,
-                      ['Godhuman'] = true
-                  }
-                  _G.FarmMastery_Settings = {
-                      ['Melee'] = true,
-                      ['Sword'] = false,
-                      ['DevilFruits'] = false,
-                      ['Select_Swords'] = {
-                          ["AutoSettings"] = true, -- ______________________________________________________
-                          ["ManualSettings"] = { -- _______ AutoSettings ____ false ___________________________ ________________
-                              "Saber",
-                              "CursedDualKatana",
-                              "Buddy Sword"
-                          }
-                      }
-                  }
-                  _G.SwordSettings = { -- __________
-                      ['Saber'] = true,
-                      ["Pole"] = false,
-                      ['MidnightBlade'] = false,
-                      ['Shisui'] = false,
-                      ['Saddi'] = false,
-                      ['Wando'] = false,
-                      ['Yama'] = false,
-                      ['Rengoku'] = false,
-                      ['Canvander'] = false,
-                      ['BuddySword'] = false,
-                      ['TwinHooks'] = false,
-                      ['HallowScryte'] = false,
-                      ['TrueTripleKatana'] = false,
-                      ['CursedDualKatana'] = false
-                  }
-                  _G.SharkAnchor_Settings = {
-                      ["Enabled_Farm"] = fasle,
-                      ['FarmAfterMoney'] = 2500000
-                  }
-                  _G.GunSettings = { -- __________
-                      ['Kabucha'] = false,
-                      ['SerpentBow'] = false,
-                      ['SoulGuitar'] = false
-                  }
-                  getgenv().Key = "MARU-TED5P-GFU7-U6FJ-C70HX-C37Z9"
-                  getgenv().id = "663236418499379240"
-                  getgenv().Script_Mode = "Kaitun_Script"
-                  loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
-          break;
         case 'bloxFruit-fruit' :
           script =
               ` repeat task.wait() until game:IsLoaded()
@@ -1002,7 +792,87 @@ export default {
                   getgenv().Script_Mode = "Kaitun_Script"
                   loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
           break;
-        case 'bloxFruit-2550' :
+        case 'bloxFruit-2600' :
+          script = `
+          repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+              getgenv().Key = "${token}"
+              getgenv().SettingFarm ={
+                  ["Hide UI"] = true,
+                  ["Fast Attack"] = {
+                      ["Speed Attack"] = 0,
+                      ["Attack Duration"] = 5,
+                      ["Speed Attack if Cooldown"] = 0.25,
+                      ["Attack Cooldown"] = 7,
+                  },
+                  ["Reset Teleport"] = {
+                      ["Enabled"] = false,
+                      ["Delay Reset"] = 3,
+                      ["Item Dont Reset"] = {
+                          ["Fruit"] = {
+                              ["Enabled"] = true,
+                              ["All Fruit"] = true,
+                              ["Select Fruit"] = {
+                                  ["Enabled"] = false,
+                                  ["Fruit"] = {},
+                              },
+                          },
+                      },
+                  },
+                  ["Lock FPS"] = {
+                      ["Enabled"] = false,
+                      ["FPS"] = 60,
+                  },
+                  ["Auto Awaken Fruit"] = false, -- dont support  phoenix
+                  ["GodHuman"] = true,
+                  ["Priority Get Melee Sea 3"] = false,
+                  ["Auto Saber"] = true,
+                  ["Auto Pole"] = false,
+                  ["Cursed Dual Katana"] = false,
+                  ["SoulGuitar"] = false,
+                  ["Shark Anchor"] = false, --i have cdk and god and soulguitar
+                  ["Farm Mastery Fruit If Lvl Max"] = false,
+                  ["Farm Max All Mastery Sword"] = false, --- i need have cdk and godhuman
+                  ["Hop Fruit 1M Quest Third Sea"] = false,
+                  ["White Screen"] = false,
+                  ["Hop if Near Farm Area"] = true,
+                  ["Auto Race V2-V3"] = false,
+                  ["Auto Pull Lever"] = false,
+                  ["Auto Get Mirror Fractal"] = false,
+                  ["Lock Fragment"] = {
+                      ["Enabled"] = false,
+                      ["Fragments"] = 25000
+                  },
+                  ["Buy Haki Color Legendary"] = false, --- it will buy if u have sgt and godhuman and dont have Valkyrie Helm
+                  ["Select Hop"] = { -- 70% will have it
+                      ["Hop Find Rip Indra Get Valkyrie Helm"] = false, -- u need have godhuman and max level
+                      ["Hop Find Full Moon Soul Guitar"] = false,
+                      ["Hop Find Rip Indra Get Tushita"] = false, --- u need have sgt and godhuman
+                      ["Hop Find Raids Castle [CDK]"] = false,
+                      ["Hop Find Cake Queen [CDK]"] = false,
+                      ["Hop Find Soul Reaper [CDK]"] = false,
+                      ["Hop Find Darkbeard [SG]"] = false,
+                  },
+                  ["Race"] = {
+                      ["Enabled"] = false,
+                      ["Auto Roll Race"] = false,
+                      ["Select Race"] =  "", -- Human, Mink, Fishman
+                  },
+                  ["Buy Haki"] = {
+                      ["Enhancement"] = true,
+                      ["Skyjump"] = true,
+                      ["Flash Step"] = true,
+                      ["Observation"] = true,
+                  },
+                  ["Blox Fruit Sniper"] = {"Light-Light"},
+                  ["Lock Fruit"] = {"Kitsune-Kitsune","Leopard-Leopard","Dough-Dough","T-Rex-T-Rex","Buddha-Buddha","Dragon-Dragon","Mammoth-Mammoth","Spirit-Spirit","Control-Control","Venom-Venom","Shadow-Shadow","Gravity-Gravity","Blizzard-Blizzard","Pain-Pain","Rumble-Rumble","Portal-Portal","Phoenix-Phoenix"},
+                  ["Webhook"] = {
+                      ["Enabled"] = true,
+                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1311701624258957332/OsXZAora0_xGXXtbMCBtE1ugioi4blAI_1NI7bWpxeWMt_9pJ5ApuJwv14J-wAjqEuh-",
+                  }
+              }
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
+          break;
+        case 'bloxFruit-25tab' :
           script = `
           repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
