@@ -1518,7 +1518,7 @@ export default {
       Object.entries(map_device_data).forEach((device,index) => {
         if (device[1]?.script){
           console.log('device?.device_id,device?.device_name,device[1]?.script',device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
-          // this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
+          this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
         }
       })
     },
