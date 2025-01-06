@@ -433,149 +433,9 @@ export default {
           scriptOption = option
         }
       })
-      if (script_sl.includes('ttd-pvp-') || script_sl.includes('ttd-drill-') || script_sl.includes('ttd-dice-') || script_sl.includes('ttd-noel-')){
-        // RNGCrate  UltraDrillCrate
-        let user_collect = ''
-        let marcoUrl = ''
-        let SelectMacro = 'message'
-        let SelectBuyCrate = ''
-        let SelectMap = ''
-        let AutoJoinPVP = false
-        let AutoJoinMatch = true
-        let AutoReplay = true
-        let WH_MatchComplete = false
-        let AutoReturnToLobby = false
-        let EventType = 'Drill Type'
-        if (script_sl.includes('ttd-pvp-')){
-          user_collect = script_sl.replace('ttd-pvp-','')
-          SelectBuyCrate = 'GoldenGladiatorCrate'
-          AutoJoinPVP = true
-          AutoJoinMatch = false
-          AutoReturnToLobby = true
-        }
-        if (script_sl.includes('ttd-drill-')){
-          user_collect = script_sl.replace('ttd-drill-','')
-          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1318054663597064262/message.txt?ex=6760ed90&is=675f9c10&hm=9afa4cc086aa20ca235e58e80a741d551df8a2b990af458ad962bdb5808f45c3&'
-          SelectMacro= 'message'
-          SelectBuyCrate = 'UltraDrillCrate'
-          SelectMap= 'DrillWorld'
-          WH_MatchComplete = true
-        }
-        if (script_sl.includes('ttd-dice-')){
-          user_collect = script_sl.replace('ttd-dice-','')
-          SelectBuyCrate = 'RNGCrate'
-          SelectMap= 'DiceWorld'
-        }
-        if (script_sl.includes('ttd-noel-')){
-          user_collect = script_sl.replace('ttd-noel-','')
-          marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1318054663597064262/message.txt?ex=6760ed90&is=675f9c10&hm=9afa4cc086aa20ca235e58e80a741d551df8a2b990af458ad962bdb5808f45c3&'
-          SelectMacro= 'message'
-          SelectBuyCrate = 'ChristmasCrate'
-          SelectMap= 'ChristmasMap2024'
-          WH_MatchComplete= true
-        }
-        script = `getgenv().Key = "${nousigi}"
-                      getgenv().ImportMacro = {
-                          "${marcoUrl}"
-                      }
-                      getgenv().EquipMacroTroop = true
-                      getgenv().Config = {
-                        ["JoinFailsafe"] = true,
-                        ["AutoSave"] = true,
-                        ["SellRarities"] = {
-                          ["Legendary"] = true,
-                          ["Basic"] = true,
-                          ["Epic"] = true,
-                          ["Mythic"] = false,
-                          ["Uncommon"] = true,
-                          ["Rare"] = true
-                        },
-                        ["DelayReplay"] = 5,
-                        ["EventType"] = "${EventType}",
-                        ["WH_MatchComplete"] = ${WH_MatchComplete},
-                        ["AutoSkip"] = true,
-                        ["AutoClaimQuest"] = true,
-                        ["TPLobbyIfPlayer"] = false,
-                        ["SelectBuyCrate"] = "${SelectBuyCrate}",
-                        ["BuyAmount"] = "Buy3",
-                        ["WH_MailSent"] = true,
-                        ["IgnoreMacroTiming"] = true,
-                        ["SelectMacro"] = "${SelectMacro}",
-                        ["ALFS_DelayHop"] = 30,
-                        ["AutoVoteDifficulty"]=true,
-                        ["SelectDifficulty"]="Hard",
-                        ["BuyCrateName"] = "${user_collect}",
-                        ["AutoClaimPlaytimeReward"] = true,
-                        ["PlaceFailsafe"] = true,
-                        ["AutoJoinEndless"] = false,
-                        ["PlayMacro"] = true,
-                        ["AutoBuyCrate"] = true,
-                        ["AutoMail"] = true,
-                        ["BoostFPS"] = true,
-                        ["Summon10"] = false,
-                        ["AutoUseBoost"] = false,
-                        ["AutoJoinPVP"] = ${AutoJoinPVP},
-                        ["AutoReturnToLobby"] = ${AutoReturnToLobby},
-                        ["AutoReplay"] = ${AutoReplay},
-                        ["ABE_Gift"] = false,
-                        ["BlackScreen"] = false,
-                        ["SellWave"] = 1,
-                        ["AutoClaimEventPass"] = false,
-                        ["DelayJoin"] = 25,
-                        ["DeleteMap"] = true,
-                        ["RequireRoll"] = 0,
-                        ["AutoJoinMatch"] = ${AutoJoinMatch},
-                        ["ALFS_HopServer"] = false,
-                        ["UseAll"] = false,
-                        ["SelectCase"] = "BasicCrate",
-                        ["AutoSellOW"] = false,
-                        ["WalkAround"] = false,
-                        ["MailName"] = "Thangcachepp02",
-                        ["AutoClaimVIP"] = false,
-                        ["AutoBuyEvent"] = false,
-                        ["AutoListForSale"] = false,
-                        ["AutoVoteDifficulty"] = false,
-                        ["AutoClaimEventQuest"] = true,
-                        ["AutoRejoin"] = true,
-                        ["WebhookURL"] = "https://discord.com/api/webhooks/1311003539438571630/B4vyCwjlQnfBGM1a4GeKGVVdH9Zp32e9uxI_bc1LcK-f2N3Es_aMosz0L6UObuNGmlgk",
-                        ["SummonDelay"] = 0.3,
-                        ["SelectMap"] = "${SelectMap}",
-                        ["AutoClaimDailyReward"] = true,
-                        ["GiftCrate"] = true,
-                        ["RequiredGem"]=500,
-                        ["UseBoosts"] = {
-                          ["2xLuckBoost_1"] = false,
-                          ["2xEggsBoost"] = false,
-                          ["2xLuckBoost_10"] = false,
-                          ["2xHalloweenCandyBoost_1"] = false,
-                          ["2xEventXPBoost"] = false,
-                          ["2xXPBoost"] = false,
-                          ["2xCoinsBoost"] = false,
-                          ["2xClocksBoost"] = false,
-                          ["2xCoinsBoost_1"] = false,
-                          ["2xHalloweenCandyBoost_10"] = false,
-                          ["2xEventXPBoost_1"] = false,
-                          ["2xHalloweenEventXPBoost"] = false,
-                          ["Weekend_2xCoinsBoost"] = false,
-                          ["2xXPBoost_10"] = false,
-                          ["2xCoinsBoost_10"] = false,
-                          ["2xXPBoost_Easter2024"] = false,
-                          ["2xCloversBoost"] = false,
-                          ["2xLuckBoost"] = false,
-                          ["Weekend_2xEndlessXPBoost"] = false,
-                          ["2xEventXPBoost_10"] = false,
-                          ["2xDrillBoost"] = true,
-                          ["2xDrillXPBoost"] = true,
-                          ["2xXPBoost_1"] = false,
-                          ["2xHalloweenCandyBoost"] = false
-                        },
-                        ["AutoSummonTroop"] = false
-                      }
-                      repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
-      } else {
-        switch (script_sl) {
-          case 'princess' :
-            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+      switch (script_sl) {
+        case 'princess' :
+          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 
                         getgenv().Key = "${token}"
 
@@ -680,9 +540,9 @@ export default {
                         }
 
                         loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
-            break;
-          case 'wave-61' :
-            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+          break;
+        case 'wave-61' :
+          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 
                         getgenv().Key = "${token}"
 
@@ -787,10 +647,10 @@ export default {
                         }
 
                         loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()`;
-            break;
-          case 'Roll-unit' :
-            script =
-                `
+          break;
+        case 'Roll-unit' :
+          script =
+              `
                 getgenv().Key = "${nousigi}"
                 getgenv().Config = {
                 ["AutoSave"] = true,
@@ -826,10 +686,10 @@ export default {
                 }
               }
               repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`;
-            break;
-          case 'bloxFruit-2600' :
-            script =
-                ` repeat task.wait() until game:IsLoaded()
+          break;
+        case 'bloxFruit-2600' :
+          script =
+              ` repeat task.wait() until game:IsLoaded()
                   repeat task.wait() until game.Players
                   repeat task.wait() until game.Players.LocalPlayer
                   _G.Team = "Pirate" -- Marine / Pirate
@@ -931,10 +791,10 @@ export default {
                   getgenv().id = "663236418499379240"
                   getgenv().Script_Mode = "Kaitun_Script"
                   loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
-            break;
-          case 'bloxFruit-25tab' :
-            script =
-                ` repeat task.wait() until game:IsLoaded()
+          break;
+        case 'bloxFruit-25tab' :
+          script =
+              ` repeat task.wait() until game:IsLoaded()
                   repeat task.wait() until game.Players
                   repeat task.wait() until game.Players.LocalPlayer
                   _G.Team = "Pirate" -- Marine / Pirate
@@ -1036,10 +896,10 @@ export default {
                   getgenv().id = "663236418499379240"
                   getgenv().Script_Mode = "Kaitun_Script"
                   loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
-            break;
-          case 'bloxFruit-fruit' :
-            script =
-                ` repeat task.wait() until game:IsLoaded()
+          break;
+        case 'bloxFruit-fruit' :
+          script =
+              ` repeat task.wait() until game:IsLoaded()
                   repeat task.wait() until game.Players
                   repeat task.wait() until game.Players.LocalPlayer
                   _G.Team = "Pirate" -- Marine / Pirate
@@ -1141,9 +1001,9 @@ export default {
                   getgenv().id = "663236418499379240"
                   getgenv().Script_Mode = "Kaitun_Script"
                   loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
-            break;
-          case 'bloxFruit-2550' :
-            script = `
+          break;
+        case 'bloxFruit-2550' :
+          script = `
           repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm ={
@@ -1221,9 +1081,9 @@ export default {
                   }
               }
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
-            break;
-          case 'bloxFruit-magma' :
-            script = `
+          break;
+        case 'bloxFruit-magma' :
+          script = `
           repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm ={
@@ -1301,9 +1161,9 @@ export default {
                   }
               }
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
-            break;
-          case 'Fisch-lv500' :
-            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+          break;
+        case 'Fisch-lv500' :
+          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
                   getgenv().Key = "${token}"
                   getgenv().SettingFarm = {
                   ["Hide UI"] = false,
@@ -1398,9 +1258,9 @@ export default {
       }
 
       loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
-            break;
-          case 'Fisch-lv750' :
-            script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+          break;
+        case 'Fisch-lv750' :
+          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
                   getgenv().Key = "${token}"
                   getgenv().SettingFarm = {
                   ["Hide UI"] = false,
@@ -1494,8 +1354,7 @@ export default {
       }
 
       loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
-            break;
-        }
+          break;
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
@@ -1517,7 +1376,6 @@ export default {
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       Object.entries(map_device_data).forEach((device,index) => {
         if (device[1]?.script){
-          console.log('device?.device_id,device?.device_name,device[1]?.script',device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
           this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
         }
       })
