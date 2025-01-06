@@ -118,7 +118,7 @@ export default {
       listGodMaxNoMythicFruit : '',
       list1TrashMythicGod : '',
       list3TrashMythic : '',
-      listVipMythic : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Gas-Gas","Yeti-Yeti","Dough-Dough","T-Rex-T-Rex"],
+      listVipMythic : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Gas-Gas","Yeti-Yeti"],
       listVipMythic2 : ["Leopard-Leopard","Dragon-Dragon","Kitsune-Kitsune","Gas-Gas","Yeti-Yeti","Dough-Dough","T-Rex-T-Rex"],
       ListBothMythic : [],
       countListBoth: {},

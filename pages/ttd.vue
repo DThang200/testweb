@@ -127,12 +127,13 @@ export default {
         {code : 'ttd-noel-wendy86083',label : 'TTD-Noel-wendy86083',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-nduarte6',label : 'TTD-Noel-nduarte6',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-robert72304',label : 'TTD-Noel-robert72304',game_id: '13775256536',private_server : false},
-        {code : 'ttd-noel-sally10633',label : 'TTD-Noel-sally10633',game_id: '13775256536',private_server : false},
-        {code : 'ttd-noel-carrie79912',label : 'TTD-Noel-carrie79912',game_id: '13775256536',private_server : false},
-        {code : 'ttd-noel-richardbarrett314',label : 'TTD-Noel-richardbarrett314',game_id: '13775256536',private_server : false},
+        // {code : 'ttd-noel-sally10633',label : 'TTD-Noel-sally10633',game_id: '13775256536',private_server : false},
+        // {code : 'ttd-noel-carrie79912',label : 'TTD-Noel-carrie79912',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-wharris187',label : 'TTD-Noel-wharris187',game_id: '13775256536',private_server : false},
+        {code : 'ttd-noel-richardbarrett314',label : 'TTD-Noel-richardbarrett314',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-rjohnson700',label : 'TTD-Noel-rjohnson700',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-Thangcachepp02',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
+        {code : 'ttd-drill-JordanKristig29',label : 'TTD-Drill-Gom',game_id: '13775256536',private_server : false},
       ],
       autoGomActive: [],
       autoGomFrom: '',
@@ -169,193 +170,6 @@ export default {
       'setStatusDevice',
       'initStatusDevice',
     ]),
-    getDataAccountRender (){
-      this.getDataAccount()
-    },
-    async handleAutoCollect() {
-      this.is_auto_gom = !this.is_auto_gom
-      if (this.is_auto_gom) {
-        await this.handleAutoGom();
-        this.interval_auto_gom = setInterval(async () => {
-          await this.handleAutoGom();
-        }, this.interval_auto_gom_timeInterVal * 1000)
-        this.interval_auto_gom_time_count = JSON.parse(JSON.stringify(this.interval_auto_gom_timeInterVal))
-        this.interval_auto_gom_time = setInterval(() => {
-          this.interval_auto_gom_time_count -= 1
-        }, 1000)
-      } else {
-        clearInterval(this.interval_auto_gom);
-        clearInterval(this.interval_auto_gom_time);
-        this.interval_auto_gom_device_name = ""
-        this.endTaskAutoGom()
-      }
-    },
-    async handleAutoGom() {
-
-      // Farm-princess
-
-      // list máy theo gem giảm dần
-
-      await this.getDataAccount();
-      setTimeout(() => {
-        const map_key_token_gom_lc = JSON.parse(localStorage.getItem('map_key_token_gom')) || [];
-        const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
-        let top_device = []
-        const map_key_token_gom = []
-        map_key_token_gom_lc.forEach(acc => {
-          if (this.autoGomActive.includes(acc?.key)){
-            map_key_token_gom.push(acc)
-          }
-        })
-        if( this.autoGomFrom || this.autoGomTo){
-          console.log('this.roblox_data_state',this.roblox_data_state)
-          this.roblox_data_state.devices.slice(this.autoGomFrom || 0, this.autoGomTo || this.roblox_data_state.devices.length + 1).forEach((device) => {
-            top_device.push({code: device?.device_name.replace(/ /g, "_")})
-          })
-          top_device = top_device.slice(this.autoGomLastCurrent, this.autoGomLastCurrent + map_key_token_gom.length)
-          this.autoGomLastCurrent = this.autoGomLastCurrent + map_key_token_gom.length
-        } else {
-          top_device = Object.keys(this.map_code_detail).map(key => {
-            return {code: key, value: this.map_code_detail[key]};
-          });
-          top_device.sort((a, b) => {
-            if (!a.value?.Crystal) return 1;
-            if (!b.value?.Crystal) return -1;
-            return b.value?.Crystal - a.value?.Crystal;
-          });
-          top_device = top_device.slice(0, map_key_token_gom.length)
-        }
-
-        console.log('top_device',top_device)
-
-        this.endTaskAutoGom();
-        let current_run = []
-        let after_run = {}
-        this.interval_auto_gom_device_name = []
-        top_device.forEach((device, index) => {
-          const script  = map_device_data[this.map_code_device_id[device.code]] ? (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "") : 'lava';
-          after_run[device.code] = {device_id:this.map_code_device_id[device.code],script :script}
-          this.setCollectScript(this.map_code_device_id[device.code],map_key_token_gom[index].key)
-          current_run.push({device_id: this.map_code_device_id[device.code],target_user:map_key_token_gom[index].key})
-          this.interval_auto_gom_device_name.push(device.code.replace(/_/g, " "))
-        })
-        localStorage.setItem('after_run_auto_gom', JSON.stringify(after_run));
-        localStorage.setItem('run_auto_gom', JSON.stringify(current_run));
-        this.interval_auto_gom_time_count = this.interval_auto_gom_timeInterVal
-        this.interval_auto_gom_device_name = this.interval_auto_gom_device_name.join("  ,")
-      },15 * 1000)
-    },
-    endTaskAutoGom(){
-      const after_current_run = JSON.parse(localStorage.getItem('after_run_auto_gom')) || {};
-      let current_run = JSON.parse(localStorage.getItem('run_auto_gom')) || [];
-      // [{device_id:"", target_user: ""}]
-      if (current_run?.length > 0) {
-        console.log('map_device_id_code',this.map_device_id_code)
-        // current_run.forEach()
-        current_run.forEach(item => {
-          if (after_current_run[this.map_device_id_code[item.device_id]]){
-            this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "),after_current_run[this.map_device_id_code[item.device_id]].script)
-          } else {
-            this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "))
-          }
-        })
-        // const script  = (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "");
-      }
-      localStorage.setItem('after_run_auto_gom', JSON.stringify({}));
-      localStorage.setItem('run_auto_gom', JSON.stringify([]));
-    },
-    secToTime(seconds) {
-      // Calculate hours, minutes, and seconds from total seconds
-      const hours = Math.floor(seconds / 3600);
-      const minutes = Math.floor((seconds % 3600) / 60);
-      const secs = seconds % 60;
-
-      // Format hours, minutes, and seconds to always show two digits
-      const formattedHours = hours.toString().padStart(2, '0');
-      const formattedMinutes = minutes.toString().padStart(2, '0');
-      const formattedSeconds = secs.toString().padStart(2, '0');
-
-      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-    },
-    initData() {
-      this.intervalId = setInterval(() => {
-        this.getDataRoblox()
-      }, this.$config.INTERVAL_TIME);
-    },
-    getStatusClass(data = null){
-      if (!(data?.total_accounts > 0)) {
-        return 'disable'
-      }
-      if (data?.inactive){
-        if (data?.inactive > 10) {
-          return 'danger'
-        } else if (data?.inactive > 5){
-          return 'warning'
-        }
-      }
-    },
-    connectDevice(device_remote){
-      if (!device_remote){
-        alert('Chưa Nhập Device link')
-        return
-      }
-      window.open(`${device_remote}`, '_blank');
-      // window.open(`https://remotedesktop.google.com/access/session/${device_remote}`, '_blank');
-    },
-    saveDeviceId(data){
-      if (!data?.device_remote){
-        alert('Chưa Nhập Device Id')
-        return
-      }
-      let device_remotes = JSON.parse(localStorage.getItem('device_remotes'));
-      const deviceId = data.device_code || data.device_name.replace(/ /g, '_');
-      if (!device_remotes) {
-        device_remotes = {}
-      }
-      device_remotes[deviceId] = data.device_remote
-      localStorage.setItem('device_remotes',JSON.stringify(device_remotes));
-    },
-    setCollectScript(device_id,user_collect){
-      if (!user_collect){
-            this.setFarmScript(device_id)
-        return
-      }
-      this.roblox_data?.devices.forEach(item => {
-        if (!user_collect && item?.device_id === device_id){
-          this.setFarmScript(item?.device_id,item?.device_name,'lava')
-          return
-        }
-        if (item?.user_collect && item?.user_collect === user_collect){
-          item.user_collect = ''
-          this.setFarmScript(item?.device_id,item?.device_name,'lava')
-        }
-        if (item?.device_id === device_id){
-          item.user_collect = user_collect
-        }
-      })
-      const token = this.map_key_token_gom.find(data => data?.key == user_collect)?.token
-      const script = `script_key = "${token}"
-            getgenv().SelectedPlayer = "${user_collect}"
-            getgenv().MainAccount = false
-            getgenv().AccountForMainToFolow = ""
-            getgenv().EnableAccountForMainFolow = false
-            getgenv().MainAccountSetting = {
-                Units = false,
-                ManuallyClaimBooth = false,
-            }
-            getgenv().AltAccountSetting = {
-                Trade = true,
-                NotSendGem = true,
-                TradeItems = {"Trait Crystal", "Risky Dice", "Frost Bind"},
-                GiveBackUnit = true,
-                KickAfterDoneTrade = true,
-            }
-            loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()`;
-      this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
-      this.setStatusDevice({device_id: device_id,key: 'script',value: `Trading to - ${user_collect}`})
-    },
-    handleSelectScript(device_id,device_name,script){
-    },
     setFarmScript(device_id,device_name,script_sl = 'lava',option=null){
       console.log('device_id,device_name,script_sl',device_id,device_name,script_sl)
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
@@ -379,11 +193,13 @@ export default {
         let AutoReplay = true
         let AutoReturnToLobby = false
         let WH_MatchComplete = false
-        let AutoBuyCrate = true
+        let AutoBuyCrate = false
         let EventType = 'Drill Type'
         let SelectDifficulty = 'Easy'
         if (script_sl.includes('ttd-pvp-')){
           user_collect = script_sl.replace('ttd-pvp-','')
+          marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_7c038bccd00ca3d2ac9f7e51f54cc430.json?macroname=abc'
+          SelectMacro= 'abc'
           SelectBuyCrate = 'GoldenGladiatorCrate'
           AutoJoinPVP = true
           AutoJoinMatch = false
@@ -391,10 +207,14 @@ export default {
         }
         if (script_sl.includes('ttd-drill-')){
           user_collect = script_sl.replace('ttd-drill-','')
-          // marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1318054663597064262/message.txt?ex=6760ed90&is=675f9c10&hm=9afa4cc086aa20ca235e58e80a741d551df8a2b990af458ad962bdb5808f45c3&'
-          // SelectMacro= 'message'
+          marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_7c038bccd00ca3d2ac9f7e51f54cc430.json?macroname=abc'
+          SelectMacro= 'abc'
           SelectBuyCrate = 'UltraDrillCrate'
           SelectMap= 'DrillWorld'
+          WH_MatchComplete= true
+          AutoReplay= false
+          AutoReturnToLobby = true
+          // AutoJoinMatch = false
         }
         if (script_sl.includes('ttd-dice-')){
           user_collect = script_sl.replace('ttd-dice-','')
@@ -515,6 +335,105 @@ export default {
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
       this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+    },
+
+    endTaskAutoGom(){
+      const after_current_run = JSON.parse(localStorage.getItem('after_run_auto_gom')) || {};
+      let current_run = JSON.parse(localStorage.getItem('run_auto_gom')) || [];
+      // [{device_id:"", target_user: ""}]
+      if (current_run?.length > 0) {
+        console.log('map_device_id_code',this.map_device_id_code)
+        // current_run.forEach()
+        current_run.forEach(item => {
+          if (after_current_run[this.map_device_id_code[item.device_id]]){
+            this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "),after_current_run[this.map_device_id_code[item.device_id]].script)
+          } else {
+            this.setFarmScript(item.device_id, this.map_device_id_code[item.device_id].replace(/_/g, " "))
+          }
+        })
+        // const script  = (map_device_data[this.map_code_device_id[device.code]].script).replace("Farm-", "");
+      }
+      localStorage.setItem('after_run_auto_gom', JSON.stringify({}));
+      localStorage.setItem('run_auto_gom', JSON.stringify([]));
+    },
+    initData() {
+      this.intervalId = setInterval(() => {
+        this.getDataRoblox()
+      }, this.$config.INTERVAL_TIME);
+    },
+    getStatusClass(data = null){
+      if (!(data?.total_accounts > 0)) {
+        return 'disable'
+      }
+      if (data?.inactive){
+        if (data?.inactive > 10) {
+          return 'danger'
+        } else if (data?.inactive > 5){
+          return 'warning'
+        }
+      }
+    },
+    connectDevice(device_remote){
+      if (!device_remote){
+        alert('Chưa Nhập Device link')
+        return
+      }
+      window.open(`${device_remote}`, '_blank');
+      // window.open(`https://remotedesktop.google.com/access/session/${device_remote}`, '_blank');
+    },
+    saveDeviceId(data){
+      if (!data?.device_remote){
+        alert('Chưa Nhập Device Id')
+        return
+      }
+      let device_remotes = JSON.parse(localStorage.getItem('device_remotes'));
+      const deviceId = data.device_code || data.device_name.replace(/ /g, '_');
+      if (!device_remotes) {
+        device_remotes = {}
+      }
+      device_remotes[deviceId] = data.device_remote
+      localStorage.setItem('device_remotes',JSON.stringify(device_remotes));
+    },
+    setCollectScript(device_id,user_collect){
+      if (!user_collect){
+            this.setFarmScript(device_id)
+        return
+      }
+      this.roblox_data?.devices.forEach(item => {
+        if (!user_collect && item?.device_id === device_id){
+          this.setFarmScript(item?.device_id,item?.device_name,'lava')
+          return
+        }
+        if (item?.user_collect && item?.user_collect === user_collect){
+          item.user_collect = ''
+          this.setFarmScript(item?.device_id,item?.device_name,'lava')
+        }
+        if (item?.device_id === device_id){
+          item.user_collect = user_collect
+        }
+      })
+      const token = this.map_key_token_gom.find(data => data?.key == user_collect)?.token
+      const script = `script_key = "${token}"
+            getgenv().SelectedPlayer = "${user_collect}"
+            getgenv().MainAccount = false
+            getgenv().AccountForMainToFolow = ""
+            getgenv().EnableAccountForMainFolow = false
+            getgenv().MainAccountSetting = {
+                Units = false,
+                ManuallyClaimBooth = false,
+            }
+            getgenv().AltAccountSetting = {
+                Trade = true,
+                NotSendGem = true,
+                TradeItems = {"Trait Crystal", "Risky Dice", "Frost Bind"},
+                GiveBackUnit = true,
+                KickAfterDoneTrade = true,
+            }
+            loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()`;
+      this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))))
+      this.setStatusDevice({device_id: device_id,key: 'script',value: `Trading to - ${user_collect}`})
+    },
+    handleSelectScript(device_id,device_name,script){
     },
     refreshScript(){
       const correctPassword = "matkhau123@"; // Mật khẩu cố định

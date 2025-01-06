@@ -62,7 +62,8 @@
       </nuxt-link>
     </div>
   </template>
-  <div style="margin-left: auto;font-size: 24px" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'transform: scale(3);margin-bottom: 32px'}`">
+  <div style="margin-left: auto;font-size: 24px;margin-bottom: 10px" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'transform: scale(3);margin-bottom: 32px'}`">
+    <button style="cursor: text;margin-right: 123px;width: 140px;opacity: 0" @click="copyHsAccount">123</button>
     <input v-model="sortInactive" id="sortInactive" type="checkbox">
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
@@ -169,11 +170,13 @@ export default {
         {code : 'princess',label : 'AD-Princess',game_id: '17017769292',private_server : true},
         {code : 'wave-61',label : 'AD-Wave-61',game_id: '17017769292',private_server : true},
         {code : 'Roll-unit',label : 'AD-Roll-unit',game_id: '17017769292',private_server : true},
-        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false},
-        {code : 'bloxFruit-25maru',label : 'Blox Fruit-Maruv2',game_id: '2753915549',private_server : false},
-        {code : 'bloxFruit-2550',label : 'Blox Fruit-2550',game_id: '2753915549',private_server : false},
-        {code : 'bloxFruit-fruit',label : 'Blox Fruit-Fruit',game_id: '2753915549',private_server : false},
-        {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
+        {code : 'Toilet',label : 'Toilet',game_id: '13775256536',private_server : true},
+        // {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false},
+        // {code : 'bloxFruit-25maru',label : 'Blox Fruit-Maruv2',game_id: '2753915549',private_server : false},
+        {code : 'bloxFruit-2600',label : 'Blox Fruit-2600',game_id: '2753915549',private_server : false},
+        {code : 'bloxFruit-25tab',label : 'Blox Fruit-25tab',game_id: '2753915549',private_server : false},
+        {code : 'bloxFruit-fruit',label : 'Blox Fruit-X3',game_id: '2753915549',private_server : false},
+        // {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
         {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
         // {code : 'ttd-pvp-lindseychristopher76',label : 'TTD-PvP-lind',game_id: '13775256536',private_server : false},
@@ -190,6 +193,7 @@ export default {
       autoGomFrom: '',
       autoGomTo: '',
       autoGomLastCurrent: 0,
+      countClickHs: 0,
       editDevice: '',
       sortInactive: false,
       roblox_data: [],
@@ -823,7 +827,7 @@ export default {
               }
               repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`;
             break;
-          case 'bloxFruit-maru' :
+          case 'bloxFruit-2600' :
             script =
                 ` repeat task.wait() until game:IsLoaded()
                   repeat task.wait() until game.Players
@@ -928,7 +932,7 @@ export default {
                   getgenv().Script_Mode = "Kaitun_Script"
                   loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()`;
             break;
-          case 'bloxFruit-25maru' :
+          case 'bloxFruit-25tab' :
             script =
                 ` repeat task.wait() until game:IsLoaded()
                   repeat task.wait() until game.Players
@@ -1493,6 +1497,11 @@ export default {
             break;
         }
       }
+      if (script_sl === 'Toilet'){
+        this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
+        this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+        return false
+      }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
       this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
@@ -1544,6 +1553,16 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
+    },
+    copyHsAccount(){
+      this.countClickHs += 1
+      if (this.countClickHs === 3) {
+        this.countClickHs = 0
+        const hs_count_account = localStorage.getItem('hs_count_account') || '';
+        navigator.clipboard.writeText(hs_count_account);
+      } else{
+        navigator.clipboard.writeText('');
+      }
     }
   }
 };

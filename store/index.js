@@ -69,12 +69,94 @@ export const actions = {
   },
   async getDataRoblox({commit}, param = {}) {
     try {
+
       const response = await this.$axios.$get(this.$config.API_ROBLOX, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
+      const responseCompleted = await this.$axios.$get('https://frontend.robloxmanager.com/v1/completedaccounts', {
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1;
+      const year = today.getFullYear();
+
       const device_remotes = JSON.parse(localStorage.getItem('device_remotes'));
+      const hs_count_account = JSON.parse(localStorage.getItem('hs_count_account')) || {};
+      const dateKey = `${day}_${month}_${year}`;
+      const total_account_completed = responseCompleted?.accounts?.length || 0
+      const count_fruit = {
+        kit : 0,
+        leo : 0,
+        yeti: 0,
+        gas: 0,
+      }
+      if (responseCompleted?.accounts){
+        responseCompleted?.accounts.forEach(acc => {
+          if (acc?.status .includes('Kitsune')){
+            count_fruit.kit +=1
+          }
+          if (acc?.status .includes('Leopard')){
+            count_fruit.leo +=1
+          }
+          if (acc?.status .includes('Yeti-Yeti')){
+            count_fruit.yeti +=1
+          }
+          if (acc?.status .includes('Gas')){
+            count_fruit.gas +=1
+          }
+        })
+      }
+      if (!hs_count_account[dateKey]){
+        hs_count_account[dateKey] = {
+          t : total_account_completed,// total_account_completed
+          i : 0,// increase
+          d : 0,// decrease
+          k:0, // kit
+          kd:0, // kit
+          y:0, // yeti
+          yd:0, // yeti
+          l:0, // leo
+          ld:0, // leo
+          g:0, // gas
+          gd:0, // gas
+        }
+      } else {
+        const change = total_account_completed - hs_count_account[dateKey].t
+        if (change > 0){
+          hs_count_account[dateKey].i += change
+        } else {
+          hs_count_account[dateKey].d += change
+        }
+
+        let changef =0
+        changef = count_fruit.kit - hs_count_account[dateKey].k
+        if (changef < 0){
+          hs_count_account[dateKey].kd += changef
+        }
+        hs_count_account[dateKey].k = count_fruit.kit
+        changef = count_fruit.leo - hs_count_account[dateKey].l
+        if (changef < 0){
+          hs_count_account[dateKey].ld += changef
+        }
+        hs_count_account[dateKey].l = count_fruit.leo
+        changef = count_fruit.yeti - hs_count_account[dateKey].y
+        if (changef < 0){
+          hs_count_account[dateKey].yd += changef
+        }
+        hs_count_account[dateKey].y = count_fruit.yeti
+        changef = count_fruit.gas - hs_count_account[dateKey].g
+        if (changef < 0){
+          hs_count_account[dateKey].gd += changef
+        }
+        hs_count_account[dateKey].g = count_fruit.gas
+        hs_count_account[dateKey].t = total_account_completed
+      }
+      localStorage.setItem('hs_count_account',JSON.stringify(hs_count_account));
       let map_device_id_code = {}
       let map_code_device_id = {}
       if (response.devices){
@@ -92,12 +174,10 @@ export const actions = {
           map_code_device_id[item.device_code] = item.device_id
         })
       }
-      console.log('response',response)
       await commit('SET_DATA_ROBLOX', response)
       await commit('SET_MAP_DEVICE_ID_CODE', map_device_id_code)
       await commit('SET_MAP_CODE_DEVICE_ID', map_code_device_id)
       ///Save history 1h
-      console.log('Save history 1h')
       let currentTime = new Date().getTime();
       let next_time_save_history = localStorage.getItem('next_time_save_history') ?  new Date(parseInt(localStorage.getItem('next_time_save_history'))).getTime() : ''
       //timestamp
@@ -106,7 +186,6 @@ export const actions = {
         next_time_save_history.setHours(next_time_save_history.getHours() + 1);
         next_time_save_history.setMinutes(0);
         next_time_save_history.setSeconds(0);
-        localStorage.setItem('next_time_save_history', next_time_save_history.getTime());
         let device_history_1h = localStorage.getItem('device_history_1h') ?  JSON.parse(localStorage.getItem('device_history_1h')) : []
         let offlineList = [];
         let totalAcc = 0;
@@ -138,7 +217,6 @@ export const actions = {
             totalInactiveAcc: totalInactiveAcc,
             rate: parseFloat(((totalAcc - totalInactiveAcc) / totalAcc).toFixed(3)) * 100,
           }})
-        localStorage.setItem('device_history_1h', JSON.stringify(device_history_1h));
       }
     } catch (e) {
       console.log('Error',e)

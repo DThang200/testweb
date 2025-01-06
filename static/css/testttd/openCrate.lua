@@ -1,3 +1,6 @@
+-- getgenv().Webhook = 'https://discord.com/api/webhooks/1320033413343875122/BU0eVuRK9qs8ndz_m5tWQWcqlHJwAsIBELfOLUhLsk78H-h8yyTLJ81OLBlkbqiMB_xa'
+-- -- getgenv().Crate = 'Golden Gladiator'
+-- getgenv().Crate = 'Christmas'
 
 repeat wait() until game:IsLoaded()
 repeat wait() until game.Players.LocalPlayer
@@ -191,13 +194,12 @@ spawn(function()
                if v:IsA("Frame") and isCrate(v) then
 
                   repeat wait()
-                     print('chon ruong de mo')
                      ClickButton1(v.TroopsFrame.InteractiveButton)
                      wait(1)
                   until getOpenGui() or not _G.farm
                   wait(1)
                   repeat wait()
-                     print('bam nut mo ruong')
+                     print(Plr.Name ..'bam nut mo ruong')
                      ClickButton1(getOpenButton(getOpenGui().Buttons).Btn)
                      wait(1)
                   until not _G.farm or not getOpenGui() or getNotEnoughSpaceGui() or not  Plrgui.Lobby.UnitFrame.Visible

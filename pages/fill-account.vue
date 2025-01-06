@@ -63,6 +63,8 @@ export default {
         {code : 'bloxFruit-fruit',label : 'Blox Fruit-Fruit',game_id: '2753915549',total_account: 66},
         {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-25maru',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 25},
+
+        // {code : 'ttd-pvp-lindseychristopher76',label : 'TTD-PvP-lind',game_id: '13775256536',total_account: 25},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
@@ -118,7 +120,7 @@ export default {
             total_account = scr?.total_account
           }
         })
-        if (total_account > 0) {
+        if (total_account > 0 || false) {
           if (device?.total_accounts < total_account) {
             const needAcc = total_account - device?.total_accounts
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
