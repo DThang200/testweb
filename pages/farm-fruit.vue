@@ -69,6 +69,7 @@ export default {
       total_account : 44,
       circle : -1,
       time_circle : 60 * 60 * 1000,
+      total_circle : 2,
       countdown_circle : 40 * 60,
       interval_countdown : null,
       interval_farm : null,
@@ -121,7 +122,7 @@ export default {
       'getDataRoblox',
     ]),
     async runFarmFruit() {
-      if (this.circle === 2){
+      if (this.circle === this.total_circle){
         this.circle = 0;
       } else {
         this.circle += 1;

@@ -687,7 +687,7 @@ export default {
               }
               repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`;
           break;
-        case 'bloxFruit-fruit' :
+        case 'bloxFruit-maru' :
           script =
               ` repeat task.wait() until game:IsLoaded()
                   repeat task.wait() until game.Players
@@ -953,6 +953,86 @@ export default {
               loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
           break;
         case 'bloxFruit-magma' :
+          script = `
+          repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+              getgenv().Key = "${token}"
+              getgenv().SettingFarm ={
+                  ["Hide UI"] = true,
+                  ["Fast Attack"] = {
+                      ["Speed Attack"] = 0,
+                      ["Attack Duration"] = 5,
+                      ["Speed Attack if Cooldown"] = 0.25,
+                      ["Attack Cooldown"] = 7,
+                  },
+                  ["Reset Teleport"] = {
+                      ["Enabled"] = false,
+                      ["Delay Reset"] = 3,
+                      ["Item Dont Reset"] = {
+                          ["Fruit"] = {
+                              ["Enabled"] = true,
+                              ["All Fruit"] = true,
+                              ["Select Fruit"] = {
+                                  ["Enabled"] = false,
+                                  ["Fruit"] = {},
+                              },
+                          },
+                      },
+                  },
+                  ["Lock FPS"] = {
+                      ["Enabled"] = false,
+                      ["FPS"] = 60,
+                  },
+                  ["Auto Awaken Fruit"] = false, -- dont support  phoenix
+                  ["GodHuman"] = true,
+                  ["Priority Get Melee Sea 3"] = false,
+                  ["Auto Saber"] = true,
+                  ["Auto Pole"] = false,
+                  ["Cursed Dual Katana"] = false,
+                  ["SoulGuitar"] = false,
+                  ["Shark Anchor"] = false, --i have cdk and god and soulguitar
+                  ["Farm Mastery Fruit If Lvl Max"] = false,
+                  ["Farm Max All Mastery Sword"] = false, --- i need have cdk and godhuman
+                  ["Hop Fruit 1M Quest Third Sea"] = false,
+                  ["White Screen"] = false,
+                  ["Hop if Near Farm Area"] = true,
+                  ["Auto Race V2-V3"] = false,
+                  ["Auto Pull Lever"] = false,
+                  ["Auto Get Mirror Fractal"] = false,
+                  ["Lock Fragment"] = {
+                      ["Enabled"] = false,
+                      ["Fragments"] = 25000
+                  },
+                  ["Buy Haki Color Legendary"] = false, --- it will buy if u have sgt and godhuman and dont have Valkyrie Helm
+                  ["Select Hop"] = { -- 70% will have it
+                      ["Hop Find Rip Indra Get Valkyrie Helm"] = false, -- u need have godhuman and max level
+                      ["Hop Find Full Moon Soul Guitar"] = false,
+                      ["Hop Find Rip Indra Get Tushita"] = false, --- u need have sgt and godhuman
+                      ["Hop Find Raids Castle [CDK]"] = false,
+                      ["Hop Find Cake Queen [CDK]"] = false,
+                      ["Hop Find Soul Reaper [CDK]"] = false,
+                      ["Hop Find Darkbeard [SG]"] = false,
+                  },
+                  ["Race"] = {
+                      ["Enabled"] = false,
+                      ["Auto Roll Race"] = false,
+                      ["Select Race"] =  "", -- Human, Mink, Fishman
+                  },
+                  ["Buy Haki"] = {
+                      ["Enhancement"] = true,
+                      ["Skyjump"] = true,
+                      ["Flash Step"] = true,
+                      ["Observation"] = true,
+                  },
+                  ["Blox Fruit Sniper"] = {"Magma-Magma"},
+                  ["Lock Fruit"] = {"Kitsune-Kitsune","Leopard-Leopard","Dough-Dough","T-Rex-T-Rex","Buddha-Buddha","Dragon-Dragon","Mammoth-Mammoth","Spirit-Spirit","Control-Control","Venom-Venom","Shadow-Shadow","Gravity-Gravity","Blizzard-Blizzard","Pain-Pain","Rumble-Rumble","Portal-Portal","Phoenix-Phoenix"},
+                  ["Webhook"] = {
+                      ["Enabled"] = true,
+                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1311701624258957332/OsXZAora0_xGXXtbMCBtE1ugioi4blAI_1NI7bWpxeWMt_9pJ5ApuJwv14J-wAjqEuh-",
+                  }
+              }
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
+          break;
+        case 'bloxFruit-fruit' :
           script = `
           repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"

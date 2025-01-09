@@ -1,113 +1,154 @@
 <template>
-  <div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        <button @click="copyContent(listNoMythicFruit)">Copy</button>
-        List no fruit
-      </div>
-      <textarea  style="width: 500px;height: 300px" disabled v-model="listNoMythicFruit">
+  <div style="display: flex;flex-direction: row">
+    <div style="border-right:  black solid 1px;flex: 1">
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          <button @click="copyContent(listNoMythicFruit)">Copy</button>
+          List no fruit
+        </div>
+        <textarea  style="width: 500px;height: 300px" disabled v-model="listNoMythicFruit">
 
       </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          <button @click="copyContent(list3TrashMythic)">Copy</button>
+          List 3 trash mythic
+        </div>
+        <textarea  style="width: 500px;height: 300px" disabled v-model="list3TrashMythic">
+
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          <button @click="copyContent(listGodMaxNoMythicFruit)">Copy</button>
+          List god max no mythic
+        </div>
+        <textarea  style="width: 500px;height: 300px" disabled v-model="listGodMaxNoMythicFruit">
+
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          <button @click="copyContent(listDisable)">Copy</button>
+          listDisable
+        </div>
+        <textarea  style="width: 500px;height: 300px" disabled v-model="listDisable">
+
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          <button @click="copyContent(list1TrashMythicGod)">Copy</button>
+          List 1 trash god-mythic
+          <button @click="deleteAccount(list1TrashMythicGod,'list1TrashMythicGod')">Delete</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" disabled v-model="list1TrashMythicGod">
+
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          <button @click="copyContent(ListBothMythic)">Copy</button>
+          List both mythic
+        </div>
+        <textarea  style="width: 500px;height: 300px" disabled v-model="ListBothMythic">
+
+      </textarea>
+        {{countListBoth}}
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          User pass cookie => user pass
+          <button @click="copyContent(user_pass)">Copy</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie" @change="renderUPCtoUP">
+
+      </textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="user_pass">
+
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          User pass cookie => cookie
+          <button @click="copyContent(input_ck)">Copy</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="input_ck" @change="getCk">
+
+      </textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="output_ck">
+
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          User pass cookie => File Format
+          <button @click="copyContent(user_pass_cookie2)">Copy</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie2" @change="renderUPCtoFileFormat">
+
+      </textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie_file">
+
+      </textarea>
+      </div>
+      <div class="field-acc" style="background: red">
+        <div style="font-size: 24px;font-weight: bold">
+          Delete acc per row
+          <button @click="deleteAccPerRow()">Delete</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="delete_acc">
+
+      </textarea>
+      </div>
     </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        <button @click="copyContent(list3TrashMythic)">Copy</button>
-        List 3 trash mythic
+    <div style="flex: 1">
+      <div class="field-action">
+        <input v-model="usernameFind">
+        <button @click="Findaccbyusername">Find acc by username</button>
+        <div v-if="usernameFindData">
+          <div>Device : {{map_device_id_code[usernameFindData?.device_id]}} </div>
+          <div><button @click="copyContent(usernameFindData?.username + ':' + usernameFindData?.password + ':' + usernameFindData?.cookie);">Copy User:pass:cookie</button></div>
+          <div><button @click="copyContent(usernameFindData?.cookie);">Copy cookie</button></div>
+          <div><button @click="copyContent(usernameFindData?.username + ':' + usernameFindData?.password)">Copy User:pass</button></div>
+        </div>
       </div>
-      <textarea  style="width: 500px;height: 300px" disabled v-model="list3TrashMythic">
+      <div class="field-action">
 
-      </textarea>
-    </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        <button @click="copyContent(listGodMaxNoMythicFruit)">Copy</button>
-        List god max no mythic
+        <div style="display: flex;flex-direction: row;gap: 8px">
+          From
+          <select v-model="selectStartDeviceIndex">
+            <option value="0">0</option>
+            <option :value="index" v-for="(device,index) in roblox_data.devices">{{device.device_code}}</option>
+          </select>
+          To
+          <select v-model="selectEndDeviceIndex">
+            <option :value="roblox_data.devices?.length">All</option>
+            <option :value="index" v-for="(device,index) in roblox_data.devices">{{device.device_code}}</option>
+          </select>
+          <button @click="getDetailAcc">Copy username pass</button>
+        </div>
       </div>
-      <textarea  style="width: 500px;height: 300px" disabled v-model="listGodMaxNoMythicFruit">
-
-      </textarea>
-    </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        <button @click="copyContent(listDisable)">Copy</button>
-        listDisable
+      <div class="field-action">
+        NumberAccount:
+        <input v-model="numberAccountGet">
+        <button @click="getEmptyAcc">getEmptyAcc</button> (from : https://robloxmanager.com/dashboard/emptyaccounts)
       </div>
-      <textarea  style="width: 500px;height: 300px" disabled v-model="listDisable">
-
-      </textarea>
-    </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        <button @click="copyContent(list1TrashMythicGod)">Copy</button>
-        List 1 trash god-mythic
-        <button @click="deleteAccount(list1TrashMythicGod,'list1TrashMythicGod')">Delete</button>
-      </div>
-      <textarea  style="width: 500px;height: 300px" disabled v-model="list1TrashMythicGod">
-
-      </textarea>
-    </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        <button @click="copyContent(ListBothMythic)">Copy</button>
-        List both mythic
-      </div>
-      <textarea  style="width: 500px;height: 300px" disabled v-model="ListBothMythic">
-
-      </textarea>
-      {{countListBoth}}
-    </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        User pass cookie => user pass
-        <button @click="copyContent(user_pass)">Copy</button>
-      </div>
-      <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie" @change="renderUPCtoUP">
-
-      </textarea>
-      <textarea  style="width: 500px;height: 300px" v-model="user_pass">
-
-      </textarea>
-    </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        User pass cookie => cookie
-        <button @click="copyContent(input_ck)">Copy</button>
-      </div>
-      <textarea  style="width: 500px;height: 300px" v-model="input_ck" @change="getCk">
-
-      </textarea>
-      <textarea  style="width: 500px;height: 300px" v-model="output_ck">
-
-      </textarea>
-    </div>
-    <div class="field-acc">
-      <div style="font-size: 24px;font-weight: bold">
-        User pass cookie => File Format
-        <button @click="copyContent(user_pass_cookie2)">Copy</button>
-      </div>
-      <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie2" @change="renderUPCtoFileFormat">
-
-      </textarea>
-      <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie_file">
-
-      </textarea>
-    </div>
-    <div class="field-acc" style="background: red">
-      <div style="font-size: 24px;font-weight: bold">
-        Delete acc per row
-        <button @click="deleteAccPerRow()">Delete</button>
-      </div>
-      <textarea  style="width: 500px;height: 300px" v-model="delete_acc">
-
-      </textarea>
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
+  computed: {
+    ...mapState({
+      roblox_data: state => state.roblox_data,
+      map_device_id_code: state => state.map_device_id_code,
+    }),
+  },
   beforeDestroy() {
   },
   data () {
@@ -129,6 +170,16 @@ export default {
       input_ck: '',
       output_ck: '',
       delete_acc: '',
+
+
+
+      usernameFind: '',
+      usernameFindData: '',
+      selectStartDeviceIndex: '',
+      selectEndDeviceIndex: '',
+      listAccSelected: [],
+
+      numberAccountGet:0
     }
   },
   async mounted() {
@@ -140,11 +191,12 @@ export default {
 
 
 
-
+    this.getDataRoblox();
     await this.getCompletedAccount();
   },
   methods: {
     ...mapActions([
+      'getDataRoblox',
       'setSaveDeleteAccount',
     ]),
     async getCompletedAccount() {
@@ -230,6 +282,7 @@ export default {
     },
     copyContent(content) {
       navigator.clipboard.writeText(content);
+      console.log('copyContent',content)
     },
     async deleteAccount(content, key) {
       if (!key) {
@@ -321,6 +374,42 @@ export default {
       });
       // deleteAcc
       alert("Delete done");
+    },
+
+    Findaccbyusername(){
+      //
+      this.usernameFindData = this.listCompletedAcc.find( acc => acc.username === this.usernameFind)
+    },
+    getDetailAcc(){
+      //
+      let listDevice = []
+      for (let i = this.selectStartDeviceIndex; i <= this.selectEndDeviceIndex; i++) {
+        listDevice.push(this.roblox_data.devices[i]?.device_id)
+      }
+      let resultData = []
+      let result = ''
+      this.listCompletedAcc.forEach(acc => {
+        if (listDevice.includes(acc.device_id)){
+          // resultData.push(acc)
+          result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
+        }
+      })
+      navigator.clipboard.writeText(result);
+      console.log('resultData',resultData)
+    },
+    async getEmptyAcc() {
+      const listCompleted = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/emptyaccounts`, {
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
+      const listAcc = listCompleted.accounts.slice(0,this.numberAccountGet)
+      console.log('listAcc',listAcc)
+      let result = ''
+      listAcc.forEach(acc => {
+        result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
+      })
+      await navigator.clipboard.writeText(result);
     }
   }
 };
@@ -328,5 +417,10 @@ export default {
 
 <style>
 .field-acc {
+}
+.field-action {
+  border: black solid 1px;
+  padding: 20px;
+  width: 100%;
 }
 </style>

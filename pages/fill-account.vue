@@ -2,7 +2,8 @@
   <div style="padding: 8px">
     <div class="d-flex flex-row" style="gap: 8px;align-items: center">
       <div>
-        <label>Fill acc</label>
+        <label for="fillttd">Fill acc ttd</label>
+        <input id="fillttd" v-model="fillttd" type="checkbox">
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
         <button type="button" @click="fillAcc()">
           Fill
@@ -57,13 +58,13 @@ export default {
       fill_acc: [],
       remain_acc: [],
       remain_acc_copy: '',
+      fillttd: false,
       farmOption : [
         // {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-2600',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
-        {code : 'bloxFruit-X3',label : 'Blox Fruit-Fruit',game_id: '2753915549',total_account: 66},
+        {code : 'bloxFruit-X3',label : 'Blox Fruit-Fruit',game_id: '2753915549',total_account: 44},
         {code : 'bloxFruit-25tab',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 25},
-
-        // {code : 'ttd-pvp-lindseychristopher76',label : 'TTD-PvP-lind',game_id: '13775256536',total_account: 25},
+        {code : 'ttd-pvp',label : 'TTD-PvP',game_id: '13775256536',total_account: 25},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
@@ -116,7 +117,9 @@ export default {
         let total_account = 0;
         this.farmOption.forEach(scr => {
           if (scr?.code === this.map_device_data[device?.device_id]?.script){
-            total_account = scr?.total_account
+            if (!(!this.fillttd && scr?.code.includes('ttd'))){
+              total_account = scr?.total_account
+            }
           }
         })
         if (total_account > 0 || false) {
