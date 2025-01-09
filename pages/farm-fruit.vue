@@ -122,7 +122,7 @@ export default {
       'getDataRoblox',
     ]),
     async runFarmFruit() {
-      if (this.circle === this.total_circle){
+      if (this.circle >= this.total_circle){
         this.circle = 0;
       } else {
         this.circle += 1;

@@ -154,14 +154,14 @@ export default {
       option: {
         "ttd-noel" : {
           count: 0,
-          listUser : ['BergerTrevorm09','JohnsKayleea9','JamesSonyas49','TylerJoshuab1089','LawrenceTamarak887','RossCherylj50']
+          listUser : ['BergerTrevorm09','JohnsKayleea9','JamesSonyas49','LawrenceTamarak887','RossCherylj50']
         },
         "ttd-pvp" : {
           count: 0,
-          listUser : ['RichardsMiguelo9268','AyalaGracef2940','MullinsSophiak93','KimSheliat648','SandovalKiarax4479','RangelAngies069']
+          listUser : ['RichardsMiguelo9268','TylerJoshuab1089','MullinsSophiak93','KimSheliat648','RangelAngies069']
           //'GambleSusanx8714','KellyEmilyf3450' , 'JacksonJefferyz4194','CobbAmyg72','MontoyaLeafp680','HardyDebraa4','HammondMistyf089','GoodmanKendrae129'
           //lucky acc : CowanJoannat2 JacksonJefferyz4194
-          //sell acc
+          //sell acc : AyalaGracef2940 GoodmanKendrae129 GambleSusanx8714 SandovalKiarax4479
         },
       },
       autoGomActive: [],
