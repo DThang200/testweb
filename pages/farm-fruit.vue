@@ -69,7 +69,7 @@ export default {
       total_account : 44,
       circle : -1,
       time_circle : 60 * 60 * 1000,
-      total_circle : 2,
+      total_circle : 1,
       countdown_circle : 40 * 60,
       interval_countdown : null,
       interval_farm : null,
