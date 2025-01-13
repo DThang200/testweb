@@ -1,6 +1,6 @@
 -- getgenv().Webhook = 'https://discord.com/api/webhooks/1320033413343875122/BU0eVuRK9qs8ndz_m5tWQWcqlHJwAsIBELfOLUhLsk78H-h8yyTLJ81OLBlkbqiMB_xa'
 -- -- getgenv().Crate = 'Golden Gladiator'
--- getgenv().Crate = 'Christmas'
+-- getgenv().Crate = 'Time'
 
 repeat wait() until game:IsLoaded()
 repeat wait() until game.Players.LocalPlayer
@@ -25,7 +25,8 @@ local function ClickButton1(a)
 end
 local listCrate = {
    ["Golden Gladiator"] = "rbxassetid://129368477907107",
-   ["Christmas"] = "rbxassetid://77647395502645"
+   ["Christmas"] = "rbxassetid://77647395502645",
+   ["Time"] = "rbxassetid://140708017990778"
 }
 function GetUnitList()
    unitlist = {}

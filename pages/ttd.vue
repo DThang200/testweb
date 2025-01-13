@@ -146,12 +146,22 @@ export default {
         // {code : 'ttd-noel-richardbarrett314',label : 'TTD-Noel-richardbarrett314',game_id: '13775256536',private_server : false},
         // {code : 'ttd-noel-rjohnson700',label : 'TTD-Noel-rjohnson700',game_id: '13775256536',private_server : false},
         // {code : 'ttd-drill-JordanKristig29',label : 'TTD-Drill-Gom',game_id: '13775256536',private_server : false},
-
+        {code : 'ttd-drill',label : 'TTD-Drill',game_id: '13775256536',private_server : false},
+        {code : 'ttd-time',label : 'TTD-Time',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel',label : 'TTD-Noel',game_id: '13775256536',private_server : false},
         {code : 'ttd-pvp',label : 'TTD-PvP',game_id: '13775256536',private_server : false},
+        {code : 'ttd-create',label : 'TTD-OpenCreateCustom',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-Thangcachepp04',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
       ],
       option: {
+        "ttd-create" : {
+          count: 0,
+          listUser : ['']
+        },
+        "ttd-time" : {
+          count: 0,
+          listUser : ['']
+        },
         "ttd-noel" : {
           count: 0,
           listUser : ['BergerTrevorm09','JohnsKayleea9','JamesSonyas49','LawrenceTamarak887','RossCherylj50']
@@ -218,6 +228,9 @@ export default {
       }
       let marcoUrl = ''
       let SelectMacro = 'message'
+      let WebhookURL = 'https://discord.com/api/webhooks/1327936685522292747/3uZitd5JmAsq-3kr-Unee4zTJ1MV43Y1a1ehkuxKrHgaD0yXXYK1jDV8ycd0Y4-p1Lap'
+      let WebhookCreate = 'https://discord.com/api/webhooks/1326099391630540863/F24-G3lDKUaRWQqCp3TiTE71fyJY2MVjh0n6RrXagbNqB0eUY5BJDXMD1_Djct7_Vpf9'
+      let SelectOpenCrate = ''
       let SelectBuyCrate = ''
       let SelectMap = ''
       let AutoJoinPVP = false
@@ -228,6 +241,10 @@ export default {
       let AutoBuyCrate = this.AutoBuyCrate
       let EventType = 'Drill Type'
       let SelectDifficulty = 'Easy'
+      let OpenCreate =
+          '["Golden Gladiator"] = "rbxassetid://129368477907107",\n' +
+          '["Christmas"] = "rbxassetid://77647395502645",\n' +
+          '["Drill"] = "rbxassetid://00917304333417",\n'
       if (script_sl === 'ttd-pvp'){
         marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_7c038bccd00ca3d2ac9f7e51f54cc430.json?macroname=abc'
         SelectMacro= 'abc'
@@ -235,23 +252,29 @@ export default {
         AutoJoinPVP = true
         AutoJoinMatch = false
         AutoReturnToLobby = true
-        WH_MatchComplete= true
       }
       if (script_sl === 'ttd-noel'){
         marcoUrl = 'https://raw.nousigi.com/macro/458441366834249728_e76526c5469acc12a8e872ea6cd59abd.json?macroname=test123'
         SelectMacro= 'test123'
         SelectBuyCrate = 'ChristmasCrate'
         SelectMap= 'Christmas2024'
-        WH_MatchComplete= true
       }
-      if (script_sl.includes('ttd-drill')){
-        marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_7c038bccd00ca3d2ac9f7e51f54cc430.json?macroname=abc'
-        SelectMacro= 'abc'
+      if (script_sl === 'ttd-drill'){
+        marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_7c038bccd00ca3d2ac9f7e51f54cc430.json?macroname=test'
+        SelectMacro= 'test'
         SelectBuyCrate = 'UltraDrillCrate'
         SelectMap= 'DrillWorld'
-        WH_MatchComplete= true
         AutoReturnToLobby = true
-        // AutoJoinMatch = false
+        // AutoReplay = false
+        // AutoJoinMatch = true
+      }
+      if (script_sl === 'ttd-time'){
+        marcoUrl = 'https://cdn.discordapp.com/attachments/1294178906987036732/1327943269686181979/message.txt?ex=6784e70b&is=6783958b&hm=33cdacca4020d45933bb1ee0b9eeeb2d52109ed432ec9350251a797702fca386&'
+        SelectMacro= 'message'
+        WH_MatchComplete= true
+        AutoReplay = true
+        SelectBuyCrate = ''
+        SelectMap= 'TimeFactory'
       }
       if (script_sl.includes('ttd-dice')){
         SelectBuyCrate = 'RNGCrate'
@@ -259,10 +282,10 @@ export default {
       }
 
       script = `getgenv().Key = "${nousigi}"
+                      getgenv().EquipMacroTroop = true
                       getgenv().ImportMacro = {
                           "${marcoUrl}"
                       }
-                      getgenv().EquipMacroTroop = true
                       getgenv().Config = {
                         ["JoinFailsafe"] = true,
                         ["AutoSave"] = true,
@@ -321,12 +344,17 @@ export default {
                         ["AutoVoteDifficulty"] = false,
                         ["AutoClaimEventQuest"] = true,
                         ["AutoRejoin"] = true,
-                        ["WebhookURL"] = "https://discord.com/api/webhooks/1326094822334795816/8e60M7JGQVcmU4s-_Ze2FLV4JyprHgen8FufjYDlIKcnzYF1-2d7M2e98TLjl6SDYLHa",
+                        ["WebhookURL"] = "${WebhookURL}",
                         ["SummonDelay"] = 0.3,
                         ["SelectMap"] = "${SelectMap}",
                         ["AutoClaimDailyReward"] = true,
                         ["GiftCrate"] = true,
                         ["RequiredGem"]=500,
+                        ["AutoDeleteTroop"]=true,
+                        ["SelectTroop"] = {
+                          ["ToyClockman"] = true,
+                          ["KneeSurgeryClockman"] = true,
+                        },
                         ["UseBoosts"] = {
                           ["2xLuckBoost_1"] = false,
                           ["2xEggsBoost"] = false,
@@ -356,7 +384,250 @@ export default {
                         ["AutoSummonTroop"] = false
                       }
                       repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
+      if (script_sl === 'ttd-time'){
+        SelectOpenCrate = 'Time'
+        script = `
+        getgenv().Webhook = '${WebhookCreate}'
+        -- getgenv().Crate = 'Golden Gladiator'
+        getgenv().Crate = '${SelectOpenCrate}'
 
+        repeat wait() until game:IsLoaded()
+        repeat wait() until game.Players.LocalPlayer
+        local Plr = game.Players.LocalPlayer
+        repeat wait() until Plr.Character
+        repeat wait() until Plr.Character:FindFirstChild("HumanoidRootPart")
+        repeat wait() until Plr.Character:FindFirstChild("Humanoid")
+        local Plrgui =game:GetService("Players").LocalPlayer.PlayerGui
+        local vim = game:GetService("VirtualInputManager")
+        local StarterGui = game:GetService("StarterGui")
+        local DelayTIme = 3
+        StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+        StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
+
+        function ClickButton(a)
+           game:GetService("VirtualInputManager"):SendMouseButtonEvent(a.AbsolutePosition.X+a.AbsoluteSize.X/2,a.AbsolutePosition.Y+65,0,true,a,1)
+           game:GetService("VirtualInputManager"):SendMouseButtonEvent(a.AbsolutePosition.X+a.AbsoluteSize.X/2,a.AbsolutePosition.Y+65,0,false,a,1)
+        end
+        local function ClickButton1(a)
+           game:GetService("GuiService").SelectedObject = a
+           game:GetService("VirtualInputManager"):SendKeyEvent(true, "Return", false, game)
+           game:GetService("VirtualInputManager"):SendKeyEvent(false, "Return", false, game)
+        end
+        local listCrate = {
+           ["Golden Gladiator"] = "rbxassetid://129368477907107",
+           ["Christmas"] = "rbxassetid://77647395502645",
+           ["Drill"] = "rbxassetid://00917304333417",
+           ["Time"] = "rbxassetid://140708017990778"
+        }
+        function GetUnitList()
+           unitlist = {}
+           if Plrgui.Lobby.UnitFrame.Visible then
+              if #Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren() <= 1 then
+                 repeat
+                       ClickButton(Plrgui.Lobby.LeftSideFrame.Units.Button)
+                 until #Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren() > 1 or  Plrgui.Lobby.UnitFrame.Visible
+              end
+              unitlist = {}
+              for i, v in pairs(Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren()) do
+                 if v:IsA("Frame") then
+                       if v.TroopsFrame.TroopIcon.Image == "rbxassetid://15798757056" then
+                          v:Destroy()
+                       else
+                          table.insert(unitlist, v.Name)
+                       end
+                 end
+              end
+
+              table.sort(unitlist)
+           else
+              ClickButton(Plrgui.Lobby.LeftSideFrame.Units.Button)
+              wait(1)
+           end
+        return unitlist
+        end
+        GetUnitList()
+        local function isCrate(crate)
+           print(crate.TroopsFrame.TroopIcon.Image)
+           if crate.TroopsFrame.TroopIcon.Image == listCrate[getgenv().Crate] then
+              return crate
+           end
+
+           return
+        end
+
+        local function getNotEnoughSpaceGui()
+           for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.NotificationFrame:GetChildren()) do
+              if v.Name == "BigNotification" and v.Parent.Visible then
+                 if string.find(v.NotificationMessage.Text,"enough space") then
+                    return v
+                 end
+              end
+           end
+           return
+
+        end
+
+
+
+        local function getOpenGui()
+           for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.NotificationFrame:GetChildren()) do
+              if v.Name == "BigNotification" and v.Parent.Visible then
+                 if v.NotificationMessage.Text == "Are you sure you want to open this crate?" then
+                    return v
+                 end
+              end
+           end
+           return
+        end
+        function CheckRarity(rarity)
+           if rarity =="Ultimate" or rarity=="Godly" then
+                 return true
+           end
+           return false
+        end
+        function SendWebHook(v)
+           local msg = {
+               ['content'] = (v.Holder.RarityFrame.Rarity.Text == "Ultimate") and "@everyone" or nil,
+               ["embeds"] = {{
+                   ["title"] = "Toilet Tower Defense",
+                   ["description"] = "Crate Opened",
+                   ["type"] = "rich",
+                   ["color"] = tonumber(0xbdce44),
+                   ["fields"] = {
+                       {
+                           ["name"] = "User",
+                           ["value"] = game.Players.LocalPlayer.Name,
+                           ["inline"] = false
+                       },
+                       {
+                           ["name"] = "Name",
+                           ["value"] = v.Holder.UnitName.Text,
+                           ["inline"] = true
+                       },
+                       {
+                           ["name"] = "Rarity",
+                           ["value"] = v.Holder.RarityFrame.Rarity.Text,
+                           ["inline"] = true
+                       },
+
+                   }
+               }}
+           }
+           request({
+               Url = getgenv().Webhook,
+               Method = "POST",
+               Headers = {["Content-Type"] = "application/json"},
+               Body = game:GetService("HttpService"):JSONEncode(msg)
+           })
+        end
+        local function getOkButton(frame)
+           if frame:FindFirstChild("OkButton") and frame.OkButton.Visible then
+              return frame.OkButton
+           end
+           return
+        end
+        local function getOpenButton(frame)
+           if frame:FindFirstChild("Button3") and frame.Button3.Visible and    frame.Button3.Btn.Text == "Open 8" then
+              return frame.Button3
+           else
+              return frame.Button1
+           end
+        end
+        local movementRadius = 10
+        local speed = 16
+        local origin = Plr.Character.HumanoidRootPart.Position
+        local function moveRandomly()
+           local randomX = math.random(-movementRadius, movementRadius)
+           local randomZ = math.random(-movementRadius, movementRadius)
+           local targetPosition = Vector3.new(origin.X + randomX, origin.Y, origin.Z + randomZ)
+           Plr.Character.Humanoid:MoveTo(targetPosition)
+           Plr.Character.Humanoid.MoveToFinished:Wait()
+        end
+        if game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UpdateLog.Visible then
+           repeat wait()
+              ClickButton1(game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UpdateLog.LogHolder.Frame.CloseButton)
+           until not game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UpdateLog.Visible
+        end
+        _G.TradeOff = false
+        while _G.TradeOff do wait()
+
+           if game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible then
+              if game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Frame.SettingsList.Trading.On.Visible then
+                 repeat wait()
+                    ClickButton1( game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Frame.SettingsList.Trading.On)
+                    wait(.5)
+                 until not  game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Frame.SettingsList.Trading.On.Visible or not _G.TradeOff
+                 _G.TradeOff = false
+                 wait()
+                 game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible = false
+              else
+                 _G.TradeOff = false
+                 wait()
+                 game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible = false
+              end
+           else
+              game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible = true
+           end
+        end
+        _G.farm = true
+        spawn(function()
+           while _G.farm do wait()
+              pcall(function()
+                -- if game.PlaceId == 13775256536 then  if Plrgui.Teleports["Lobby -> TradingPlaza"].Visible then  ClickButton(Plrgui.Teleports["Lobby -> TradingPlaza"].Teleport) else Plr.Character.HumanoidRootPart.CFrame = CFrame.new(-489.68457, 246.229614, 51.8587036) end else
+                    for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren()) do
+                       if not  Plrgui.Lobby.UnitFrame.Visible then
+                          repeat wait()
+                             ClickButton1(Plrgui.Lobby.LeftSideFrame.Units.Button)
+                             wait(1)
+                          until  Plrgui.Lobby.UnitFrame.Visible
+                          wait(1)
+                       end
+
+                       if v:IsA("Frame") and isCrate(v) then
+
+                          repeat wait()
+                             ClickButton1(v.TroopsFrame.InteractiveButton)
+                             wait(DelayTIme)
+                          until getOpenGui() or not _G.farm
+                          wait(DelayTIme)
+                          repeat wait()
+                             print(Plr.Name ..'bam nut mo ruong')
+                             ClickButton1(getOpenButton(getOpenGui().Buttons).Btn)
+                             wait(DelayTIme)
+                          until not _G.farm or not getOpenGui() or getNotEnoughSpaceGui() or not  Plrgui.Lobby.UnitFrame.Visible
+                          wait(DelayTIme)
+                          if getNotEnoughSpaceGui() then
+
+                             repeat wait()
+                                print('tat not enough')
+                                ClickButton1(getOkButton(getNotEnoughSpaceGui().Buttons).Btn)
+                                wait(1)
+                             until not getNotEnoughSpaceGui() or not _G.farm
+                             wait(2)
+                          end
+                       end
+                    end
+                    _G.farm = false
+                 --end
+              end)
+           end
+        end)
+        spawn(function()
+           while _G.farm do wait()
+
+              moveRandomly()
+              wait(.5)
+          end
+        end)
+        Plrgui.ResultsGui.TroopResultsFrame.SummonResults.ChildAdded:connect(function(Unit)
+              if Unit:IsA("Frame") then
+                 if CheckRarity(Unit.Holder.RarityFrame.Rarity.Text) then
+                       SendWebHook(Unit)
+                 end
+              end
+
+        end)`
+      }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
       this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
