@@ -367,7 +367,6 @@ export default {
       const user_pass_cookie = this.delete_acc.split('\n')
       console.log('user_pass_cookie',user_pass_cookie)
       this.downloadFile(this.delete_acc,`delete-${user_pass_cookie?.length}account`)
-      return false
       await this.setSaveDeleteAccount({key: 'deleteAccPerRow',value: this.delete_acc});
       let deleteAcc = []
       user_pass_cookie.forEach(item => {
