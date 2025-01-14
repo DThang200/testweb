@@ -294,11 +294,13 @@ export default {
         return false
       }
 
-      await this.setSaveDeleteAccount(key, content);
       const listAcc = content.split('\n')
       this.downloadFile(this.delete_acc,`delete-${listAcc?.length}account`)
+      await this.setSaveDeleteAccount(key, content);
       const listUsername = listAcc.map(user => {
-        return  user.split(':')[0]
+        if (user){
+          return  user.split(':')[0]
+        }
       })
 
       // const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/bulk/accounts`, {
@@ -362,9 +364,11 @@ export default {
       } else {
         return false
       }
-      await this.setSaveDeleteAccount({key: 'deleteAccPerRow',value: this.delete_acc});
       const user_pass_cookie = this.delete_acc.split('\n')
+      console.log('user_pass_cookie',user_pass_cookie)
       this.downloadFile(this.delete_acc,`delete-${user_pass_cookie?.length}account`)
+      return false
+      await this.setSaveDeleteAccount({key: 'deleteAccPerRow',value: this.delete_acc});
       let deleteAcc = []
       user_pass_cookie.forEach(item => {
         if (item) {
@@ -425,9 +429,8 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
-      const listAcc = listDead.accounts
       let result = ''
-      listAcc.forEach(acc => {
+      listDead.accounts.forEach(acc => {
         result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
       })
       await navigator.clipboard.writeText(result);
@@ -438,13 +441,14 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
-      const listAcc = listDead.accounts
       let result = ''
-      listAcc.forEach(acc => {
-        result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
+      listDead.accounts.forEach(acc => {
+        if (acc){
+          result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
+        }
       })
-      await navigator.clipboard.writeText(result);
-      await this.deleteAccPerRow(result);
+      this.delete_acc = result
+      await this.deleteAccPerRow();
     },
     downloadFile(content,fileName) {
       // Nội dung file
