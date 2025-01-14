@@ -454,9 +454,11 @@ export default {
       const day = String(today.getDate()).padStart(2, '0'); // Đảm bảo 2 chữ số
       const month = String(today.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
       const year = String(today.getFullYear()).slice(-2); // Lấy 2 số cuối của năm
-      const hours = String(now.getHours()).padStart(2, "0");
+      const hours = String(today.getHours()).padStart(2, "0");
+      const minutes = String(today.getMinutes()).padStart(2, "0");
+      const seconds = String(today.getSeconds()).padStart(2, "0");
 
-      const datekey = `${day}-${month}-${year}-${hours}h`
+      const datekey = `${day}-${month}-${year}-${hours}h-${minutes}m-${seconds}s`
 
       // Tạo đối tượng Blob
       const blob = new Blob([content], { type: "text/plain" });
