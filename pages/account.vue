@@ -135,6 +135,12 @@
         <input v-model="numberAccountGet">
         <button @click="getEmptyAcc">getEmptyAcc</button> (from : https://robloxmanager.com/dashboard/emptyaccounts)
       </div>
+      <div class="field-action">
+        DeadAccount:
+        <button @click="getDeadAccount">Copy dead account (user:pass:cookie)</button>
+        <button @click="deleteDeadAccount">Delete dead account and copy</button>
+
+      </div>
     </div>
   </div>
 </template>
@@ -209,7 +215,6 @@ export default {
       if (listCompleted && listCompleted?.accounts?.length > 0){
         this.listCompletedAcc = listCompleted.accounts
         this.listNoMythicFruit = ''
-        const statusTest = JSON.parse(listCompleted.accounts[0]?.status)
         listCompleted.accounts.forEach((item) => {
           if (item && item?.status){
             const status = JSON.parse(item?.status)
@@ -288,8 +293,10 @@ export default {
       if (!key) {
         return false
       }
+
       await this.setSaveDeleteAccount(key, content);
       const listAcc = content.split('\n')
+      this.downloadFile(this.delete_acc,`delete-${listAcc?.length}account`)
       const listUsername = listAcc.map(user => {
         return  user.split(':')[0]
       })
@@ -357,6 +364,7 @@ export default {
       }
       await this.setSaveDeleteAccount({key: 'deleteAccPerRow',value: this.delete_acc});
       const user_pass_cookie = this.delete_acc.split('\n')
+      this.downloadFile(this.delete_acc,`delete-${user_pass_cookie?.length}account`)
       let deleteAcc = []
       user_pass_cookie.forEach(item => {
         if (item) {
@@ -410,7 +418,65 @@ export default {
         result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
       })
       await navigator.clipboard.writeText(result);
-    }
+    },
+    async getDeadAccount() {
+      const listDead = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/cookie-dead-accounts`, {
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
+      const listAcc = listDead.accounts
+      let result = ''
+      listAcc.forEach(acc => {
+        result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
+      })
+      await navigator.clipboard.writeText(result);
+    },
+    async deleteDeadAccount() {
+      const listDead = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/cookie-dead-accounts`, {
+        headers: {
+          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+        },
+      });
+      const listAcc = listDead.accounts
+      let result = ''
+      listAcc.forEach(acc => {
+        result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
+      })
+      await navigator.clipboard.writeText(result);
+      await this.deleteAccPerRow(result);
+    },
+    downloadFile(content,fileName) {
+      // Nội dung file
+      const today = new Date();
+
+      // Lấy ngày, tháng, năm
+      const day = String(today.getDate()).padStart(2, '0'); // Đảm bảo 2 chữ số
+      const month = String(today.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+      const year = String(today.getFullYear()).slice(-2); // Lấy 2 số cuối của năm
+      const hours = String(now.getHours()).padStart(2, "0");
+
+      const datekey = `${day}-${month}-${year}-${hours}h`
+
+      // Tạo đối tượng Blob
+      const blob = new Blob([content], { type: "text/plain" });
+
+      // Tạo đường dẫn tải file
+      const url = URL.createObjectURL(blob);
+
+      // Tạo thẻ <a> để tải file
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = datekey + '/' + fileName + ".txt"; // Tên file
+
+      // Thêm thẻ <a> vào DOM, kích hoạt tải và xóa nó
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Giải phóng URL
+      URL.revokeObjectURL(url);
+    },
   }
 };
 </script>

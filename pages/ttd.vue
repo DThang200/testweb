@@ -384,7 +384,7 @@ export default {
                         ["AutoSummonTroop"] = false
                       }
                       repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
-      if (script_sl === 'ttd-time'){
+      if (script_sl === 'ttd-time2'){
         SelectOpenCrate = 'Time'
         script = `
         getgenv().Webhook = '${WebhookCreate}'
