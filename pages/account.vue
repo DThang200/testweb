@@ -133,13 +133,26 @@
       <div class="field-action">
         NumberAccount:
         <input v-model="numberAccountGet">
-        <button @click="getEmptyAcc">getEmptyAcc</button> (from : https://robloxmanager.com/dashboard/emptyaccounts)
+        <select v-model="select_empty_acc">
+          <option value="bf">Blox-fruit</option>
+          <option value="fisch">Fisch</option>
+          <option value="dead">Dead</option>
+        </select>
+        <button @click="getEmptyAcc">getEmptyAcc</button>
       </div>
       <div class="field-action">
         DeadAccount:
         <button @click="getDeadAccount">Copy dead account (user:pass:cookie)</button>
         <button @click="deleteDeadAccount">Delete dead account and copy</button>
 
+      </div>
+      <div class="field-action">
+        ByPass:
+        <textarea  style="width: 500px;height: 300px" v-model="bypass_cookie" placeholder="Cookie"></textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="bypass_email" placeholder="Email"></textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="bypass_proxy" placeholder="Proxy"></textarea>
+        <button @click="actionByPass">Action</button>
+        <button @click="getProxy">getProxy</button>
       </div>
     </div>
   </div>
@@ -176,6 +189,8 @@ export default {
       input_ck: '',
       output_ck: '',
       delete_acc: '',
+      select_empty_acc: 'bf',
+      // bf || fisch || dead
 
 
 
@@ -185,7 +200,11 @@ export default {
       selectEndDeviceIndex: '',
       listAccSelected: [],
 
-      numberAccountGet:0
+      numberAccountGet:0,
+      bypass_proxyIndex: 0,
+      bypass_proxy: '',
+      bypass_email: 'duongbsaobs261707521111111111111118@ancd.us',
+      bypass_cookie: '_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_4D49312456199D54AE46597D804376A2F730CBCC649FA2BE1A8BF8E69A33C260640BD452E04631AEFB14323DAD47D7A81EF8F3C7C34E9CE8444FDA4D38F3F24D34C425FB3EECF746578DEFDAB1485A47C1DEECBA9967D502EBE78F2C5BD5BA8C7D27E2772BA5B41887C634F71BA6C6435FE66F5D9FD696C837960D65C820B8CEB66B5C64984517EB882CAEBD94358A7D92F157637501BBDABF0ABB7370C8DF4AC662988A4B7C15B7BED24B08714FB0D40E4B020581EEB1DEDA8251C98708F681D802B541805FFCC924BBC62AB97007B41E65F7EEFAD5C318B733BD54C31C0EA5386AB04D54C13EB29E8837AE10C8042960FE85AE63FC1613E69D1863E029E566FB2F18C74A5C0EA3A6FD5D96EEF2CBEE4F5CC6B64D594BDE46BC8496B92AAF8C302F6188675C6B7FA117FA13DF62146A81501B2DFB1175858DBD9F36D5E730A4E6C31240A5EF0471FCDEA495EAF85DD7FF83E374C4ACF6D6D5B15F3E22D884FA6BBC9582E1BE870AEB922758CB86AD55BE974890A05931E66C8936219E4CC0D78E54689F0D90482BE8E42100DB1CB1DB76C7843755A04C8E8ACBEF46852F5EE470897EEB71AD1C0F80ED134AFF488FDF8A92DE81CC9AE3FA96DBFF43516ED272CA7C154C2474206FEDFB71804D7FC5125DBB699AD20A5FBCDD68D3E0D0C94F8E612DA5435FDB96E3D8B3FEC4255C54C841C716B5C8FEAA45BE2E9D408694927F1B4C4A6C'
     }
   },
   async mounted() {
@@ -406,10 +425,11 @@ export default {
         }
       })
       navigator.clipboard.writeText(result);
-      console.log('resultData',resultData)
+      console.log('resultData',result)
     },
     async getEmptyAcc() {
-      const listCompleted = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/emptyaccounts`, {
+      const empty_url = (this.select_empty_acc === 'fisch' ? 'fischemptyaccounts' : (this.select_empty_acc === 'dead' ? 'replacement-accounts' : 'emptyaccounts')) || 'emptyaccounts'
+      const listCompleted = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/${empty_url}`, {
         headers: {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
@@ -421,6 +441,118 @@ export default {
         result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
       })
       await navigator.clipboard.writeText(result);
+    },
+    async actionByPass() {
+      const accountPerMail = 15
+      const listEmail = this.bypass_email.split('\n').filter(Boolean)
+      const listCookie = this.bypass_cookie.split('\n').filter(Boolean)
+      const needMail = Math.ceil(listCookie.length / accountPerMail)
+      console.log('needMail',needMail)
+      if (needMail > listEmail.length){
+        alert(`Need more ${needMail - listEmail.length} email!`);
+        return false
+      }
+      console.log('listEmail',listEmail)
+      console.log('listCookie',listCookie)
+      let count = 0
+      let mailIndex = 0
+      for (let i = 0; i < listCookie.length; i++) {
+
+        const cookie = listCookie[i]
+        if (cookie){
+          count+=1
+          // get X-Csrf-Token
+          let xCsrfToken = this.getXCsrfToken(cookie,listEmail[mailIndex])
+          // try {
+          //   const response = await this.$axios.$post(`https://accountsettings.roblox.com/v1/email`, {
+          //     emailAddress: listEmail[mailIndex],
+          //     password: ""
+          //   },{
+          //     Cookie: '.ROBLOSECURITY=' + cookie,
+          //     headers: {
+          //       'Content-Type': 'application/json;charset=UTF-8',
+          //     },
+          //   });
+          // } catch (error) {
+          //   if (error.response && error.response.status === 403) {
+          //     xCsrfToken = error.response.headers['x-csrf-token'];
+          //     console.log(`X-Csrf-Token: ${xCsrfToken}`);
+          //   } else {
+          //     console.error('Lỗi:', error.message);
+          //   }
+          // }
+          const response = await this.$axios.$post(`https://accountsettings.roblox.com/v1/email`, {
+            emailAddress: listEmail[mailIndex],
+            password: ""
+          },{
+            headers: {
+              'Cookie': '.ROBLOSECURITY=' + cookie,
+              'Content-Type': 'application/json;charset=UTF-8',
+              'X-Csrf-Token': xCsrfToken,
+            },
+          });
+          if (count >=accountPerMail){
+            mailIndex +=1
+            count = 1
+          }
+        }
+      }
+    },
+    async getXCsrfToken(cookie,email) {
+      const listProxy = this.bypass_proxy.split('\n').filter(Boolean)
+      let xCsrfToken = ''
+      try {
+        const response = await this.$axios.$post(`https://accountsettings.roblox.com/v1/email`, {
+          emailAddress: email,
+          password: ""
+        },{
+          Cookie: '.ROBLOSECURITY=' + cookie,
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+        });
+      } catch (error) {
+        if (error.response && error.response.status === 403) {
+          xCsrfToken = error.response.headers['x-csrf-token'];
+          console.log(`X-Csrf-Token: ${xCsrfToken}`);
+        } else {
+          console.error('Lỗi:', error.message);
+        }
+      }
+    },
+    async getProxy(){
+      const listProxy = this.bypass_proxy.split('\n').filter(Boolean)
+      console.log('listProxy',listProxy)
+      for (let i = 0; i < listProxy.length; i++) {
+        const proxyAr = listProxy[i].split(':')
+        const proxy = {host: proxyAr[0],port: proxyAr[1]}
+        console.log('proxy',proxy)
+        try {
+          const response = await this.$axios.$post(`https://accountsettings.roblox.com/v1/email`, {
+            emailAddress: 'duongbsaobs261707521111111111111118@ancd.us',
+            password: ""
+          },{
+            Cookie: '.ROBLOSECURITY=' + '_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_E2E6CD9490BE5F6B52BDE80F36856B998122815EF8278F01EFB74EC59215D846C7CD56F3E56C17D01CE839196AEC8B5FFB485A0A473BE55AE123EC7C8D4368130DCE1F5436ACB75B02BD8CB83A0189556B73CD52828E43929C220A1578C3E4DD1882F970975A36E7074E96F176710A94F68654347FCAD4FD850A51A36A5395A5CB409705D9D9A4529F063F958C700255B975C00AAD14B6E29F18D1BA2D3CF47F4069DF7940706EE6469ABAB83AE6C8B670B6A6910CB4EB7C379468FE64CBA02DD8989ADD110B3581F7D291ADCCF0B89E6E6AC5D9D584D8867EA1AB8AEE248CA02CD54D547524FDF62E6D2540F4E5C8BF684E21A726A4C5CD804E3D997A6C7480F5DBB8EB02FA5E26DB71DDC161C84E8BD596194F05F60E657832A00CE7407783C6E4D00A9E1C2A872A90715B3BCBD915E791E54D86AD581D8F2E1B2DCEA451ECBC95166E8CFE40C6BE74DFA7C0349729F05EE6ADB2024BC5580B2BBC841774699C967F870DFD75105B45DDE4BE608381EA033FEDBC630D9343C403ADFA7FD32377A6A2F00D1E2070973B9553301F015547CC68C09B8C208A7D4778F1A39AB12FDBB12741C211006CA8D270786F53A1ED84D64A43CCEC393BB8449F8CBE436F71EEC904A67A3768E1D9F1505EDAF638548676EAEBD2BB2F9FC4FB146E0F7D45B4C578D792F01035F5720A555F43FA19A919A46AC53C32C159BA60BF9654CC778A77DCEA54',
+            headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+            },
+            proxy: {
+              host: proxy.host,
+              port: proxy.port,
+            },
+          });
+
+          if (response.status === 429) {
+            console.log(`Proxy ${proxy.host}:${proxy.port} is rate-limited.`);
+          } else {
+            console.log(`Proxy ${proxy.host}:${proxy.port} is working.`);
+            return true;
+          }
+        } catch (error) {
+          console.error(`Error with proxy ${proxy.host}:${proxy.port} - ${error.message}`);
+        }
+      }
+
     },
     async getDeadAccount() {
       const listDead = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/cookie-dead-accounts`, {

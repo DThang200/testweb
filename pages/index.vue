@@ -61,6 +61,29 @@
         Track stat Account bf
       </nuxt-link>
     </div>
+    <div style="display: flex;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
+
+      <label for="PlayTime">PlayTime(hour)</label>
+      <input id="PlayTime" v-model="playTime">
+      <label for="StopTime">StopTime(hour)</label>
+      <input id="StopTime" v-model="stopTime">
+      <template v-if="isRunningPlayStop">
+        {{isPlay ? 'Play' : 'Stop'}} ({{secToTime(timeCount)}})
+      </template>
+      <button @click="handleRunAndStop()">
+        Run
+      </button>
+      <button v-if="isRunningPlayStop" @click="handleCancelRunAndStop">
+        Cancel
+      </button>
+      <button style="margin-left: 50px" @click="handlePlayAll(true)">
+        Play All
+      </button>
+      <button @click="handlePlayAll(false)">
+        Stop All
+      </button>
+    </div>
+
   </template>
   <div style="margin-left: auto;font-size: 24px;margin-bottom: 10px" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'transform: scale(3);margin-bottom: 32px'}`">
     <button style="cursor: text;margin-right: 123px;width: 140px;opacity: 0" @click="copyHsAccount">123</button>
@@ -162,6 +185,7 @@ export default {
     clearInterval(this.intervalId);
     clearInterval(this.interval_auto_gom);
     clearInterval(this.interval_auto_gom_time);
+    this.handleCancelRunAndStop()
   },
   data () {
     return {
@@ -195,6 +219,12 @@ export default {
       interval_auto_gom_time: null,
       interval_auto_gom_time_count: 5400,
       interval_auto_gom_timeInterVal: 5400,
+      stopTime: 2,
+      playTime: 2,
+      timeCount : 0,
+      isPlay: true,
+      isRunningPlayStop: false,
+      intervalRunAndStop: null,
     }
   },
   async mounted() {
@@ -1194,6 +1224,35 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
+    },
+    handleCancelRunAndStop(){
+      clearInterval(this.intervalRunAndStop);
+      this.isRunningPlayStop = false
+    },
+    handleRunAndStop(){
+      this.isPlay = false
+      this.isRunningPlayStop = true
+      this.intervalRunAndStop = setInterval(() => {
+        console.log('timeCount',this.timeCount)
+        this.timeCount -= 1
+        if (this.timeCount <= 0 ){
+          this.isPlay = !this.isPlay
+          this.timeCount = (this.isPlay ? this.playTime : this.stopTime) * 60 * 60
+          this.handlePlayAll(this.isPlay);
+        }
+      }, 1000);
+    },
+    async handlePlayAll(start = false) {
+      for (let i = 0; i < this.roblox_data_state.devices.length; i++) {
+        const device = this.roblox_data_state.devices[i]
+        console.log('device?.device_id',device?.device_id)
+        const responseCompleted = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/${start ? 'start' : 'stop'}`, {},{
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+        // https://frontend.robloxmanager.com/v1/devices/cd42b76bdc6ad726b6690ad474a8cafe4184a663f47336e1be8e6f931a23a64b/stop
+      }
     },
     copyHsAccount(){
       this.countClickHs += 1
