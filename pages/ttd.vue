@@ -168,11 +168,14 @@ export default {
         },
         "ttd-pvp" : {
           count: 0,
-          listUser : []
+          listUser : ['ReeseTerryv881']
+          // listUser : ['MaddenJennyf28','ReeseTerryv881']
+          // listUser : ['lazza1ki','ReeseTerryv881', 'MaddenJennyf28', 'SchneiderJayi7440', 'FoxTonie9', 'SepiaJillianm1177']
           //'GambleSusanx8714','KellyEmilyf3450' , 'JacksonJefferyz4194','CobbAmyg72','MontoyaLeafp680','HardyDebraa4','HammondMistyf089','GoodmanKendrae129'
           //lucky acc : CowanJoannat2 JacksonJefferyz4194
           //sell acc : AyalaGracef2940 GoodmanKendrae129 GambleSusanx8714 SandovalKiarax4479
           //dead : 'RichardsMiguelo9268','TylerJoshuab1089','MullinsSophiak93','KimSheliat648','RangelAngies069' 'BergerTrevorm09','JohnsKayleea9','RossCherylj50'
+          // stephennelson897 TomatoNancyj7926 LittleHectors7645 BentleyBethanyr88 McconnellJustinv926 SanchezBillp83 GardnerFaithm614 NormanGabriellat2 PastelSharonk7 AquamarinePamelao2
         },
       },
       autoGomActive: [],

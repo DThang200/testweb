@@ -58,7 +58,7 @@
       </nuxt-link>
       -
       <nuxt-link to="/account">
-        Track stat Account bf
+        Account
       </nuxt-link>
     </div>
     <div style="display: flex;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
@@ -90,8 +90,20 @@
     <input v-model="sortInactive" id="sortInactive" type="checkbox">
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
+  <div style="margin-left: auto;font-size: 24px;margin-bottom: 10px" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'transform: scale(3);margin-bottom: 32px'}`">
+    <button style="cursor: text;margin-right: 123px;width: 140px;opacity: 0" @click="copyHsAccount">123</button>
+  </div>
+  <button @click="showHideDevice = !showHideDevice" style="width: 150px">
+    show hide device
+  </button>
+  <div v-show="showHideDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
+    <div v-for="data in roblox_data.devices" style="border: 1px solid black;padding: 4px">
+      <input :id="data.device_name+ 'hide'" type="checkbox" v-model="hideDevice" :value="data.device_name">
+      <label :for="data.device_name+ 'hide'">{{data.device_name}}</label>
+    </div>
+  </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if="hideDevice.includes(data.device_name)" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}} {{data?.running ? '' : '(stop)'}}
       </div>
@@ -176,6 +188,11 @@ export default {
           this.roblox_data = JSON.parse(JSON.stringify(value))
         }
       },deep: true
+    },
+    hideDevice : {
+      handler(value) {
+        localStorage.setItem('hideDevice', JSON.stringify(value));
+      }
     }
   },
 
@@ -223,6 +240,8 @@ export default {
       playTime: 2,
       timeCount : 0,
       isPlay: true,
+      showHideDevice: false,
+      hideDevice: [],
       isRunningPlayStop: false,
       intervalRunAndStop: null,
     }
@@ -355,6 +374,21 @@ export default {
       return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     },
     initData() {
+      this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
+      if (!this.hideDevice || this.hideDevice.length == 0){
+        this.hideDevice = [
+          'VPS 1', 'VPS 2', 'VPS 3', 'VPS 4', 'VPS 5', 'VPS 6', 'VPS 7', 'VPS 8', 'VPS 9', 'VPS 10',
+          'VPS 11', 'VPS 12', 'VPS 13', 'VPS 14', 'VPS 15', 'VPS 16', 'VPS 17', 'VPS 18', 'VPS 19', 'VPS 20',
+          'VPS 21', 'VPS 22', 'VPS 23', 'VPS 24', 'VPS 25', 'VPS 26', 'VPS 27', 'VPS 28', 'VPS 29', 'VPS 30',
+          'VPS 31', 'VPS 32', 'VPS 33', 'VPS 34', 'VPS 35', 'VPS 36', 'VPS 56', 'VPS 57', 'VPS 58', 'VPS 59',
+          'VPS 60', 'VPS 61', 'VPS 66', 'VPS 71', 'VPS 72', 'VPS 73', 'VPS 74', 'VPS 75', 'VPS 76', 'VPS 77',
+          'VPS 78', 'VPS 79', 'VPS 80', 'VPS 81', 'VPS 82', 'VPS 83', 'VPS 84', 'VPS 85', 'VPS 86', 'VPS 87',
+          'VPS 88', 'VPS 89', 'VPS 90', 'VPS 91', 'VPS 92', 'VPS 93', 'VPS 94', 'VPS 95', 'VPS 96', 'VPS 97',
+          'VPS 98', 'VPS 99', 'VPS 175', 'VPS 235'
+        ]
+        localStorage.setItem('hideDevice', JSON.stringify(this.hideDevice));
+      }
+      console.log('this.hideDevice',this.hideDevice)
       this.intervalId = setInterval(() => {
         this.getDataRoblox()
       }, this.$config.INTERVAL_TIME);
@@ -443,7 +477,7 @@ export default {
     },
     handleSelectScript(device_id,device_name,script){
     },
-    setFarmScript(device_id,device_name,script_sl = 'lava',option=null){
+    setFarmScript(device_id,device_name,script_sl = 'lava',save_script=false){
       console.log('device_id,device_name,script_sl',device_id,device_name,script_sl)
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
       const nousigi = this.map_key_token_farm.find(data => data.key == device_name)?.nousigi || "keabc481d8e57b0bc872c89d"
@@ -1171,12 +1205,16 @@ export default {
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
-        this.setStatusDevice({device_id: device_id,key: 'script',value: ''})
+        if (!save_script){
+          this.setStatusDevice({device_id: device_id,key: 'script',value: ''})
+        }
         return false
       }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
-      this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+      if (!save_script){
+        this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+      }
     },
     refreshScript(){
       const correctPassword = "matkhau123@"; // Mật khẩu cố định
