@@ -96,7 +96,7 @@
   <button @click="showHideDevice = !showHideDevice" style="width: 150px">
     show hide device
   </button>
-  <div v-show="showHideDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
+  <div v-if="showHideDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
     <div v-for="data in roblox_data.devices" style="border: 1px solid black;padding: 4px">
       <input :id="data.device_name+ 'hide'" type="checkbox" v-model="hideDevice" :value="data.device_name">
       <label :for="data.device_name+ 'hide'">{{data.device_name}}</label>
