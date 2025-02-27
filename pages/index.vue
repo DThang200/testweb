@@ -394,16 +394,16 @@ export default {
       }, this.$config.INTERVAL_TIME);
     },
     getStatusClass(data = null){
-      if (this.map_device_data[data?.device_id]?.script === 'bloxFruit-fruit'){
-        if (data?.inactive){
-          if (data?.inactive > 10) {
-            return 'danger'
-          } else if (data?.inactive > 5){
-            return 'warning'
-          }
-        }
-        return ''
-      }
+      // if (this.map_device_data[data?.device_id]?.script === 'bloxFruit-fruit'){
+      //   if (data?.inactive){
+      //     if (data?.inactive > 10) {
+      //       return 'danger'
+      //     } else if (data?.inactive > 5){
+      //       return 'warning'
+      //     }
+      //   }
+      //   return ''
+      // }
       if (!(data?.total_accounts > 0)) {
         return 'disable'
       }

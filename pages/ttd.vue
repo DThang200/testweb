@@ -30,7 +30,7 @@
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if="hideDevice.includes(data.device_name)" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}} {{data?.running ? '' : '(stop)'}}
       </div>
@@ -168,8 +168,10 @@ export default {
         },
         "ttd-pvp" : {
           count: 0,
-          listUser : ['ReeseTerryv881']
-          // listUser : ['MaddenJennyf28','ReeseTerryv881']
+          // listUser : ['FullerDeang8542']
+          listUser : ['lazza1ki','ReeseTerryv881','EnglishOctopust44','PerezCaitlinw4793','ReedKarlad31']
+
+          // GoodwinJodic4
           // listUser : ['lazza1ki','ReeseTerryv881', 'MaddenJennyf28', 'SchneiderJayi7440', 'FoxTonie9', 'SepiaJillianm1177']
           //'GambleSusanx8714','KellyEmilyf3450' , 'JacksonJefferyz4194','CobbAmyg72','MontoyaLeafp680','HardyDebraa4','HammondMistyf089','GoodmanKendrae129'
           //lucky acc : CowanJoannat2 JacksonJefferyz4194
