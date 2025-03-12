@@ -96,6 +96,7 @@ export const actions = {
         gas: 0,
       }
       if (responseCompleted?.accounts){
+        console.log('2')
         responseCompleted?.accounts.forEach(acc => {
           if (acc?.status .includes('Kitsune')){
             count_fruit.kit +=1
@@ -160,6 +161,7 @@ export const actions = {
       let map_device_id_code = {}
       let map_code_device_id = {}
       if (response.devices){
+        console.log('3')
         response.devices.forEach(item => {
           item.device_code = item.device_name.replace(/ /g, '_')
           const active_accounts_ar = item.active_accounts.split('/')
@@ -190,6 +192,7 @@ export const actions = {
         let offlineList = [];
         let totalAcc = 0;
         let totalInactiveAcc = 0;
+        console.log('4')
         response.devices.forEach(data => {
           totalAcc += data?.total_accounts
           totalInactiveAcc += data?.inactive_accounts
@@ -257,6 +260,7 @@ export const actions = {
         let map_device_code_detail = {}
         const map_code_detail = {}
         if (response.accounts) {
+          console.log('1')
           response.accounts.forEach(item => {
             if (!map_device_code_sum_acc[map_device_id_code[item.device_id]]) {
               map_device_code_sum_acc[map_device_id_code[item.device_id]] = 0
