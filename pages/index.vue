@@ -391,7 +391,7 @@ export default {
       console.log('this.hideDevice',this.hideDevice)
       this.intervalId = setInterval(() => {
         this.getDataRoblox()
-      }, this.$config.INTERVAL_TIME);
+      }, this.$config.INTERVAL_TIME || 10000);
     },
     getStatusClass(data = null){
       // if (this.map_device_data[data?.device_id]?.script === 'bloxFruit-fruit'){

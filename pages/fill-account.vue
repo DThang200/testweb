@@ -206,7 +206,7 @@ export default {
     initData() {
       this.intervalId = setInterval(() => {
         this.getDataRoblox()
-      }, this.$config.INTERVAL_TIME);
+      }, this.$config.INTERVAL_TIME || 10000);
     },
     getStatusClass(data = null){
       if (!(data?.total_accounts > 0)) {
