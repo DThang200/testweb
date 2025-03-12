@@ -156,7 +156,7 @@ export const actions = {
         hs_count_account[dateKey].g = count_fruit.gas
         hs_count_account[dateKey].t = total_account_completed
       }
-      localStorage.setItem('hs_count_account',JSON.stringify(hs_count_account));
+      // localStorage.setItem('hs_count_account',JSON.stringify(hs_count_account));
       let map_device_id_code = {}
       let map_code_device_id = {}
       if (response.devices){
