@@ -21,6 +21,7 @@
         <input v-model="AutoBuyCrate" id="AutoBuyCrate" type="checkbox">
         <label for="AutoBuyCrate">AutoBuyCrate</label>
         <input v-model="userCollectCreate" type="text" placeholder="User collect">
+        <button @click="autoEnableDevice(!isIntervalEnable)">Auto enable <span v-if="isIntervalEnable">(active)</span></button>
       </div>
     </div>
   </template>
@@ -122,6 +123,7 @@ export default {
   beforeDestroy() {
     // Clear the interval when the component is destroyed to prevent memory leaks
     this.endTaskAutoGom();
+    clearInterval(this.intervalEnable);
     clearInterval(this.intervalId);
     clearInterval(this.interval_auto_gom);
     clearInterval(this.interval_auto_gom_time);
@@ -191,6 +193,8 @@ export default {
       interval_auto_gom_timeInterVal: 5400,
       userCollectCreate: '',
       hideDevice: [],
+      intervalEnable: null,
+      isIntervalEnable: false,
     }
   },
   async mounted() {
@@ -437,6 +441,63 @@ export default {
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
       this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+    },
+    autoEnableDevice(active){
+      this.isIntervalEnable = active
+      if (!this.isIntervalEnable){
+        clearInterval(this.intervalEnable);
+      } else {
+        console.log('autoEnableDevice')
+        this.intervalEnable = setInterval(() => {
+          this.enableDevice()
+          console.log('autoEnableDevice')
+        }, 15 * 60 * 1000);
+      }
+    },
+    async enableDevice() {
+      let listToiletDevice = []
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      Object.entries(map_device_data).forEach((device,index) => {
+        if (device[1]?.script && device[1]?.script.includes('ttd-') && this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))){
+          listToiletDevice.push(device[0]);
+        }
+      })
+      let count = 0
+      for (let i = 0; i < this.roblox_data.devices.length; i++) {
+        const device = this.roblox_data.devices[i];
+        console.log('device',device.device_id)
+        if (listToiletDevice.includes(device.device_id)){
+          count++;
+          let total_account = 22;
+          const listAccount = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/accounts`,{
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+          let countEnable = 0
+          let listDisable = []
+          if (listAccount?.accounts?.length > 0){
+            listAccount?.accounts.forEach(acc => {
+              if (acc?.enabled){
+                countEnable += 1
+              } else {
+                listDisable.push({
+                  username_look_for: acc?.username,
+                  enabled: true,
+                })
+              }
+            })
+            console.log('listDisable.slice(0,(this.active_account - countEnable))',countEnable,listDisable.slice(0,(total_account - countEnable)))
+            await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`,listDisable.slice(0,(total_account - countEnable)),{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
+
+        }}
+      console.log('count',count)
+      // https://frontend.robloxmanager.com/v1/devices/930cf8350e6a91ca3d463597e892766521e5729cada6d34c22546f87e3ac3336/accounts
     },
 
     endTaskAutoGom(){
