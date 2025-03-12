@@ -68,6 +68,7 @@ export const actions = {
     commit('SET_GLOBAL_ERRORS', errors)
   },
   async getDataRoblox({commit}, param = {}) {
+    console.log('getDataRoblox')
     try {
 
       const response = await this.$axios.$get(this.$config.API_ROBLOX, {
