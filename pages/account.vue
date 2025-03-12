@@ -165,6 +165,7 @@ export default {
   computed: {
     ...mapState({
       roblox_data: state => state.roblox_data,
+      roblox_data_account: state => state.roblox_data_account,
       map_device_id_code: state => state.map_device_id_code,
     }),
   },
@@ -217,11 +218,13 @@ export default {
 
 
     this.getDataRoblox();
-    await this.getCompletedAccount();
+    this.getDataAccount();
+    // await this.getCompletedAccount();
   },
   methods: {
     ...mapActions([
       'getDataRoblox',
+      'getDataAccount',
       'setSaveDeleteAccount',
     ]),
     async getCompletedAccount() {
@@ -412,13 +415,14 @@ export default {
     },
     getDetailAcc(){
       //
+      console.log('this.roblox_data',this.roblox_data)
       let listDevice = []
       for (let i = this.selectStartDeviceIndex; i <= this.selectEndDeviceIndex; i++) {
         listDevice.push(this.roblox_data.devices[i]?.device_id)
       }
       let resultData = []
       let result = ''
-      this.listCompletedAcc.forEach(acc => {
+      this.roblox_data_account.accounts.forEach(acc => {
         if (listDevice.includes(acc.device_id)){
           // resultData.push(acc)
           result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'

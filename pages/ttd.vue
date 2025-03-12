@@ -20,6 +20,7 @@
       <div style="display: flex;flex-direction: row;gap: 5px">
         <input v-model="AutoBuyCrate" id="AutoBuyCrate" type="checkbox">
         <label for="AutoBuyCrate">AutoBuyCrate</label>
+        <input v-model="userCollectCreate" type="text" placeholder="User collect">
       </div>
     </div>
   </template>
@@ -168,16 +169,9 @@ export default {
         },
         "ttd-pvp" : {
           count: 0,
-          // listUser : ['FullerDeang8542']
-          listUser : ['lazza1ki','ReeseTerryv881','EnglishOctopust44','PerezCaitlinw4793','ReedKarlad31']
-
-          // GoodwinJodic4
-          // listUser : ['lazza1ki','ReeseTerryv881', 'MaddenJennyf28', 'SchneiderJayi7440', 'FoxTonie9', 'SepiaJillianm1177']
-          //'GambleSusanx8714','KellyEmilyf3450' , 'JacksonJefferyz4194','CobbAmyg72','MontoyaLeafp680','HardyDebraa4','HammondMistyf089','GoodmanKendrae129'
-          //lucky acc : CowanJoannat2 JacksonJefferyz4194
-          //sell acc : AyalaGracef2940 GoodmanKendrae129 GambleSusanx8714 SandovalKiarax4479
-          //dead : 'RichardsMiguelo9268','TylerJoshuab1089','MullinsSophiak93','KimSheliat648','RangelAngies069' 'BergerTrevorm09','JohnsKayleea9','RossCherylj50'
-          // stephennelson897 TomatoNancyj7926 LittleHectors7645 BentleyBethanyr88 McconnellJustinv926 SanchezBillp83 GardnerFaithm614 NormanGabriellat2 PastelSharonk7 AquamarinePamelao2
+          // listUser : ['TrungHien_2011']
+          listUser : ['FloydErin8']
+          //ReedKarlad31 EnglishOctopust44
         },
       },
       autoGomActive: [],
@@ -195,9 +189,12 @@ export default {
       interval_auto_gom_time: null,
       interval_auto_gom_time_count: 5400,
       interval_auto_gom_timeInterVal: 5400,
+      userCollectCreate: '',
+      hideDevice: [],
     }
   },
   async mounted() {
+    this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
     this.getDataRoblox();
     this.initData();
     this.getKeyGom();
@@ -227,6 +224,9 @@ export default {
         }
       })
       let user_collect = this.option[script_sl].listUser[this.option[script_sl]?.count || 0]
+      if (this.userCollectCreate) {
+        this.option[script_sl].listUser = this.userCollectCreate.split(',')
+      }
       if (this.option[script_sl].count >= this.option[script_sl].listUser?.length - 1){
         this.option[script_sl].count = 0
       } else {
@@ -244,6 +244,9 @@ export default {
       let AutoReplay = true
       let AutoReturnToLobby = false
       let WH_MatchComplete = false
+      let PVPMarcoRed = "https://raw.nousigi.com/macro/663236418499379240_bbb5d13218ac54a804da9cf427404d3a.json?macroname=m1"
+      let WH_Clone = "https://discord.com/api/webhooks/1347963702598701137/VhJNEyCY8DO4MozFw_s8XxNSkejHK-AOOQ4qKeAwEr9ineqH8m25gjYCQg2ATxaYKKkn"
+      let PVPMarcoRedName = "m1"
       let AutoBuyCrate = this.AutoBuyCrate
       let EventType = 'Drill Type'
       let SelectDifficulty = 'Easy'
@@ -252,12 +255,14 @@ export default {
           '["Christmas"] = "rbxassetid://77647395502645",\n' +
           '["Drill"] = "rbxassetid://00917304333417",\n'
       if (script_sl === 'ttd-pvp'){
-        marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_7c038bccd00ca3d2ac9f7e51f54cc430.json?macroname=abc'
-        SelectMacro= 'abc'
+        marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_bbb5d13218ac54a804da9cf427404d3a.json?macroname=m1'
+        SelectMacro= 'm1'
         SelectBuyCrate = 'GoldenGladiatorCrate'
         AutoJoinPVP = true
         AutoJoinMatch = false
         AutoReturnToLobby = true
+        WH_MatchComplete= true
+        WebhookURL= "https://discord.com/api/webhooks/1347412641424867410/CS3yMLID-0P-SFLCR08w1cEcB4rCrdM_5JdH9Mi5FizwBjU9oX_hw9wZrDVnb6rnEYfP"
       }
       if (script_sl === 'ttd-noel'){
         marcoUrl = 'https://raw.nousigi.com/macro/458441366834249728_e76526c5469acc12a8e872ea6cd59abd.json?macroname=test123'
@@ -265,6 +270,7 @@ export default {
         SelectBuyCrate = 'ChristmasCrate'
         SelectMap= 'Christmas2024'
       }
+
       if (script_sl === 'ttd-drill'){
         marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_7c038bccd00ca3d2ac9f7e51f54cc430.json?macroname=test'
         SelectMacro= 'test'
@@ -290,7 +296,8 @@ export default {
       script = `getgenv().Key = "${nousigi}"
                       getgenv().EquipMacroTroop = true
                       getgenv().ImportMacro = {
-                          "${marcoUrl}"
+                          "${marcoUrl}",
+                          "${PVPMarcoRed}"
                       }
                       getgenv().Config = {
                         ["JoinFailsafe"] = true,
@@ -325,7 +332,7 @@ export default {
                         ["AutoBuyCrate"] = ${AutoBuyCrate},
                         ["AutoMail"] = true,
                         ["BoostFPS"] = true,
-                        ["Summon10"] = false,
+                        ["Summon10"] = true,
                         ["AutoUseBoost"] = false,
                         ["AutoJoinPVP"] = ${AutoJoinPVP},
                         ["AutoReturnToLobby"] = ${AutoReturnToLobby},
@@ -336,14 +343,17 @@ export default {
                         ["AutoClaimEventPass"] = false,
                         ["DelayJoin"] = 25,
                         ["DeleteMap"] = true,
-                        ["RequireRoll"] = 0,
+                        ["RequireRoll"] = 10,
+                        ["SelectPVPMacro"] = {
+                           ["Red"] = "${PVPMarcoRedName}"
+                        },
                         ["AutoJoinMatch"] = ${AutoJoinMatch},
                         ["ALFS_HopServer"] = false,
                         ["UseAll"] = false,
-                        ["SelectCase"] = "BasicCrate",
+                        ["SelectCase"] = "MythicCrate",
                         ["AutoSellOW"] = false,
                         ["WalkAround"] = true,
-                        ["MailName"] = "Thangcachepp04",
+                        ["MailName"] = "Thangcachepp03",
                         ["AutoClaimVIP"] = false,
                         ["AutoBuyEvent"] = false,
                         ["AutoListForSale"] = false,
@@ -351,7 +361,7 @@ export default {
                         ["AutoClaimEventQuest"] = true,
                         ["AutoRejoin"] = true,
                         ["WebhookURL"] = "${WebhookURL}",
-                        ["SummonDelay"] = 0.3,
+                        ["SummonDelay"] = 1,
                         ["SelectMap"] = "${SelectMap}",
                         ["AutoClaimDailyReward"] = true,
                         ["GiftCrate"] = true,
@@ -361,42 +371,12 @@ export default {
                           ["ToyClockman"] = true,
                           ["KneeSurgeryClockman"] = true,
                         },
-                        ["UseBoosts"] = {
-                          ["2xLuckBoost_1"] = false,
-                          ["2xEggsBoost"] = false,
-                          ["2xLuckBoost_10"] = false,
-                          ["2xHalloweenCandyBoost_1"] = false,
-                          ["2xEventXPBoost"] = false,
-                          ["2xXPBoost"] = false,
-                          ["2xCoinsBoost"] = false,
-                          ["2xClocksBoost"] = false,
-                          ["2xCoinsBoost_1"] = false,
-                          ["2xHalloweenCandyBoost_10"] = false,
-                          ["2xEventXPBoost_1"] = false,
-                          ["2xHalloweenEventXPBoost"] = false,
-                          ["Weekend_2xCoinsBoost"] = false,
-                          ["2xXPBoost_10"] = false,
-                          ["2xCoinsBoost_10"] = false,
-                          ["2xXPBoost_Easter2024"] = false,
-                          ["2xCloversBoost"] = false,
-                          ["2xLuckBoost"] = false,
-                          ["Weekend_2xEndlessXPBoost"] = false,
-                          ["2xEventXPBoost_10"] = false,
-                          ["2xDrillBoost"] = true,
-                          ["2xDrillXPBoost"] = true,
-                          ["2xXPBoost_1"] = false,
-                          ["2xHalloweenCandyBoost"] = false
-                        },
-                        ["AutoSummonTroop"] = false
+                        ["AutoSummonTroop"] = true
                       }
                       repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
       if (script_sl === 'ttd-time2'){
         SelectOpenCrate = 'Time'
-        script = `
-        getgenv().Webhook = '${WebhookCreate}'
-        -- getgenv().Crate = 'Golden Gladiator'
-        getgenv().Crate = '${SelectOpenCrate}'
-
+        script = `getgenv().Webhook = '${WH_Clone}'
         repeat wait() until game:IsLoaded()
         repeat wait() until game.Players.LocalPlayer
         local Plr = game.Players.LocalPlayer
@@ -404,87 +384,6 @@ export default {
         repeat wait() until Plr.Character:FindFirstChild("HumanoidRootPart")
         repeat wait() until Plr.Character:FindFirstChild("Humanoid")
         local Plrgui =game:GetService("Players").LocalPlayer.PlayerGui
-        local vim = game:GetService("VirtualInputManager")
-        local StarterGui = game:GetService("StarterGui")
-        local DelayTIme = 3
-        StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
-        StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
-
-        function ClickButton(a)
-           game:GetService("VirtualInputManager"):SendMouseButtonEvent(a.AbsolutePosition.X+a.AbsoluteSize.X/2,a.AbsolutePosition.Y+65,0,true,a,1)
-           game:GetService("VirtualInputManager"):SendMouseButtonEvent(a.AbsolutePosition.X+a.AbsoluteSize.X/2,a.AbsolutePosition.Y+65,0,false,a,1)
-        end
-        local function ClickButton1(a)
-           game:GetService("GuiService").SelectedObject = a
-           game:GetService("VirtualInputManager"):SendKeyEvent(true, "Return", false, game)
-           game:GetService("VirtualInputManager"):SendKeyEvent(false, "Return", false, game)
-        end
-        local listCrate = {
-           ["Golden Gladiator"] = "rbxassetid://129368477907107",
-           ["Christmas"] = "rbxassetid://77647395502645",
-           ["Drill"] = "rbxassetid://00917304333417",
-           ["Time"] = "rbxassetid://140708017990778"
-        }
-        function GetUnitList()
-           unitlist = {}
-           if Plrgui.Lobby.UnitFrame.Visible then
-              if #Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren() <= 1 then
-                 repeat
-                       ClickButton(Plrgui.Lobby.LeftSideFrame.Units.Button)
-                 until #Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren() > 1 or  Plrgui.Lobby.UnitFrame.Visible
-              end
-              unitlist = {}
-              for i, v in pairs(Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren()) do
-                 if v:IsA("Frame") then
-                       if v.TroopsFrame.TroopIcon.Image == "rbxassetid://15798757056" then
-                          v:Destroy()
-                       else
-                          table.insert(unitlist, v.Name)
-                       end
-                 end
-              end
-
-              table.sort(unitlist)
-           else
-              ClickButton(Plrgui.Lobby.LeftSideFrame.Units.Button)
-              wait(1)
-           end
-        return unitlist
-        end
-        GetUnitList()
-        local function isCrate(crate)
-           print(crate.TroopsFrame.TroopIcon.Image)
-           if crate.TroopsFrame.TroopIcon.Image == listCrate[getgenv().Crate] then
-              return crate
-           end
-
-           return
-        end
-
-        local function getNotEnoughSpaceGui()
-           for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.NotificationFrame:GetChildren()) do
-              if v.Name == "BigNotification" and v.Parent.Visible then
-                 if string.find(v.NotificationMessage.Text,"enough space") then
-                    return v
-                 end
-              end
-           end
-           return
-
-        end
-
-
-
-        local function getOpenGui()
-           for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.NotificationFrame:GetChildren()) do
-              if v.Name == "BigNotification" and v.Parent.Visible then
-                 if v.NotificationMessage.Text == "Are you sure you want to open this crate?" then
-                    return v
-                 end
-              end
-           end
-           return
-        end
         function CheckRarity(rarity)
            if rarity =="Ultimate" or rarity=="Godly" then
                  return true
@@ -493,16 +392,16 @@ export default {
         end
         function SendWebHook(v)
            local msg = {
-               ['content'] = (v.Holder.RarityFrame.Rarity.Text == "Ultimate") and "@everyone" or nil,
+               ['content'] = "@everyone",
                ["embeds"] = {{
-                   ["title"] = "Toilet Tower Defense",
+                   ["title"] = "Thangcachepp",
                    ["description"] = "Crate Opened",
                    ["type"] = "rich",
                    ["color"] = tonumber(0xbdce44),
                    ["fields"] = {
                        {
                            ["name"] = "User",
-                           ["value"] = game.Players.LocalPlayer.Name,
+                           ["value"] = string.sub(game.Players.LocalPlayer.Name, 1, 5).. "...",
                            ["inline"] = false
                        },
                        {
@@ -526,105 +425,6 @@ export default {
                Body = game:GetService("HttpService"):JSONEncode(msg)
            })
         end
-        local function getOkButton(frame)
-           if frame:FindFirstChild("OkButton") and frame.OkButton.Visible then
-              return frame.OkButton
-           end
-           return
-        end
-        local function getOpenButton(frame)
-           if frame:FindFirstChild("Button3") and frame.Button3.Visible and    frame.Button3.Btn.Text == "Open 8" then
-              return frame.Button3
-           else
-              return frame.Button1
-           end
-        end
-        local movementRadius = 10
-        local speed = 16
-        local origin = Plr.Character.HumanoidRootPart.Position
-        local function moveRandomly()
-           local randomX = math.random(-movementRadius, movementRadius)
-           local randomZ = math.random(-movementRadius, movementRadius)
-           local targetPosition = Vector3.new(origin.X + randomX, origin.Y, origin.Z + randomZ)
-           Plr.Character.Humanoid:MoveTo(targetPosition)
-           Plr.Character.Humanoid.MoveToFinished:Wait()
-        end
-        if game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UpdateLog.Visible then
-           repeat wait()
-              ClickButton1(game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UpdateLog.LogHolder.Frame.CloseButton)
-           until not game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UpdateLog.Visible
-        end
-        _G.TradeOff = false
-        while _G.TradeOff do wait()
-
-           if game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible then
-              if game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Frame.SettingsList.Trading.On.Visible then
-                 repeat wait()
-                    ClickButton1( game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Frame.SettingsList.Trading.On)
-                    wait(.5)
-                 until not  game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Frame.SettingsList.Trading.On.Visible or not _G.TradeOff
-                 _G.TradeOff = false
-                 wait()
-                 game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible = false
-              else
-                 _G.TradeOff = false
-                 wait()
-                 game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible = false
-              end
-           else
-              game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.SettingsFrame.Visible = true
-           end
-        end
-        _G.farm = true
-        spawn(function()
-           while _G.farm do wait()
-              pcall(function()
-                -- if game.PlaceId == 13775256536 then  if Plrgui.Teleports["Lobby -> TradingPlaza"].Visible then  ClickButton(Plrgui.Teleports["Lobby -> TradingPlaza"].Teleport) else Plr.Character.HumanoidRootPart.CFrame = CFrame.new(-489.68457, 246.229614, 51.8587036) end else
-                    for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren()) do
-                       if not  Plrgui.Lobby.UnitFrame.Visible then
-                          repeat wait()
-                             ClickButton1(Plrgui.Lobby.LeftSideFrame.Units.Button)
-                             wait(1)
-                          until  Plrgui.Lobby.UnitFrame.Visible
-                          wait(1)
-                       end
-
-                       if v:IsA("Frame") and isCrate(v) then
-
-                          repeat wait()
-                             ClickButton1(v.TroopsFrame.InteractiveButton)
-                             wait(DelayTIme)
-                          until getOpenGui() or not _G.farm
-                          wait(DelayTIme)
-                          repeat wait()
-                             print(Plr.Name ..'bam nut mo ruong')
-                             ClickButton1(getOpenButton(getOpenGui().Buttons).Btn)
-                             wait(DelayTIme)
-                          until not _G.farm or not getOpenGui() or getNotEnoughSpaceGui() or not  Plrgui.Lobby.UnitFrame.Visible
-                          wait(DelayTIme)
-                          if getNotEnoughSpaceGui() then
-
-                             repeat wait()
-                                print('tat not enough')
-                                ClickButton1(getOkButton(getNotEnoughSpaceGui().Buttons).Btn)
-                                wait(1)
-                             until not getNotEnoughSpaceGui() or not _G.farm
-                             wait(2)
-                          end
-                       end
-                    end
-                    _G.farm = false
-                 --end
-              end)
-           end
-        end)
-        spawn(function()
-           while _G.farm do wait()
-
-              moveRandomly()
-              wait(.5)
-          end
-        end)
         Plrgui.ResultsGui.TroopResultsFrame.SummonResults.ChildAdded:connect(function(Unit)
               if Unit:IsA("Frame") then
                  if CheckRarity(Unit.Holder.RarityFrame.Rarity.Text) then

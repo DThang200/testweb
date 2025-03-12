@@ -124,6 +124,124 @@ export default {
       finishRender: false,
       responseAll :[],
       link_private_data : [],
+      scriptOpenCreateBase64New : btoa(unescape(encodeURIComponent(
+          `getgenv().Webhook = 'https://discord.com/api/webhooks/1347970609472081931/GFTDj5ho2J1VA4FSYr116kHxfw0tHgpbYxhgNnEtgNFnkx-wfqVZsvxSXeveoD-m1gBE'
+        repeat wait() until game:IsLoaded()
+        repeat wait() until game.Players.LocalPlayer
+        local Plr = game.Players.LocalPlayer
+        repeat wait() until Plr.Character
+        repeat wait() until Plr.Character:FindFirstChild("HumanoidRootPart")
+        repeat wait() until Plr.Character:FindFirstChild("Humanoid")
+        local Plrgui =game:GetService("Players").LocalPlayer.PlayerGui
+        function CheckRarity(rarity)
+           if rarity =="Ultimate" then
+                 return true
+           end
+           return false
+        end
+        function SendWebHook(v)
+           local msg = {
+               ['content'] = "@everyone",
+               ["embeds"] = {{
+                   ["title"] = "Thangcachepp",
+                   ["description"] = "Crate Opened",
+                   ["type"] = "rich",
+                   ["color"] = tonumber(0xbdce44),
+                   ["fields"] = {
+                       {
+                           ["name"] = "User",
+                           ["value"] = string.sub(game.Players.LocalPlayer.Name, 1, 5).. "...",
+                           ["inline"] = false
+                       },
+                       {
+                           ["name"] = "Name",
+                           ["value"] = v.Holder.UnitName.Text,
+                           ["inline"] = true
+                       },
+                       {
+                           ["name"] = "Rarity",
+                           ["value"] = v.Holder.RarityFrame.Rarity.Text,
+                           ["inline"] = true
+                       },
+
+                   }
+               }}
+           }
+           request({
+               Url = getgenv().Webhook,
+               Method = "POST",
+               Headers = {["Content-Type"] = "application/json"},
+               Body = game:GetService("HttpService"):JSONEncode(msg)
+           })
+        end
+        Plrgui.ResultsGui.TroopResultsFrame.SummonResults.ChildAdded:connect(function(Unit)
+              if Unit:IsA("Frame") then
+                 if CheckRarity(Unit.Holder.RarityFrame.Rarity.Text) then
+                       SendWebHook(Unit)
+                 end
+              end
+
+        end)`
+      ))),
+      scriptOpenCreateBase64 : btoa(unescape(encodeURIComponent(
+          `getgenv().Webhook = 'https://discord.com/api/webhooks/1347970609472081931/GFTDj5ho2J1VA4FSYr116kHxfw0tHgpbYxhgNnEtgNFnkx-wfqVZsvxSXeveoD-m1gBE'
+        repeat wait() until game:IsLoaded()
+        repeat wait() until game.Players.LocalPlayer
+        local Plr = game.Players.LocalPlayer
+        repeat wait() until Plr.Character
+        repeat wait() until Plr.Character:FindFirstChild("HumanoidRootPart")
+        repeat wait() until Plr.Character:FindFirstChild("Humanoid")
+        local Plrgui =game:GetService("Players").LocalPlayer.PlayerGui
+        function CheckRarity(rarity)
+           if rarity =="Ultimate" then
+                 return true
+           end
+           return false
+        end
+        function SendWebHook(v)
+           local msg = {
+               ['content'] = "@everyone",
+               ["embeds"] = {{
+                   ["title"] = "Thangcachepp",
+                   ["description"] = "Crate Opened",
+                   ["type"] = "rich",
+                   ["color"] = tonumber(0xbdce44),
+                   ["fields"] = {
+                       {
+                           ["name"] = "User",
+                           ["value"] = game.Players.LocalPlayer.Name,
+                           ["inline"] = false
+                       },
+                       {
+                           ["name"] = "Name",
+                           ["value"] = v.Holder.UnitName.Text,
+                           ["inline"] = true
+                       },
+                       {
+                           ["name"] = "Rarity",
+                           ["value"] = v.Holder.RarityFrame.Rarity.Text,
+                           ["inline"] = true
+                       },
+
+                   }
+               }}
+           }
+           request({
+               Url = getgenv().Webhook,
+               Method = "POST",
+               Headers = {["Content-Type"] = "application/json"},
+               Body = game:GetService("HttpService"):JSONEncode(msg)
+           })
+        end
+        Plrgui.ResultsGui.TroopResultsFrame.SummonResults.ChildAdded:connect(function(Unit)
+              if Unit:IsA("Frame") then
+                 if CheckRarity(Unit.Holder.RarityFrame.Rarity.Text) then
+                       SendWebHook(Unit)
+                 end
+              end
+
+        end)`
+      ))),
       scriptFixLagBase64 : btoa(unescape(encodeURIComponent(
           `game:GetService("RunService"):Set3dRenderingEnabled(false)
                 for i,v in next, workspace:GetDescendants() do
@@ -307,6 +425,36 @@ export default {
               console.log('responseCreateScriptFixLag',responseCreateScriptFixLag)
             }
           }
+          let checkValidOpenCreate = false
+          if (response?.scripts){
+            for (let j = 0; j < response?.scripts?.length; j++) {
+              console.log('response?.scripts[i]?.script_data',response?.scripts[j]?.script_data)
+              if (response?.scripts[j]?.script_data === this.scriptOpenCreateBase64){
+                checkValidOpenCreate = true
+              }
+              if (response?.scripts[j]?.script_data === this.scriptOpenCreateBase64New){
+                const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts/${response?.scripts[j]?.script_id}`,  {
+                  headers: {
+                    'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+                  },
+                });
+              }
+            }
+          }
+          checkValidOpenCreate = false
+          if (!checkValidOpenCreate){
+            console.log('device?.deviceName',pc?.deviceName)
+            if (configId){
+              const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
+                "script_name": "WH open crate",
+                "script_data": this.scriptOpenCreateBase64New
+              },{
+                headers: {
+                  'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+                },
+              });
+            }
+          }
           // response.scripts
           // post https://frontend.robloxmanager.com/v1/configs/${pc?.deviceId}/scripts
           // {
@@ -439,7 +587,7 @@ export default {
         const resSetScriptFisch = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device_id}/updateautochange`, {
           // auto_change_config_id: "80bcdd12f58138ee2372182a0a4f6198f87115638aaa407095fb2cf408d7c2f7",
           // auto_change_enabled : true,
-          auto_change_cookie_dead_enabled : true
+          auto_change_cookie_dead_enabled : false
         }, {
           headers: {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
