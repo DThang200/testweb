@@ -193,13 +193,15 @@ export const actions = {
         let totalAcc = 0;
         let totalInactiveAcc = 0;
         console.log('4')
-        response.devices.forEach(data => {
-          totalAcc += data?.total_accounts
-          totalInactiveAcc += data?.inactive_accounts
-          if (data?.inactive_accounts > data?.total_accounts - 5){
-            offlineList.push(data?.device_name)
-          }
-        })
+        if (response && response.devices && response.devices?.length > 0){
+          response.devices.forEach(data => {
+            totalAcc += data?.total_accounts
+            totalInactiveAcc += data?.inactive_accounts
+            if (data?.inactive_accounts > data?.total_accounts - 5){
+              offlineList.push(data?.device_name)
+            }
+          })
+        }
         next_time_save_history.setHours(next_time_save_history.getHours() - 1);
 
         const date = new Date("2024-11-12T00:00:00Z"); // Giả sử thời gian là 2024-11-12, giờ UTC
