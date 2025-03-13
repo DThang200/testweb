@@ -22,6 +22,7 @@
         <label for="AutoBuyCrate">AutoBuyCrate</label>
         <input v-model="userCollectCreate" type="text" placeholder="User collect">
         <button @click="autoEnableDevice(!isIntervalEnable)">Auto enable <span v-if="isIntervalEnable">(active)</span></button>
+        <button @click="enableDevice">Enable Device</button>
       </div>
     </div>
   </template>

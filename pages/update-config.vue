@@ -193,14 +193,14 @@ export default {
         repeat wait() until Plr.Character:FindFirstChild("Humanoid")
         local Plrgui =game:GetService("Players").LocalPlayer.PlayerGui
         function CheckRarity(rarity)
-           if rarity =="Ultimate" then
+           if rarity =="Ultimate" or rarity=="Godly" then
                  return true
            end
            return false
         end
         function SendWebHook(v)
            local msg = {
-               ['content'] = "@everyone",
+               ['content'] = rarity =="Ultimate" ? '@everyone',
                ["embeds"] = {{
                    ["title"] = "Thangcachepp",
                    ["description"] = "Crate Opened",
@@ -433,6 +433,7 @@ export default {
                 checkValidOpenCreate = true
               }
               if (response?.scripts[j]?.script_data === this.scriptOpenCreateBase64New){
+                console.log('this.scriptOpenCreateBase64New')
                 const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts/${response?.scripts[j]?.script_id}`,  {
                   headers: {
                     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
@@ -447,7 +448,7 @@ export default {
             if (configId){
               const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
                 "script_name": "WH open crate",
-                "script_data": this.scriptOpenCreateBase64New
+                "script_data": this.scriptOpenCreateBase64
               },{
                 headers: {
                   'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
