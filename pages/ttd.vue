@@ -452,7 +452,7 @@ export default {
         this.intervalEnable = setInterval(() => {
           this.enableDevice()
           console.log('autoEnableDevice')
-        }, 15 * 60 * 1000);
+        }, 10 * 60 * 1000);
       }
     },
     async enableDevice() {
