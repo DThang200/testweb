@@ -46,6 +46,7 @@ export default {
     ...mapState({
       map_device_data: state => state.map_device_data,
       roblox_data_state: state => state.roblox_data,
+      map_device_id_code: state => state.map_device_id_code,
     }),
   },
   data() {
@@ -61,6 +62,7 @@ export default {
       roblox_data: [],
       fill_acc: [],
       remain_acc: [],
+      hideDevice: [],
       remain_acc_copy: '',
       fillttd: false,
       farmOption : [
@@ -88,6 +90,7 @@ export default {
     }
   },
   mounted() {
+    this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
     this.getDataRoblox();
     // this.runFarmFruit();
     this.initData();
@@ -122,7 +125,7 @@ export default {
         this.farmOption.forEach(scr => {
           if (scr?.code === this.map_device_data[device?.device_id]?.script){
             if (!(!this.fillttd)){
-              if (scr?.code.includes('ttd')){
+              if (scr?.code.includes('ttd') && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
                 total_account = scr?.total_account
               } else {
                 total_account = 0

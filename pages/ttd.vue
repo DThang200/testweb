@@ -18,6 +18,8 @@
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row;gap: 20px;margin-top: 40px">
       <div style="display: flex;flex-direction: row;gap: 5px">
+        <input v-model="rollUnit" id="rollUnit" type="checkbox">
+        <label for="rollUnit">RollUnit</label>
         <input v-model="AutoBuyCrate" id="AutoBuyCrate" type="checkbox">
         <label for="AutoBuyCrate">AutoBuyCrate</label>
         <input v-model="userCollectCreate" type="text" placeholder="User collect">
@@ -196,6 +198,7 @@ export default {
       hideDevice: [],
       intervalEnable: null,
       isIntervalEnable: false,
+      rollUnit: false,
     }
   },
   async mounted() {
@@ -249,16 +252,13 @@ export default {
       let AutoReplay = true
       let AutoReturnToLobby = false
       let WH_MatchComplete = false
+      let AutoSummonTroop = true
       let PVPMarcoRed = "https://raw.nousigi.com/macro/663236418499379240_bbb5d13218ac54a804da9cf427404d3a.json?macroname=m1"
       let WH_Clone = "https://discord.com/api/webhooks/1347963702598701137/VhJNEyCY8DO4MozFw_s8XxNSkejHK-AOOQ4qKeAwEr9ineqH8m25gjYCQg2ATxaYKKkn"
       let PVPMarcoRedName = "m1"
       let AutoBuyCrate = this.AutoBuyCrate
       let EventType = 'Drill Type'
       let SelectDifficulty = 'Easy'
-      let OpenCreate =
-          '["Golden Gladiator"] = "rbxassetid://129368477907107",\n' +
-          '["Christmas"] = "rbxassetid://77647395502645",\n' +
-          '["Drill"] = "rbxassetid://00917304333417",\n'
       if (script_sl === 'ttd-pvp'){
         marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_bbb5d13218ac54a804da9cf427404d3a.json?macroname=m1'
         SelectMacro= 'm1'
@@ -267,7 +267,7 @@ export default {
         AutoJoinMatch = false
         AutoReturnToLobby = true
         WH_MatchComplete= true
-        WebhookURL= "https://discord.com/api/webhooks/1347412641424867410/CS3yMLID-0P-SFLCR08w1cEcB4rCrdM_5JdH9Mi5FizwBjU9oX_hw9wZrDVnb6rnEYfP"
+        WebhookURL= "https://discord.com/api/webhooks/1353016214166835220/wXn1ICLIY7p7rQA2tK-7hgjj1o2UR-2NEW5UI5WBJctH1KXKjJH7zeXyp3G_GIuUJ1qy"
       }
       if (script_sl === 'ttd-noel'){
         marcoUrl = 'https://raw.nousigi.com/macro/458441366834249728_e76526c5469acc12a8e872ea6cd59abd.json?macroname=test123'
@@ -293,6 +293,12 @@ export default {
         SelectBuyCrate = ''
         SelectMap= 'TimeFactory'
       }
+      if (this.rollUnit){
+        AutoJoinMatch = false
+        AutoJoinPVP = false
+        AutoReturnToLobby = true
+        AutoSummonTroop = true
+      }
       if (script_sl.includes('ttd-dice')){
         SelectBuyCrate = 'RNGCrate'
         SelectMap= 'DiceWorld'
@@ -311,7 +317,7 @@ export default {
                           ["Legendary"] = true,
                           ["Basic"] = true,
                           ["Epic"] = true,
-                          ["Mythic"] = false,
+                          ["Mythic"] = true,
                           ["Uncommon"] = true,
                           ["Rare"] = true
                         },
@@ -375,8 +381,18 @@ export default {
                         ["SelectTroop"] = {
                           ["ToyClockman"] = true,
                           ["KneeSurgeryClockman"] = true,
+                          ["ChariotCameraman"] = true,
+                          ["TitanSnowman"] = true,
+                          ["CandyCaneCameraman"] = true,
+                          ["HourglassSpeakerman"] = true,
+                          ["PresentSpeakerman"] = true,
+                          ["GladiatorSpeakerman"] = true,
+                          ["BarbarianLargeTVMan"] = true,
                         },
-                        ["AutoSummonTroop"] = true
+                        ["SelectCrate"] = {
+                          ["ActivityCrate"] = true,
+                        },
+                        ["AutoSummonTroop"] = ${AutoSummonTroop}
                       }
                       repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
       if (script_sl === 'ttd-time2'){
