@@ -293,6 +293,12 @@ export default {
         SelectBuyCrate = ''
         SelectMap= 'TimeFactory'
       }
+      if (script_sl === 'ttd-pvp'){
+        WH_MatchComplete= true
+        AutoReplay = true
+        SelectBuyCrate = 'CherryBlossomCrate'
+        SelectMap= 'MountFuji'
+      }
       if (this.rollUnit){
         AutoJoinMatch = false
         AutoJoinPVP = false
