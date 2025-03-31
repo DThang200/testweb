@@ -69,12 +69,12 @@ export default {
         const emptyAcc = this.inputChangeAcc.split('\n')
         if (emptyAcc.length >= this.deadAccountUser.length){
           const listEmptyAcc = []
-          // const resDelete = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/bulk/accounts`, {
-          //   data: this.deadAccountUser,
-          //   headers: {
-          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //   },
-          // });
+          const resDelete = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/bulk/accounts`, {
+            data: this.deadAccountUser,
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
           emptyAcc.forEach((line) => {
             const arr_acc = line.split(':')
             const username = arr_acc[0]
@@ -85,19 +85,23 @@ export default {
           let getAccIndex = 0
           for (let i = 0; i < this.dataAccount.length; i++) {
             let listAccFill = []
-            const needAcc = this.dataAccount.count || 0
+            const dataAccount = this.dataAccount[i]
+            const needAcc = dataAccount.count || 0
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
             if (listAccFill?.length > 0){
-              console.log('this.dataAccount?.device_id',this.dataAccount?.device_id,needAcc)
-              await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${this.dataAccount?.device_id}/bulk/accounts`, listAccFill,{
+              console.log('this.dataAccount?.device_id',dataAccount?.device_id,needAcc)
+              await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${dataAccount?.device_id}/bulk/accounts`, listAccFill,{
                 headers: {
                   'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
                 },
               });
             }
           }
-          this.changeAccRemain = listEmptyAcc.slice(getAccIndex, listEmptyAcc.length)
+          this.changeAccRemain = ""
+          listEmptyAcc.slice(getAccIndex, listEmptyAcc.length).forEach(acc => {
+            this.changeAccRemain += `${acc.username}:${acc.password}:${acc.cookie}`
+          })
         } else {
           alert(`Need more than ${this.deadAccountUser.length} account`);
         }
@@ -109,7 +113,7 @@ export default {
       const trackingTime = Math.round((new Date().getTime() - ((this.time_off) * 3600  * 1000)) / 1000)
       console.log('trackingTime',trackingTime, trackingTime - 1743326985)
       this.roblox_data_account.accounts.forEach((acc) => {
-        if (acc && acc?.last_updated && trackingTime > acc?.last_updated && acc?.device_id){
+        if (acc && acc?.last_updated > -1 && trackingTime > acc?.last_updated && acc?.device_id){
           this.deadAccountUser.push({username_look_for:acc.username});
           this.deadAccount += acc.username + ':' + acc.password + ':' + acc?.cookie + "\n"
           const findIndex = this.dataAccount.findIndex(item => item.device_id === acc.device_id);
