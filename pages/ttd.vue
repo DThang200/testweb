@@ -250,6 +250,7 @@ export default {
       let AutoJoinPVP = false
       let AutoJoinMatch = true
       let AutoReplay = true
+      let AutoVoteDifficulty = true
       let AutoReturnToLobby = false
       let WH_MatchComplete = false
       let AutoSummonTroop = true
@@ -374,7 +375,6 @@ export default {
                         ["AutoClaimVIP"] = false,
                         ["AutoBuyEvent"] = false,
                         ["AutoListForSale"] = false,
-                        ["AutoVoteDifficulty"] = false,
                         ["AutoClaimEventQuest"] = true,
                         ["AutoRejoin"] = true,
                         ["WebhookURL"] = "${WebhookURL}",
