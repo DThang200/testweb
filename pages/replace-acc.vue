@@ -100,7 +100,7 @@ export default {
           }
           this.changeAccRemain = ""
           listEmptyAcc.slice(getAccIndex, listEmptyAcc.length).forEach(acc => {
-            this.changeAccRemain += `${acc.username}:${acc.password}:${acc.cookie}`
+            this.changeAccRemain += `${acc.username}:${acc.password}:${acc.cookie}` + '\n'
           })
           await this.enableDevice();
         } else {
