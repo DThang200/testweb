@@ -102,8 +102,33 @@ export default {
           listEmptyAcc.slice(getAccIndex, listEmptyAcc.length).forEach(acc => {
             this.changeAccRemain += `${acc.username}:${acc.password}:${acc.cookie}`
           })
+          await this.enableDevice();
         } else {
           alert(`Need more than ${this.deadAccountUser.length} account`);
+        }
+      }
+    },
+    async enableDevice() {
+      for (let i = 0; i < this.dataAccount.length; i++) {
+        const device = this.dataAccount[i];
+        const listAccount = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/accounts`,{
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+        let listDisable = []
+        if (listAccount?.accounts?.length > 0){
+          listAccount?.accounts.forEach(acc => {
+            listDisable.push({
+              username_look_for: acc?.username,
+              enabled: true,
+            })
+          })
+          await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`,listDisable,{
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
         }
       }
     },
