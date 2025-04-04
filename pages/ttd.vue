@@ -268,7 +268,6 @@ export default {
         AutoJoinMatch = false
         AutoReturnToLobby = true
         WH_MatchComplete= true
-        WebhookURL= "https://discord.com/api/webhooks/1353016214166835220/wXn1ICLIY7p7rQA2tK-7hgjj1o2UR-2NEW5UI5WBJctH1KXKjJH7zeXyp3G_GIuUJ1qy"
       }
       if (script_sl === 'ttd-noel'){
         marcoUrl = 'https://raw.nousigi.com/macro/458441366834249728_e76526c5469acc12a8e872ea6cd59abd.json?macroname=test123'
