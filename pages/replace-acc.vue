@@ -1,24 +1,46 @@
 <template>
-  <div style="padding: 32px">
+  <div style="padding: 32px;display: flex;flex-direction: row">
     <div>
-      Time -
-      <input type="text" v-model="time_off" placeholder="(Hrs)">
-      <button @click="trackingAccount">Render</button>
-    </div>
-    <div>
+      <div>
+        Time -
+        <input type="text" v-model="time_off" placeholder="(Hrs)">
+        <input type="checkbox" v-model="neverLogin">
+        <label>neverLogin</label>
+        <button @click="trackingAccount">Render</button>
+      </div>
+      <div>
           <textarea  v-model="deadAccount" rows="10" style="width: 500px;">
 
     </textarea>
-      <button @click="copyContent(deadAccount)">Copy DeadAccount</button>
-    </div>
-    <div>
+        <button @click="copyContent(deadAccount)">Copy DeadAccount</button>
+      </div>
+      <div>
       <textarea v-model="inputChangeAcc" rows="10" style="width: 500px;" placeholder="input Change Acc">
       </textarea>
-      <button @click="replaceAccount">Replace ({{this.deadAccountUser.length}} account)</button>
-      <textarea v-if="changeAccRemain" v-model="changeAccRemain" rows="10" style="width: 500px;" placeholder="changeAccRemain">
+        <button @click="replaceAccount">Replace ({{this.deadAccountUser.length}} account)</button>
+        <textarea v-if="changeAccRemain" v-model="changeAccRemain" rows="10" style="width: 500px;" placeholder="changeAccRemain">
       </textarea>
+      </div>
     </div>
+    <div>
+      <table v-if="this.deadAccountUser.length > 0">
+        <thead>
+        <tr>
+          <th>Device</th>
+          <th>count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <template>
+          <tr v-for="(item) in dataAccount">
+            <td class="px-2">{{map_device_id_code[item.device_id]}}</td>
+            <td class="px-2">{{item.count}}</td>
+          </tr>
+        </template>
+        </tbody>
+      </table>
 
+    </div>
   </div>
 </template>
 
@@ -43,6 +65,7 @@ export default {
       deadAccount : "",
       inputChangeAcc: "",
       changeAccRemain: "",
+      neverLogin: false,
       time_off : 3
     }
   },
@@ -134,12 +157,14 @@ export default {
     },
     async trackingAccount() {
       this.dataAccount = []
+      this.deadAccountUser = []
       this.deadAccount = ""
       const trackingTime = Math.round((new Date().getTime() - ((this.time_off) * 3600  * 1000)) / 1000)
       console.log('trackingTime',trackingTime, trackingTime - 1743326985)
       this.roblox_data_account.accounts.forEach((acc) => {
-        if (acc && acc?.last_updated > -1 && trackingTime > acc?.last_updated && acc?.device_id){
+        if (acc && acc?.last_updated > -1 && ((this.neverLogin && acc?.last_updated === 0) || (!this.neverLogin && trackingTime > acc?.last_updated && acc?.device_id))){
           this.deadAccountUser.push({username_look_for:acc.username});
+          console.log('acc.username',acc.username,acc.device_id)
           this.deadAccount += acc.username + ':' + acc.password + ':' + acc?.cookie + "\n"
           const findIndex = this.dataAccount.findIndex(item => item.device_id === acc.device_id);
           if (findIndex !== -1) {
