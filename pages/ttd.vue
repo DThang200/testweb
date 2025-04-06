@@ -365,7 +365,6 @@ export default {
                         },
                         ["AutoJoinMatch"] = ${AutoJoinMatch},
                         ["ALFS_HopServer"] = false,
-                        ["UseAll"] = false,
                         ["SelectCase"] = "MythicCrate",
                         ["AutoSellOW"] = false,
                         ["WalkAround"] = true,
@@ -383,6 +382,7 @@ export default {
                         ["RequiredGem"]=500,
                         ["AutoDeleteTroop"]=true,
                         ["AutoUseBoost"] = true,
+                        ["UseAll"] = true,
                         ["UseBoosts"] = {
                           ["2xCoinsBoost_1"] = true,
                           ["2xLuckBoost_1"] = true,
