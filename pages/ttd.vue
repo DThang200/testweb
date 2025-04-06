@@ -350,7 +350,6 @@ export default {
                         ["AutoMail"] = true,
                         ["BoostFPS"] = true,
                         ["Summon10"] = true,
-                        ["AutoUseBoost"] = false,
                         ["AutoJoinPVP"] = ${AutoJoinPVP},
                         ["AutoReturnToLobby"] = ${AutoReturnToLobby},
                         ["AutoReplay"] = ${AutoReplay},
@@ -383,6 +382,11 @@ export default {
                         ["GiftCrate"] = true,
                         ["RequiredGem"]=500,
                         ["AutoDeleteTroop"]=true,
+                        ["AutoUseBoost"] = true,
+                        ["UseBoosts"] = {
+                          ["2xCoinsBoost_1"] = true,
+                          ["2xLuckBoost_1"] = true,
+                        },
                         ["SelectTroop"] = {
                           ["ToyClockman"] = true,
                           ["KneeSurgeryClockman"] = true,
