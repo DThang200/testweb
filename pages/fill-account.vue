@@ -147,7 +147,7 @@ export default {
         })
         if (total_account > 0 || false) {
           if (device?.total_accounts < total_account) {
-            const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id]).replace(/_/g, " ") ? 2 : 0)
+            const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " ")) ? 2 : 0)
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
           }
