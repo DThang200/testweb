@@ -75,7 +75,7 @@ export default {
       hideDevice: [],
       lowDevice: [],
       remain_acc_copy: '',
-      fillttd: false,
+      fillttd: true,
       farmOption : [
         // {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-2600',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},

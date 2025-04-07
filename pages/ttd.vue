@@ -188,7 +188,7 @@ export default {
       roblox_data: [],
       is_auto_gom: false,
       intervalId: null,
-      AutoBuyCrate: false,
+      AutoBuyCrate: true,
       interval_auto_gom: null,
       interval_auto_gom_device_name: "",
       interval_auto_gom_time: null,
