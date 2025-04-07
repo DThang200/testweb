@@ -21,6 +21,9 @@
         </template>
       </div>
     </div>
+    <button @click="showLowDevice = !showLowDevice" style="width: 150px">
+      show Low device
+    </button>
     <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
       <div v-for="data in roblox_data.devices" style="border: 1px solid black;padding: 4px">
         <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
