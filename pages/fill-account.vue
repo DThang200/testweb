@@ -21,6 +21,12 @@
         </template>
       </div>
     </div>
+    <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
+      <div v-for="data in roblox_data.devices" style="border: 1px solid black;padding: 4px">
+        <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
+        <label :for="data.device_name+ 'low'">{{data.device_name}}</label>
+      </div>
+    </div>
     <div v-for="data in roblox_data" class="remote-pc-item"  v-if="hideDevice.includes(data.device_name)" :class="getStatusClass(data)" :key="data.device_code" style="margin: 10px">
       <div>
         {{data.device_name}} {{data?.running ? '' : '(stop)'}}
@@ -54,6 +60,7 @@ export default {
       active_account : 22,
       total_account : 66,
       circle : 0,
+      showLowDevice : false,
       time_circle : 120 * 60 * 1000,
       countdown_circle : 120 * 60 * 1000,
       interval_farm : null,
@@ -63,6 +70,7 @@ export default {
       fill_acc: [],
       remain_acc: [],
       hideDevice: [],
+      lowDevice: [],
       remain_acc_copy: '',
       fillttd: false,
       farmOption : [
@@ -91,6 +99,7 @@ export default {
   },
   mounted() {
     this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
+    this.lowDevice =  JSON.parse(localStorage.getItem('lowDevice')) || [];
     this.getDataRoblox();
     // this.runFarmFruit();
     this.initData();
@@ -135,7 +144,7 @@ export default {
         })
         if (total_account > 0 || false) {
           if (device?.total_accounts < total_account) {
-            const needAcc = total_account - device?.total_accounts
+            const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id]).replace(/_/g, " ") ? 2 : 0)
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
           }
