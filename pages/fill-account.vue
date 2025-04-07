@@ -98,6 +98,11 @@ export default {
           this.roblox_data = JSON.parse(JSON.stringify(list_device))
         }
       },deep: true
+    },
+    lowDevice : {
+      handler(value) {
+        localStorage.setItem('lowDevice', JSON.stringify(value));
+      }
     }
   },
   mounted() {
