@@ -162,7 +162,7 @@ export default {
       const trackingTime = Math.round((new Date().getTime() - ((this.time_off) * 3600  * 1000)) / 1000)
       console.log('trackingTime',trackingTime, trackingTime - 1743326985)
       this.roblox_data_account.accounts.forEach((acc) => {
-        if (acc && acc?.last_updated > -1 && ((this.neverLogin && acc?.last_updated === 0) || (!this.neverLogin && trackingTime > acc?.last_updated && acc?.device_id))){
+        if (!acc?.game_instance_id || (!this.neverLogin && acc && (!acc?.game_instance_id || trackingTime > acc?.last_updated && acc?.device_id))){
           this.deadAccountUser.push({username_look_for:acc.username});
           console.log('acc.username',acc.username,acc.device_id)
           this.deadAccount += acc.username + ':' + acc.password + ':' + acc?.cookie + "\n"
