@@ -156,6 +156,7 @@ export default {
         {code : 'ttd-time',label : 'TTD-Time',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel',label : 'TTD-Noel',game_id: '13775256536',private_server : false},
         {code : 'ttd-pvp',label : 'TTD-PvP',game_id: '13775256536',private_server : false},
+        {code : 'petgum',label : 'PetGum',game_id: '13775256536',private_server : false},
         {code : 'ttd-create',label : 'TTD-OpenCreateCustom',game_id: '13775256536',private_server : false},
         {code : 'ttd-noel-Thangcachepp04',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
       ],
@@ -463,6 +464,13 @@ export default {
               end
 
         end)`
+      }
+      if (script_sl === 'ttd-time2'){
+        script = `getgenv().Key = "${nousigi}"
+
+
+
+        `
       }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
