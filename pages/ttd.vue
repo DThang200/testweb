@@ -163,7 +163,7 @@ export default {
       option: {
         "petgum" : {
           count: 0,
-          listUser : ['Thangcachepp02,Thangcachepp04']
+          listUser : ['Thangcachepp02','Thangcachepp04']
         },
         "ttd-create" : {
           count: 0,
