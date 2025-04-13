@@ -161,6 +161,10 @@ export default {
         {code : 'ttd-noel-Thangcachepp04',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
       ],
       option: {
+        "petgum" : {
+          count: 0,
+          listUser : ['Thangcachepp02,Thangcachepp04']
+        },
         "ttd-create" : {
           count: 0,
           listUser : ['']
