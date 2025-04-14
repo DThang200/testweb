@@ -83,6 +83,18 @@
       </div>
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
+          User pass email code=> email code
+          <button @click="copyContent(input_ec)">Copy</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="input_upec" @change="getEc">
+
+      </textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="input_ec">
+
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
           User pass cookie => File Format
           <button @click="copyContent(user_pass_cookie2)">Copy</button>
         </div>
@@ -188,6 +200,8 @@ export default {
       user_pass_cookie_file: '',
       user_pass: '',
       input_ck: '',
+      input_upec: '',
+      input_ec: '',
       output_ck: '',
       delete_acc: '',
       select_empty_acc: 'bf',
@@ -344,6 +358,19 @@ export default {
         }
       })
       this.user_pass = result
+    },
+    getEc(){
+      const user_pass_cookie = this.input_upec.split('\n')
+      let result = ''
+      user_pass_cookie.forEach(item => {
+        if (item){
+          const acc_arr = item.split('|')
+          if (acc_arr?.length > 0){
+            result += `${acc_arr[2]}|${acc_arr[3]}|${acc_arr[4]}|${acc_arr[5]}` + '\n'
+          }
+        }
+      })
+      this.input_ec = result
     },
     getCk(){
       console.log('getCk')
