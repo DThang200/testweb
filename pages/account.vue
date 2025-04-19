@@ -450,7 +450,7 @@ export default {
       let listDevice = []
       for (let i = this.selectStartDeviceIndex; i <= this.selectEndDeviceIndex; i++) {
         if (!this.selectBGSIAcc){
-          if (!this.roblox_data.devices[i]?.device_id || !map_device_data[this.roblox_data.devices[i]?.device_id].script !== 'petgum'){
+          if (!this.roblox_data.devices[i]?.device_id || map_device_data[this.roblox_data.devices[i]?.device_id].script !== 'petgum'){
             listDevice.push(this.roblox_data.devices[i]?.device_id)
           }
         } else {
