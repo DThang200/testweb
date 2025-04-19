@@ -21,11 +21,11 @@ getgenv().ConfigKeitun = {
     AutoDeleteRarityList = {
         Common = true,
         Unique = true,
-        Rare = true,
+        Rare = false,
         Epic = false,
         Legendary = false,
         Secret = false
-    },
+    }
 }
 --------------------------------
 -- Project Lunar Bubble Gum Simulator
@@ -70,10 +70,10 @@ RunService.Stepped:Connect(function()
 end)
 
 local RemoteEvent = ReplicatedStorage:WaitForChild("Shared")
-    :WaitForChild("Framework")
-    :WaitForChild("Network")
-    :WaitForChild("Remote")
-    :WaitForChild("Event")
+                                     :WaitForChild("Framework")
+                                     :WaitForChild("Network")
+                                     :WaitForChild("Remote")
+                                     :WaitForChild("Event")
 
 --------------------------------
 -- GLOBAL CONFIG
@@ -282,7 +282,7 @@ local function CreateUI()
     -- Current Flavor (centered)
     local CurrentFlavor = Instance.new("TextLabel")
     CurrentFlavor.Name = "CurrentFlavor"
-    CurrentFlavor.Text = "Username: None"
+    CurrentFlavor.Text = "FLAVOR: None"
     CurrentFlavor.Size = UDim2.new(1, 0, 0.15, 0)
     CurrentFlavor.Position = UDim2.new(0, 0, 0.15, 0)
     CurrentFlavor.Font = Enum.Font.GothamBold
@@ -366,6 +366,9 @@ local function UpdateUI()
 
     if LunarUI.StatsFrame:FindFirstChild("CurrentBubble") then
         LunarUI.StatsFrame.CurrentBubble.Text = "BUBBLE: " .. BubbleStats.CurrentBubble
+    end
+    if LunarUI.StatsFrame:FindFirstChild("CurrentFlavor") then
+        LunarUI.StatsFrame.CurrentFlavor.Text = "FLAVOR: " .. BubbleStats.CurrentFlavor
     end
     if LunarUI.StatsFrame:FindFirstChild("CoinsEarned") then
         LunarUI.StatsFrame.CoinsEarned.Text = "COINS: " .. BubbleStats.Coins
@@ -499,7 +502,7 @@ local function IsIslandUnlocked(displayName)
 
     -- If it's Crimson or (177,0,0) => locked
     if displayPart.BrickColor == BrickColor.new("Crimson") or
-       (displayPart:IsA("BasePart") and displayPart.Color == Color3.fromRGB(177, 0, 0)) then
+            (displayPart:IsA("BasePart") and displayPart.Color == Color3.fromRGB(177, 0, 0)) then
         return false
     end
     return true
@@ -623,7 +626,7 @@ end
 
 local function GetActiveBuffs()
     local buffs = game:GetService("Players").LocalPlayer
-        :WaitForChild("PlayerGui").ScreenGui.Buffs
+                      :WaitForChild("PlayerGui").ScreenGui.Buffs
 
     local result = {}
 
@@ -649,7 +652,7 @@ end
 
 local function GetInventoryPotions()
     local potionsFolder = game:GetService("Players").LocalPlayer
-        :WaitForChild("PlayerGui").ScreenGui.Inventory.Frame.Inner.Items.Main.ScrollingFrame.Potions.Items
+                              :WaitForChild("PlayerGui").ScreenGui.Inventory.Frame.Inner.Items.Main.ScrollingFrame.Potions.Items
 
     local potions = {}
 
@@ -739,11 +742,11 @@ local function AutoBlowBubble()
     while getgenv().ConfigKeitun.AutoBlowBubble do
         RemoteEvent:FireServer("BlowBubble")
         bubblesBlown += 1
-        if tick() - lastUpdate >= 1 then
-            BubbleStats.BubbleRate = bubblesBlown * 60
-            bubblesBlown = 0
-            lastUpdate = tick()
-            AddAction("Blowing bubbles...")
+    if tick() - lastUpdate >= 1 then
+        BubbleStats.BubbleRate = bubblesBlown * 60
+        bubblesBlown = 0
+        lastUpdate = tick()
+        AddAction("Blowing bubbles...")
         end
         task.wait(0.05)
     end
@@ -798,35 +801,26 @@ local function AutoBuyGum()
         task.wait(10)
     end
 end
+
 --------------------------------
 -- AUTO DELETE PETS
 --------------------------------
 local function AutoDeleteBaseInRarity()
     print("📦 Checking inventory for auto-delete...")
-
     local gui = LocalPlayer:WaitForChild("PlayerGui")
-    local storageLabel = gui:WaitForChild("ScreenGui")
-        :WaitForChild("Inventory")
-        :WaitForChild("Frame")
-        :WaitForChild("Top")
-        :WaitForChild("StorageHolder")
-        :WaitForChild("Storage")
-
-    local text = storageLabel.ContentText or ""
-    local current, max = text:match("📦%s*(%d+)%s*/%s*(%d+)")
-    current, max = tonumber(current), tonumber(max)
     local PetsFolder = gui.ScreenGui.Inventory.Frame.Inner.Pets.Main.ScrollingFrame.Pets
-    local RemoteEvent = game:GetService("ReplicatedStorage")
-        :WaitForChild("Shared")
-        :WaitForChild("Framework")
-        :WaitForChild("Network")
-        :WaitForChild("Remote")
-        :WaitForChild("Event")
-
     local RarityList = {
-        Common = {"Doggy", "Night Crawler","Hell Crawler","Green Angel","Hell Bat","Void Demon", "Kitty", "Wolf", "Mouse", "Deer", "Ice Kitty", "Golem", "Dinosaur", "Magma Doggy", "Cave Bat", "Space Mouse", "Void Kitty", "Hell Piggy", "Demon Doggy", "Red Golem"},
+        Common = {"Dark Phoenix","Neon Elemental","Green Hydra","Doggy", "Night Crawler","Hell Crawler","Hell Bat","Void Demon", "Kitty", "Wolf", "Mouse", "Deer", "Ice Kitty", "Golem", "Dinosaur", "Magma Doggy", "Cave Bat", "Space Mouse", "Void Kitty", "Hell Piggy", "Demon Doggy", "Red Golem"},
         Unique = {"Bunny", "Fox", "Ice Wolf", "Ruby Golem", "Magma Deer", "Magma Fox", "Dark Bat", "Space Bull", "Void Bat", "Hell Dragon", "Skeletal Deer", "Orange Deer"}
-        }
+    }
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+                            :WaitForChild("Shared")
+                            :WaitForChild("Framework")
+                            :WaitForChild("Network")
+                            :WaitForChild("Remote")
+                            :WaitForChild("Event")
+    RemoteEvent:FireServer("EquipBestPets")
+    print("Debug 4")
     local function GetRarity(name)
         for rarity, list in pairs(RarityList) do
             for _, pet in ipairs(list) do
@@ -835,28 +829,25 @@ local function AutoDeleteBaseInRarity()
         end
         return nil
     end
-    local success, err = pcall(function()
-        RemoteEvent:FireServer("EquipBestPets")
-    end)
-    print("📦 Debug1")
     local function GetStackCount(frame)
         local amountLabel = frame:FindFirstChild("Inner")
-            and frame.Inner:FindFirstChild("Button")
-            and frame.Inner.Button:FindFirstChild("Inner")
-            and frame.Inner.Button.Inner:FindFirstChild("Amount")
+                and frame.Inner:FindFirstChild("Button")
+                and frame.Inner.Button:FindFirstChild("Inner")
+                and frame.Inner.Button.Inner:FindFirstChild("Amount")
         if amountLabel and amountLabel:IsA("TextLabel") then
             local count = amountLabel.ContentText:match("x(%d+)")
             return tonumber(count) or 1
         end
         return 1
     end
+
     local deleted = 0
     for _, petFrame in ipairs(PetsFolder:GetChildren()) do
         if petFrame:IsA("Frame") then
             local displayName = petFrame:FindFirstChild("Inner")
-                and petFrame.Inner:FindFirstChild("Button")
-                and petFrame.Inner.Button:FindFirstChild("Inner")
-                and petFrame.Inner.Button.Inner:FindFirstChild("DisplayName")
+                    and petFrame.Inner:FindFirstChild("Button")
+                    and petFrame.Inner.Button:FindFirstChild("Inner")
+                    and petFrame.Inner.Button.Inner:FindFirstChild("DisplayName")
 
             if displayName and displayName:IsA("TextLabel") then
                 local rawName = displayName.ContentText
@@ -867,12 +858,12 @@ local function AutoDeleteBaseInRarity()
                 local rarity = GetRarity(petName)
                 if rarity and getgenv().ConfigKeitun.AutoDeleteRarityList[rarity] then
                     local stackCount = GetStackCount(petFrame)
-                    print("📦 Debug2")
+                    print("Debug 5 -" .. petName .. stackCount)
                     while stackCount >= 2 do
                         RemoteEvent:FireServer("MultiDeletePets", {petFrame.Name, petFrame.Name})
                         deleted += 2
-                        stackCount -= 2
-                        task.wait(0.2)
+                    stackCount -= 2
+                    task.wait(0.2)
                         AddAction("🗑️ Deleted 2x " .. petName .. " (stacked)")
                     end
 
@@ -883,7 +874,7 @@ local function AutoDeleteBaseInRarity()
             end
         end
     end
-    print("📦 Debug3"...deleted)
+    print("Debug 6 -",deleted)
     if deleted > 0 then
         AddAction("✅ AutoDelete finished. Total: " .. tostring(deleted))
     else
@@ -1109,38 +1100,26 @@ end
 -- AUTO EQUIP BEST PETS
 --------------------------------
 local function AutoEquipBestPets()
-    print("AutoEquipBestPets")
     while getgenv().ConfigKeitun.AutoEquipBestPets do
         local success, err = pcall(function()
             RemoteEvent:FireServer("EquipBestPets")
         end)
-        if not success then
-            warn("EquipBestPets call failed:", err)
-        else
-            AddAction("Equipping best pets...")
+        task.wait(2)
+    end
+end
+local function AutoOpenInventory()
+    while true do
+        local gui = game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui")
+        local PetsFolder = gui.ScreenGui.Inventory.Frame.Inner.Pets.Main.ScrollingFrame
+        local result = gui and gui:FindFirstChild("ScreenGui") and gui.ScreenGui:FindFirstChild("Inventory") and (#PetsFolder:GetChildren() > 0) and true or false
+        print("AutoOpenInventory", result)
+        if not result then
+            print("AutoOpenInventory -is not Open")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            task.wait(0.25)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
         end
         task.wait(5)
-    end
-end --License Owned by Project Lunar ( nesa ), dont skid hahahahaahaha
-
-local function AutoOpenInventory()
-    print("AutoOpenInventory")
-    while true do
-        local player = game.Players.LocalPlayer
-        local gui = player:FindFirstChild("PlayerGui")
-        local screenGui = gui and gui:FindFirstChild("ScreenGui")
-        local inventory = screenGui and screenGui:FindFirstChild("Inventory")
-        if inventory then
-            inventory.Visible = true
-            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
-        end
-        if inventory then
-            inventory.Visible = true
-        else
-            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
-            warn("❌ Không tìm thấy GUI Inventory")
-        end
-        task.wait(2)
     end
 end
 --------------------------------
@@ -1308,26 +1287,26 @@ end
 --------------------------------
 local function Main()
     humanoid.WalkSpeed = 40
-print("WalkSpeed set to 40")
+    print("WalkSpeed set to 40")
     BypassLoadingScreen()
     CreateUI()
     Disable3DRendering()
     DisableHatchCutscene()
-    LunarUI.StatsFrame.CurrentFlavor.Text = "Username: " .. game.Players.LocalPlayer.Name
-    coroutine.wrap(AutoEquipBestPets)()
-    coroutine.wrap(AutoOpenInventory)()
+    if getgenv().ConfigKeitun.AutoEquipBestPets then
+        coroutine.wrap(AutoEquipBestPets)()
+    end
+    --coroutine.wrap(AutoOpenInventory)()
     coroutine.wrap(function()
         while true do
             -- Check if auto-delete is on
             local gui = game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            task.wait(0.25)
             if gui and gui:FindFirstChild("ScreenGui") and gui.ScreenGui:FindFirstChild("Inventory") then
                 -- Safe to run after GUI loaded
                 AutoDeleteBaseInRarity()
-            else
-                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
-                task.wait(0.25)
-                AutoDeleteBaseInRarity()
             end
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
             task.wait(100) -- delay between checks (not too spammy)
         end
     end)()

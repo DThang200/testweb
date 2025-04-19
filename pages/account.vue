@@ -139,6 +139,8 @@
             <option :value="roblox_data.devices?.length">All</option>
             <option :value="index" v-for="(device,index) in roblox_data.devices">{{device.device_code}}</option>
           </select>
+          <input v-model="selectBGSIAcc" type="checkbox">
+          <label>With bgsi acc?</label>
           <button @click="getDetailAcc">Copy username pass</button>
         </div>
       </div>
@@ -212,6 +214,7 @@ export default {
       usernameFind: '',
       usernameFindData: '',
       selectStartDeviceIndex: '',
+      selectBGSIAcc: false,
       selectEndDeviceIndex: '',
       listAccSelected: [],
 
@@ -441,11 +444,18 @@ export default {
       this.usernameFindData = this.listCompletedAcc.find( acc => acc.username === this.usernameFind)
     },
     getDetailAcc(){
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
       //
       console.log('this.roblox_data',this.roblox_data)
       let listDevice = []
       for (let i = this.selectStartDeviceIndex; i <= this.selectEndDeviceIndex; i++) {
-        listDevice.push(this.roblox_data.devices[i]?.device_id)
+        if (!this.selectBGSIAcc){
+          if (!map_device_data[this.roblox_data.devices[i]?.device_id].script === 'petgum'){
+            listDevice.push(this.roblox_data.devices[i]?.device_id)
+          }
+        } else {
+          listDevice.push(this.roblox_data.devices[i]?.device_id)
+        }
       }
       let resultData = []
       let result = ''
