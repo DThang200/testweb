@@ -457,6 +457,7 @@ export default {
           listDevice.push(this.roblox_data.devices[i]?.device_id)
         }
       }
+      console.log('listDevice',listDevice)
       let resultData = []
       let result = ''
       this.roblox_data_account.accounts.forEach(acc => {
