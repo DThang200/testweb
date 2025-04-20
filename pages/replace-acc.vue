@@ -6,6 +6,8 @@
         <input type="text" v-model="time_off" placeholder="(Hrs)">
         <input type="checkbox" v-model="neverLogin">
         <label>neverLogin</label>
+        <input type="checkbox" v-model="petgum">
+        <label> petgum</label>
         <button @click="trackingAccount">Render</button>
       </div>
       <div>
@@ -66,6 +68,7 @@ export default {
       inputChangeAcc: "",
       changeAccRemain: "",
       neverLogin: false,
+      petgum: false,
       time_off : 3
     }
   },
@@ -156,6 +159,7 @@ export default {
       }
     },
     async trackingAccount() {
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
       this.dataAccount = []
       this.deadAccountUser = []
       this.deadAccount = ""
@@ -163,6 +167,9 @@ export default {
       console.log('trackingTime',trackingTime, trackingTime - 1743326985)
       this.roblox_data_account.accounts.forEach((acc) => {
         if (!acc?.game_instance_id || (!this.neverLogin && acc && (!acc?.game_instance_id || trackingTime > acc?.last_updated && acc?.device_id))){
+          if (!this.petgum && map_device_data[acc.device_id].script === 'petgum'){
+            return;
+          }
           this.deadAccountUser.push({username_look_for:acc.username});
           console.log('acc.username',acc.username,acc.device_id)
           this.deadAccount += acc.username + ':' + acc.password + ':' + acc?.cookie + "\n"
