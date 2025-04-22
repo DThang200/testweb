@@ -25,6 +25,8 @@
         <input v-model="userCollectCreate" type="text" placeholder="User collect">
         <button @click="autoEnableDevice(!isIntervalEnable)">Auto enable <span v-if="isIntervalEnable">(active)</span></button>
         <button @click="enableDevice">Enable Device</button>
+        <button @click="refreshScriptBgsi('nsg')">BGSI NSG</button>
+        <button @click="refreshScriptBgsi('exodus')">BGSI Exodus</button>
       </div>
     </div>
   </template>
@@ -204,6 +206,7 @@ export default {
       intervalEnable: null,
       isIntervalEnable: false,
       rollUnit: false,
+      petgumScript: 'nsg',
     }
   },
   async mounted() {
@@ -514,7 +517,184 @@ export default {
             }
           }
           repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden
-          `}
+          `
+      }
+      if (script_sl === 'petgum'){
+        user_collect = this.petgumScript
+        if (this.petgumScript === 'exodus'){
+          `getgenv().Settings = {
+            ["Egg Settings"] = {
+              OpenEggs = true,
+              Egg = "Best",
+
+              ["Notifications"] = {
+                Webhook = "https://discord.com/api/webhooks/1360760353624953024/3sTDJMW0jmb27j2PHQkOg5JeKz7R0VGYRhUP2ub4et-f2_jcjc_k4tMXNyY1gCBcqorV",
+                DiscordID = 663236418499379240,
+                Difficulty = 100000,
+              },
+              ["Rifts"] = {
+                FindRifts = true,
+                SortByMultiplier = true, --// false will still sort multi, but out of BEST egg.
+              Targets = {"Pastel Egg", "Bunny Egg", "Nightmare Egg"},
+          --// No targets will let the script automatically find the top 3 best eggs.
+        },
+        },
+
+          ["Enchant Settings"] = {
+            EnchantPets = false,
+
+            ["Require All Enchants"] = true,
+            ["Enchants Needed"] = {
+              ["Team Up"] = {Tier = 1, HigherTiers = true},
+            },
+          },
+              ["Debug"] = {
+                DisableUI = false,
+              },
+        }
+          repeat wait() until game:IsLoaded()
+          loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/aab9fba1c9d41f8edf82e1d0bd14b1ea.lua"))()`
+        }else {
+          script =
+              `
+        getgenv().Key = "${nousigi}"
+        getgenv().Config = {
+          ["Potions"] = {
+            ["Use Potions"] = {
+              ["Enable"] = true,
+              ["Potions"] = {
+                ["Coins II"] = true,
+                ["Speed Evolved"] = true,
+                ["Coins IV"] = true,
+                ["Lucky IV"] = true,
+                ["Lucky III"] = true,
+                ["Mythic Evolved"] = true,
+                ["Coins V"] = true,
+                ["Coins I"] = true,
+                ["Mythic II"] = true,
+                ["Coins Evolved"] = true,
+                ["Lucky V"] = true,
+                ["Speed V"] = true,
+                ["Speed IV"] = true,
+                ["Mythic V"] = true,
+                ["Mythic I"] = true,
+                ["Lucky II"] = true,
+                ["Coins III"] = true,
+                ["Speed I"] = true,
+                ["Speed II"] = true,
+                ["Infinity Elixir"] = true,
+                ["Lucky Evolved"] = true,
+                ["Speed III"] = true,
+                ["Lucky I"] = true,
+                ["Mythic IV"] = true,
+                ["Mythic III"] = true
+              }
+            }
+          },
+          ["Hatcher"] = {
+            ["Egg"] = "Void Egg",
+            ["Hatch Location"] = "Island",
+            ["Auto Hatch"] = true
+          },
+          ["Webhook"] = {
+            ["Egg Hatched"] = {
+              ["Enable"] = true,
+              ["Chance"] = 200000
+            },
+            ["URL"] = "https://discord.com/api/webhooks/1360760353624953024/3sTDJMW0jmb27j2PHQkOg5JeKz7R0VGYRhUP2ub4et-f2_jcjc_k4tMXNyY1gCBcqorV"
+          },
+          ["Upgrade"] = {
+            ["Auto Flavor"] = false,
+            ["Auto Gum"] = false,
+            ["Auto Mastery"] = true
+          },
+          ["Rift Hatcher"] = {
+            ["Egg"] = {
+              ["Bunny Egg"] = true,
+              ["Pastel Egg"] = true,
+              ["Nightmare Egg"] = true,
+              ["Void Egg"] = true
+            },
+            ["Auto Hatch Rift"] = true
+          },
+          ["Islands"] = {
+            ["Unlock Islands"] = true,
+            ["Island Hop"] = {
+              ["Enable"] = false,
+              ["Cooldown"] = 7,
+              ["Islands"] = {
+                ["The Void"] = true
+              }
+            }
+          },
+          ["Chest"] = {
+            ["Auto Royal Chest"] = true,
+            ["Auto Golden Chest"] = true,
+            ["Required Open Chest"] = 100
+          },
+          ["Shop"] = {
+            ["Auto Alien Shop"] = {
+              ["Enable"] = true,
+              ["Product"] = {
+                ["Mystery Box"] = true
+              }
+            },
+            ["Auto Black Market"] = {
+              ["Enable"] = true,
+              ["Product"] = {
+                ["Coins Evolved"] = false,
+                ["Mythic Evolved"] = true,
+                ["Lucky Evolved"] = true,
+                ["Speed Evolved"] = false
+              }
+            }
+          },
+          ["Aura Hatcher"] = {
+            ["Auto Hatch Aura"] = true
+          },
+          ["Automation"] = {
+            ["Auto Gift"] = true,
+            ["Auto Blow"] = false,
+            ["Auto Pickup"] = true,
+            ["Auto Sell"] = false
+          },
+          ["Claimer"] = {
+            ["Auto Playtime"] = true,
+            ["Auto Doggy Jump"] = true,
+            ["Auto Wheel Spin"] = true,
+            ["Auto Season"] = true,
+            ["Auto Chest"] = true,
+            ["Auto Quest"] = true,
+            ["Auto Index"] = true
+          },
+          ["Inventory"] = {
+            ["Auto Equip Best"] = true,
+            ["Auto Delete"] = {
+              ["Enable"] = true,
+              ["Rarity"] = {
+                ["Unique"] = true,
+                ["Common"] = true,
+                ["Epic"] = true,
+                ["Rare"] = true
+              },
+              ["Chance"] = 2000
+            }
+          },
+          ["Performance"] = {
+            ["Disable Hatch Animation"] = true,
+            ["Boost FPS"] = true,
+            ["Disable Popups"] = true,
+            ["Black Screen"] = false
+          },
+          ["Powerups"] = {
+            ["Auto Golden Orb"] = true,
+            ["Auto Mystery Box"] = true
+          }
+        }
+        repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
+        }
+      }
+
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
       this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
@@ -674,6 +854,15 @@ export default {
       this.setStatusDevice({device_id: device_id,key: 'script',value: `Trading to - ${user_collect}`})
     },
     handleSelectScript(device_id,device_name,script){
+    },
+    refreshScriptBgsi(script){
+      this.petgumScript = script
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      Object.entries(map_device_data).forEach((device,index) => {
+        if (device[1]?.script && device[1]?.script.includes('petgum-')){
+          this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
+        }
+      })
     },
     refreshScript(){
       const correctPassword = "matkhau123@"; // Mật khẩu cố định
