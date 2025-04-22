@@ -206,7 +206,7 @@ export default {
       intervalEnable: null,
       isIntervalEnable: false,
       rollUnit: false,
-      petgumScript: 'nsg',
+      petgumScript: 'exodus',
     }
   },
   async mounted() {
