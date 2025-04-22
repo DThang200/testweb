@@ -859,7 +859,7 @@ export default {
       this.petgumScript = script
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       Object.entries(map_device_data).forEach((device,index) => {
-        if (device[1]?.script && device[1]?.script.includes('petgum-')){
+        if (device[1]?.script && device[1]?.script === 'petgum'){
           this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
         }
       })
