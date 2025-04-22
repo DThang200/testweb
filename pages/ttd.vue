@@ -521,40 +521,7 @@ export default {
       }
       if (script_sl === 'petgum'){
         user_collect = this.petgumScript
-        if (this.petgumScript === 'exodus'){
-          `getgenv().Settings = {
-            ["Egg Settings"] = {
-              OpenEggs = true,
-              Egg = "Best",
-
-              ["Notifications"] = {
-                Webhook = "https://discord.com/api/webhooks/1360760353624953024/3sTDJMW0jmb27j2PHQkOg5JeKz7R0VGYRhUP2ub4et-f2_jcjc_k4tMXNyY1gCBcqorV",
-                DiscordID = 663236418499379240,
-                Difficulty = 100000,
-              },
-              ["Rifts"] = {
-                FindRifts = true,
-                SortByMultiplier = true, --// false will still sort multi, but out of BEST egg.
-              Targets = {"Pastel Egg", "Bunny Egg", "Nightmare Egg"},
-          --// No targets will let the script automatically find the top 3 best eggs.
-        },
-        },
-
-          ["Enchant Settings"] = {
-            EnchantPets = false,
-
-            ["Require All Enchants"] = true,
-            ["Enchants Needed"] = {
-              ["Team Up"] = {Tier = 1, HigherTiers = true},
-            },
-          },
-              ["Debug"] = {
-                DisableUI = false,
-              },
-        }
-          repeat wait() until game:IsLoaded()
-          loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/aab9fba1c9d41f8edf82e1d0bd14b1ea.lua"))()`
-        }else {
+        if (this.petgumScript === 'nsg'){
           script =
               `
         getgenv().Key = "${nousigi}"
@@ -692,6 +659,39 @@ export default {
           }
         }
         repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
+        }else {
+          script =`getgenv().Settings = {
+            ["Egg Settings"] = {
+              OpenEggs = true,
+              Egg = "Best",
+
+              ["Notifications"] = {
+                Webhook = "https://discord.com/api/webhooks/1360760353624953024/3sTDJMW0jmb27j2PHQkOg5JeKz7R0VGYRhUP2ub4et-f2_jcjc_k4tMXNyY1gCBcqorV",
+                DiscordID = 663236418499379240,
+                Difficulty = 100000,
+              },
+              ["Rifts"] = {
+                FindRifts = true,
+                SortByMultiplier = true, --// false will still sort multi, but out of BEST egg.
+              Targets = {"Pastel Egg", "Bunny Egg", "Nightmare Egg"},
+          --// No targets will let the script automatically find the top 3 best eggs.
+        },
+        },
+
+          ["Enchant Settings"] = {
+            EnchantPets = false,
+
+            ["Require All Enchants"] = true,
+            ["Enchants Needed"] = {
+              ["Team Up"] = {Tier = 1, HigherTiers = true},
+            },
+          },
+              ["Debug"] = {
+                DisableUI = false,
+              },
+        }
+          repeat wait() until game:IsLoaded()
+          loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/aab9fba1c9d41f8edf82e1d0bd14b1ea.lua"))()`
         }
       }
 
