@@ -559,7 +559,7 @@ export default {
             }
           },
           ["Hatcher"] = {
-            ["Egg"] = "Void Egg",
+            ["Egg"] = "Nightmare Egg",
             ["Hatch Location"] = "Island",
             ["Auto Hatch"] = true
           },
