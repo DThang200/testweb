@@ -472,53 +472,6 @@ export default {
 
         end)`
       }
-      if (script_sl === 'ttd-time2'){
-        script = `getgenv().Key = "${nousigi}"
-          getgenv().Config = {
-            ["Powerups"] = {
-              ["Auto Mystery Box"] = true
-            },
-            ["Hatcher"] = {
-              ["Egg"] = "Rainbow Egg",
-              ["Disable Hatch Animation"] = true,
-              ["Hatch Location"] = "Island",
-              ["Auto Hatch"] = true
-            },
-            ["Webhook"] = {
-              ["Egg Hatched"] = {
-                ["Enable"] = true,
-                ["Rarity"] = {
-                  ["Legendary"] = true
-                }
-              },
-              ["URL"] = "https://discord.com/api/webhooks/1360760353624953024/3sTDJMW0jmb27j2PHQkOg5JeKz7R0VGYRhUP2ub4et-f2_jcjc_k4tMXNyY1gCBcqorV"
-            },
-            ["Automation"] = {
-              ["Auto Pickup"] = true,
-              ["Auto Blow"] = true,
-              ["Auto Sell"] = true
-            },
-            ["Claimer"] = {
-              ["Auto Doggy Jump"] = true,
-              ["Auto Playtime"] = true,
-              ["Auto Chest"] = true,
-              ["Auto Quest"] = true,
-              ["Auto Wheel Spin"] = true
-            },
-            ["Islands"] = {
-              ["Unlock Islands"] = true,
-              ["Island Hop"] = {
-                ["Enable"] = true,
-                ["Cooldown"] = 7,
-                ["Islands"] = {
-                  ["The Void"] = true
-                }
-              }
-            }
-          }
-          repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden
-          `
-      }
       if (script_sl === 'petgum'){
         user_collect = this.petgumScript
         if (this.petgumScript === 'nsg'){
@@ -568,7 +521,7 @@ export default {
               ["Enable"] = true,
               ["Chance"] = 200000
             },
-            ["URL"] = "https://discord.com/api/webhooks/1360760353624953024/3sTDJMW0jmb27j2PHQkOg5JeKz7R0VGYRhUP2ub4et-f2_jcjc_k4tMXNyY1gCBcqorV"
+            ["URL"] = "https://discord.com/api/webhooks/1364674373923115060/HXZVGwwSaI1ok5uTwxhDhyOKNd9eOiJImpJhLnJAOeqSqIYiNPVqgTTJ5M8CtaDhhnxJ"
           },
           ["Upgrade"] = {
             ["Auto Flavor"] = false,
@@ -666,7 +619,7 @@ export default {
               Egg = "Best",
 
               ["Notifications"] = {
-                Webhook = "https://discord.com/api/webhooks/1360760353624953024/3sTDJMW0jmb27j2PHQkOg5JeKz7R0VGYRhUP2ub4et-f2_jcjc_k4tMXNyY1gCBcqorV",
+                Webhook = "https://discord.com/api/webhooks/1364674373923115060/HXZVGwwSaI1ok5uTwxhDhyOKNd9eOiJImpJhLnJAOeqSqIYiNPVqgTTJ5M8CtaDhhnxJ",
                 DiscordID = 663236418499379240,
                 Difficulty = 100000,
               },
