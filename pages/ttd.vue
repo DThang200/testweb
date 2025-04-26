@@ -690,6 +690,7 @@ export default {
       }
       if (this.isPlay5game){
         scriptOption.label = "Play5game"
+        scriptOption.place_id = "9921763607"
       }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
