@@ -877,12 +877,13 @@ export default {
       })
     },
     refreshScript(pass = false){
-      const correctPassword = "matkhau123@"; // Mật khẩu cố định
-      const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
-
-      if (userPassword !== correctPassword || pass) {
-        alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
-        return false
+      if (!pass){
+        const correctPassword = "matkhau123@"; // Mật khẩu cố định
+        const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
+        if (userPassword !== correctPassword) {
+          alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
+          return false
+        }
       }
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       Object.entries(map_device_data).forEach((device,index) => {
