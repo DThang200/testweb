@@ -27,6 +27,7 @@
         <button @click="enableDevice">Enable Device</button>
         <button @click="refreshScriptBgsi('nsg')">BGSI NSG</button>
         <button @click="refreshScriptBgsi('exodus')">BGSI Exodus</button>
+        <button @click="autoPlay5game">Play 5 game <span v-if="isPlay5game">(active)</span> </button>
       </div>
     </div>
   </template>
@@ -159,6 +160,7 @@ export default {
         {code : 'ttd-noel',label : 'TTD-Noel',game_id: '13775256536',private_server : false},
         {code : 'ttd-pvp',label : 'TTD-PvP',game_id: '13775256536',private_server : false},
         {code : 'petgum',label : 'PetGum',game_id: '85896571713843',private_server : false},
+        {code : 'play5game',label : 'Play5game',game_id: '9921763607',private_server : false},
         {code : 'ttd-create',label : 'TTD-OpenCreateCustom',game_id: '85896571713843',private_server : false},
         {code : 'ttd-noel-Thangcachepp04',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
       ],
@@ -182,7 +184,7 @@ export default {
         "ttd-pvp" : {
           count: 0,
           // listUser : ['TrungHien_2011']
-          listUser : ['FloydErin8']
+          listUser : ['120991bl']
           //ReedKarlad31 EnglishOctopust44
         },
       },
@@ -207,6 +209,7 @@ export default {
       isIntervalEnable: false,
       rollUnit: false,
       petgumScript: 'exodus',
+      isPlay5game: false,
     }
   },
   async mounted() {
@@ -647,10 +650,66 @@ export default {
           loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/aab9fba1c9d41f8edf82e1d0bd14b1ea.lua"))()`
         }
       }
+      if (this.isPlay5game){
+        script =
+            `setfpscap(1)
 
+          local TeleportService = game:GetService("TeleportService")
+          local Players = game:GetService("Players")
+          local Player = Players.LocalPlayer
+
+          --default 9921763607
+
+          local placeIds = {
+            9921763607,
+            116495829188952,
+            124938816195155,
+            98576266411293,
+            12877981041
+
+          }
+
+          local currentPlaceId = game.PlaceId
+          local currentIndex = nil
+
+          for i, id in ipairs(placeIds) do
+            if id == currentPlaceId then
+              currentIndex = i
+          break
+          end
+          end
+
+          if currentIndex and currentIndex < #placeIds then
+          wait(30)
+          local nextPlaceId = placeIds[currentIndex + 1]
+          TeleportService:Teleport(nextPlaceId, Player)
+        else
+          wait(5)
+          Player:Kick("H?t danh sách, t? d?ng thoát game.")
+          end`
+      }
+      if (this.isPlay5game){
+        scriptOption.label = "Play5game"
+      }
       this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
       this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+    },
+    autoPlay5game(){
+      this.isPlay5game = true
+      this.StopAll()
+      this.refreshScript(true)
+      setTimeout(() => {
+        this.PlayAll()
+      },120 * 1000)
+      setTimeout(() => {
+        this.StopAll()
+        this.isPlay5game = false
+        this.refreshScript(true)
+        setTimeout(() => {
+          this.PlayAll()
+        },120 * 1000)
+      },1800 * 1000)
     },
     autoEnableDevice(active){
       this.isIntervalEnable = active
@@ -817,11 +876,11 @@ export default {
         }
       })
     },
-    refreshScript(){
+    refreshScript(pass = false){
       const correctPassword = "matkhau123@"; // Mật khẩu cố định
       const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
 
-      if (userPassword !== correctPassword) {
+      if (userPassword !== correctPassword || pass) {
         alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
         return false
       }
