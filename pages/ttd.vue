@@ -680,11 +680,11 @@ export default {
           end
 
           if currentIndex and currentIndex < #placeIds then
-          wait(30)
+          wait(45)
           local nextPlaceId = placeIds[currentIndex + 1]
           TeleportService:Teleport(nextPlaceId, Player)
         else
-          wait(5)
+          wait(30)
           Player:Kick("H?t danh sách, t? d?ng thoát game.")
           end`
       }
