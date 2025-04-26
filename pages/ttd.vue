@@ -700,8 +700,11 @@ export default {
     },
     autoPlay5game(){
       this.isPlay5game = true
+
       this.StopAll()
-      this.refreshScript(true)
+      setTimeout(() => {
+        this.refreshScript(true)
+      },60 * 1000)
       setTimeout(() => {
         this.PlayAll()
       },120 * 1000)
@@ -709,7 +712,9 @@ export default {
       this.autoPlay5gameTimeout = setTimeout(() => {
         this.StopAll()
         this.isPlay5game = false
-        this.refreshScript(true)
+        setTimeout(() => {
+          this.refreshScript(true)
+        },60 * 1000)
         setTimeout(() => {
           this.PlayAll()
         },120 * 1000)
