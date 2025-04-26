@@ -133,6 +133,7 @@ export default {
     clearInterval(this.intervalId);
     clearInterval(this.interval_auto_gom);
     clearInterval(this.interval_auto_gom_time);
+    clearTimeout(this.autoPlay5gameTimeout);
   },
   data () {
     return {
@@ -210,6 +211,7 @@ export default {
       rollUnit: false,
       petgumScript: 'exodus',
       isPlay5game: false,
+      autoPlay5gameTimeout : null
     }
   },
   async mounted() {
@@ -703,7 +705,8 @@ export default {
       setTimeout(() => {
         this.PlayAll()
       },120 * 1000)
-      setTimeout(() => {
+
+      this.autoPlay5gameTimeout = setTimeout(() => {
         this.StopAll()
         this.isPlay5game = false
         this.refreshScript(true)
