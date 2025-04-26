@@ -668,9 +668,7 @@ export default {
             124938816195155,
             98576266411293,
             12877981041
-
           }
-
           local currentPlaceId = game.PlaceId
           local currentIndex = nil
 
@@ -682,7 +680,7 @@ export default {
           end
 
           if currentIndex and currentIndex < #placeIds then
-          wait(45)
+          wait(60)
           local nextPlaceId = placeIds[currentIndex + 1]
           TeleportService:Teleport(nextPlaceId, Player)
         else

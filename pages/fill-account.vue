@@ -82,7 +82,7 @@ export default {
         {code : 'bloxFruit-fruit',label : 'Blox Fruit-X3',game_id: '2753915549',total_account: 44,active_account : 22},
         {code : 'bloxFruit-25tab',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 25},
         {code : 'ttd-pvp',label : 'TTD-PvP',game_id: '13775256536',total_account: 25},
-        {code : 'petgum',label : 'TTD-PvP',game_id: '13775256536',total_account: 35},
+        {code : 'petgum',label : 'TTD-PvP',game_id: '13775256536',total_account: 0},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
