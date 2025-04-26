@@ -707,7 +707,7 @@ export default {
       },60 * 1000)
       setTimeout(() => {
         this.PlayAll()
-      },120 * 1000)
+      },300 * 1000)
 
       this.autoPlay5gameTimeout = setTimeout(() => {
         this.StopAll()
@@ -717,7 +717,7 @@ export default {
         },60 * 1000)
         setTimeout(() => {
           this.PlayAll()
-        },120 * 1000)
+        },300 * 1000)
       },1800 * 1000)
     },
     autoEnableDevice(active){
