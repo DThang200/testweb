@@ -654,39 +654,46 @@ export default {
       }
       if (this.isPlay5game){
         script =
-            `setfpscap(1)
+            ` repeat wait() until game:IsLoaded()
+              local TeleportService = game:GetService("TeleportService")
+              local Players = game:GetService("Players")
+              local Player = Players.LocalPlayer
+              --default 9921763607
+              local placeIds = {
+                  9921763607,
+                  116495829188952,
+                  124938816195155,
+                  98576266411293,
+                  12877981041,
+              }
 
-          local TeleportService = game:GetService("TeleportService")
-          local Players = game:GetService("Players")
-          local Player = Players.LocalPlayer
+              local function findCurrentIndex()
+                  local currentPlaceId = game.PlaceId
+                  for i, id in ipairs(placeIds) do
+                      if id == currentPlaceId then
+                          return i
+                      end
+                  end
+                  return 1
+              end
 
-          --default 9921763607
-
-          local placeIds = {
-            9921763607,
-            116495829188952,
-            124938816195155,
-            98576266411293,
-            12877981041
-          }
-          local currentPlaceId = game.PlaceId
-          local currentIndex = nil
-
-          for i, id in ipairs(placeIds) do
-            if id == currentPlaceId then
-              currentIndex = i
-          break
-          end
-          end
-
-          if currentIndex and currentIndex < #placeIds then
-          wait(60)
-          local nextPlaceId = placeIds[currentIndex + 1]
-          TeleportService:Teleport(nextPlaceId, Player)
-        else
-          wait(30)
-          Player:Kick("H?t danh sách, t? d?ng thoát game.")
-          end`
+              local function loopTeleport()
+                  while true do
+                      local currentIndex = findCurrentIndex()
+                      if currentIndex then
+                          wait(30)
+                          local nextIndex = currentIndex + 1
+                          if nextIndex > #placeIds then
+                              nextIndex = 1
+                          end
+                          TeleportService:Teleport(placeIds[nextIndex], Player)
+                          break -- break để đợi teleport sang game mới rồi tiếp tục
+                      else
+                          wait(5)
+                      end
+                  end
+              end
+              loopTeleport()`
       }
       if (this.isPlay5game){
         scriptOption.label = "Play5game"
@@ -698,7 +705,6 @@ export default {
     },
     autoPlay5game(){
       this.isPlay5game = true
-
       this.StopAll()
       setTimeout(() => {
         this.refreshScript(true)
@@ -716,7 +722,7 @@ export default {
         setTimeout(() => {
           this.PlayAll()
         },300 * 1000)
-      },1800 * 1000)
+      },2700 * 1000)
     },
     autoEnableDevice(active){
       this.isIntervalEnable = active
