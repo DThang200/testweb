@@ -82,6 +82,9 @@
       <button @click="handlePlayAll(false)">
         Stop All
       </button>
+      <button @click="showAllDevice = !showAllDevice">
+        Show All
+      </button>
     </div>
 
   </template>
@@ -103,7 +106,7 @@
     </div>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if="hideDevice.includes(data.device_name)" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if="hideDevice.includes(data.device_name) || showAllDevice" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}} {{data?.running ? '' : '(stop)'}}
       </div>
@@ -244,6 +247,7 @@ export default {
       hideDevice: [],
       isRunningPlayStop: false,
       intervalRunAndStop: null,
+      showAllDevice: false,
     }
   },
   async mounted() {
