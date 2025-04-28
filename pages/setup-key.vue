@@ -27,14 +27,16 @@
         <div class="list-item">
           <template v-if="listData.map_key_token_farm?.length > 0">
             <template v-for="(data,index) in listData.map_key_token_farm">
-              <div class="row-item">
-                <div v-if="map_key_token_farm_state[index]?.key" style="width: 250px">
-                  {{data?.key}}
+              <template v-if="hideDevice.includes(data?.key)">
+                <div class="row-item">
+                  <div v-if="map_key_token_farm_state[index]?.key" style="width: 250px">
+                    {{data?.key}}
+                  </div>
+                  <input v-else v-model="data.key" style="width: 250px" placeholder="Name">
+                  <input v-model="data.token" style="width: 25%" placeholder="Banana">
+                  <input v-model="data.nousigi" style="width: 25%" placeholder="Nousigi">
                 </div>
-                <input v-else v-model="data.key" style="width: 250px" placeholder="Name">
-                <input v-model="data.token" style="width: 25%" placeholder="Banana">
-                <input v-model="data.nousigi" style="width: 25%" placeholder="Nousigi">
-              </div>
+              </template>
             </template>
           </template>
           * key vps phải có dấu cách giữa VPS và số
@@ -55,6 +57,7 @@ export default {
     return {
       listData : {
         map_key_token_gom: [],
+        hideDevice: [],
         map_key_token_farm: [],
       }
     };
@@ -74,6 +77,7 @@ export default {
     this.getKeyGom();
     this.getKeyFarm();
     this.initData();
+    this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
   },
   methods: {
     ...mapActions([
