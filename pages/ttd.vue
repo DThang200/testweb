@@ -216,6 +216,7 @@ export default {
   },
   async mounted() {
     this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
+    this.userCollectCreate =  JSON.parse(localStorage.getItem('userCollectCreate')) || '';
     this.getDataRoblox();
     this.initData();
     this.getKeyGom();
@@ -890,6 +891,7 @@ export default {
       })
     },
     refreshScript(pass = false){
+      localStorage.setItem('userCollectCreate', JSON.stringify(this.userCollectCreate));
       if (!pass){
         const correctPassword = "matkhau123@"; // Mật khẩu cố định
         const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
