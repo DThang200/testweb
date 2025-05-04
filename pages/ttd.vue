@@ -255,7 +255,7 @@ export default {
         this.option[script_sl].count += 1
       }
       let marcoUrl = ''
-      let SelectMacro = 'message'
+      let SelectMacro = ''
       let WebhookURL = JSON.parse(localStorage.getItem('webhookUrl')) || 'https://discord.com/api/webhooks/1364687929951387710/M1-OFBPn3poDRjVmzTjHSZ9bxGYLiXVyKA9SVYkFgvAZvDD6mIzuZ5BnIuA-K_m9iCSR'
       let WebhookCreate = 'https://discord.com/api/webhooks/1326099391630540863/F24-G3lDKUaRWQqCp3TiTE71fyJY2MVjh0n6RrXagbNqB0eUY5BJDXMD1_Djct7_Vpf9'
       let SelectOpenCrate = ''
@@ -275,8 +275,8 @@ export default {
       let EventType = 'Drill Type'
       let SelectDifficulty = 'Easy'
       if (script_sl === 'ttd-pvp'){
-        marcoUrl = 'https://raw.nousigi.com/macro/663236418499379240_bbb5d13218ac54a804da9cf427404d3a.json?macroname=m1'
-        SelectMacro= 'm1'
+        marcoUrl = 'https://gist.githubusercontent.com/DThang200/6730a05d5550fc60f985abc5e64adc90/raw/6f9348b4195449f1dee3b85b8ab40c0bbb78d638/pvp-marco'
+        PVPMarcoRedName= 'Macro12Action'
         SelectBuyCrate = 'GoldenGladiatorCrate'
         AutoJoinPVP = true
         AutoJoinMatch = false

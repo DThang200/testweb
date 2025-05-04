@@ -67,6 +67,7 @@ export default {
       this.countLink = this.countRow(this.listLink)
     },
     async GetMail(email,refresh_token,client_id) {
+      this.pending = true
       const responseCompleted = await this.$axios.$post(`https://tool.unlimitmail.com/api/get_messages_oauth2`, {
         "email": email,
         "refresh_token": refresh_token,
@@ -88,6 +89,7 @@ export default {
           }
         })
       }
+      this.pending = false
     },
     RunLink(){
       const listLink = this.listLink.split('\n')

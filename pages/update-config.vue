@@ -13,8 +13,9 @@
           </div>
           <div style="width: 50%">
             <span style="font-size: 24px;font-weight: bold">Game Configs</span> <input type="checkbox" v-model="update_config">
-            <div>Use private_server : <input type="checkbox" v-model="config.use_private_server">{{config.use_private_server}}</div>
-            <div>Join low players server : <input type="checkbox" v-model="config.join_low_players_server">{{config.join_low_players_server}}</div>
+            <div>injection_check_timeout : <input type="number" v-model="config.injection_check_timeout"></div>
+            <div>yarn deinjection_check : <input type="checkbox" v-model="config.injection_check">{{config.injection_check}}</div>
+<!--            <div>Join low players server : <input type="checkbox" v-model="config.join_low_players_server">{{config.join_low_players_server}}</div>-->
           </div>
         </div>
         <button type="button" @click="renderConfig">Render config</button>
@@ -112,8 +113,10 @@ export default {
         "avoid_joining_same_accounts": false
       },
       config : {
-        "use_private_server": true,
-        "join_low_players_server": false,
+        // "use_private_server": true,
+        // "join_low_players_server": false,
+        "injection_check_timeout": 60,
+        "injection_check": true,
       },
       update_config : false,
       last_enable_per_device : 30,
@@ -312,24 +315,24 @@ export default {
         });
         if (this.update_config){
           console.log('this.update_config',this.update_config)
-          // const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs`, {
-          //   headers: {
-          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //   },
-          // });
-          // const config_id = resConfig?.configs[0]?.config_id
-          // const configData = {...this.config,private_server_link : this.link_private_data.find(item => {return `VPS ${item?.name}` == data?.device_name})?.link}
-          // console.log('configData',configData)
-          // const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
-          //   headers: {
-          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //   },
-          // });
-          // this.responseAll.push({
-          //   name : data?.name,
-          //   sett8ing : responseSetting ? 'Ok' : 'False',
-          //   config : responseConfig ? 'Ok' : 'False',
-          // })
+          const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs`, {
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+          const config_id = resConfig?.configs[0]?.config_id
+          const configData = this.config
+          console.log('configData',configData)
+          const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+          this.responseAll.push({
+            name : data?.name,
+            sett8ing : responseSetting ? 'Ok' : 'False',
+            config : responseConfig ? 'Ok' : 'False',
+          })
         }
       }
     },
