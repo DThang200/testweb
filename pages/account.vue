@@ -71,6 +71,17 @@
       </div>
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
+          User pass cookie => user
+          <button @click="copyContent(user_only)">Copy</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie3" @change="renderUPCtoU">
+
+      </textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="user_only">
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
           User pass cookie => cookie
           <button @click="copyContent(input_ck)">Copy</button>
         </div>
@@ -198,9 +209,11 @@ export default {
       ListBothMythic : [],
       countListBoth: {},
       user_pass_cookie: '',
+      user_pass_cookie3: '',
       user_pass_cookie2: '',
       user_pass_cookie_file: '',
       user_pass: '',
+      user_only: '',
       input_ck: '',
       input_upec: '',
       input_ec: '',
@@ -361,6 +374,19 @@ export default {
         }
       })
       this.user_pass = result
+    },
+    renderUPCtoU(){
+      const user_pass_cookie = this.user_pass_cookie3.split('\n')
+      let result = ''
+      user_pass_cookie.forEach(item => {
+        if (item){
+          const acc_arr = item.split(':')
+          if (acc_arr?.length > 0){
+            result += `${acc_arr[0]}` + '\n'
+          }
+        }
+      })
+      this.user_only = result
     },
     getEc(){
       const user_pass_cookie = this.input_upec.split('\n')
