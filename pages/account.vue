@@ -82,6 +82,18 @@
       </div>
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
+          User pass cookie => user
+          <button @click="copyContent(acc_nopass)">Copy</button>
+          input : ({{this.input_nopass || 0}}) --- output : ({{this.output_nopass || 0}})
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie4" @change="renderUPCtoNP">
+
+      </textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="acc_nopass">
+      </textarea>
+      </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
           User pass cookie => cookie
           <button @click="copyContent(input_ck)">Copy</button>
         </div>
@@ -211,8 +223,12 @@ export default {
       user_pass_cookie: '',
       user_pass_cookie3: '',
       user_pass_cookie2: '',
+      user_pass_cookie4: '',
       user_pass_cookie_file: '',
       user_pass: '',
+      acc_nopass: '',
+      input_nopass: '',
+      output_nopass: '',
       user_only: '',
       input_ck: '',
       input_upec: '',
@@ -387,6 +403,23 @@ export default {
         }
       })
       this.user_only = result
+    },
+    renderUPCtoNP(){
+      this.input_nopass = 0
+      this.output_nopass = 0
+      const user_pass_cookie = this.user_pass_cookie4.split('\n')
+      let result = ''
+      this.input_nopass = user_pass_cookie.length
+      user_pass_cookie.forEach(item => {
+        if (item){
+          const acc_arr = item.split(':')
+          if (acc_arr?.length > 0 && acc_arr[1]?.length > 30){
+            this.output_nopass += 1
+            result += `${acc_arr[0]}` + '\n'
+          }
+        }
+      })
+      this.acc_nopass = result
     },
     getEc(){
       const user_pass_cookie = this.input_upec.split('\n')
