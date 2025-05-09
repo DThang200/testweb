@@ -415,7 +415,7 @@ export default {
           const acc_arr = item.split(':')
           if (acc_arr?.length > 0 && acc_arr[1]?.length > 30){
             this.output_nopass += 1
-            result += `${acc_arr[0]}` + '\n'
+            result += `${acc_arr[0]}:${acc_arr[1]}:${acc_arr[2]}:${acc_arr[3]}` + '\n'
           }
         }
       })
