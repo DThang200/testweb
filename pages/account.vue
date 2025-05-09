@@ -84,7 +84,7 @@
         <div style="font-size: 24px;font-weight: bold">
           User pass cookie => user
           <button @click="copyContent(acc_nopass)">Copy</button>
-          input : ({{this.input_nopass || 0}}) --- output : ({{this.output_nopass || 0}})
+          input : ({{this.input_nopass || 0}}) --- output : ({{this.output_nopass || 0}}) --- need : ({{this.input_nopass - this.output_nopass || 0}})
         </div>
         <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie4" @change="renderUPCtoNP">
 
