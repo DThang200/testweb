@@ -29,14 +29,18 @@ export default {
       const showDevice = this.hideDevice
       const curr_active_line = this.list_active.split('\n')
       const curr_active = curr_active_line.map(line => {return (line.match(/(VSP\S*)/)[0]).replace(/\bVSP_0/g, "VPS ").replace(/\bVSP_/g, "VPS ")})
-      this.list_inactive = []
-      console.log('curr_active',curr_active)
+      const list_inactive = []
       showDevice.forEach(device => {
         if (!curr_active.includes(device)){
-          this.list_inactive.push(device)
+          list_inactive.push(device)
         }
       })
-      console.log("this.list_inactive",this.list_inactive)
+      list_inactive.sort((a, b) => {
+        let numA = parseInt(a.split(" ")[1]);
+        let numB = parseInt(b.split(" ")[1]);
+        return numA - numB;
+      });
+      this.list_inactive = list_inactive
     }
   }
 }
