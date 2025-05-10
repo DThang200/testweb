@@ -244,7 +244,9 @@ export default {
             console.log('this.map_device_id_code[device?.device_id]',this.map_device_id_code[device?.device_id])
             if ((scr?.code.includes('ttd') || scr?.code.includes('petgum')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
               console.log('scr?.code',scr?.code)
-              this.needAccount += scr?.total_account - device.total_accounts
+              if (scr?.total_account > device.total_accounts){
+                this.needAccount += scr?.total_account - device.total_accounts
+              }
             }
           }
         })
