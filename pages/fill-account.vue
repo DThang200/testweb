@@ -24,6 +24,7 @@
     <button @click="showLowDevice = !showLowDevice" style="width: 150px">
       show Low device
     </button>
+    <div>Need more : {{needAccount || 0}}</div>
     <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
       <div v-for="data in roblox_data" style="border: 1px solid black;padding: 4px">
         <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
@@ -76,6 +77,7 @@ export default {
       lowDevice: [],
       remain_acc_copy: '',
       fillttd: true,
+      needAccount: 0,
       farmOption : [
         // {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-2600',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
@@ -93,8 +95,19 @@ export default {
       handler(value){
         const list_device = []
         if (value?.devices){
+          this.needAccount = 0
           value?.devices.forEach(device => {
             list_device.push(device)
+            device.total_accounts
+            this.farmOption.forEach(scr => {
+              if (scr?.code === this.map_device_data[device?.device_id]?.script){
+                if (!(!this.fillttd)){
+                  if ((scr?.code.includes('ttd') || scr?.code.includes('petgum')) && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
+                    this.needAccount += scr?.total_account - device.total_accounts
+                  }
+                }
+              }
+            })
           })
           this.roblox_data = JSON.parse(JSON.stringify(list_device))
         }
