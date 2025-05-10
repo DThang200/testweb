@@ -99,7 +99,9 @@ export default {
             list_device.push(device)
           })
           this.roblox_data = JSON.parse(JSON.stringify(list_device))
-          this.getNeedAccount(JSON.parse(JSON.stringify(list_device)));
+          setTimeout(() => {
+            this.getNeedAccount(JSON.parse(JSON.stringify(list_device)));
+          },2000)
         }
       },deep: true
     },
