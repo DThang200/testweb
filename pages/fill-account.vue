@@ -102,7 +102,7 @@ export default {
             this.farmOption.forEach(scr => {
               if (scr?.code === this.map_device_data[device?.device_id]?.script){
                 if (!(!this.fillttd)){
-                  if ((scr?.code.includes('ttd') || scr?.code.includes('petgum')) && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
+                  if ((scr?.code.includes('ttd') || scr?.code.includes('petgum')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
                     this.needAccount += scr?.total_account - device.total_accounts
                   }
                 }
