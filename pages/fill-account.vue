@@ -99,7 +99,7 @@ export default {
             list_device.push(device)
           })
           this.roblox_data = JSON.parse(JSON.stringify(list_device))
-          this.getNeedAccount();
+          this.getNeedAccount(JSON.parse(JSON.stringify(list_device)));
         }
       },deep: true
     },
@@ -232,11 +232,11 @@ export default {
         this.getDataRoblox()
       }, this.$config.INTERVAL_TIME || 10000);
     },
-    getNeedAccount() {
+    getNeedAccount(data) {
       if (this.needAccount > 0){
         return false
       }
-      this.roblox_data.forEach(device => {
+      data.forEach(device => {
         this.farmOption.forEach(scr => {
           if (scr?.code === this.map_device_data[device?.device_id]?.script){
             console.log('this.map_device_id_code[device?.device_id]',this.map_device_id_code[device?.device_id])
