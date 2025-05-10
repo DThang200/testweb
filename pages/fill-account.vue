@@ -55,8 +55,8 @@ export default {
   computed: {
     ...mapState({
       map_device_data: state => state.map_device_data,
-      roblox_data_state: state => state.roblox_data,
       map_device_id_code: state => state.map_device_id_code,
+      roblox_data_state: state => state.roblox_data,
     }),
   },
   data() {
@@ -95,19 +95,8 @@ export default {
       handler(value){
         const list_device = []
         if (value?.devices){
-          this.needAccount = 0
           value?.devices.forEach(device => {
             list_device.push(device)
-            device.total_accounts
-            this.farmOption.forEach(scr => {
-              if (scr?.code === this.map_device_data[device?.device_id]?.script){
-                if (!(!this.fillttd)){
-                  if ((scr?.code.includes('ttd') || scr?.code.includes('petgum')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
-                    this.needAccount += scr?.total_account - device.total_accounts
-                  }
-                }
-              }
-            })
           })
           this.roblox_data = JSON.parse(JSON.stringify(list_device))
         }
@@ -126,6 +115,7 @@ export default {
     // this.runFarmFruit();
     this.initData();
     this.initStatusDevice();
+    this.getNeedAccount();
     // this.interval_farm = setInterval(async () => {
     //   await this.runFarmFruit()
     // }, this.time_circle);
@@ -241,6 +231,20 @@ export default {
       this.intervalId = setInterval(() => {
         this.getDataRoblox()
       }, this.$config.INTERVAL_TIME || 10000);
+    },
+    getNeedAccount() {
+      this.needAccount = 0
+      this.roblox_data.forEach(device => {
+        this.farmOption.forEach(scr => {
+          if (scr?.code === this.map_device_data[device?.device_id]?.script){
+            if (!(!this.fillttd)){
+              if ((scr?.code.includes('ttd') || scr?.code.includes('petgum')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
+                this.needAccount += scr?.total_account - device.total_accounts
+              }
+            }
+          }
+        })
+      })
     },
     getStatusClass(data = null){
       if (!(data?.total_accounts > 0)) {
