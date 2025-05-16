@@ -953,7 +953,7 @@ export default {
             const config_id = resConfig?.configs[0]?.config_id
             map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
             map_device_data[device_id].config_id = config_id
-            localStorage.setItem('run_auto_gom', JSON.stringify(map_device_data));
+            localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
             return config_id
           } else if (key === "script_id"){
             const config_id = await this.getData(device_id, "config_id");
@@ -965,7 +965,7 @@ export default {
             const script_id = resScript?.scripts[0]?.script_id
             map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
             map_device_data[device_id].script_id = script_id
-            localStorage.setItem('run_auto_gom', JSON.stringify(map_device_data));
+            localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
             return script_id
           }
         }
