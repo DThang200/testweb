@@ -939,7 +939,7 @@ export default {
     },
     async getData(device_id = null, key = null) {
       if (key && device_id) {
-        const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+        let map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
         const device = map_device_data[device_id]
         if (device[key]) {
           return device[key]
@@ -951,6 +951,7 @@ export default {
               },
             });
             const config_id = resConfig?.configs[0]?.config_id
+            map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
             map_device_data[device_id].config_id = config_id
             localStorage.setItem('run_auto_gom', JSON.stringify(map_device_data));
             return config_id
@@ -962,6 +963,7 @@ export default {
               },
             });
             const script_id = resScript?.scripts[0]?.script_id
+            map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
             map_device_data[device_id].script_id = script_id
             localStorage.setItem('run_auto_gom', JSON.stringify(map_device_data));
             return script_id
