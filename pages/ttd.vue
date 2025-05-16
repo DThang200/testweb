@@ -901,12 +901,26 @@ export default {
         }
       }
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
-      Object.entries(map_device_data).forEach((device,index) => {
+      const list_data = Object.entries(map_device_data)
+      let index = 0
+
+      const interval = setInterval(() => {
+        const device = list_data[index]
         if (device[1]?.script && device[1]?.script.includes('ttd-')){
           console.log('refreshScript',device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
           this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
         }
-      })
+        index+=1
+        if (index > list_data.length - 1){
+          clearInterval(interval)
+        }
+      },100)
+      // Object.entries(map_device_data).forEach((device,index) => {
+      //   if (device[1]?.script && device[1]?.script.includes('ttd-')){
+      //     console.log('refreshScript',device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
+      //     this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
+      //   }
+      // })
     },
     async PlayAll() {
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
