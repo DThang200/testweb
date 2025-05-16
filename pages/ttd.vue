@@ -937,6 +937,38 @@ export default {
         // https://frontend.robloxmanager.com/v1/devices/cd42b76bdc6ad726b6690ad474a8cafe4184a663f47336e1be8e6f931a23a64b/stop
       }
     },
+    async getData(device_id = null, key = null) {
+      if (key && device_id) {
+        const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+        const device = map_device_data[device_id]
+        if (device[key]) {
+          return device[key]
+        } else {
+          if (key === "config_id") {
+            const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            const config_id = resConfig?.configs[0]?.config_id
+            map_device_data[device_id].config_id = config_id
+            localStorage.setItem('run_auto_gom', JSON.stringify(map_device_data));
+            return config_id
+          } else if (key === "script_id"){
+            const config_id = this.getData(device_id, "config_id");
+            const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            const script_id = resScript?.scripts[0]?.script_id
+            map_device_data[device_id].script_id = script_id
+            localStorage.setItem('run_auto_gom', JSON.stringify(map_device_data));
+            return script_id
+          }
+        }
+      }
+    },
     async StopAll() {
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       const arr = Object.entries(map_device_data)
@@ -953,12 +985,13 @@ export default {
       }
     },
     async saveScript(device_id, script,option = null) {
-      const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
-        headers: {
-          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-        },
-      });
-      const config_id = resConfig?.configs[0]?.config_id
+      // const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
+      //   headers: {
+      //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+      //   },
+      // });
+      // const config_id =  resConfig?.configs[0]?.config_id
+      const config_id =  this.getData(device_id, "config_id")
       if (option){
         const gameConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs/${config_id}`, {
           use_private_server: option.private_server,
@@ -970,12 +1003,13 @@ export default {
           },
         });
       }
-      const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
-        headers: {
-          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-        },
-      });
-      const script_id = resScript?.scripts[0]?.script_id
+      // const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+      //   headers: {
+      //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+      //   },
+      // });
+      const script_id =  this.getData(device_id, "script_id")
+      // const script_id = resScript?.scripts[0]?.script_id
       const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
         script_data: script
       },{
