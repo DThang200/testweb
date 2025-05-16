@@ -914,7 +914,7 @@ export default {
         if (index > list_data.length - 1){
           clearInterval(interval)
         }
-      },200)
+      },300)
       // Object.entries(map_device_data).forEach((device,index) => {
       //   if (device[1]?.script && device[1]?.script.includes('ttd-')){
       //     console.log('refreshScript',device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
