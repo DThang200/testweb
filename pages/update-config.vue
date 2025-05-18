@@ -306,6 +306,43 @@ export default {
       this.setting.launch_delay = typeof(this.setting.launch_delay) === 'number' ? this.setting.launch_delay : parseInt(this.setting.launch_delay)
       this.setting.kill_idle_roblox_delay = typeof(this.setting.kill_idle_roblox_delay) === 'number' ? this.setting.kill_idle_roblox_delay : parseInt(this.setting.kill_idle_roblox_delay)
       this.setting.relaunch_delay = typeof(this.setting.relaunch_delay) === 'number' ? this.setting.relaunch_delay : parseInt(this.setting.relaunch_delay)
+      let index = 0
+      const interval = setInterval(async () => {
+        const data = handleData[index]
+        const devices_id = data?.device_id
+        const responseSetting = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/settings`, this.setting, {
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+        if (this.update_config) {
+          // const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs`, {
+          //   headers: {
+          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //   },
+          // });
+          const config_id = await this.getData(devices_id, "config_id")
+          // const config_id = resConfig?.configs[0]?.config_id
+          this.config.injection_check_timeout = parseInt(this.config.injection_check_timeout)
+          const configData = this.config
+          const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+          this.responseAll.push({
+            name: data?.name,
+            sett8ing: responseSetting ? 'Ok' : 'False',
+            config: responseConfig ? 'Ok' : 'False',
+          })
+        }
+
+        index += 1
+        if (index > handleData.length - 1) {
+          clearInterval(interval)
+        }
+      },300)
+
       for (const data of handleData) {
         const devices_id = data?.device_id
         const responseSetting = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/settings`, this.setting, {
@@ -314,15 +351,15 @@ export default {
           },
         });
         if (this.update_config){
-          console.log('this.update_config',this.update_config)
-          const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs`, {
-            headers: {
-              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-            },
-          });
-          const config_id = resConfig?.configs[0]?.config_id
+          // const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs`, {
+          //   headers: {
+          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //   },
+          // });
+          const config_id = await this.getData(devices_id, "config_id")
+          // const config_id = resConfig?.configs[0]?.config_id
+          this.config.injection_check_timeout = parseInt(this.config.injection_check_timeout)
           const configData = this.config
-          console.log('configData',configData)
           const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
@@ -333,6 +370,40 @@ export default {
             sett8ing : responseSetting ? 'Ok' : 'False',
             config : responseConfig ? 'Ok' : 'False',
           })
+        }
+      }
+    },
+    async getData(device_id = null, key = null) {
+      if (key && device_id) {
+        let map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+        const device = map_device_data[device_id]
+        if (device[key]) {
+          return device[key]
+        } else {
+          if (key === "config_id") {
+            const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            const config_id = resConfig?.configs[0]?.config_id
+            map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+            map_device_data[device_id].config_id = config_id
+            localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
+            return config_id
+          } else if (key === "script_id"){
+            const config_id = await this.getData(device_id, "config_id");
+            const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            const script_id = resScript?.scripts[0]?.script_id
+            map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+            map_device_data[device_id].script_id = script_id
+            localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
+            return script_id
+          }
         }
       }
     },
