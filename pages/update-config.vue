@@ -464,13 +464,13 @@ export default {
         const pc = listDevice[i]
         let status = false
         if (pc?.listAcc) {
-          const responseConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${pc?.deviceId}/configs`, {
-            headers: {
-              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-            },
-          });
-          const configId = responseConfig?.configs[0]?.config_id
-              const response = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
+          // const responseConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${pc?.deviceId}/configs`, {
+          //   headers: {
+          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //   },
+          // });
+          const configId = await this.getData(pc?.deviceId, "config_id")
+          const response = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
             },
@@ -484,22 +484,22 @@ export default {
               }
             }
           }
-          if (!checkValid){
-            console.log('device?.deviceName',pc?.deviceName)
-
-            if (configId){
-              const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
-                "script_name": "Fix lag",
-                "script_data": this.scriptFixLagBase64
-              },{
-                headers: {
-                  'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-                },
-              });
-              console.log('device?.deviceName',pc?.deviceName)
-              console.log('responseCreateScriptFixLag',responseCreateScriptFixLag)
-            }
-          }
+          // if (!checkValid){
+          //   console.log('device?.deviceName',pc?.deviceName)
+          //
+          //   if (configId){
+          //     const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
+          //       "script_name": "Fix lag",
+          //       "script_data": this.scriptFixLagBase64
+          //     },{
+          //       headers: {
+          //         'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //       },
+          //     });
+          //     console.log('device?.deviceName',pc?.deviceName)
+          //     console.log('responseCreateScriptFixLag',responseCreateScriptFixLag)
+          //   }
+          // }
           let checkValidOpenCreate = false
           if (response?.scripts){
             for (let j = 0; j < response?.scripts?.length; j++) {
