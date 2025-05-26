@@ -119,8 +119,8 @@ export default {
           let data = JSON.parse(JSON.stringify(value))
           if (data?.devices && data?.devices.length > 0){
             data.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
+            this.roblox_data = data
           }
-          this.roblox_data = data
         } else {
           this.roblox_data = JSON.parse(JSON.stringify(value))
         }
@@ -196,7 +196,7 @@ export default {
       autoGomTo: '',
       autoGomLastCurrent: 0,
       editDevice: '',
-      sortInactive: false,
+      sortInactive: true,
       roblox_data: [],
       is_auto_gom: false,
       intervalId: null,
