@@ -705,6 +705,10 @@ export default {
       if (this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
         this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+      }else {
+        this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
+        this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
+        this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
       }
     },
     autoPlay5game(){
