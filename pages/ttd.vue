@@ -702,9 +702,10 @@ export default {
         scriptOption.label = "Play5game"
         scriptOption.game_id = "9921763607"
       }
-      this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)
-      this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
-      this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+      if (this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)){
+        this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
+        this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+      }
     },
     autoPlay5game(){
       this.isPlay5game = true
@@ -1021,6 +1022,7 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
+      return resSetScript
     }
   }
 };
