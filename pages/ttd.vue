@@ -409,11 +409,11 @@ export default {
                           ["ChariotCameraman"] = true,
                           ["TitanSnowman"] = true,
                           ["CandyCaneCameraman"] = true,
-                          ["HourglassSpeakerman"] = true,
                           ["PresentSpeakerman"] = true,
                           ["GladiatorSpeakerman"] = true,
                           ["BarbarianLargeTVMan"] = true,
                         },
+                        ["AutoOpenCrate"] = true,
                         ["SelectCrate"] = {
                           ["ActivityCrate"] = true,
                         },
