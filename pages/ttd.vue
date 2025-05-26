@@ -117,7 +117,9 @@ export default {
       handler(value){
         if (this.sortInactive){
           let data = JSON.parse(JSON.stringify(value))
-          data.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
+          if (data?.devices && data?.devices.length > 0){
+            data.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
+          }
           this.roblox_data = data
         } else {
           this.roblox_data = JSON.parse(JSON.stringify(value))
@@ -270,13 +272,13 @@ export default {
       let AutoSummonTroop = true
       let PVPMarcoRed = "https://raw.nousigi.com/macro/663236418499379240_bbb5d13218ac54a804da9cf427404d3a.json?macroname=m1"
       let WH_Clone = "https://discord.com/api/webhooks/1347963702598701137/VhJNEyCY8DO4MozFw_s8XxNSkejHK-AOOQ4qKeAwEr9ineqH8m25gjYCQg2ATxaYKKkn"
-      let PVPMarcoRedName = "m1"
+      let BlueMacro = "m1"
       let AutoBuyCrate = this.AutoBuyCrate
       let EventType = 'Drill Type'
       let SelectDifficulty = 'Easy'
       if (script_sl === 'ttd-pvp'){
-        marcoUrl = 'https://gist.githubusercontent.com/DThang200/6730a05d5550fc60f985abc5e64adc90/raw/6f9348b4195449f1dee3b85b8ab40c0bbb78d638/pvp-marco'
-        PVPMarcoRedName= 'Macro12Action'
+        marcoUrl = 'https://raw.githubusercontent.com/DThang200/testweb/refs/heads/main/static/css/abc/oidoioi.json'
+        BlueMacro= 'Macro9Action'
         SelectBuyCrate = 'GoldenGladiatorCrate'
         AutoJoinPVP = true
         AutoJoinMatch = false
@@ -341,6 +343,9 @@ export default {
                           ["Uncommon"] = true,
                           ["Rare"] = true
                         },
+                        ["SelectPVPMacro"] = {
+                          ["Blue"] = "${BlueMacro}",
+                        },
                         ["DelayReplay"] = 5,
                         ["EventType"] = "${EventType}",
                         ["WH_MatchComplete"] = ${WH_MatchComplete},
@@ -374,9 +379,6 @@ export default {
                         ["DelayJoin"] = 25,
                         ["DeleteMap"] = true,
                         ["RequireRoll"] = 10,
-                        ["SelectPVPMacro"] = {
-                           ["Red"] = "${PVPMarcoRedName}"
-                        },
                         ["AutoJoinMatch"] = ${AutoJoinMatch},
                         ["ALFS_HopServer"] = false,
                         ["SelectCase"] = "MythicCrate",
