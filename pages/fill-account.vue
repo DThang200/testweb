@@ -29,7 +29,7 @@
     <button @click="showLowDevice = !showLowDevice" style="width: 150px">
       show Low device
     </button>
-    <div>Need more : {{needAccount || 0}}</div>
+    <div>Need more : TTD - {{needAccount || 0}}     GAG - {{needAccountGAG || 0}}     BGSI - {{needAccountBGSI || 0}}</div>
     <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
       <div v-for="data in roblox_data" style="border: 1px solid black;padding: 4px">
         <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
@@ -86,6 +86,8 @@ export default {
       fillttd: true,
       fillgag: false,
       needAccount: 0,
+      needAccountGAG: 0,
+      needAccountBGSI: 0,
       farmOption : [
         // {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-2600',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
@@ -257,10 +259,16 @@ export default {
         this.farmOption.forEach(scr => {
           if (scr?.code === this.map_device_data[device?.device_id]?.script){
             console.log('this.map_device_id_code[device?.device_id]',this.map_device_id_code[device?.device_id])
-            if ((scr?.code.includes('ttd') || scr?.code.includes('petgum')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
+            if ((scr?.code.includes('ttd') || scr?.code.includes('petgum') || scr?.code.includes('bgsi') || scr?.code.includes('gag')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
               console.log('scr?.code',scr?.code)
               if (scr?.total_account > device.total_accounts){
-                this.needAccount += scr?.total_account - device.total_accounts
+                if (scr?.code.includes('gag')){
+                  this.needAccountGAG += scr?.total_account - device.total_accounts
+                } else if (scr?.code.includes('bgsi')){
+                  this.needAccountBGSI += scr?.total_account - device.total_accounts
+                } else {
+                  this.needAccount += scr?.total_account - device.total_accounts
+                }
               }
             }
           }
