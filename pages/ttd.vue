@@ -801,7 +801,7 @@ export default {
                   }
               }
               setfpscap(getgenv().Config["FPS"] or 3)
-              script_key="YNXnJuEbEOIBIfXNPyiHUTfikDseRFQo";
+              script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";
 
               repeat
                   wait()
