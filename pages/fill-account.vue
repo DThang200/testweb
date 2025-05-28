@@ -156,40 +156,37 @@ export default {
       // for (let i = 0; i < 5; i++) {
         let listAccFill = []
         const device = this.roblox_data[i];
-        console.log(device?.device_id)
-        if (this.fillDevice.includes(device?.device_id)){
-          console.log(device?.device_id)
-          let total_account = 0;
-          this.farmOption.forEach(scr => {
-            if (scr?.code === this.map_device_data[device?.device_id]?.script){
-              if (!(!this.fillttd)){
-                if (scr?.code.includes(this.fillOption) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
-                  total_account = scr?.total_account
-                } else {
-                  total_account = 0
-                }
+        let total_account = 0;
+        this.farmOption.forEach(scr => {
+          if (scr?.code === this.map_device_data[device?.device_id]?.script){
+            if (!(!this.fillttd)){
+              if (scr?.code.includes(this.fillOption) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
+                total_account = scr?.total_account
+              } else {
+                total_account = 0
               }
             }
-          })
-          if (total_account > 0 || false) {
-            if (device?.total_accounts < total_account) {
-              const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " ")) ? 2 : 0)
-              // if (needAcc > 0 ){
-              //   this.fillDevice.push(device?.device_id)
-              // }
-              listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
-              getAccIndex = getAccIndex + needAcc
-            }
-            console.log('listAccFill',device?.device_name,listAccFill)
-            if (listAccFill?.length > 0){
-              await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
-                headers: {
-                  'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-                },
-              });
-            }
+          }
+        })
+        if (total_account > 0 || false) {
+          if (device?.total_accounts < total_account) {
+            const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " ")) ? 2 : 0)
+            // if (needAcc > 0 ){
+            //   this.fillDevice.push(device?.device_id)
+            // }
+            listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
+            getAccIndex = getAccIndex + needAcc
+          }
+          console.log('listAccFill',device?.device_name,listAccFill)
+          if (listAccFill?.length > 0){
+            await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
           }
         }
+
       }
       this.remain_acc = []
       const remain_acc = listEmptyAcc.slice(getAccIndex, listEmptyAcc.length)
