@@ -156,7 +156,9 @@ export default {
       // for (let i = 0; i < 5; i++) {
         let listAccFill = []
         const device = this.roblox_data[i];
+        console.log(device?.device_id)
         if (this.fillDevice.includes(device?.device_id)){
+          console.log(device?.device_id)
           let total_account = 0;
           this.farmOption.forEach(scr => {
             if (scr?.code === this.map_device_data[device?.device_id]?.script){
