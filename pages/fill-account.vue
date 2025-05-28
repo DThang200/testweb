@@ -29,7 +29,7 @@
     <button @click="showLowDevice = !showLowDevice" style="width: 150px">
       show Low device
     </button>
-    <div>Need more : TTD - {{needAccount || 0}}     GAG - {{needAccountGAG || 0}}     BGSI - {{needAccountBGSI || 0}}</div>
+    <div>Need more : Other - {{needAccount || 0}}     GAG - {{needAccountGAG || 0}}     BGSI - {{needAccountBGSI || 0}}</div>
     <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
       <div v-for="data in roblox_data" style="border: 1px solid black;padding: 4px">
         <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
@@ -156,34 +156,36 @@ export default {
       // for (let i = 0; i < 5; i++) {
         let listAccFill = []
         const device = this.roblox_data[i];
-        let total_account = 0;
-        this.farmOption.forEach(scr => {
-          if (scr?.code === this.map_device_data[device?.device_id]?.script){
-            if (!(!this.fillttd)){
-              if (scr?.code.includes(this.fillOption) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
-                total_account = scr?.total_account
-              } else {
-                total_account = 0
+        if (this.fillDevice.includes(device?.device_id)){
+          let total_account = 0;
+          this.farmOption.forEach(scr => {
+            if (scr?.code === this.map_device_data[device?.device_id]?.script){
+              if (!(!this.fillttd)){
+                if (scr?.code.includes(this.fillOption) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
+                  total_account = scr?.total_account
+                } else {
+                  total_account = 0
+                }
               }
             }
-          }
-        })
-        if (total_account > 0 || false) {
-          if (device?.total_accounts < total_account) {
-            const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " ")) ? 2 : 0)
-            if (needAcc > 0 ){
-              this.fillDevice.push(device?.device_id)
+          })
+          if (total_account > 0 || false) {
+            if (device?.total_accounts < total_account) {
+              const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " ")) ? 2 : 0)
+              // if (needAcc > 0 ){
+              //   this.fillDevice.push(device?.device_id)
+              // }
+              listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
+              getAccIndex = getAccIndex + needAcc
             }
-            listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
-            getAccIndex = getAccIndex + needAcc
-          }
-          console.log('listAccFill',device?.device_name,listAccFill)
-          if (listAccFill?.length > 0){
-            await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
-              headers: {
-                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-              },
-            });
+            console.log('listAccFill',device?.device_name,listAccFill)
+            if (listAccFill?.length > 0){
+              await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
+                headers: {
+                  'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+                },
+              });
+            }
           }
         }
       }
@@ -262,6 +264,7 @@ export default {
             if ((scr?.code.includes('ttd') || scr?.code.includes('petgum') || scr?.code.includes('bgsi') || scr?.code.includes('gag')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
               console.log('scr?.code',scr?.code)
               if (scr?.total_account > device.total_accounts){
+                this.fillDevice.push(device?.device_id)
                 if (scr?.code.includes('gag')){
                   this.needAccountGAG += scr?.total_account - device.total_accounts
                 } else if (scr?.code.includes('bgsi')){
