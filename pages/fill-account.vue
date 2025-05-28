@@ -80,6 +80,7 @@ export default {
       remain_acc: [],
       hideDevice: [],
       lowDevice: [],
+      fillDevice: [],
       remain_acc_copy: '',
       fillOption : "ttd",
       fillttd: true,
@@ -168,6 +169,9 @@ export default {
         if (total_account > 0 || false) {
           if (device?.total_accounts < total_account) {
             const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " ")) ? 2 : 0)
+            if (needAcc > 0 ){
+              this.fillDevice.push(device?.device_id)
+            }
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
           }
@@ -194,36 +198,38 @@ export default {
     async enableDevice() {
       for (let i = 0; i < this.roblox_data.length; i++) {
         const device = this.roblox_data[i];
-        let total_account = 0;
-        this.farmOption.forEach(scr => {
-          if (scr?.code === this.map_device_data[device?.device_id]?.script){
-            total_account = scr?.active_account || scr?.total_account
-          }
-        })
-        const listAccount = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/accounts`,{
-          headers: {
-            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          },
-        });
-        let countEnable = 0
-        let listDisable = []
-        if (listAccount?.accounts?.length > 0){
-          listAccount?.accounts.forEach(acc => {
-            if (acc?.enabled){
-              countEnable += 1
-            } else {
-              listDisable.push({
-                username_look_for: acc?.username,
-                enabled: true,
-              })
+        if (this.fillDevice.includes(device?.device_id)){
+          let total_account = 0;
+          this.farmOption.forEach(scr => {
+            if (scr?.code === this.map_device_data[device?.device_id]?.script){
+              total_account = scr?.active_account || scr?.total_account
             }
           })
-          console.log('listDisable.slice(0,(this.active_account - countEnable))',countEnable,listDisable.slice(0,(total_account - countEnable)))
-          await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`,listDisable.slice(0,(total_account - countEnable)),{
+          const listAccount = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/accounts`,{
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
             },
           });
+          let countEnable = 0
+          let listDisable = []
+          if (listAccount?.accounts?.length > 0){
+            listAccount?.accounts.forEach(acc => {
+              if (acc?.enabled){
+                countEnable += 1
+              } else {
+                listDisable.push({
+                  username_look_for: acc?.username,
+                  enabled: true,
+                })
+              }
+            })
+            console.log('listDisable.slice(0,(this.active_account - countEnable))',countEnable,listDisable.slice(0,(total_account - countEnable)))
+            await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`,listDisable.slice(0,(total_account - countEnable)),{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
         }
       }
       // https://frontend.robloxmanager.com/v1/devices/930cf8350e6a91ca3d463597e892766521e5729cada6d34c22546f87e3ac3336/accounts
