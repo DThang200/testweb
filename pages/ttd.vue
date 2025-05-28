@@ -973,23 +973,14 @@ export default {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-            const script_id = resScript?.scripts[0]?.script_id
             map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
-            map_device_data[device_id].script_id = script_id
+            for (let i = 0; i < resScript?.scripts.length; i++) {
+              map_device_data[device_id]["script_id" + i] = resScript?.scripts[i]
+            }
+            // const script_id = resScript?.scripts[0]?.script_id
+            // map_device_data[device_id].script_id = script_id
             localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
-            return script_id
-          } else if (key === "script1_id"){
-            const config_id = await this.getData(device_id, "script1_id");
-            const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
-              headers: {
-                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-              },
-            });
-            const script_id = resScript?.scripts[1]?.script_id
-            map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
-            map_device_data[device_id].script_id = script_id
-            localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
-            return script_id
+            return map_device_data[key] || ""
           }
         }
       }
@@ -1029,7 +1020,7 @@ export default {
         });
         if (option?.yummyTrack) {
           const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "VPS_${this.map_code_device_id[device_id]}", } loadstring(game:HttpGet(${option.yummyTrack}))()`)))
-          const script_id = await this.getData(device_id, "script1_id")
+          const script_id = await this.getData(device_id, "script_id1")
           const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
             "script_name": "scriptTrack",
             script_data: scriptTrack
