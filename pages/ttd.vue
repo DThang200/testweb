@@ -1084,7 +1084,7 @@ export default {
             // const script_id = resScript?.scripts[0]?.script_id
             // map_device_data[device_id].script_id = script_id
             localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
-            return map_device_data[key] || ""
+            return map_device_data[device_id][key] || ""
           }
         }
       }
