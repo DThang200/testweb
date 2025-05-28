@@ -1070,7 +1070,7 @@ export default {
             map_device_data[device_id].config_id = config_id
             localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
             return config_id
-          } else if (key === "script_id"){
+          } else if (key.includes("script_id")){
             const config_id = await this.getData(device_id, "config_id");
             const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               headers: {
