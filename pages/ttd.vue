@@ -805,7 +805,7 @@ export default {
 
               repeat
                   wait()
-                      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/392bd177458276c103d5ec042d7d4e38.lua"))()
+                          loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be5eb6eb83a60b4c87954ddf66dd7413.lua"))()    task.wait(10)
                   task.wait(10)
               until getgenv().Loaded`
       }
@@ -1022,7 +1022,7 @@ export default {
 
       const interval = setInterval(() => {
         const device = list_data[index]
-        if (device[1]?.script && device[1]?.script.includes('ttd-')){
+        if (device[1]?.script && (device[1]?.script.includes('ttd-') || device[1]?.script.includes('awp-'))){
           console.log('refreshScript',device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
           this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
         }
