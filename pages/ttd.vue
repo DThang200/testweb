@@ -1043,7 +1043,7 @@ export default {
       const arr = Object.entries(map_device_data)
       for (let i = 0; i < arr.length; i++) {
         const device = arr[i]
-        if (device[1]?.script && device[1]?.script.includes('ttd-')) {
+        if (device[1]?.script && device[1]?.script.includes('ttd-')&& device[1]?.script.includes('awp-')) {
           const responseCompleted = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device[0]}/start`, {},{
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
