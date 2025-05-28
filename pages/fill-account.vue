@@ -276,6 +276,7 @@ export default {
           }
         })
       })
+      console.log('this.fillDevice',this.fillDevice)
     },
     getStatusClass(data = null){
       if (!(data?.total_accounts > 0)) {
