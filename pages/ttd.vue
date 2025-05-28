@@ -716,6 +716,7 @@ export default {
         scriptOption.game_id = "9921763607"
       }
       if (script_sl === 'awp-gag'){
+        user_collect = null
         script = `getgenv().Config = {
                   ["Time To Sell"] = 35, -- Seconds
                   ["Seed"] = {
