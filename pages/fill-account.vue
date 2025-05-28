@@ -2,8 +2,13 @@
   <div style="padding: 8px">
     <div class="d-flex flex-row" style="gap: 8px;align-items: center">
       <div>
-        <label for="fillttd">Fill acc ttd</label>
-        <input id="fillttd" v-model="fillttd" type="checkbox">
+        <label for="fillttd">Fill acc game</label>
+<!--        <input id="fillttd" v-model="fillttd" type="checkbox">-->
+        <select v-model="fillOption">
+          <option value="ttd">TTD</option>
+          <option value="gag">GAG</option>
+          <option value="bgsi">BGSI</option>
+        </select>
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
         <button type="button" @click="fillAcc()">
           Fill
