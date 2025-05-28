@@ -170,6 +170,14 @@ export default {
         {code : 'awp-bgsi',label : 'BGSI -AWP',game_id: '85896571713843',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
       ],
       option: {
+        "awp-bgsi" : {
+          count: 0,
+          listUser : ['Thangcachepp01']
+        },
+        "awp-gag" : {
+          count: 0,
+          listUser : ['Thangcachepp01']
+        },
         "petgum" : {
           count: 0,
           listUser : ['Thangcachepp02','Thangcachepp04']
@@ -257,6 +265,9 @@ export default {
         this.option[script_sl].count = 0
       } else {
         this.option[script_sl].count += 1
+      }
+      if (script_sl.includes("ttd-")){
+
       }
       let marcoUrl = ''
       let SelectMacro = ''
@@ -703,6 +714,99 @@ export default {
       if (this.isPlay5game){
         scriptOption.label = "Play5game"
         scriptOption.game_id = "9921763607"
+      }
+      if (script_sl === 'awp-gag'){
+        script = `getgenv().Config = {
+                  ["Time To Sell"] = 35, -- Seconds
+                  ["Seed"] = {
+                      ["Strawberry"] = 44,
+                      ["Corn"] = 44,
+                      ["Coconut"] = 44,
+                      ["Apple"] = 44,
+                      ["Watermelon"] = 44,
+                      ["Mushroom"] = 44,
+                      ["Pumpkin"] = 44,
+                      ["Pepper"] = 44,
+                      ["Cacao"] = 44,
+                      ["Banana"] = 44,
+                      ["Dragon Fruit"] = 44,
+                      ["Mango"] = 44,
+                      ["Cactus"] = 44,
+                      ["Beanstalk"] = 44,
+                      ["Grape"] = 44,
+                      ["Bamboo"] = 44
+                  },
+                  ["FPS"] = 3,
+                  ["Buy Egg"] = true,
+                  ["Egg"] = {
+                      ["Common Egg"] = false,
+                      ["Uncommon Egg"] = true,
+                      ["Rare Egg"] = false,
+                      ["Mythical Egg"] = false,
+                      ["Legendary Egg"] = false,
+                      ["Bug Egg"] = true
+                  },
+                  ["ItemBlood"] = {
+                      ["Blood Banana"] = false,
+                      ["Blood Owl"] = false,
+                      ["Night Seed Pack"] = false,
+                      ["Moon Melon"] = false,
+                      ["Mysterious Crate"] = false,
+                      ["Blood Kiwi"] = false,
+                      ["Night Egg"] = false,
+                      ["Star Caller"] = false,
+                      ["Blood Hedgehog"] = false
+                  },
+                  ["Item Twilight"] = {
+                      ["Moon Mango"] = false,
+                      ["Celestiberry"] = false,
+                      ["Twilight Crate"] = false,
+                      ["Night Seed Pack"] = false,
+                      ["Night Egg"] = true,
+                      ["Moon Cat"] = false,
+                      ["Star Caller"] = false
+                  },
+                  ["Sprinkler"] = {
+                      ["Basic Sprinkler"] = true,
+                      ["Advanced Sprinkler"] = true,
+                      ["Master Sprinkler"] = true,
+                      ["Godly Sprinkler"] = true
+                  },
+                  ["Plant Candy"] = false,
+                  ["PetNeedSend"] = {"Red Fox", "Dragonfly", "Raccoon"},
+                  ["Destroy Mode"] = {
+                      ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
+                      ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Tomato", "Orange Tulip"}
+                  },
+                  ["Url"] = "https://discord.com/api/webhooks/1373337547488628856/tpHmmxFCiu8iaWhQTbTB79BZJy8X9QJ3GtoOzE2t-Krw9NxCxC_NvS05XLG46UNvrrvS", -- Webhook
+                  ["Boost FPS"] = true,
+                  ["Black Screen"] = true,
+                  ["Note"] = "Cyndral Hub",
+                  ["Pet Mode"] = {
+                      ["Sell Pet"] = true,
+                      ["Equip Pet"] = true,
+                      ["Name Pet Equip"] = {
+                          ["Night Owl"] = true,
+                          ["Chicken"] = true
+                      },
+                      ["Rarity"] = { -- Rarity Sell Pet
+                          ["Common"] = true,
+                          ["Uncommon"] = true,
+                          ["Rare"] = true,
+                          ["Legendary"] = false,
+                          ["Divine"] = false,
+                          ["Mythical"] = false
+                      }
+                  }
+              }
+              setfpscap(getgenv().Config["FPS"] or 3)
+              script_key="YNXnJuEbEOIBIfXNPyiHUTfikDseRFQo";
+
+              repeat
+                  wait()
+                      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/392bd177458276c103d5ec042d7d4e38.lua"))()
+                  task.wait(10)
+              until getgenv().Loaded`
       }
       if (this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + '           ----' + user_collect})
