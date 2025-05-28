@@ -1124,7 +1124,7 @@ export default {
           },
         });
         if (option?.yummyTrack) {
-          const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "PC", } loadstring(game:HttpGet(${option.yummyTrack}))()`)))
+          const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "Pc", } loadstring(game:HttpGet(${option.yummyTrack}))()`)))
           const script_id = await this.getData(device_id, "script_id1")
           const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
             "script_name": "scriptTrack",
