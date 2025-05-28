@@ -1079,7 +1079,7 @@ export default {
             });
             map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
             for (let i = 0; i < resScript?.scripts.length; i++) {
-              map_device_data[device_id]["script_id" + i] = resScript?.scripts[i]
+              map_device_data[device_id]["script_id" + i] = resScript?.scripts[i]?.script_id
             }
             // const script_id = resScript?.scripts[0]?.script_id
             // map_device_data[device_id].script_id = script_id
