@@ -115,10 +115,16 @@ export default {
   watch:{
     roblox_data_state: {
       handler(value){
+        this.activeDevice = []
         if (this.sortInactive){
           let data = JSON.parse(JSON.stringify(value))
           if (data?.devices && data?.devices.length > 0){
             data.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
+            data.devices.forEach(device => {
+              if (device?.running && this.hideDevice.includes(device?.device_name)){
+                this.activeDevice.push(device?.device_id)
+              }
+            })
             this.roblox_data = data
           }
         } else {
@@ -221,6 +227,7 @@ export default {
       intervalEnable: null,
       isIntervalEnable: false,
       rollUnit: false,
+      activeDevice: [],
       petgumScript: 'exodus',
       isPlay5game: false,
       autoPlay5gameTimeout : null
@@ -753,8 +760,8 @@ export default {
                       ["Night Seed Pack"] = false,
                       ["Moon Melon"] = false,
                       ["Mysterious Crate"] = false,
-                      ["Blood Kiwi"] = false,
-                      ["Night Egg"] = false,
+                      ["Blood Kiwi"] = true,
+                      ["Night Egg"] = true,
                       ["Star Caller"] = false,
                       ["Blood Hedgehog"] = false
                   },
@@ -782,13 +789,15 @@ export default {
                   ["Url"] = "https://discord.com/api/webhooks/1373337547488628856/tpHmmxFCiu8iaWhQTbTB79BZJy8X9QJ3GtoOzE2t-Krw9NxCxC_NvS05XLG46UNvrrvS", -- Webhook
                   ["Boost FPS"] = true,
                   ["Black Screen"] = true,
-                  ["Note"] = "Cyndral Hub",
+                  ["Note"] = "Thangcachepp",
                   ["Pet Mode"] = {
                       ["Sell Pet"] = true,
                       ["Equip Pet"] = true,
                       ["Name Pet Equip"] = {
                           ["Night Owl"] = true,
-                          ["Chicken"] = true
+                          ["Chicken"] = true,
+                          ["Snail"] = true,
+                          ["Blood Kiwi"] = true
                       },
                       ["Rarity"] = { -- Rarity Sell Pet
                           ["Common"] = true,
@@ -1043,7 +1052,7 @@ export default {
       const arr = Object.entries(map_device_data)
       for (let i = 0; i < arr.length; i++) {
         const device = arr[i]
-        if (device[1]?.script && (device[1]?.script.includes('ttd-') || device[1]?.script.includes('awp-'))) {
+        if (device[1]?.script && (device[1]?.script.includes('ttd-') || device[1]?.script.includes('awp-')) && !this.activeDevice.includes(device[0])) {
           const responseCompleted = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device[0]}/start`, {},{
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
@@ -1095,7 +1104,7 @@ export default {
       const arr = Object.entries(map_device_data)
       for (let i = 0; i < arr.length; i++) {
         const device = arr[i]
-        if (device[1]?.script && (device[1]?.script.includes('ttd-') || device[1]?.script.includes('awp-'))) {
+        if (device[1]?.script && (device[1]?.script.includes('ttd-') || device[1]?.script.includes('awp-')) && this.activeDevice.includes(device[0])) {
           const responseCompleted = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device[0]}/stop`, {},{
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
