@@ -33,7 +33,7 @@
         <div class="list-item">
           <template v-if="listData.map_key_token_farm?.length > 0">
             <template v-for="(data,index) in listData.map_key_token_farm">
-              <template v-if="hideDevice.includes(data?.key) && (!showGame || (showGame && map_device_data[map_code_device_id[data?.key]]?.script.includes(showGame)))">
+              <template v-if="hideDevice.includes(data?.key) && (!showGame || (showGame && map_device_data[map_code_device_id[data?.key.replace(/ /g, `_`)]]?.script.includes(showGame)))">
                 <div class="row-item">
                   <div v-if="map_key_token_farm_state[index]?.key" style="width: 250px">
                     {{data?.key}}
