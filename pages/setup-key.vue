@@ -21,13 +21,19 @@
         </div>
       </div>
       <div style="flex: 1;border: black solid 1px;padding: 12px">
+        <select v-model="showGame">
+          <option value="">All</option>
+          <option value="ttd">TTD</option>
+          <option value="gag">GAG</option>
+          <option value="bgsi">BGSI</option>
+        </select>
         <div class="button-save" style="width: 100%;display: flex;justify-content: end">
           <button class="" @click="onSave('map_key_token_farm')">Save setup key farm</button>
         </div>
         <div class="list-item">
           <template v-if="listData.map_key_token_farm?.length > 0">
             <template v-for="(data,index) in listData.map_key_token_farm">
-              <template v-if="hideDevice.includes(data?.key)">
+              <template v-if="hideDevice.includes(data?.key) && (!showGame || (showGame && map_device_data[map_code_device_id[data?.key]]?.script.includes(showGame)))">
                 <div class="row-item">
                   <div v-if="map_key_token_farm_state[index]?.key" style="width: 250px">
                     {{data?.key}}
@@ -55,9 +61,10 @@ import {mapActions, mapState} from "vuex";
 export default {
   data() {
     return {
+      showGame: "",
+      hideDevice: [],
       listData : {
         map_key_token_gom: [],
-        hideDevice: [],
         map_key_token_farm: [],
       }
     };
@@ -68,6 +75,7 @@ export default {
       map_key_token_gom_state: state => state.map_key_token_gom,
       map_key_token_farm_state: state => state.map_key_token_farm,
       map_device_data: state => state.map_device_data,
+      map_code_device_id: state => state.map_code_device_id,
     }),
   },
   watch:{
