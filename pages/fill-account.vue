@@ -184,13 +184,13 @@ export default {
             listAccFill = listEmptyAcc.slice(getAccIndex, getAccIndex + needAcc)
             getAccIndex = getAccIndex + needAcc
             console.log('listAccFill',device?.device_name,needAcc,listAccFill)
-            if (listAccFill?.length > 0){
-              await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
-                headers: {
-                  'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-                },
-              });
-            }
+            // if (listAccFill?.length > 0){
+            //   await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device?.device_id}/bulk/accounts`, listAccFill,{
+            //     headers: {
+            //       'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            //     },
+            //   });
+            // }
           }
         }
 
