@@ -15,6 +15,12 @@
       </nuxt-link>
     </div>
   </template>
+  <select v-model="showOption">
+    <option value="">All</option>
+    <option value="ttd">TTD</option>
+    <option value="gag">GAG</option>
+    <option value="bgsi">BGSI</option>
+  </select>
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row;gap: 20px;margin-top: 40px">
       <div style="display: flex;flex-direction: row;gap: 5px">
@@ -38,7 +44,7 @@
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if="hideDevice.includes(data.device_name)" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if="hideDevice.includes(data.device_name) && (!showOption || data.script.includes(showOption))" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}} {{data?.running ? '' : '(stop)'}}
       </div>
@@ -115,6 +121,7 @@ export default {
   watch:{
     roblox_data_state: {
       handler(value){
+        const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
         this.activeDevice = []
         if (this.sortInactive){
           let data = JSON.parse(JSON.stringify(value))
@@ -123,6 +130,7 @@ export default {
             data.devices.forEach(device => {
               if (device?.running && this.hideDevice.includes(device?.device_name)){
                 this.activeDevice.push(device?.device_id)
+                device.script = map_device_data[device?.device_id]?.script || ""
               }
             })
             this.roblox_data = data
@@ -230,6 +238,7 @@ export default {
       rollUnit: false,
       activeDevice: [],
       petgumScript: 'exodus',
+      showOption: '',
       isPlay5game: false,
       autoPlay5gameTimeout : null
     }
