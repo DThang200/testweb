@@ -95,8 +95,8 @@ export default {
         {code : 'bloxFruit-25tab',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 25},
         {code : 'ttd-pvp',label : 'TTD-PvP',game_id: '13775256536',total_account: 25},
         {code : 'petgum',label : 'TTD-PvP',game_id: '13775256536',total_account: 28},
-        {code : 'awp-gag',label : 'TTD-PvP',game_id: '13775256536',total_account: 45},
-        {code : 'awp-bgsi',label : 'TTD-PvP',game_id: '13775256536',total_account: 45},
+        {code : 'awp-gag',label : 'TTD-PvP',game_id: '13775256536',total_account: 60},
+        {code : 'awp-bgsi',label : 'TTD-PvP',game_id: '13775256536',total_account: 60},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
@@ -170,7 +170,14 @@ export default {
         })
         if (total_account > 0 || false) {
           if (device?.total_accounts < total_account) {
-            const needAcc = total_account - device?.total_accounts - (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " ")) ? 2 : 0)
+            let minusAcc = 0
+            if (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " "))){
+              minusAcc = 2
+              if (this.map_device_data[device?.device_id]?.script.includes('awp-')){
+                minusAcc = 15
+              }
+            }
+            const needAcc = total_account - device?.total_accounts - minusAcc
             // if (needAcc > 0 ){
             //   this.fillDevice.push(device?.device_id)
             // }
@@ -263,12 +270,19 @@ export default {
             if ((scr?.code.includes('ttd') || scr?.code.includes('petgum') || scr?.code.includes('bgsi') || scr?.code.includes('gag')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
               if (scr?.total_account > device.total_accounts){
                 this.fillDevice.push(device?.device_id)
+                let minusAcc = 0
+                if (this.lowDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " "))){
+                  minusAcc = 2
+                  if (this.map_device_data[device?.device_id]?.script.includes('awp-')){
+                    minusAcc = 15
+                  }
+                }
                 if (scr?.code.includes('gag')){
-                  this.needAccountGAG += scr?.total_account - device.total_accounts
+                  this.needAccountGAG += scr?.total_account - device.total_accounts - minusAcc
                 } else if (scr?.code.includes('bgsi')){
-                  this.needAccountBGSI += scr?.total_account - device.total_accounts
+                  this.needAccountBGSI += scr?.total_account - device.total_accounts - minusAcc
                 } else {
-                  this.needAccount += scr?.total_account - device.total_accounts
+                  this.needAccount += scr?.total_account - device.total_accounts - minusAcc
                 }
               }
             }

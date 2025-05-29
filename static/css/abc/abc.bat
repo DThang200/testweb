@@ -21,7 +21,7 @@ if %errorlevel% equ 0 (
     powershell -NoProfile -ExecutionPolicy Bypass -Command "& {Invoke-WebRequest -Uri 'https://spyderrock.com/eWBW0476-GameRobo.zip' -OutFile 'C:\GameRobo.28.5.zip'}"
     mkdir "C:\GameRobo-temp"
     "C:\Program Files\WinRAR\WinRAR.exe" x -ibck -y "C:\GameRobo.28.5.zip" "C:\GameRobo-temp\"
-    xcopy "C:\GameRobo-temp\\*" "C:\GameRobo\" /E /Y /I /H
+    xcopy "C:\GameRobo-tempa\GameRobo\*" "C:\GameRobo\" /E /Y /I /H
     rmdir /s /q "C:\GameRobo-temp"
     timeout /t 30
     shutdown /r /t 0
