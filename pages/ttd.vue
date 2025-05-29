@@ -130,6 +130,7 @@ export default {
         } else {
           this.roblox_data = JSON.parse(JSON.stringify(value))
         }
+        console.log("activeDevice",this.activeDevice)
       },deep: true
     }
   },
