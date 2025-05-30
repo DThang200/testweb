@@ -804,20 +804,20 @@ export default {
                       ["Sell Pet"] = true,
                       ["Equip Pet"] = true,
                       ["Name Pet Equip"] = {
-                          ["Night Owl"] = true,
+                          ["Blood Kiwi"] = true,
                           ["Chicken"] = true,
-                          ["Snail"] = true,
-                          ["Blood Kiwi"] = true
+                          ["Kiwi"] = true,
                       },
                       ["Rarity"] = { -- Rarity Sell Pet
                           ["Common"] = true,
                           ["Uncommon"] = true,
                           ["Rare"] = true,
-                          ["Legendary"] = false,
+                          ["Legendary"] = true,
                           ["Divine"] = false,
                           ["Mythical"] = false
                       }
-                  }
+                  },
+                  ["Rejoin After X Time"] = 60,
               }
               setfpscap(getgenv().Config["FPS"] or 3)
               script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";
