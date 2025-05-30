@@ -184,13 +184,33 @@
 
       </div>
       <div class="field-action">
-        ByPass:
-        <textarea  style="width: 500px;height: 300px" v-model="bypass_cookie" placeholder="Cookie"></textarea>
-        <textarea  style="width: 500px;height: 300px" v-model="bypass_email" placeholder="Email"></textarea>
-        <textarea  style="width: 500px;height: 300px" v-model="bypass_proxy" placeholder="Proxy"></textarea>
-        <button @click="actionByPass">Action</button>
-        <button @click="getProxy">getProxy</button>
       </div>
+      <div class="field-action">
+        <div style="font-size: 24px;font-weight: bold">
+          Find By user
+          <button @click="copyContent(findUserResultCookie)">Copy</button>
+        </div>
+        <textarea  style="width: 400px;height: 300px" v-model="findUser" @change="renderFindUser">
+
+      </textarea>
+        <textarea  style="width: 400px;height: 300px" v-model="findUserResultCookie">
+
+      </textarea>
+        <div>
+          Cant find
+          <textarea  style="width: 400px;height: 300px" v-model="findUserResultInvalid">
+
+      </textarea>
+        </div>
+      </div>
+<!--      <div class="field-action">-->
+<!--        ByPass:-->
+<!--        <textarea  style="width: 500px;height: 300px" v-model="bypass_cookie" placeholder="Cookie"></textarea>-->
+<!--        <textarea  style="width: 500px;height: 300px" v-model="bypass_email" placeholder="Email"></textarea>-->
+<!--        <textarea  style="width: 500px;height: 300px" v-model="bypass_proxy" placeholder="Proxy"></textarea>-->
+<!--        <button @click="actionByPass">Action</button>-->
+<!--        <button @click="getProxy">getProxy</button>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
@@ -245,6 +265,9 @@ export default {
       selectStartDeviceIndex: '',
       selectBGSIAcc: false,
       selectEndDeviceIndex: '',
+      findUser: '',
+      findUserResultCookie: '',
+      findUserResultInvalid: '',
       listAccSelected: [],
 
       numberAccountGet:0,
@@ -527,6 +550,32 @@ export default {
       })
       navigator.clipboard.writeText(result);
       console.log('resultData',result)
+    },
+    async renderFindUser() {
+      const listUserFind = this.findUser.split('\n')
+      if (listUserFind.length > 0) {
+        this.findUserResultInvalid = ""
+        this.findUserResultCookie = ""
+        let temp = []
+        this.roblox_data_account.accounts.forEach(acc => {
+          if (listUserFind.includes(acc?.username) && acc?.cookie){
+            // temp[acc.username] = acc.cookie
+            temp.push({username :acc.username,cookie :acc.cookie})
+          }
+        })
+        listUserFind.forEach(user => {
+          let cookie = ""
+          temp.forEach(acc => {
+            if (user === acc?.username){
+              cookie = acc?.cookie
+              this.findUserResultCookie += cookie + '\n'
+            }
+          })
+          if (!cookie){
+            this.findUserResultInvalid += user + '\n'
+          }
+        })
+      }
     },
     async getEmptyAcc() {
       const empty_url = (this.select_empty_acc === 'fisch' ? 'fischemptyaccounts' : (this.select_empty_acc === 'dead' ? 'replacement-accounts' : 'emptyaccounts')) || 'emptyaccounts'
