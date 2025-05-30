@@ -799,7 +799,7 @@ export default {
                   ["Url"] = "https://discord.com/api/webhooks/1373337547488628856/tpHmmxFCiu8iaWhQTbTB79BZJy8X9QJ3GtoOzE2t-Krw9NxCxC_NvS05XLG46UNvrrvS", -- Webhook
                   ["Boost FPS"] = true,
                   ["Black Screen"] = true,
-                  ["Note"] = "Thangcachepp",
+                  ["Note"] = "Cachepp",
                   ["Pet Mode"] = {
                       ["Sell Pet"] = true,
                       ["Equip Pet"] = true,
