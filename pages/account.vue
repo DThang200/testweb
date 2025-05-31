@@ -196,6 +196,9 @@
         <textarea  style="width: 400px;height: 300px" v-model="findUserResultCookie">
 
       </textarea>
+        <textarea  style="width: 400px;height: 300px" v-model="findUserResultUPC">
+
+      </textarea>
         <div>
           Cant find
           <textarea  style="width: 400px;height: 300px" v-model="findUserResultInvalid">
@@ -266,6 +269,7 @@ export default {
       selectBGSIAcc: false,
       selectEndDeviceIndex: '',
       findUser: '',
+      findUserResultUPC: '',
       findUserResultCookie: '',
       findUserResultInvalid: '',
       listAccSelected: [],
@@ -556,6 +560,7 @@ export default {
       if (listUserFind.length > 0) {
         this.findUserResultInvalid = ""
         this.findUserResultCookie = ""
+        this.findUserResultUPC = ""
         let temp = []
         this.roblox_data_account.accounts.forEach(acc => {
           if (listUserFind.includes(acc?.username) && acc?.cookie){
@@ -565,12 +570,15 @@ export default {
         })
         listUserFind.forEach(user => {
           let cookie = ""
-          temp.forEach(acc => {
+          for (let i = 0; i < temp.length; i++) {
+            const acc = temp[i]
             if (user === acc?.username){
               cookie = acc?.cookie
               this.findUserResultCookie += cookie + '\n'
+              this.findUserResultUPC += acc?.username + ":" + acc?.password + ":" + cookie + '\n'
+              break;
             }
-          })
+          }
           if (!cookie){
             this.findUserResultInvalid += user + '\n'
           }
