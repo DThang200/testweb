@@ -760,7 +760,7 @@ export default {
                       ["Common Egg"] = false,
                       ["Uncommon Egg"] = true,
                       ["Rare Egg"] = false,
-                      ["Mythical Egg"] = false,
+                      ["Mythical Egg"] = true,
                       ["Legendary Egg"] = false,
                       ["Bug Egg"] = true
                   },
@@ -794,7 +794,7 @@ export default {
                   ["PetNeedSend"] = {"Red Fox", "Dragonfly", "Raccoon"},
                   ["Destroy Mode"] = {
                       ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
-                      ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Tomato", "Orange Tulip"}
+                      ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Tomato"}
                   },
                   ["Url"] = "https://discord.com/api/webhooks/1373337547488628856/tpHmmxFCiu8iaWhQTbTB79BZJy8X9QJ3GtoOzE2t-Krw9NxCxC_NvS05XLG46UNvrrvS", -- Webhook
                   ["Boost FPS"] = true,
