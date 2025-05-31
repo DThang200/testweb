@@ -565,7 +565,7 @@ export default {
         this.roblox_data_account.accounts.forEach(acc => {
           if (listUserFind.includes(acc?.username) && acc?.cookie){
             // temp[acc.username] = acc.cookie
-            temp.push({username :acc.username,cookie :acc.cookie})
+            temp.push({username :acc.username,password :acc.password,cookie :acc.cookie})
           }
         })
         listUserFind.forEach(user => {
