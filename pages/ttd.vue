@@ -829,14 +829,31 @@ export default {
                       }
                   },
                   ["Rejoin After X Time"] = 120,
+                      ["Mutation Skips"] = { -- Skip Havest
+                      ["Pollinated"] = false,
+                      ["Disco"] = false,
+                      ["Twisted"] = false,
+                      ["Wet"] = false,
+                      ["Choc"] = false,
+                      ["Bloodlit"] = false,
+                      ["Celestial"] = false,
+                      ["Moonlit"] = false,
+                      ["Chilled"] = false,
+                      ["Zombified"] = false,
+                      ["Plasma"] = false,
+                      ["Burnt"] = false,
+                      ["Frozen"] = false,
+                      ["Voidtouched"] = false,
+                      ["HoneyGlazed"] = false,
+                      ["Shocked"] = false
+                  }
               }
               setfpscap(getgenv().Config["FPS"] or 3)
               script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";
 
               repeat
-                  wait()
-                          loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be5eb6eb83a60b4c87954ddf66dd7413.lua"))()    task.wait(10)
-                  task.wait(10)
+                  task.wait(3)
+                  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be5eb6eb83a60b4c87954ddf66dd7413.lua"))()
               until getgenv().Loaded`
       }
       if (this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)){
