@@ -735,7 +735,7 @@ export default {
       if (script_sl === 'awp-gag'){
         user_collect = null
         script = `getgenv().Config = {
-                  ["Time To Sell"] = 35, -- Seconds
+                  ["Time To Sell"] = 60, -- Seconds
                   ["Seed"] = {
                       ["Strawberry"] = 44,
                       ["Corn"] = 44,
@@ -763,6 +763,18 @@ export default {
                       ["Legendary Egg"] = false,
                       ["Bug Egg"] = true
                   },
+                  ["Honey Item"] = {
+                      ["Nectarine"] = false,
+                      ["Flower Seed Pack"] = false,
+                      ["Honey Sprinkler"] = false,
+                      ["Honey Torch"] = false,
+                      ["Bee Chair"] = false,
+                      ["Honey Walkway"] = false,
+                      ["Bee Egg"] = true,
+                      ["Bee Crate"] = false,
+                      ["Hive Fruit"] = false,
+                      ["Honey Comb"] = false
+                  },
                   ["ItemBlood"] = {
                       ["Blood Banana"] = false,
                       ["Blood Owl"] = false,
@@ -784,15 +796,15 @@ export default {
                       ["Star Caller"] = false
                   },
                   ["Sprinkler"] = {
-                      ["Basic Sprinkler"] = true,
+                      ["Basic Sprinkler"] = false,
                       ["Advanced Sprinkler"] = true,
                       ["Master Sprinkler"] = true,
                       ["Godly Sprinkler"] = true
                   },
                   ["Plant Candy"] = false,
-                  ["PetNeedSend"] = {"Red Fox", "Dragonfly", "Raccoon"},
+                  ["PetNeedSend"] = {"Red Fox", "Dragonfly", "Raccoon", "Queen Bee"},
                   ["Destroy Mode"] = {
-                      ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
+                      ["Auto Destroy when have money"] = 500000000, -- its will destroy all trees select when money >= select
                       ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Tomato", "Apple", "Banana"}
                   },
                   ["Url"] = "https://discord.com/api/webhooks/1373337547488628856/tpHmmxFCiu8iaWhQTbTB79BZJy8X9QJ3GtoOzE2t-Krw9NxCxC_NvS05XLG46UNvrrvS", -- Webhook
@@ -816,7 +828,7 @@ export default {
                           ["Mythical"] = false
                       }
                   },
-                  ["Rejoin After X Time"] = 60,
+                  ["Rejoin After X Time"] = 120,
               }
               setfpscap(getgenv().Config["FPS"] or 3)
               script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";

@@ -853,7 +853,7 @@ export default {
           break;
         case 'bloxFruit-2600' :
           script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-              getgenv().Key = "${token}"
+              getgenv().Key = "d98a8f109e26d8fc928e84c9"
               getgenv().SettingFarm ={
                   ["Hide UI"] = false,
                   ["Reset Teleport"] = {
