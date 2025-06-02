@@ -753,6 +753,11 @@ export default {
                       ["Beanstalk"] = 10,
                       ["Grape"] = 10,
                       ["Bamboo"] = 10,
+                      ["Foxglove"] = 20,
+                      ["Lilac"] = 20,
+                      ["Pink Lily"] = 20,
+                      ["Rose"] = 20,
+                      ["Purple Dahlia"] = 20,
                       ["Sunflower"] = 50
                   },
                   ["FPS"] = 3,
