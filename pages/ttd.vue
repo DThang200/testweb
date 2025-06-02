@@ -752,7 +752,8 @@ export default {
                       ["Cactus"] = 10,
                       ["Beanstalk"] = 50,
                       ["Grape"] = 50,
-                      ["Bamboo"] = 50
+                      ["Bamboo"] = 50,
+                      ["Sunflower"] = 50
                   },
                   ["FPS"] = 3,
                   ["Buy Egg"] = true,
