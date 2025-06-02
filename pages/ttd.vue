@@ -829,7 +829,7 @@ export default {
                           ["Mythical"] = false
                       }
                   },
-                  ["Rejoin After X Time"] = 120,
+                  ["Rejoin After X Time"] = 60,
                       ["Mutation Skips"] = { -- Skip Havest
                       ["Pollinated"] = false,
                       ["Disco"] = false,
