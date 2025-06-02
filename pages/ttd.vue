@@ -805,7 +805,7 @@ export default {
                   ["PetNeedSend"] = {"Red Fox", "Dragonfly", "Raccoon", "Queen Bee"},
                   ["Destroy Mode"] = {
                       ["Auto Destroy when have money"] = 50000000, -- its will destroy all trees select when money >= select
-                      ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Tomato", "Apple", "Banana", "Coconut"}
+                      ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Tomato", "Apple", "Banana"}
                   },
                   ["Url"] = "https://discord.com/api/webhooks/1373337547488628856/tpHmmxFCiu8iaWhQTbTB79BZJy8X9QJ3GtoOzE2t-Krw9NxCxC_NvS05XLG46UNvrrvS", -- Webhook
                   ["Boost FPS"] = true,
