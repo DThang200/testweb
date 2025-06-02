@@ -735,7 +735,7 @@ export default {
       if (script_sl === 'awp-gag'){
         user_collect = null
         script = `getgenv().Config = {
-                  ["Time To Sell"] = 60, -- Seconds
+                  ["Time To Sell"] = 35, -- Seconds
                   ["Seed"] = {
                       ["Carrot"] = 44,
                       ["Strawberry"] = 5,
