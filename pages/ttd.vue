@@ -766,7 +766,7 @@ export default {
                   },
                   ["Honey Item"] = {
                       ["Nectarine"] = false,
-                      ["Flower Seed Pack"] = false,
+                      ["Flower Seed Pack"] = true,
                       ["Honey Sprinkler"] = false,
                       ["Honey Torch"] = false,
                       ["Bee Chair"] = false,
