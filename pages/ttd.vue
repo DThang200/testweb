@@ -762,7 +762,6 @@ export default {
                       ["Pink Lily"] = 20,
                       ["Rose"] = 20,
                       ["Purple Dahlia"] = 20,
-                      ["Sunflower"] = 50
                   },
                   ["FPS"] = 3,
                   ["Buy Egg"] = true,
@@ -1185,14 +1184,25 @@ export default {
         if (option?.yummyTrack) {
           const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
           const script_id = await this.getData(device_id, "script_id1")
-          const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
-            "script_name": "scriptTrack",
-            script_data: scriptTrack
-          },{
-            headers: {
-              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-            },
-          });
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
           // map_device_id_code[item.device_id] = item.device_code
         }
       }
