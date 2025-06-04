@@ -836,7 +836,8 @@ export default {
                           ["Legendary"] = true,
                           ["Divine"] = false,
                           ["Mythical"] = false
-                      }
+                      },
+                      ["Pet Dont Delete"] = {"Chicken"}
                   },
                   ["Rejoin After X Time"] = 60,
                       ["Mutation Skips"] = { -- Skip Havest
