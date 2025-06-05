@@ -853,60 +853,6 @@ export default {
           break;
         case 'bloxFruit-2600' :
           script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-              getgenv().Key = "d98a8f109e26d8fc928e84c9"
-              getgenv().SettingFarm ={
-                  ["Hide UI"] = false,
-                  ["Reset Teleport"] = {
-                      ["Enabled"] = false,
-                      ["Delay Reset"] = 3,
-                      ["Item Dont Reset"] = {
-                          ["Fruit"] = {
-                              ["Enabled"] = true,
-                              ["All Fruit"] = true,
-                              ["Select Fruit"] = {
-                                  ["Enabled"] = false,
-                                  ["Fruit"] = {},
-                              },
-                          },
-                      },
-                  },
-                  ["Get Items"] = {
-                      ["Godhuman"] =  true,
-                      ["Skull Guitar"] = false,
-                      ["Mirror Fractal"] = false,
-                      ["Cursed Dual Katana"] = false,
-                      ["Upgrade Race V2-V3"] = true,
-                      ["Auto Pull Lever"] = false,
-                  },
-                  ["Select Hop"] = { -- 70% will have it
-                      ["Hop Find Rip Indra Get Valkyrie Helm or Get Tushita"] = false,
-                      ["Hop Find Dough King Get Mirror Fractal"] = false,
-                      ["Hop Find Raids Castle [CDK]"] = false,
-                      ["Hop Find Cake Queen [CDK]"] = false,
-                      ["Hop Find Soul Reaper [CDK]"] = false,
-                      ["Hop Find Darkbeard [SG]"] = false,
-                      ["Hop Find Mirage [ Pull Lever ]"] = false,
-                  },
-                  ["Buy Haki"] = {
-                      ["Enhancement"] = false,
-                      ["Skyjump"] = true,
-                      ["Flash Step"] = true,
-                      ["Observation"] = true,
-                  },
-                  ["Sniper Fruit Shop"] = {
-                      ["Enabled"] = true, -- Auto Buy Fruit in Shop Mirage and Normal
-                      ["Fruit"] = {"Leopard-Leopard","Kitsune-Kitsune","Dragon-Dragon","Yeti-Yeti","Gas-Gas"},
-                  },
-                  ["Lock Fruit"] = {},
-                  ["Webhook"] = {
-                      ["Enabled"] = true,
-                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1326538797638356992/CN8b7BY8MbW6pOmvgXBkU7AOXvI9Bq2Cu2YUvsV5JVEpZUcs3_VQDu9Ci3I1Kfrcb65N",
-                  }
-              }
-          loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
-          break;
-        case 'bloxFruit-25tab' :
-          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm ={
                   ["Hide UI"] = false,
@@ -924,6 +870,11 @@ export default {
                           },
                       },
                   },
+                  ["White Screen"] = true,
+                  ["Lock Fps"] = {
+                      ["Enabled"] = true,
+                      ["FPS"] = 3,
+                  },
                   ["Get Items"] = {
                       ["Godhuman"] =  true,
                       ["Skull Guitar"] = false,
@@ -932,6 +883,11 @@ export default {
                       ["Upgrade Race V2-V3"] = true,
                       ["Auto Pull Lever"] = false,
                   },
+                  ["Auto Chat"] = {
+                      ["Enabled"] = true,
+                      ["Text"] = "Dms discord thangdtx to buy account - Thangcachepp",
+                  },
+                  ["Auto Summon Rip Indra"] = true, --- auto buy haki and craft haki legendary
                   ["Select Hop"] = { -- 70% will have it
                       ["Hop Find Rip Indra Get Valkyrie Helm or Get Tushita"] = false,
                       ["Hop Find Dough King Get Mirror Fractal"] = false,
@@ -940,6 +896,11 @@ export default {
                       ["Hop Find Soul Reaper [CDK]"] = false,
                       ["Hop Find Darkbeard [SG]"] = false,
                       ["Hop Find Mirage [ Pull Lever ]"] = false,
+                  },
+                  ["Farm Mastery"] = {
+                      ["Melee"] = true,
+                      ["Sword"] = false,
+                      ["Fruit"] = false,
                   },
                   ["Buy Haki"] = {
                       ["Enhancement"] = false,
@@ -954,61 +915,7 @@ export default {
                   ["Lock Fruit"] = {},
                   ["Webhook"] = {
                       ["Enabled"] = true,
-                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1326538797638356992/CN8b7BY8MbW6pOmvgXBkU7AOXvI9Bq2Cu2YUvsV5JVEpZUcs3_VQDu9Ci3I1Kfrcb65N",
-                  }
-              }
-          loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
-          break;
-        case 'bloxFruit-fruit' :
-          script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-              getgenv().Key = "${token}"
-              getgenv().SettingFarm ={
-                  ["Hide UI"] = false,
-                  ["Reset Teleport"] = {
-                      ["Enabled"] = false,
-                      ["Delay Reset"] = 3,
-                      ["Item Dont Reset"] = {
-                          ["Fruit"] = {
-                              ["Enabled"] = true,
-                              ["All Fruit"] = true,
-                              ["Select Fruit"] = {
-                                  ["Enabled"] = false,
-                                  ["Fruit"] = {},
-                              },
-                          },
-                      },
-                  },
-                  ["Get Items"] = {
-                      ["Godhuman"] =  true,
-                      ["Skull Guitar"] = false,
-                      ["Mirror Fractal"] = false,
-                      ["Cursed Dual Katana"] = false,
-                      ["Upgrade Race V2-V3"] = true,
-                      ["Auto Pull Lever"] = false,
-                  },
-                  ["Select Hop"] = { -- 70% will have it
-                      ["Hop Find Rip Indra Get Valkyrie Helm or Get Tushita"] = false,
-                      ["Hop Find Dough King Get Mirror Fractal"] = false,
-                      ["Hop Find Raids Castle [CDK]"] = false,
-                      ["Hop Find Cake Queen [CDK]"] = false,
-                      ["Hop Find Soul Reaper [CDK]"] = false,
-                      ["Hop Find Darkbeard [SG]"] = false,
-                      ["Hop Find Mirage [ Pull Lever ]"] = false,
-                  },
-                  ["Buy Haki"] = {
-                      ["Enhancement"] = false,
-                      ["Skyjump"] = true,
-                      ["Flash Step"] = true,
-                      ["Observation"] = true,
-                  },
-                  ["Sniper Fruit Shop"] = {
-                      ["Enabled"] = true, -- Auto Buy Fruit in Shop Mirage and Normal
-                      ["Fruit"] = {"Leopard-Leopard","Kitsune-Kitsune","Dragon-Dragon","Yeti-Yeti","Gas-Gas"},
-                  },
-                  ["Lock Fruit"] = {},
-                  ["Webhook"] = {
-                      ["Enabled"] = true,
-                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1326538797638356992/CN8b7BY8MbW6pOmvgXBkU7AOXvI9Bq2Cu2YUvsV5JVEpZUcs3_VQDu9Ci3I1Kfrcb65N",
+                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1378488491897524255/0hc0LsxYsu6yjBFFIMUOLKPhcwTvVh--oVZ2_3mHac960kgfl3LGrE1yLJ5hxujmTQcW",
                   }
               }
           loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()`
@@ -1018,7 +925,7 @@ export default {
                   getgenv().Key = "${token}"
                   getgenv().SettingFarm = {
                   ["Hide UI"] = false,
-                  ["White Screen"] = false,
+                  ["White Screen"] = true,
                   ["Auto Sell"] = {
                       ["Enabled"] = true,
                       ["Maximum Weight"] = 30000,

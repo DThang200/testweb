@@ -20,6 +20,7 @@
     <option value="ttd">TTD</option>
     <option value="gag">GAG</option>
     <option value="bgsi">BGSI</option>
+    <option value="bf">BF</option>
   </select>
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row;gap: 20px;margin-top: 40px">
@@ -183,6 +184,7 @@ export default {
         {code : 'ttd-noel-Thangcachepp04',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
         {code : 'awp-gag',label : 'Grow a Garden -AWP',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         {code : 'awp-bgsi',label : 'BGSI -AWP',game_id: '85896571713843',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
+        {code : 'awp-bf-2650',label : 'BF-2650 -AWP',game_id: '2753915549',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/main/trackstatblox"},
       ],
       option: {
         "awp-bgsi" : {
@@ -685,6 +687,89 @@ export default {
           loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/aab9fba1c9d41f8edf82e1d0bd14b1ea.lua"))()`
         }
       }
+      if (script_sl === 'bloxFruit-2650'){
+        script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+              getgenv().Key = "${token}"
+              getgenv().SettingFarm ={
+                  ["Hide UI"] = false,
+                  ["Reset Teleport"] = {
+                      ["Enabled"] = false,
+                      ["Delay Reset"] = 3,
+                      ["Item Dont Reset"] = {
+                          ["Fruit"] = {
+                              ["Enabled"] = true,
+                              ["All Fruit"] = true,
+                              ["Select Fruit"] = {
+                                  ["Enabled"] = false,
+                                  ["Fruit"] = {},
+                              },
+                          },
+                      },
+                  },
+                  ["White Screen"] = true,
+                  ["Lock Fps"] = {
+                      ["Enabled"] = true,
+                      ["FPS"] = 3,
+                  },
+                  ["Get Items"] = {
+                      ["Godhuman"] =  true,
+                      ["Skull Guitar"] = false,
+                      ["Mirror Fractal"] = false,
+                      ["Cursed Dual Katana"] = false,
+                      ["Upgrade Race V2-V3"] = true,
+                      ["Auto Pull Lever"] = false,
+                  },
+                  ["Get Rare Items"] = {
+                      ["Rengoku"] = false,
+                      ["Dragon Trident"] = false,
+                      ["Pole (1st Form)"] = false,
+                      ["Gravity Blade"]  = false,
+                  },
+                  ["Farm Fragments"] = {
+                      ["Enabled"]  = false,
+                      ["Fragment"] = 50000,
+                  },
+                  ["Auto Chat"] = {
+                      ["Enabled"] = true,
+                      ["Text"] = "Dms discord thangdtx to buy account - Thangcachepp",
+                  },
+                  ["Auto Summon Rip Indra"] = true, --- auto buy haki and craft haki legendary
+                  ["Select Hop"] = { -- 70% will have it
+                      ["Hop Find Rip Indra Get Valkyrie Helm or Get Tushita"] = false,
+                      ["Hop Find Dough King Get Mirror Fractal"] = false,
+                      ["Hop Find Raids Castle [CDK]"] = false,
+                      ["Hop Find Cake Queen [CDK]"] = false,
+                      ["Hop Find Soul Reaper [CDK]"] = false,
+                      ["Hop Find Darkbeard [SG]"] = false,
+                      ["Hop Find Mirage [ Pull Lever ]"] = false,
+                  },
+                  ["Farm Mastery"] = {
+                      ["Melee"] = false,
+                      ["Sword"] = false,
+                      ["Fruit"] = true,
+                  },
+                  ["Buy Haki"] = {
+                      ["Enhancement"] = false,
+                      ["Skyjump"] = false,
+                      ["Flash Step"] = false,
+                      ["Observation"] = false,
+                  },
+                  ["Sniper Fruit Shop"] = {
+                      ["Enabled"] = true, -- Auto Buy Fruit in Shop Mirage and Normal
+                      ["Fruit"] = {"Leopard-Leopard","Kitsune-Kitsune","Dragon-Dragon","Yeti-Yeti","Gas-Gas"},
+                  },
+                  ["Lock Fruit"] = {},
+                  ["Webhook"] = {
+                      ["Enabled"] = true,
+                      ["WebhookUrl"] = "https://discord.com/api/webhooks/1378488491897524255/0hc0LsxYsu6yjBFFIMUOLKPhcwTvVh--oVZ2_3mHac960kgfl3LGrE1yLJ5hxujmTQcW",
+                  }
+              }
+              setfpscap(3)
+              repeat
+                  task.wait(3)
+                  loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()
+              until getgenv().Loaded`
+      }
       if (this.isPlay5game){
         script =
             ` repeat wait() until game:IsLoaded()
@@ -732,6 +817,7 @@ export default {
         scriptOption.label = "Play5game"
         scriptOption.game_id = "9921763607"
       }
+
       if (script_sl === 'awp-gag'){
         user_collect = null
         script = `getgenv().Config = {
