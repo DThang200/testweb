@@ -276,9 +276,11 @@ export default {
           scriptOption = option
         }
       })
-      let user_collect = this.option[script_sl].listUser[this.option[script_sl]?.count || 0]
-      if (this.userCollectCreate) {
-        this.option[script_sl].listUser = this.userCollectCreate.split(',')
+      if (this.option[script_sl]?.listUser){
+        let user_collect = this.option[script_sl]?.listUser[this.option[script_sl]?.count || 0]
+        if (this.userCollectCreate) {
+          this.option[script_sl].listUser = this.userCollectCreate.split(',')
+        }
       }
       if (this.option[script_sl].count >= this.option[script_sl].listUser?.length - 1){
         this.option[script_sl].count = 0
