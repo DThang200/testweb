@@ -690,7 +690,54 @@ export default {
           loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/aab9fba1c9d41f8edf82e1d0bd14b1ea.lua"))()`
         }
       }
-      if (script_sl === 'bloxFruit-2650'){
+      if (this.isPlay5game){
+        script =
+            ` repeat wait() until game:IsLoaded()
+              local TeleportService = game:GetService("TeleportService")
+              local Players = game:GetService("Players")
+              local Player = Players.LocalPlayer
+              --default 9921763607
+              local placeIds = {
+                  9921763607,
+                  116495829188952,
+                  124938816195155,
+                  98576266411293,
+                  12877981041,
+              }
+
+              local function findCurrentIndex()
+                  local currentPlaceId = game.PlaceId
+                  for i, id in ipairs(placeIds) do
+                      if id == currentPlaceId then
+                          return i
+                      end
+                  end
+                  return 1
+              end
+
+              local function loopTeleport()
+                  while true do
+                      local currentIndex = findCurrentIndex()
+                      if currentIndex then
+                          wait(30)
+                          local nextIndex = currentIndex + 1
+                          if nextIndex > #placeIds then
+                              nextIndex = 1
+                          end
+                          TeleportService:Teleport(placeIds[nextIndex], Player)
+                          break -- break để đợi teleport sang game mới rồi tiếp tục
+                      else
+                          wait(5)
+                      end
+                  end
+              end
+              loopTeleport()`
+      }
+      if (this.isPlay5game){
+        scriptOption.label = "Play5game"
+        scriptOption.game_id = "9921763607"
+      }
+      if (script_sl === 'awp-bf-2650'){
         script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
               getgenv().Key = "${token}"
               getgenv().SettingFarm ={
@@ -773,54 +820,6 @@ export default {
                   loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()
               until getgenv().Loaded`
       }
-      if (this.isPlay5game){
-        script =
-            ` repeat wait() until game:IsLoaded()
-              local TeleportService = game:GetService("TeleportService")
-              local Players = game:GetService("Players")
-              local Player = Players.LocalPlayer
-              --default 9921763607
-              local placeIds = {
-                  9921763607,
-                  116495829188952,
-                  124938816195155,
-                  98576266411293,
-                  12877981041,
-              }
-
-              local function findCurrentIndex()
-                  local currentPlaceId = game.PlaceId
-                  for i, id in ipairs(placeIds) do
-                      if id == currentPlaceId then
-                          return i
-                      end
-                  end
-                  return 1
-              end
-
-              local function loopTeleport()
-                  while true do
-                      local currentIndex = findCurrentIndex()
-                      if currentIndex then
-                          wait(30)
-                          local nextIndex = currentIndex + 1
-                          if nextIndex > #placeIds then
-                              nextIndex = 1
-                          end
-                          TeleportService:Teleport(placeIds[nextIndex], Player)
-                          break -- break để đợi teleport sang game mới rồi tiếp tục
-                      else
-                          wait(5)
-                      end
-                  end
-              end
-              loopTeleport()`
-      }
-      if (this.isPlay5game){
-        scriptOption.label = "Play5game"
-        scriptOption.game_id = "9921763607"
-      }
-
       if (script_sl === 'awp-gag'){
         user_collect = null
         script = `getgenv().Config = {
