@@ -1190,7 +1190,7 @@ export default {
       for (let i = 0; i < arr.length; i++) {
         const device = arr[i]
         console.log("device[0]",device[0],!this.activeDevice.includes(device[0]))
-        if (device[1]?.script && (device[1]?.script.includes('ttd-') || device[1]?.script.includes('awp-')) && !this.activeDevice.includes(device[0])) {
+        if (device[1]?.script && (device[1]?.script.includes('ttd-') || device[1]?.script.includes('awp-')) && !this.activeDevice.includes(device[0]) && this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))) {
           const responseCompleted = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device[0]}/start`, {},{
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
