@@ -900,7 +900,7 @@ export default {
                       ["Godly Sprinkler"] = true
                   },
                   ["Plant Candy"] = false,
-                  ["PetNeedSend"] = {"Red Fox", "Dragonfly", "Raccoon", "Queen Bee"},
+                  ["PetNeedSend"] = {"Dragonfly", "Raccoon", "Queen Bee"},
                   ["Destroy Mode"] = {
                       ["Auto Destroy when have money"] = 50000000, -- its will destroy all trees select when money >= select
                       ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn","Daffodil", "Tomato", "Apple", "Banana", "Carrot"}
@@ -928,7 +928,7 @@ export default {
                       ["Pet Dont Delete"] = {"Chicken"}
                   },
                   ["Rejoin After X Time"] = 60,
-                      ["Mutation Skips"] = { -- Skip Havest
+                  ["Mutation Skips"] = { -- Skip Havest
                       ["Pollinated"] = false,
                       ["Disco"] = false,
                       ["Twisted"] = false,
