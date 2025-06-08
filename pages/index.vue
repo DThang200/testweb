@@ -787,8 +787,8 @@ export default {
                 _G.Races_Settings = {
                     ['Race'] = {
                         ['EnabledEvo'] = true,
-                        ["v2"] = true,
-                        ["v3"] = true,
+                        ["v2"] = false,
+                        ["v3"] = false,
                         ["Races_Lock"] = {
                             ["Races"] = {
                                 ["Mink"] = true,
@@ -812,21 +812,21 @@ export default {
                     ['Godhuman'] = true
                 }
                 _G.SwordSettings = {
-                    ['Saber'] = true,
-                    ['Shisui'] = true,
-                    ['Saddi'] = true,
-                    ['Yama'] = true,
+                    ['Saber'] = false,
+                    ['Shisui'] = false,
+                    ['Saddi'] = false,
+                    ['Yama'] = false,
                     ['CursedDualKatana'] = true
                 }
                 _G.GunSettings = {}
                 _G.FarmMastery_Settings = {
                     ['Melee'] = true,
-                    ['Sword'] = true,
-                    ['DevilFruits'] = true,
+                    ['Sword'] = false,
+                    ['DevilFruits'] = false,
                     ['Select_Swords'] = {
-                        ["AutoSettings"] = true,
+                        ["AutoSettings"] = false,
                         ["ManualSettings"] = {
-                            "Saber", "Yama"
+                            "CursedDualKatana"
                         }
                     }
                 }

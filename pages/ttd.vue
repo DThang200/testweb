@@ -21,6 +21,7 @@
     <option value="gag">GAG</option>
     <option value="bgsi">BGSI</option>
     <option value="bf">BF</option>
+    <option value="bloxFruit">BloxFruit</option>
   </select>
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row;gap: 20px;margin-top: 40px">

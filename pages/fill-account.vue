@@ -8,6 +8,7 @@
           <option value="ttd">TTD</option>
           <option value="gag">GAG</option>
           <option value="bgsi">BGSI</option>
+          <option value="bloxFruit">BloxFruit</option>
         </select>
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
         <button type="button" @click="fillAcc()">
@@ -29,7 +30,7 @@
     <button @click="showLowDevice = !showLowDevice" style="width: 150px">
       show Low device
     </button>
-    <div>Need more : Other - {{needAccount || 0}}     GAG - {{needAccountGAG || 0}}     BGSI - {{needAccountBGSI || 0}}</div>
+    <div>Need more : Other - {{needAccount || 0}}     GAG - {{needAccountGAG || 0}}     BGSI - {{needAccountBGSI || 0}}   BloxFruit - {{needAccountBf || 0}}</div>
     <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
       <div v-for="data in roblox_data" style="border: 1px solid black;padding: 4px">
         <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
@@ -88,8 +89,9 @@ export default {
       needAccount: 0,
       needAccountGAG: 0,
       needAccountBGSI: 0,
+      needAccountBf: 0,
       farmOption : [
-        // {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 22},
+        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 27},
         {code : 'bloxFruit-2600',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-fruit',label : 'Blox Fruit-X3',game_id: '2753915549',total_account: 44,active_account : 22},
         {code : 'bloxFruit-25tab',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 25},
@@ -270,7 +272,7 @@ export default {
         this.farmOption.forEach(scr => {
           if (scr?.code === this.map_device_data[device?.device_id]?.script){
             console.log('this.map_device_id_code[device?.device_id]',this.map_device_id_code[device?.device_id])
-            if ((scr?.code.includes('ttd') || scr?.code.includes('petgum') || scr?.code.includes('bgsi') || scr?.code.includes('gag')) && this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
+            if (this.map_device_id_code[device?.device_id] && this.hideDevice.includes((this.map_device_id_code[device?.device_id]).replace(/_/g, " "))){
               if (scr?.total_account > device.total_accounts){
                 this.fillDevice.push(device?.device_id)
                 let minusAcc = 0
@@ -282,7 +284,9 @@ export default {
                 }
                 if (scr?.code.includes('gag')){
                   this.needAccountGAG += scr?.total_account - device.total_accounts - minusAcc
-                } else if (scr?.code.includes('bgsi')){
+                } else if (scr?.code.includes('bloxFruit')){
+                  this.needAccountBf += scr?.total_account - device.total_accounts - minusAcc
+                }  else if (scr?.code.includes('bgsi')){
                   this.needAccountBGSI += scr?.total_account - device.total_accounts - minusAcc
                 } else {
                   this.needAccount += scr?.total_account - device.total_accounts - minusAcc
