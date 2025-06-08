@@ -186,6 +186,7 @@ export default {
         {code : 'awp-gag',label : 'Grow a Garden -AWP',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         {code : 'awp-bgsi',label : 'BGSI -AWP',game_id: '85896571713843',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         {code : 'awp-bf-2650',label : 'BF-2650 -AWP',game_id: '2753915549',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/main/trackstatblox"},
+        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/main/trackstatblox"},
       ],
       option: {
         "awp-bgsi" : {
@@ -1273,7 +1274,7 @@ export default {
         });
         if (option?.yummyTrack) {
           const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
-          const script_id = await this.getData(device_id, "script_id1")
+          const script_id = await this.getData(device_id, (option.code === "bloxFruit-maru" ? "script_id2" : "script_id1"));
           if(!script_id){
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
