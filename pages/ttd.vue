@@ -184,7 +184,7 @@ export default {
         {code : 'ttd-create',label : 'TTD-OpenCreateCustom',game_id: '85896571713843',private_server : false},
         {code : 'ttd-noel-Thangcachepp04',label : 'TTD-Noel-Main',game_id: '13775256536',private_server : false},
         {code : 'awp-gag',label : 'Grow a Garden -AWP',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
-        {code : 'awp-bgsi',label : 'BGSI -AWP',game_id: '85896571713843',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
+        {code : 'awp-bgsi',label : 'BGSI -AWP',game_id: '85896571713843',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/bgsi"},
         {code : 'awp-bf-2650',label : 'BF-2650 -AWP',game_id: '2753915549',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/main/trackstatblox"},
         {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/main/trackstatblox"},
       ],
