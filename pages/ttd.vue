@@ -957,6 +957,84 @@ export default {
                   loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be5eb6eb83a60b4c87954ddf66dd7413.lua"))()
               until getgenv().Loaded`
       }
+      if (script_sl === 'awp-bgsi'){
+        user_collect = null
+        script = `setfpscap(5)
+                  wait(60)
+                  script_key = "ecFQLxpyAlNmXBMKNGLWLwVghIMyXsJY";
+                  getgenv().UserConfig = {
+                      AddFriends          = true,
+                      RedeemCode = {"RELEASE","Lucky", "update2","Easter","Sylentlyssorry", "update4"},
+                      EquipBestFlavorGum  = true,
+                      BuyFlavorGum        = true,
+                      AutoMinigames       = true,
+                      AutoRollDice        = true,
+                      ["Super Ticket"]    = "Robot Claw",
+                      ["Use Super Ticket"] = true,
+                      ["Season Challenges"] = false, -- false bc ss end
+                      ["Giant Chest"] = false,
+                      ["Void Chest"] = false,
+                      ["Golden Chest"] = false,
+                      ["Royal Chest"] = true,
+                      ["Dice Chest"] = true, -- default is false if not set
+                      ["Summer Shop"] = true, -- default is true if not set
+                      ["Force X2"] = true,
+                      ["Mastery"] = {Pets = 15,Buffs = 10,Shops = 10},
+                      ["Craft Potions"] = {
+                          Enable = true,
+                          MinGems = "100k",
+                          ["Potion Needed"] = {
+                              {"Coins", Level = 5},
+                              {"Speed", Level = 5},
+                              {"Lucky", Level = 5},
+                              {"Mythic", Level = 5}
+                          }
+                      },
+                      ["Star Shop"] = {
+                          Enable = true,
+                          MinStars = 100,
+                          ["Items Needed"] = {
+                              "Speed V",
+                              "Lucky V",
+                              "Mythic V"
+                          }
+                      },
+                      ["Rifts"] = {
+                          AlwaysFindRifts = true,
+                          Targets = {"Neon Egg"},
+                          Luck = 5 -- dont change
+                      },
+                      ["Secret Bounty"] = {"D0GGY1337"},
+                      ["Secret Bounty x1 Egg"] = false, -- true = 100% Secret Bounty
+                      ["Skip Event"] = "All", -- All: skip event seashells, Jungle: skip new island event seashells, None: not skip event seashells
+                      ["Light and Dark"]  = "Both", -- Both: hatch Light and Dark, Light Egg: only hatch if available, Dark Egg: only hatch if available
+                      FindDuck = "Neon Egg", -- Fruit Egg, Nightmare Egg, Common Egg, Cyber Egg, Neon Egg
+                      ["Replace FindDuck"] = "Neon Egg",
+                      ["Best Potions Find Duck"] = true, --false if there are only few potions
+                      ["Enchant Team 1"] = {enable = true, ["team-up"] = 1}, -- can set 2 or 3
+                      ["Min gems"] = "1m",
+                      ["Min coins"] = "100m",
+                      ["Min tickets"] = "10m",
+                      ["Min seashells"] = "10b",
+                      ["Gems coefficient"] = 0,
+                      ["Tickets coefficient"] = 100,
+                      ["Seashells coefficient"] = 24,
+                      ["Auto Restart"] = true,
+                      ["Webhook"] = {
+                          Enable = true,
+                          Note = "",
+                          ID = "663236418499379240",
+                          URL = "https://discord.com/api/webhooks/1376619504842444850/-7LCtfiAGwCU6Q_3pSy0_4AX7A6sLsdiopdYYmTIUEnqFkE5uLQ-D_sRn2eu4-t20QU-",
+                          Rarity = {
+                              "Legendary",
+                              "Secret"
+                          }, -- General rarity filter
+                          Legendary = "100m",
+                          ["Special Pets"] = {"Monolith"}
+                      }
+                  }
+                  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0cf205a620e81d1f3c3d3f75474ab32f.lua"))()`
+      }
       if (this.saveScript(device_id, btoa(unescape(encodeURIComponent(script))),scriptOption)){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label + (user_collect ? '           ----' + user_collect : '')})
         this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
