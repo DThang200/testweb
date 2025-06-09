@@ -824,7 +824,10 @@ export default {
       }
       if (script_sl === 'awp-gag'){
         user_collect = null
-        script = `getgenv().Config = {
+        script = `
+                  getgenv().Config = {
+                  ["TargetName"] = {"Dragonfly","Disco Bee"}, -- Target Pet Dupe
+                  ["Dupe"] = true,
                   ["Time To Sell"] = 35, -- Seconds
                   ["Seed"] = {
                       ["Carrot"] = 44,
@@ -859,7 +862,7 @@ export default {
                       ["Common Egg"] = false,
                       ["Uncommon Egg"] = true,
                       ["Rare Egg"] = false,
-                      ["Mythical Egg"] = true,
+                      ["Mythical Egg"] = false,
                       ["Legendary Egg"] = false,
                       ["Bug Egg"] = true
                   },
