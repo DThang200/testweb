@@ -826,7 +826,7 @@ export default {
         user_collect = null
         script = `
                   getgenv().Config = {
-                  ["TargetName"] = {"Dragonfly","Disco Bee"}, -- Target Pet Dupe
+                  ["TargetName"] = {"Dragonfly","Disco Bee","Queen Bee"}, -- Target Pet Dupe
                   ["Dupe"] = true,
                   ["Time To Sell"] = 35, -- Seconds
                   ["Seed"] = {
@@ -860,7 +860,7 @@ export default {
                   ["Buy Egg"] = true,
                   ["Egg"] = {
                       ["Common Egg"] = false,
-                      ["Uncommon Egg"] = true,
+                      ["Uncommon Egg"] = false,
                       ["Rare Egg"] = false,
                       ["Mythical Egg"] = false,
                       ["Legendary Egg"] = false,
