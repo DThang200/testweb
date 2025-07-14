@@ -8,6 +8,7 @@
           <option value="ttd">TTD</option>
           <option value="gag">GAG</option>
           <option value="bgsi">BGSI</option>
+          <option value="astd">ASTD</option>
           <option value="bloxFruit">BloxFruit</option>
         </select>
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
