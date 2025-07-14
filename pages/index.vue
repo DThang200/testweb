@@ -223,6 +223,7 @@ export default {
         // {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
         {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
+        {code : 'astd',label : 'ASTD',game_id: '17687504411',private_server : false},
       ],
       autoGomActive: [],
       autoGomFrom: '',
@@ -1091,6 +1092,10 @@ export default {
       }
 
       loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
+          break;
+        case 'astd' :
+          script = `script_key="RGxCJzKwtutSTuMcDxFxoWVkhgggoarB";
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10f1a10dbb55c265b1f0.lua"))()`
           break;
       }
       if (script_sl === 'Toilet'){
