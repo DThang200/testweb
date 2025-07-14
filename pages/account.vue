@@ -166,6 +166,7 @@
           <label>With bgsi acc?</label>
           <button @click="getDetailAcc">Copy username pass</button>
           <button @click="getDetailAllAcc">Copy All</button>
+          <button @click="getDetailAllAccGAG">Copy All GAG</button>
         </div>
       </div>
       <div class="field-action">
@@ -538,6 +539,32 @@ export default {
       for (let i = this.selectStartDeviceIndex; i <= this.selectEndDeviceIndex; i++) {
         if (!this.selectBGSIAcc){
           if (!this.roblox_data.devices[i]?.device_id || map_device_data[this.roblox_data.devices[i]?.device_id].script !== 'gag'){
+            listDevice.push(this.roblox_data.devices[i]?.device_id)
+          }
+        } else {
+          listDevice.push(this.roblox_data.devices[i]?.device_id)
+        }
+      }
+      console.log('listDevice',listDevice)
+      let resultData = []
+      let result = ''
+      this.roblox_data_account.accounts.forEach(acc => {
+        if (listDevice.includes(acc.device_id)){
+          // resultData.push(acc)
+          result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
+        }
+      })
+      navigator.clipboard.writeText(result);
+      console.log('resultData',result)
+    },
+    getDetailAccGAG(){
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
+      //
+      console.log('this.roblox_data',this.roblox_data)
+      let listDevice = []
+      for (let i = this.selectStartDeviceIndex; i <= this.selectEndDeviceIndex; i++) {
+        if (!this.selectBGSIAcc){
+          if (!this.roblox_data.devices[i]?.device_id || map_device_data[this.roblox_data.devices[i]?.device_id].script !== 'awp-gag'){
             listDevice.push(this.roblox_data.devices[i]?.device_id)
           }
         } else {
