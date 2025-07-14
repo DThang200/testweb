@@ -5,10 +5,10 @@
         <label for="fillttd">Fill acc game</label>
 <!--        <input id="fillttd" v-model="fillttd" type="checkbox">-->
         <select v-model="fillOption">
-          <option value="ttd">TTD</option>
-          <option value="gag">GAG</option>
-          <option value="bgsi">BGSI</option>
+<!--          <option value="ttd">TTD</option>-->
+<!--          <option value="bgsi">BGSI</option>-->
           <option value="astd">ASTD</option>
+          <option value="gag">GAG</option>
           <option value="bloxFruit">BloxFruit</option>
         </select>
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
@@ -31,7 +31,7 @@
     <button @click="showLowDevice = !showLowDevice" style="width: 150px">
       show Low device
     </button>
-    <div>Need more : Other - {{needAccount || 0}}     GAG - {{needAccountGAG || 0}}     BGSI - {{needAccountBGSI || 0}}   BloxFruit - {{needAccountBf || 0}}</div>
+    <div>Need more : Other - {{needAccount || 0}}     ASTD - {{needAccountASTD || 0}}     GAG - {{needAccountGAG || 0}}</div>
     <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
       <div v-for="data in roblox_data" style="border: 1px solid black;padding: 4px">
         <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
@@ -84,12 +84,12 @@ export default {
       lowDevice: [],
       fillDevice: [],
       remain_acc_copy: '',
-      fillOption : "ttd",
+      fillOption : "astd",
       fillttd: true,
       fillgag: false,
       needAccount: 0,
       needAccountGAG: 0,
-      needAccountBGSI: 0,
+      needAccountASTD: 0,
       needAccountBf: 0,
       farmOption : [
         {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 27},
@@ -287,10 +287,8 @@ export default {
                 }
                 if (scr?.code.includes('gag')){
                   this.needAccountGAG += scr?.total_account - device.total_accounts - minusAcc
-                } else if (scr?.code.includes('bloxFruit')){
-                  this.needAccountBf += scr?.total_account - device.total_accounts - minusAcc
-                }  else if (scr?.code.includes('bgsi')){
-                  this.needAccountBGSI += scr?.total_account - device.total_accounts - minusAcc
+                } else if (scr?.code.includes('astd')){
+                  this.needAccountASTD += scr?.total_account - device.total_accounts - minusAcc
                 } else {
                   this.needAccount += scr?.total_account - device.total_accounts - minusAcc
                 }
