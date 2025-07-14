@@ -65,11 +65,12 @@ export default {
   },
   data() {
     return {
-      active_account : 22,
-      total_account : 44,
+      active_account : 30,
+      total_account : 60,
+      accPerCircle : 5,
       circle : -1,
-      time_circle : 60 * 60 * 1000,
-      total_circle : 1,
+      time_circle : 20 * 60 * 1000,
+      total_circle : 12,
       countdown_circle : 40 * 60,
       interval_countdown : null,
       interval_farm : null,
@@ -149,7 +150,7 @@ export default {
         let listEnableAcc = []
         if (listAccount && listAccount?.accounts?.length > 0){
           listAccount.accounts.forEach((acc,index) => {
-            const enable = (index >= this.circle * this.active_account) && (index < ((this.circle + 1) * this.active_account))
+            const enable = (index >= this.circle * this.accPerCircle) && (index < ((this.circle + 1) * this.active_account))
             listEnableAcc.push({
               "username_look_for": acc?.username,
               "enabled": enable

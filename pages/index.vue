@@ -380,16 +380,7 @@ export default {
     initData() {
       this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
       if (!this.hideDevice || this.hideDevice.length == 0){
-        this.hideDevice = [
-          'VPS 1', 'VPS 2', 'VPS 3', 'VPS 4', 'VPS 5', 'VPS 6', 'VPS 7', 'VPS 8', 'VPS 9', 'VPS 10',
-          'VPS 11', 'VPS 12', 'VPS 13', 'VPS 14', 'VPS 15', 'VPS 16', 'VPS 17', 'VPS 18', 'VPS 19', 'VPS 20',
-          'VPS 21', 'VPS 22', 'VPS 23', 'VPS 24', 'VPS 25', 'VPS 26', 'VPS 27', 'VPS 28', 'VPS 29', 'VPS 30',
-          'VPS 31', 'VPS 32', 'VPS 33', 'VPS 34', 'VPS 35', 'VPS 36', 'VPS 56', 'VPS 57', 'VPS 58', 'VPS 59',
-          'VPS 60', 'VPS 61', 'VPS 66', 'VPS 71', 'VPS 72', 'VPS 73', 'VPS 74', 'VPS 75', 'VPS 76', 'VPS 77',
-          'VPS 78', 'VPS 79', 'VPS 80', 'VPS 81', 'VPS 82', 'VPS 83', 'VPS 84', 'VPS 85', 'VPS 86', 'VPS 87',
-          'VPS 88', 'VPS 89', 'VPS 90', 'VPS 91', 'VPS 92', 'VPS 93', 'VPS 94', 'VPS 95', 'VPS 96', 'VPS 97',
-          'VPS 98', 'VPS 99', 'VPS 175', 'VPS 235'
-        ]
+        this.hideDevice = []
         localStorage.setItem('hideDevice', JSON.stringify(this.hideDevice));
       }
       console.log('this.hideDevice',this.hideDevice)

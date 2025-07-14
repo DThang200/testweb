@@ -165,6 +165,7 @@
           <input v-model="selectBGSIAcc" type="checkbox">
           <label>With bgsi acc?</label>
           <button @click="getDetailAcc">Copy username pass</button>
+          <button @click="getDetailAllAcc">Copy All</button>
         </div>
       </div>
       <div class="field-action">
@@ -551,6 +552,14 @@ export default {
           // resultData.push(acc)
           result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
         }
+      })
+      navigator.clipboard.writeText(result);
+      console.log('resultData',result)
+    },
+    getDetailAllAcc(){
+      let result = ''
+      this.roblox_data_account.accounts.forEach(acc => {
+        result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
       })
       navigator.clipboard.writeText(result);
       console.log('resultData',result)
