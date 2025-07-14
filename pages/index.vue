@@ -1,5 +1,13 @@
 <template>
 <main class="page-content">
+  <select v-model="showOption">
+    <option value="">All</option>
+    <option value="ttd">TTD</option>
+    <option value="gag">GAG</option>
+    <option value="bgsi">BGSI</option>
+    <option value="bf">BF</option>
+    <option value="bloxFruit">BloxFruit</option>
+  </select>
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row; gap: 16px">
       <button type="button" @click="refreshScript()">
@@ -8,7 +16,7 @@
       <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
       <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
     </div>
-    <div style="display: flex;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
+    <div style="display: none;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
       From :
       <template v-if="is_auto_gom">
         ({{(autoGomFrom || autoGomFrom === 0) ? roblox_data.devices[autoGomFrom].device_name : 'None'}})
@@ -108,7 +116,7 @@
     </div>
   </div>
   <div class="list-remote-pc" v-if="roblox_data?.devices?.length > 0">
-    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if="hideDevice.includes(data.device_name) || showAllDevice" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
+    <div v-for="data in roblox_data.devices" class="remote-pc-item" v-if=" showAllDevice || (hideDevice.includes(data.device_name) && (!showOption || data?.script.includes(showOption)))" :class="getStatusClass(data)" :key="data.device_code" :style="`${$config.DEVICE_ROLE === 'manager' ? 'padding: 0 24px' : 'font-size: 32px'}`">
       <div>
         {{data.device_name}} {{data?.running ? '' : '(stop)'}}
       </div>
@@ -230,6 +238,7 @@ export default {
       autoGomActive: [],
       autoGomFrom: '',
       autoGomTo: '',
+      showOption: '',
       autoGomLastCurrent: 0,
       countClickHs: 0,
       editDevice: '',
