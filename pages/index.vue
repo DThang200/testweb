@@ -90,6 +90,8 @@
   </template>
   <div style="margin-left: auto;font-size: 24px;margin-bottom: 10px" :style="`${$config.DEVICE_ROLE === 'manager' ? '' : 'transform: scale(3);margin-bottom: 32px'}`">
     <button style="cursor: text;margin-right: 123px;width: 140px;opacity: 0" @click="copyHsAccount">123</button>
+    <button @click="StopAll">StopAll</button>
+    <button @click="PlayAll">PlayAll</button>
     <input v-model="sortInactive" id="sortInactive" type="checkbox">
     <label for="sortInactive">Xắp xếp theo trạng thái không hoạt động</label>
   </div>
@@ -1109,6 +1111,37 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
       this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
       if (!save_script){
         this.setStatusDevice({device_id: device_id,key: 'script',value: scriptOption?.code})
+      }
+    },
+    async StopAll() {
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      const arr = Object.entries(map_device_data)
+      for (let i = 0; i < arr.length; i++) {
+        const device = arr[i]
+        if (this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))) {
+          const responseCompleted = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device[0]}/stop`, {},{
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+        }
+        // https://frontend.robloxmanager.com/v1/devices/cd42b76bdc6ad726b6690ad474a8cafe4184a663f47336e1be8e6f931a23a64b/stop
+      }
+    },
+    async PlayAll() {
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      const arr = Object.entries(map_device_data)
+      for (let i = 0; i < arr.length; i++) {
+        const device = arr[i]
+        console.log("device[0]",device[0],!this.activeDevice.includes(device[0]))
+        if (this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))) {
+          const responseCompleted = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device[0]}/start`, {},{
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+        }
+        // https://frontend.robloxmanager.com/v1/devices/cd42b76bdc6ad726b6690ad474a8cafe4184a663f47336e1be8e6f931a23a64b/stop
       }
     },
     refreshScript(){
