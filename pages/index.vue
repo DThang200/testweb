@@ -1,9 +1,5 @@
 <template>
 <main class="page-content">
-  <select v-model="showOption">
-    <option value="">All</option>
-    <option value="astd">ASTD</option>
-  </select>
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row; gap: 16px">
       <button type="button" @click="refreshScript()">
@@ -11,6 +7,12 @@
       </button>
       <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
       <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
+    </div>
+    <div style="display: flex;flex-direction: row; gap: 16px">
+      <select v-model="showOption">
+        <option value="">All</option>
+        <option value="astd">ASTD</option>
+      </select>
     </div>
     <div style="display: none;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
       From :
@@ -65,7 +67,7 @@
         Account
       </nuxt-link>
     </div>
-    <div style="display: flex;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
+    <div style="display: none;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
 
       <label for="PlayTime">PlayTime(hour)</label>
       <input id="PlayTime" v-model="playTime">
