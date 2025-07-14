@@ -191,9 +191,17 @@ export default {
   watch:{
     roblox_data_state: {
       handler(value){
+        const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+        this.activeDevice = []
         if (this.sortInactive){
           let data = JSON.parse(JSON.stringify(value))
           data.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
+          data.devices.forEach(device => {
+            device.script = map_device_data[device?.device_id]?.script || ""
+            if (device?.running && this.hideDevice.includes(device?.device_name)){
+              this.activeDevice.push(device?.device_id)
+            }
+          })
           this.roblox_data = data
         } else {
           this.roblox_data = JSON.parse(JSON.stringify(value))
@@ -234,6 +242,7 @@ export default {
         {code : 'astd',label : 'ASTD',game_id: '17687504411',private_server : false},
       ],
       autoGomActive: [],
+      activeDevice: [],
       autoGomFrom: '',
       autoGomTo: '',
       showOption: '',
