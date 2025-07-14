@@ -2,11 +2,7 @@
 <main class="page-content">
   <select v-model="showOption">
     <option value="">All</option>
-    <option value="ttd">TTD</option>
-    <option value="gag">GAG</option>
-    <option value="bgsi">BGSI</option>
-    <option value="bf">BF</option>
-    <option value="bloxFruit">BloxFruit</option>
+    <option value="astd">ASTD</option>
   </select>
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row; gap: 16px">
