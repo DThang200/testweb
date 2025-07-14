@@ -198,6 +198,7 @@ export default {
           data.devices.sort((a, b) => b.inactive_accounts - a.inactive_accounts)
           data.devices.forEach(device => {
             device.script = map_device_data[device?.device_id]?.script || ""
+            console.log('device.script',device.script)
             if (device?.running && this.hideDevice.includes(device?.device_name)){
               this.activeDevice.push(device?.device_id)
             }
