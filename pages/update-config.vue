@@ -484,53 +484,53 @@ export default {
               }
             }
           }
-          // if (!checkValid){
-          //   console.log('device?.deviceName',pc?.deviceName)
-          //
-          //   if (configId){
-          //     const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
-          //       "script_name": "Fix lag",
-          //       "script_data": this.scriptFixLagBase64
-          //     },{
-          //       headers: {
-          //         'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //       },
-          //     });
-          //     console.log('device?.deviceName',pc?.deviceName)
-          //     console.log('responseCreateScriptFixLag',responseCreateScriptFixLag)
-          //   }
-          // }
-          let checkValidOpenCreate = false
-          if (response?.scripts){
-            for (let j = 0; j < response?.scripts?.length; j++) {
-              console.log('response?.scripts[i]?.script_data',response?.scripts[j]?.script_data)
-              if (response?.scripts[j]?.script_data === this.scriptOpenCreateBase64){
-                checkValidOpenCreate = true
-              }
-              if (response?.scripts[j]?.script_data === this.scriptOpenCreateBase64New || response?.scripts[j]?.script_data === this.scriptOpenCreateBase64Delete){
-                console.log('this.scriptOpenCreateBase64New')
-                const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts/${response?.scripts[j]?.script_id}`,  {
-                  headers: {
-                    'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-                  },
-                });
-              }
-            }
-          }
-          checkValidOpenCreate = false
-          if (!checkValidOpenCreate){
+          if (!checkValid){
             console.log('device?.deviceName',pc?.deviceName)
+
             if (configId){
               const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
-                "script_name": "WH open crate",
-                "script_data": this.scriptOpenCreateBase64
+                "script_name": "Fix lag",
+                "script_data": this.scriptFixLagBase64
               },{
                 headers: {
                   'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
                 },
               });
+              console.log('device?.deviceName',pc?.deviceName)
+              console.log('responseCreateScriptFixLag',responseCreateScriptFixLag)
             }
           }
+          let checkValidOpenCreate = false
+          // if (response?.scripts){
+          //   for (let j = 0; j < response?.scripts?.length; j++) {
+          //     console.log('response?.scripts[i]?.script_data',response?.scripts[j]?.script_data)
+          //     if (response?.scripts[j]?.script_data === this.scriptOpenCreateBase64){
+          //       checkValidOpenCreate = true
+          //     }
+          //     if (response?.scripts[j]?.script_data === this.scriptOpenCreateBase64New || response?.scripts[j]?.script_data === this.scriptOpenCreateBase64Delete){
+          //       console.log('this.scriptOpenCreateBase64New')
+          //       const resSetScriptFisch = await this.$axios.delete(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts/${response?.scripts[j]?.script_id}`,  {
+          //         headers: {
+          //           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //         },
+          //       });
+          //     }
+          //   }
+          // }
+          // checkValidOpenCreate = false
+          // if (!checkValidOpenCreate){
+          //   console.log('device?.deviceName',pc?.deviceName)
+          //   if (configId){
+          //     const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
+          //       "script_name": "WH open crate",
+          //       "script_data": this.scriptOpenCreateBase64
+          //     },{
+          //       headers: {
+          //         'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //       },
+          //     });
+          //   }
+          // }
           // response.scripts
           // post https://frontend.robloxmanager.com/v1/configs/${pc?.deviceId}/scripts
           // {
