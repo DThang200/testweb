@@ -1177,7 +1177,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Egg"] = {
         ["Mythical Egg"] = {
             ["Buy"] = true,
-            ["Place"] = true,
+            ["Place"] = false,
             ["Priority"] = 5
         },
         ["Oasis Egg"] = {
@@ -1194,7 +1194,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         },
         ["Bug Egg"] = {
             ["Buy"] = true,
-            ["Place"] = true,
+            ["Place"] = false,
             ["Priority"] = 2
         },
         ["Paradise Egg"] = {
