@@ -114,6 +114,7 @@ export default {
         {code : 'awp-bf-2650',label : 'TTD-PvP',game_id: '13775256536',total_account: 40},
         {code : 'astd',label : 'astd',game_id: '17687504411',total_account: 28},
         {code : 'farm-gag',label : 'farm-gag',game_id: '126884695634066',total_account: 30},
+        {code : 'gag-bone',label : 'GAG-Bone',game_id: '126884695634066',total_account: 25},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
