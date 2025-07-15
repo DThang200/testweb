@@ -31,10 +31,19 @@
     <button @click="showLowDevice = !showLowDevice" style="width: 150px">
       show Low device
     </button>
+    <button @click="showStrongDevice = !showStrongDevice" style="width: 150px">
+      show Strong device
+    </button>
     <div>Need more : Other - {{needAccount || 0}}     ASTD - {{needAccountASTD || 0}}     GAG - {{needAccountGAG || 0}}</div>
     <div v-if="showLowDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
       <div v-for="data in roblox_data" style="border: 1px solid black;padding: 4px">
         <input :id="data.device_name+ 'low'" type="checkbox" v-model="lowDevice" :value="data.device_name">
+        <label :for="data.device_name+ 'low'">{{data.device_name}}</label>
+      </div>
+    </div>
+    <div v-if="showStrongDevice" style="width: 500px;display: flex;flex-direction: row;overflow-y: auto;height: 200px;font-size: 12px;flex-wrap: wrap;gap: 12px">
+      <div v-for="data in roblox_data" style="border: 1px solid black;padding: 4px">
+        <input :id="data.device_name+ 'low'" type="checkbox" v-model="strongDevice" :value="data.device_name">
         <label :for="data.device_name+ 'low'">{{data.device_name}}</label>
       </div>
     </div>
@@ -72,6 +81,7 @@ export default {
       total_account : 66,
       circle : 0,
       showLowDevice : false,
+      showStrongDevice : true,
       time_circle : 120 * 60 * 1000,
       countdown_circle : 120 * 60 * 1000,
       interval_farm : null,
@@ -82,6 +92,7 @@ export default {
       remain_acc: [],
       hideDevice: [],
       lowDevice: [],
+      strongDevice: [],
       fillDevice: [],
       remain_acc_copy: '',
       fillOption : "astd",
@@ -101,7 +112,7 @@ export default {
         {code : 'awp-gag',label : 'TTD-PvP',game_id: '13775256536',total_account: 65},
         {code : 'awp-bgsi',label : 'TTD-PvP',game_id: '13775256536',total_account: 65},
         {code : 'awp-bf-2650',label : 'TTD-PvP',game_id: '13775256536',total_account: 40},
-        {code : 'astd',label : 'astd',game_id: '17687504411',total_account: 30},
+        {code : 'astd',label : 'astd',game_id: '17687504411',total_account: 28},
         {code : 'farm-gag',label : 'farm-gag',game_id: '126884695634066',total_account: 30},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
@@ -284,6 +295,9 @@ export default {
                   if (this.map_device_data[device?.device_id]?.script.includes('awp-')){
                     minusAcc = 15
                   }
+                }
+                if (this.strongDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " "))){
+                  minusAcc = -2
                 }
                 if (scr?.code.includes('gag')){
                   this.needAccountGAG += scr?.total_account - device.total_accounts - minusAcc

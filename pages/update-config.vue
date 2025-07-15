@@ -115,7 +115,7 @@ export default {
       config : {
         // "use_private_server": true,
         // "join_low_players_server": false,
-        "injection_check_timeout": 60,
+        "injection_check_timeout": 500,
         "injection_check": true,
       },
       update_config : false,
