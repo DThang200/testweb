@@ -242,6 +242,7 @@ export default {
         {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
         {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
         {code : 'astd',label : 'ASTD',game_id: '17687504411',private_server : false},
+        {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
       ],
       autoGomActive: [],
       activeDevice: [],
@@ -1144,6 +1145,144 @@ script_key="PRhCqhbhYdUOwKKDuzliwSiFJGcsYegZ";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
           this.countAstdKeyMaru += 1
           break;
+        case 'gag-bone' :
+          script = `getgenv().Config = {
+    ["Time To Sell"] = 35, -- Seconds
+    ["Craft Event"] = {
+        ["Crafters Seed Pack"] = true,
+        ["Anti Bee Egg"] = true,
+        ["Ancient Seed Pack"] = true
+    },
+    ["Dont Open Pack"] = false,
+    ["Dont Use Flower Seed Pack"] = true, -- If u Enable Crafters Seed Pack pls enable this
+    ["Mode Plant"] = "Auto", -- "Custom"
+
+    ["Seed"] = { -- Seed Plant Custom
+        ["Strawberry"] = 44,
+        ["Blueberry"] = 44,
+        ["Tomato"] = 44,
+        ["Loquat"] = 44,
+        ["Pineapple"] = 44,
+        ["Carrot"] = 44,
+        ["Bell Pepper"] = 44,
+        ["Green Apple"] = 44,
+        ["Feijoa"] = 44,
+        ["Avocado"] = 44,
+        ["Sugar Apple"] = 44,
+        ["Banana"] = 44,
+        ["Prickly Pear"] = 44,
+        ["Watermelon"] = 44,
+        ["Kiwi"] = 44
+    },
+    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom"},
+    ["Egg"] = {
+        ["Mythical Egg"] = {
+            ["Buy"] = true,
+            ["Place"] = true,
+            ["Priority"] = 5
+        },
+        ["Oasis Egg"] = {
+            ["Place"] = true,
+            ["Priority"] = 6
+        },
+        ["Anti Bee Egg"] = {
+            ["Place"] = true,
+            ["Priority"] = 1
+        },
+        ["Night Egg"] = {
+            ["Place"] = true,
+            ["Priority"] = 4
+        },
+        ["Bug Egg"] = {
+            ["Buy"] = true,
+            ["Place"] = true,
+            ["Priority"] = 2
+        },
+        ["Paradise Egg"] = {
+            ["Buy"] = true,
+            ["Place"] = true,
+            ["Priority"] = 3
+        },
+        ["Bee Egg"] = {
+            ["Buy"] = true,
+            ["Place"] = false,
+            ["Priority"] = 3
+        },
+        ["Dinosaur Egg"] = {
+            ["Place"] = true,
+            ["Priority"] = 1
+        }
+    },
+
+    ["Sprinkler"] = {
+        ["Place Sprinkler"] = true,
+        ["Buy Sprinkler"] = true,
+        ["Basic Sprinkler"] = true,
+        ["Advanced Sprinkler"] = true,
+        ["Master Sprinkler"] = true,
+        ["Godly Sprinkler"] = true
+    },
+    ["Plant Candy"] = false,
+    ["PetNeedSend"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
+                       "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex"},
+    ["Destroy Mode"] = {
+        ["Auto Destroy when have money"] = 1000000, -- its will destroy all trees select when money >= select
+        ["Mode Destroy"] = "Auto", -- "Custom"
+        ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Orange Tulip", "Carrot"},
+        ["Rarity Destroy Auto"] = {"Common", "Uncommon", "Rare", "Legendary"},
+        ["Destroy Untill"] = 150
+    },
+    ["Dino Quest Farm"] = true,
+    ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m", -- Webhook
+
+    ["Boost FPS"] = false,
+    ["Black Screen"] = false,
+    ["Dino Event"] = {
+        ["Auto Claim Quest"] = true,
+        ["Auto Restart Quest"] = true,
+        ["Auto Submit"] = true,
+        ["Auto Trade Eggs"] = true,
+        ["Pet Dont Trade"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
+                              "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster",
+                              "Golden Lab", "T-Rex"}
+    },
+    ["Note"] = "Cyndral Hub",
+    ["Pet Mode"] = {
+        ["Sell Pet"] = true,
+        ["Equip Pet"] = true,
+        ["Name Pet Equip"] = {
+            ["Night Owl"] = true,
+            ["Chicken"] = true
+        },
+        ["Max Slot Pet To Sell"] = 1, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
+        ["Upgrade Slot Egg"] = {
+            ["Enable"] = true,
+            ["Black List Pet For Upgrade Slots"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee",
+                                                    "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
+                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex"}
+        },
+        ["Pet Dont Delete"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly",
+                               "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw",
+                               "Hamster", "Golden Lab", "T-Rex"},
+        ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
+    },
+    ["Webhook Mode"] = {
+        ["Enable Send Pet Weight"] = true,
+        ["Weight"] = 20 -- if Weight >= 10 they will send wh
+
+    },
+    ["Rejoin Mode"] = {
+        ["Auto Rejoin When Error Module Egg"] = true,
+        ["Auto rejoin on script update"] = true,
+        ["Enable Rejoin After X Time"] = false,
+        ["Rejoin After X Time"] = 60 -- Minutes
+    },
+    ["Limit Tree"] = 250,
+    ["White Screen"] = false
+}
+
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()
+script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";`
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
@@ -1217,13 +1356,51 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd6
         }
       },300)
     },
+    async getData(device_id = null, key = null) {
+      if (key && device_id) {
+        let map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+        const device = map_device_data[device_id]
+        if (device[key]) {
+          return device[key]
+        } else {
+          if (key === "config_id") {
+            const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            const config_id = resConfig?.configs[0]?.config_id
+            map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+            map_device_data[device_id].config_id = config_id
+            localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
+            return config_id
+          } else if (key.includes("script_id")){
+            const config_id = await this.getData(device_id, "config_id");
+            const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+            for (let i = 0; i < resScript?.scripts.length; i++) {
+              map_device_data[device_id]["script_id" + (i === 0 ? '' : i)  ] = resScript?.scripts[i]?.script_id
+            }
+            // const script_id = resScript?.scripts[0]?.script_id
+            // map_device_data[device_id].script_id = script_id
+            localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
+            return map_device_data[device_id][key] || ""
+          }
+        }
+      }
+    },
     async saveScript(device_id, script,option = null) {
-      const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
-        headers: {
-          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-        },
-      });
-      const config_id = resConfig?.configs[0]?.config_id
+      // const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
+      //   headers: {
+      //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+      //   },
+      // });
+      // const config_id =  resConfig?.configs[0]?.config_id
+      const config_id = await this.getData(device_id, "config_id")
       if (option){
         const gameConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs/${config_id}`, {
           use_private_server: option.private_server,
@@ -1234,13 +1411,38 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd6
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
         });
+        if (option?.yummyTrack) {
+          const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
+          const script_id = await this.getData(device_id, (option.code === "bloxFruit-maru" ? "script_id2" : "script_id1"));
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
+          // map_device_id_code[item.device_id] = item.device_code
+        }
       }
-      const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
-        headers: {
-          'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-        },
-      });
-      const script_id = resScript?.scripts[0]?.script_id
+      // const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+      //   headers: {
+      //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+      //   },
+      // });
+      const script_id = await this.getData(device_id, "script_id")
+      // const script_id = resScript?.scripts[0]?.script_id
       const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device_id}/scripts/${script_id}`, {
         script_data: script
       },{
@@ -1248,7 +1450,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd6
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
-    },
+      return resSetScript
+    }
     handleCancelRunAndStop(){
       clearInterval(this.intervalRunAndStop);
       this.isRunningPlayStop = false
