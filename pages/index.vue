@@ -1130,7 +1130,7 @@ export default {
         ["Select Map"] = {
             ["Map Name"] = "World1",
             ["Chapter"] = 1,
-            ["Difficulty"] ="Hard"
+            ["Difficulty"] ="Normal"
         }
     },
     ["Auto Upgrade"] = {
