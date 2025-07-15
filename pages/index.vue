@@ -269,6 +269,7 @@ export default {
       isRunningPlayStop: false,
       intervalRunAndStop: null,
       showAllDevice: false,
+      countAstdKeyMaru : 0
     }
   },
   async mounted() {
@@ -1115,10 +1116,12 @@ export default {
           break;
         case 'astd' :
             const listKey = ["RGxCJzKwtutSTuMcDxFxoWVkhgggoarB","ZAIraBlOcnKjEhsdoPrjfkxsDtnsyHho"]
-            const key = listKey[Math.floor(Math.random() * listKey.length)];
-          console.log("key",key)
-          script = `script_key="${key}";
+          if (this.countAstdKeyMaru > listKey.length -1){
+            this.countAstdKeyMaru = 0
+          }
+          script = `script_key="${listKey[this.countAstdKeyMaru]}";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10f1a10dbb55c265b1f0.lua"))()`
+          this.countAstdKeyMaru += 1
           break;
       }
       if (script_sl === 'Toilet'){
