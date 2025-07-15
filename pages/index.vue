@@ -1170,12 +1170,25 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
         return false
       }
+      // const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      // Object.entries(map_device_data).forEach((device,index) => {
+      //   if (device[1]?.script){
+      //     this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
+      //   }
+      // })
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
-      Object.entries(map_device_data).forEach((device,index) => {
-        if (device[1]?.script){
+      const list_data = Object.entries(map_device_data)
+      let index = 0
+      const interval = setInterval(() => {
+        const device = list_data[index]
+        if (device[1]?.script && this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))){
           this.setFarmScript(device[0],(this.map_device_id_code[device[0]]).replace(/_/g, " "),device[1]?.script)
         }
-      })
+        index+=1
+        if (index > list_data.length - 1){
+          clearInterval(interval)
+        }
+      },300)
     },
     async saveScript(device_id, script,option = null) {
       const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs`, {
