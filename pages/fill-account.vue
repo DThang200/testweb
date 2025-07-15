@@ -138,11 +138,17 @@ export default {
       handler(value) {
         localStorage.setItem('lowDevice', JSON.stringify(value));
       }
-    }
+    },
+    strongDevice : {
+      handler(value) {
+        localStorage.setItem('strongDevice', JSON.stringify(value));
+      }
+    },
   },
   mounted() {
     this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
     this.lowDevice =  JSON.parse(localStorage.getItem('lowDevice')) || [];
+    this.strongDevice =  JSON.parse(localStorage.getItem('strongDevice')) || [];
     this.getDataRoblox();
     // this.runFarmFruit();
     this.initData();
@@ -193,6 +199,9 @@ export default {
               if (this.map_device_data[device?.device_id]?.script.includes('awp-')){
                 minusAcc = 15
               }
+            }
+            if (this.strongDevice.includes(this.map_device_id_code[device?.device_id].replace(/_/g, " "))){
+              minusAcc = -2
             }
             const needAcc = total_account - device?.total_accounts - minusAcc
             // if (needAcc > 0 ){
