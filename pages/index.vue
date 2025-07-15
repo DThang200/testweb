@@ -1279,9 +1279,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Limit Tree"] = 250,
     ["White Screen"] = false
 }
-
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()
-script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";`
+script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
