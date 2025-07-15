@@ -49,7 +49,7 @@
     </div>
     <div v-for="data in roblox_data" class="remote-pc-item"  v-if="hideDevice.includes(data.device_name)" :class="getStatusClass(data)" :key="data.device_code" style="margin: 10px">
       <div>
-        {{data.device_name}} {{data?.running ? '' : '(stop)'}} {{strongDevice.includes(data.device_name) ? '(Strong)' : ''}}
+        {{data.device_name}} {{data?.running ? '' : '(stop)'}} {{strongDevice.includes(data.device_name) ? '(Strong)' : ''}} {{lowDevice.includes(data.device_name) ? '(Low)' : ''}}
       </div>
       <!--      <div>-->
       <!--        tổng {{data.total_accounts}} máy-->
