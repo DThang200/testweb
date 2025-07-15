@@ -31,7 +31,7 @@
     <button @click="showLowDevice = !showLowDevice" style="width: 150px">
       show Low device
     </button>
-    <button @click="showStrongDevice = !showStrongDevice" style="width: 150px">
+    <button @click="showStrongDevice = !showStrongDevice" style="width: 170px">
       show Strong device
     </button>
     <div>Need more : Other - {{needAccount || 0}}     ASTD - {{needAccountASTD || 0}}     GAG - {{needAccountGAG || 0}}</div>
@@ -49,7 +49,7 @@
     </div>
     <div v-for="data in roblox_data" class="remote-pc-item"  v-if="hideDevice.includes(data.device_name)" :class="getStatusClass(data)" :key="data.device_code" style="margin: 10px">
       <div>
-        {{data.device_name}} {{data?.running ? '' : '(stop)'}}
+        {{data.device_name}} {{data?.running ? '' : '(stop)'}} {{strongDevice.includes(data.device_name) ? '(Strong)' : ''}}
       </div>
       <!--      <div>-->
       <!--        tổng {{data.total_accounts}} máy-->
