@@ -1114,6 +1114,8 @@ export default {
       loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
           break;
         case 'astd' :
+            const listKey = ["RGxCJzKwtutSTuMcDxFxoWVkhgggoarB","ZAIraBlOcnKjEhsdoPrjfkxsDtnsyHho"]
+            const key = Math.floor(Math.random() * listKey.length) + 1;
           script = `script_key="RGxCJzKwtutSTuMcDxFxoWVkhgggoarB";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10f1a10dbb55c265b1f0.lua"))()`
           break;
