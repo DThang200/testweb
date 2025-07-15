@@ -1115,7 +1115,7 @@ export default {
       loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
           break;
         case 'astd' :
-            const listKey = ["RGxCJzKwtutSTuMcDxFxoWVkhgggoarB","ZAIraBlOcnKjEhsdoPrjfkxsDtnsyHho"]
+            const listKey = ["RGxCJzKwtutSTuMcDxFxoWVkhgggoarB","ldbdajNfhfREgCVOIQFeHiOrfDTaLddf"]
           if (this.countAstdKeyMaru > listKey.length -1){
             this.countAstdKeyMaru = 0
           }
