@@ -1115,7 +1115,8 @@ export default {
           break;
         case 'astd' :
             const listKey = ["RGxCJzKwtutSTuMcDxFxoWVkhgggoarB","ZAIraBlOcnKjEhsdoPrjfkxsDtnsyHho"]
-            const key = listKey[Math.floor(Math.random() * listKey.length) + 1];
+            const key = listKey[Math.floor(Math.random() * listKey.length)];
+          console.log("key",key)
           script = `script_key="${key}";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10f1a10dbb55c265b1f0.lua"))()`
           break;
