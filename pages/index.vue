@@ -1178,7 +1178,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Egg"] = {
         ["Mythical Egg"] = {
             ["Buy"] = true,
-            ["Place"] = false,
+            ["Place"] = true,
             ["Priority"] = 5
         },
         ["Oasis Egg"] = {
