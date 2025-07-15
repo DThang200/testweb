@@ -1450,7 +1450,7 @@ script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";`
         },
       });
       return resSetScript
-    }
+    },
     handleCancelRunAndStop(){
       clearInterval(this.intervalRunAndStop);
       this.isRunningPlayStop = false
