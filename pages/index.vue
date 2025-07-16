@@ -1285,9 +1285,15 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
                                                     "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus"}
         },
-        ["Pet Dont Delete"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly",
-                               "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw",
-                               "Hamster", "Golden Lab", "T-Rex", "Spinosaurus"},
+        ["Pet Dont Delete"] = {
+  "Cow", "Polar Bear", "Sea Otter", "Silver Monkey", "Turtle",
+  "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis",
+  "Red Fox", "Snail", "Squirrel", "Dilophosaurus", "Ankylosaurus",
+  "Dragonfly", "Red Fox", "Butterfly", "Disco Bee", "Queen Bee",
+  "Fennec Fox", "T-Rex", "Spinosaurus",
+  "Raccoon", "Mimic Octopus", "Meerkat", "Sand Snake",
+  "Axolotl", "Hyacinth Macaw", "Hamster", "Golden Lab"
+},
         ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
     },
     ["Webhook Mode"] = {
