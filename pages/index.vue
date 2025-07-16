@@ -1147,14 +1147,6 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
 //           break;
         case 'gag-bone' :
           script = `
-          repeat wait() until game:IsLoaded()
-spawn(function()
-    while wait() do
-  local old = tick()
-repeat wait() until tick() - old >= 7200
-game.Players.LocalPlayer:Kick("...")
-end
-end)
           getgenv().Config = {
     ["Time To Sell"] = 35,
     ["Craft Event"] = {
@@ -1164,8 +1156,9 @@ end)
     },
     ["Dont Open Pack"] = false,
     ["Dont Use Flower Seed Pack"] = true,
-    ["Mode Plant"] = "Auto", -- "Custom"
-    ["Seed"] = {
+    ["Mode Plant"] = "Auto",
+
+["Seed"] = {
                       ["Carrot"] = 44,
                       ["Strawberry"] = 5,
                       ["Blueberry"] = 5,
@@ -1208,7 +1201,7 @@ end)
                       ["Burning Bud"]        = 10,
 
     },
-    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom"},
+    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom"},
     ["Egg"] = {
         ["Mythical Egg"] = {
             ["Buy"] = true,
@@ -1229,7 +1222,7 @@ end)
         },
         ["Bug Egg"] = {
             ["Buy"] = true,
-            ["Place"] = false,
+            ["Place"] = true,
             ["Priority"] = 2
         },
         ["Paradise Egg"] = {
@@ -1253,22 +1246,22 @@ end)
         ["Buy Sprinkler"] = true,
         ["Basic Sprinkler"] = true,
         ["Advanced Sprinkler"] = true,
-        ["Master Sprinkler"] = true,
+        ["Master Sprinkler"] = false,
         ["Godly Sprinkler"] = true
     },
     ["Plant Candy"] = false,
-    ["PetNeedSend"] = {"Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus", "Fennec Fox", "T-Rex", "Spinosaurus"},
+    ["PetNeedSend"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
+                       "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex"},
     ["Destroy Mode"] = {
-        ["Auto Destroy when have money"] = 500000000, -- its will destroy all trees select when money >= select
-        ["Mode Destroy"] = "Auto", -- "Custom"
-        ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot"}
+        ["Auto Destroy when have money"] = 1000000, -- its will destroy all trees select when money >= select
+        ["Mode Destroy"] = "Auto",
+        ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot"},
         ["Rarity Destroy Auto"] = {"Common", "Uncommon", "Rare", "Legendary"},
         ["Destroy Untill"] = 150
     },
     ["Dino Quest Farm"] = true,
-    ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m", -- Webhook
-
-    ["Boost FPS"] = false,
+    ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m",
+    ["Boost FPS"] = true,
     ["Black Screen"] = false,
     ["Dino Event"] = {
         ["Auto Claim Quest"] = true,
@@ -1276,12 +1269,12 @@ end)
         ["Auto Submit"] = true,
         ["Auto Trade Eggs"] = true,
         ["Pet Dont Trade"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
-                              "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster",
-                              "Golden Lab", "T-Rex", "Spinosaurus"}
+                              "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster",
+                              "Golden Lab", "T-Rex"}
     },
     ["Note"] = "Cyndral Hub",
     ["Pet Mode"] = {
-        ["Sell Pet"] = false,
+        ["Sell Pet"] = true,
         ["Equip Pet"] = true,
         ["Name Pet Equip"] = {
             ["Night Owl"] = true,
@@ -1292,22 +1285,21 @@ end)
             ["Enable"] = true,
             ["Black List Pet For Upgrade Slots"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee",
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
-                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus"}
+                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex"}
         },
         ["Pet Dont Delete"] = {"Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
-          "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus", "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T‑Rex", "Spinosaurus"},
+          "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus", "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus"},
         ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
     },
     ["Webhook Mode"] = {
-        ["Enable Send Pet Weight"] = true,
-        ["Weight"] = 20 -- if Weight >= 10 they will send wh
-
+        ["Enable Send Pet Weight"] = false,
+        ["Weight"] = 10
     },
     ["Rejoin Mode"] = {
         ["Auto Rejoin When Error Module Egg"] = true,
         ["Auto rejoin on script update"] = true,
-        ["Enable Rejoin After X Time"] = true,
+        ["Enable Rejoin After X Time"] = false,
         ["Rejoin After X Time"] = 60 -- Minutes
     },
     ["Limit Tree"] = 250,

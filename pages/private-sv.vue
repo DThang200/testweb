@@ -1,10 +1,13 @@
 <template>
   <div>
-    <div style="display: flex;gap: 10px">
-      <textarea v-model="inputServer" >
+    <div style="display: flex;gap: 10px;flex-shrink: 1">
+      <div style="flex-shrink: 0;">
+              <textarea v-model="inputServer" style="width: 500px;height: 500px">
 
       </textarea>
-      <button>Insert server</button>
+        <button style="flex-shrink: 0" @click="insertServer">Insert server</button>
+
+      </div>
       <div>
         <table>
           <thead>
@@ -91,6 +94,11 @@ export default {
           this.listAccount = listAccount
         }
       })
+    },
+    insertServer() {
+      const inputListServer = this.inputServer.split('\n')
+      const listUnUse = this.inputServer.filter(item => !this.listServerUsed.includes(item));
+      console.log('listUnUse',listUnUse)
     }
   }
 };
