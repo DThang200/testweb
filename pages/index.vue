@@ -1177,6 +1177,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd6
         case 'gag-bone' :
           script = `
           repeat wait() until game:IsLoaded()
+         setfpscap(2)
 spawn(function()
     while wait() do
   local old = tick()
