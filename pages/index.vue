@@ -1147,10 +1147,6 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
 //           break;
         case 'gag-bone' :
           script = `
-          coroutine.wrap(function()
-              wait(7200)
-              player:Kick("You have been kicked after 120 minutes.")
-          end)()
           getgenv().Config = {
     ["Time To Sell"] = 35,
     ["Craft Event"] = {
