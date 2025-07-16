@@ -1377,6 +1377,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f16
         index+=1
         if (index > list_data.length - 1){
           clearInterval(interval)
+          alert('refreshScript done');
         }
       },300)
     },

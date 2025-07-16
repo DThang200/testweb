@@ -1260,6 +1260,7 @@ export default {
         index+=1
         if (index > list_data.length - 1){
           clearInterval(interval)
+          alert('refreshScript done');
         }
       },300)
       // Object.entries(map_device_data).forEach((device,index) => {
