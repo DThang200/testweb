@@ -1236,7 +1236,6 @@ end)
                       ["Firefly Fern"]       = 10,
                       ["Fossilight Fruit"]   = 10,
                       ["Amber Spine"]        = 10,
-                      ["Bone Blossom"]       = 10,
                       ["Burning Bud"]        = 10,
 
     },
@@ -1320,7 +1319,7 @@ end)
         ["Sell Pet"] = true,
         ["Equip Pet"] = true,
         ["Name Pet Equip"] = {
-            ["Night Owl"] = true,
+            ["Night Owl"] = false,
             ["Starfish"] = true,
             ["Chicken"] = false
         },
