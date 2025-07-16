@@ -1201,7 +1201,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
                       ["Burning Bud"]        = 10,
 
     },
-    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom"},
+    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom"},
     ["Egg"] = {
         ["Mythical Egg"] = {
             ["Buy"] = true,
@@ -1246,7 +1246,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Buy Sprinkler"] = true,
         ["Basic Sprinkler"] = true,
         ["Advanced Sprinkler"] = true,
-        ["Master Sprinkler"] = false,
+        ["Master Sprinkler"] = true,
         ["Godly Sprinkler"] = true
     },
     ["Plant Candy"] = false,
@@ -1256,7 +1256,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Mode Destroy"] = "Auto",
         ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot", "Coconut","Cactus"},
         ["Rarity Destroy Auto"] = {"Common", "Uncommon", "Rare", "Legendary"},
-        ["Destroy Untill"] = 150
+        ["Destroy Untill"] = 100
     },
     ["Dino Quest Farm"] = true,
     ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m",
@@ -1289,19 +1289,19 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Pet Dont Delete"] = {"Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
           "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon", "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus"},
-        ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
+        ["Dont Sell Pet If Weight > x"] = 20 -- Script dont sell pet if this weight >= 10
     },
     ["Webhook Mode"] = {
-        ["Enable Send Pet Weight"] = false,
-        ["Weight"] = 10
+        ["Enable Send Pet Weight"] = true,
+        ["Weight"] = 20
     },
     ["Rejoin Mode"] = {
         ["Auto Rejoin When Error Module Egg"] = true,
         ["Auto rejoin on script update"] = true,
-        ["Enable Rejoin After X Time"] = false,
+        ["Enable Rejoin After X Time"] = true,
         ["Rejoin After X Time"] = 60 -- Minutes
     },
-    ["Limit Tree"] = 250,
+    ["Limit Tree"] = 150,
     ["White Screen"] = true
 }
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
