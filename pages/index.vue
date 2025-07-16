@@ -1147,6 +1147,14 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
 //           break;
         case 'gag-bone' :
           script = `
+          repeat wait() until game:IsLoaded()
+spawn(function()
+    while wait() do
+  local old = tick()
+repeat wait() until tick() - old >= 7200
+game.Players.LocalPlayer:Kick("...")
+end
+end)
           getgenv().Config = {
     ["Time To Sell"] = 35,
     ["Craft Event"] = {
@@ -1305,11 +1313,6 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Limit Tree"] = 250,
     ["White Screen"] = true
 }
-local player2 = game.Players.LocalPlayer
-          coroutine.wrap(function()
-              wait(7200)
-              player2:Kick("You have been kicked after 120 minutes.")
-          end)()
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
       }
