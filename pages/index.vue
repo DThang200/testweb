@@ -1250,8 +1250,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Godly Sprinkler"] = true
     },
     ["Plant Candy"] = false,
-    ["PetNeedSend"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
-                       "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex"},
+    ["PetNeedSend"] = {"Queen Bee", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus", "Fennec Fox", "T-Rex", "Spinosaurus"},
     ["Destroy Mode"] = {
         ["Auto Destroy when have money"] = 1000000, -- its will destroy all trees select when money >= select
         ["Mode Destroy"] = "Auto",
@@ -1268,9 +1267,9 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Auto Restart Quest"] = true,
         ["Auto Submit"] = true,
         ["Auto Trade Eggs"] = true,
-        ["Pet Dont Trade"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
-                              "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster",
-                              "Golden Lab", "T-Rex"}
+        ["Pet Dont Trade"] = {"Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
+                              "Fennec Fox", "Axolotl", "Hyacinth Macaw",
+                              "Golden Lab", "T-Rex", "Spinosaurus"}
     },
     ["Note"] = "Cyndral Hub",
     ["Pet Mode"] = {
@@ -1285,7 +1284,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
             ["Enable"] = true,
             ["Black List Pet For Upgrade Slots"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee",
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
-                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex"}
+                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus"}
         },
         ["Pet Dont Delete"] = {"Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",

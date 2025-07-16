@@ -97,7 +97,7 @@ export default {
     },
     insertServer() {
       const inputListServer = this.inputServer.split('\n')
-      const listUnUse = this.inputServer.filter(item => !this.listServerUsed.includes(item));
+      const listUnUse = inputListServer.filter(item => !this.listServerUsed.includes(item));
       console.log('listUnUse',listUnUse)
     }
   }
