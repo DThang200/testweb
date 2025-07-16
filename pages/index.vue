@@ -1437,12 +1437,12 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f16
         });
         if (option?.shoukoTrack) {
           const scriptTrack =
-              `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+              btoa(unescape(encodeURIComponent(`repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
           getgenv().Setting = getgenv().Setting or {
             ['Discord ID'] = '663236418499379240',
                 ['Device Name'] = '${this.map_device_id_code[device_id]}'
           }
-          loadstring(game:HttpGet('https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/trackstat.lua'))()`
+          loadstring(game:HttpGet('https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/trackstat.lua'))()`)))
           const script_id = await this.getData(device_id, "script_id2");
           if(!script_id){
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
