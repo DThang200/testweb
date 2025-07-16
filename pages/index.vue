@@ -1236,7 +1236,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
             ["Priority"] = 3
         },
         ["Dinosaur Egg"] = {
-            ["Place"] = false,
+            ["Place"] = true,
             ["Priority"] = 6
         }
     },
@@ -1252,9 +1252,9 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Plant Candy"] = false,
     ["PetNeedSend"] = {"Queen Bee", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus", "Fennec Fox", "T-Rex", "Spinosaurus"},
     ["Destroy Mode"] = {
-        ["Auto Destroy when have money"] = 1000000, -- its will destroy all trees select when money >= select
+        ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
         ["Mode Destroy"] = "Auto",
-        ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot"},
+        ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot", "Coconut","Cactus"},
         ["Rarity Destroy Auto"] = {"Common", "Uncommon", "Rare", "Legendary"},
         ["Destroy Untill"] = 150
     },
