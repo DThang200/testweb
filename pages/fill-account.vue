@@ -290,6 +290,8 @@ export default {
       }, this.$config.INTERVAL_TIME || 10000);
     },
     getNeedAccount(data) {
+      this.needAccountGAG = 0
+      this.needAccountASTD = 0
       if (this.needAccount > 0){
         return false
       }
