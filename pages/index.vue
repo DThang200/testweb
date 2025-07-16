@@ -1240,6 +1240,11 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd6
             ["Place"] = true,
             ["Priority"] = 4
         },
+        ["Common Summer Egg"] = {
+            ["Place"] = true,
+            ["Buy"] = true,
+            ["Priority"] = 10
+        },
         ["Bug Egg"] = {
             ["Buy"] = true,
             ["Place"] = true,
