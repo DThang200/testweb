@@ -1310,7 +1310,7 @@ end)
         ["Auto Restart Quest"] = true,
         ["Auto Submit"] = true,
         ["Auto Trade Eggs"] = true,
-        ["Pet Dont Trade"] = {"Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
+        ["Pet Dont Trade"] = {"Starfish","Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
                               "Fennec Fox", "Axolotl", "Hyacinth Macaw",
                               "Golden Lab", "T-Rex", "Spinosaurus"}
     },
@@ -1329,7 +1329,7 @@ end)
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
                                                     "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus"}
         },
-        ["Pet Dont Delete"] = {"Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
+        ["Pet Dont Delete"] = {"Starfish","Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
           "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon", "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus"},
         ["Dont Sell Pet If Weight > x"] = 20 -- Script dont sell pet if this weight >= 10
