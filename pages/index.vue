@@ -1152,14 +1152,14 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
               player:Kick("You have been kicked after 120 minutes.")
           end)()
           getgenv().Config = {
-    ["Time To Sell"] = 35, -- Seconds
+    ["Time To Sell"] = 35,
     ["Craft Event"] = {
         ["Crafters Seed Pack"] = true,
         ["Anti Bee Egg"] = true,
         ["Ancient Seed Pack"] = true
     },
     ["Dont Open Pack"] = false,
-    ["Dont Use Flower Seed Pack"] = true, -- If u Enable Crafters Seed Pack pls enable this
+    ["Dont Use Flower Seed Pack"] = true,
     ["Mode Plant"] = "Auto", -- "Custom"
     ["Seed"] = {
                       ["Carrot"] = 44,
@@ -1309,6 +1309,11 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Limit Tree"] = 250,
     ["White Screen"] = true
 }
+local player2 = game.Players.LocalPlayer
+          coroutine.wrap(function()
+              wait(7200)
+              player2:Kick("You have been kicked after 120 minutes.")
+          end)()
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
       }

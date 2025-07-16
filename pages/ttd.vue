@@ -694,7 +694,9 @@ export default {
       }
       if (this.isPlay5game){
         script =
-            ` repeat wait() until game:IsLoaded()
+            `
+            game:GetService("RunService"):Set3dRenderingEnabled(false)
+             repeat wait() until game:IsLoaded()
               local TeleportService = game:GetService("TeleportService")
               local Players = game:GetService("Players")
               local Player = Players.LocalPlayer
