@@ -241,7 +241,7 @@ export default {
         // // {code : 'bloxFruit-magma',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',private_server : false},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
-        {code : 'astd',label : 'ASTD',game_id: '17687504411',private_server : false},
+        {code : 'astd',label : 'ASTD',game_id: '17687504411',private_server : false, shoukoTrack :true},
         {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
         {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
       ],
@@ -1435,6 +1435,35 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f16
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
         });
+        if (option?.shoukoTrack) {
+          const scriptTrack =
+              `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+          getgenv().Setting = getgenv().Setting or {
+            ['Discord ID'] = '663236418499379240',
+                ['Device Name'] = '${this.map_device_id_code[device_id]}'
+          }
+          loadstring(game:HttpGet('https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/trackstat.lua'))()`
+          const script_id = await this.getData(device_id, "script_id2");
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
+        }
         if (option?.yummyTrack) {
           const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
           const script_id = await this.getData(device_id, (option.code === "bloxFruit-maru" ? "script_id2" : "script_id1"));

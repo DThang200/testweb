@@ -2,11 +2,11 @@
   <div>
     <div style="display: flex;gap: 10px;flex-shrink: 1">
       <div style="flex-shrink: 0;">
-              <textarea v-model="inputServer" style="width: 500px;height: 500px">
-
+        -- need {{listAccountNotHasServer.length || 0}} server link
+      <textarea v-model="inputServer" style="width: 500px;height: 300px">
       </textarea>
         <button style="flex-shrink: 0" @click="insertServer">Insert server</button>
-
+        <button style="flex-shrink: 0" @click="removeServerLink">Removeserver</button>
       </div>
       <div>
         <table>
@@ -53,6 +53,7 @@ export default {
       output: "",
       listDevice: [],
       listAccount: [],
+      listAccountNotHasServer: [],
       listServerUsed: [],
       notHasServerCount: [],
     };
@@ -83,6 +84,7 @@ export default {
           if (account.private_server_link){
             this.listServerUsed.push(account.private_server_link)
           } else {
+            this.listAccountNotHasServer.push(account.username)
             this.notHasServerCount +=1
           }
           listAccount.sort((a, b) => {
@@ -95,11 +97,32 @@ export default {
         }
       })
     },
-    insertServer() {
-      const inputListServer = this.inputServer.split('\n')
+    async insertServer() {
+      const inputListServer = [...new Set(this.inputServer.split('\n'))]
       const listUnUse = inputListServer.filter(item => !this.listServerUsed.includes(item));
-      console.log('listUnUse',listUnUse)
-    }
+      for (let i = 0; i < this.listAccountNotHasServer.length; i++) {
+        const username = this.listAccountNotHasServer[i]
+        await this.$axios.$put(`https://api.robloxmanager.com/v1/accounts/${username}`, {
+          private_server_link: listUnUse[i]
+        }, {
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+      }
+    },
+    async removeServerLink() {
+      for (let i = 0; i < this.listAccount.length; i++) {
+        const username = this.listAccount[i].username
+        await this.$axios.$put(`https://api.robloxmanager.com/v1/accounts/${username}`, {
+          private_server_link: ""
+        }, {
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+      }
+    },
   }
 };
 </script>
