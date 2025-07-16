@@ -1301,7 +1301,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Enable Rejoin After X Time"] = true,
         ["Rejoin After X Time"] = 60 -- Minutes
     },
-    ["Limit Tree"] = 250,
+    ["Limit Tree"] = 200,
     ["White Screen"] = true
 }
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
