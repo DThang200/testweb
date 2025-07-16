@@ -1156,23 +1156,40 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Dont Open Pack"] = false,
     ["Dont Use Flower Seed Pack"] = true, -- If u Enable Crafters Seed Pack pls enable this
     ["Mode Plant"] = "Auto", -- "Custom"
-
-    ["Seed"] = { -- Seed Plant Custom
-        ["Strawberry"] = 10,
-        ["Blueberry"] = 10,
-        ["Tomato"] = 10,
-        ["Loquat"] = 10,
-        ["Pineapple"] = 10,
-        ["Carrot"] = 10,
-        ["Bell Pepper"] = 10,
-        ["Green Apple"] = 10,
-        ["Feijoa"] = 10,
-        ["Avocado"] = 10,
-        ["Sugar Apple"] = 10,
-        ["Banana"] = 10,
-        ["Prickly Pear"] = 10,
-        ["Watermelon"] = 10,
-        ["Kiwi"] = 10
+    ["Seed"] = {
+                      ["Carrot"] = 44,
+                      ["Strawberry"] = 5,
+                      ["Blueberry"] = 5,
+                      ["Orange Tulip"] = 5,
+                      ["Corn"] = 5,
+                      ["Daffodil"] = 5,
+                      ["Coconut"] = 5,
+                      ["Apple"] = 5,
+                      ["Tomato"] = 5,
+                      ["Watermelon"] = 5,
+                      ["Mushroom"] = 5,
+                      ["Pumpkin"] = 5,
+                      ["Pepper"] = 5,
+                      ["Cacao"] = 5,
+                      ["Dragon Fruit"] = 5,
+                      ["Mango"] = 10,
+                      ["Loquat"] = 10,
+                      ["Cactus"] = 10,
+                      ["Beanstalk"] = 10,
+                      ["Grape"] = 10,
+                      ["Bell Pepper"] = 10,
+                      ["Bamboo"] = 10,
+                      ["Feijoa"] = 10,
+                      ["Avocado"] = 10,
+                      ["Prickly Pear"] = 10,
+                      ["Kiwi"] = 10,
+                      ["Foxglove"] = 20,
+                      ["Sugar Apple"] = 20,
+                      ["Lilac"] = 20,
+                      ["Lilac"] = 20,
+                      ["Pink Lily"] = 20,
+                      ["Rose"] = 20,
+                      ["Purple Dahlia"] = 20,
     },
     ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom"},
     ["Egg"] = {
@@ -1225,9 +1242,9 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     ["Plant Candy"] = false,
     ["PetNeedSend"] = {"Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus", "Fennec Fox", "T-Rex", "Spinosaurus"},
     ["Destroy Mode"] = {
-        ["Auto Destroy when have money"] = 1000000, -- its will destroy all trees select when money >= select
+        ["Auto Destroy when have money"] = 500000000, -- its will destroy all trees select when money >= select
         ["Mode Destroy"] = "Auto", -- "Custom"
-        ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Orange Tulip", "Carrot"},
+        ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot"}
         ["Rarity Destroy Auto"] = {"Common", "Uncommon", "Rare", "Legendary"},
         ["Destroy Untill"] = 150
     },
@@ -1242,7 +1259,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Auto Submit"] = true,
         ["Auto Trade Eggs"] = true,
         ["Pet Dont Trade"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
-                              "Meerkat", "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster",
+                              "Sand Snake", "Fennec Fox", "Axolotl", "Hyacinth Macaw", "Hamster",
                               "Golden Lab", "T-Rex", "Spinosaurus"}
     },
     ["Note"] = "Cyndral Hub",
@@ -1276,7 +1293,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Enable Rejoin After X Time"] = true,
         ["Rejoin After X Time"] = 60 -- Minutes
     },
-    ["Limit Tree"] = 100,
+    ["Limit Tree"] = 250,
     ["White Screen"] = true
 }
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
