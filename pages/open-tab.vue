@@ -41,7 +41,7 @@ export default {
           clearInterval(intervalOpenTab)
           this.onRunning = false
         }
-      },5000)
+      },15000)
     }
   }
 };
