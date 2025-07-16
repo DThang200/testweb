@@ -1128,6 +1128,7 @@ export default {
         case 'astd' :
           script = `
           repeat wait() until game:IsLoaded()
+          setfpscap(5)
 spawn(function()
     while wait() do
   local old = tick()
