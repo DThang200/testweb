@@ -1256,7 +1256,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Mode Destroy"] = "Auto",
         ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot", "Coconut","Cactus"},
         ["Rarity Destroy Auto"] = {"Common", "Uncommon", "Rare", "Legendary"},
-        ["Destroy Untill"] = 100
+        ["Destroy Untill"] = 150
     },
     ["Dino Quest Farm"] = true,
     ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m",
@@ -1301,7 +1301,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
         ["Enable Rejoin After X Time"] = true,
         ["Rejoin After X Time"] = 60 -- Minutes
     },
-    ["Limit Tree"] = 150,
+    ["Limit Tree"] = 250,
     ["White Screen"] = true
 }
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
