@@ -1146,7 +1146,12 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
 // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
 //           break;
         case 'gag-bone' :
-          script = `getgenv().Config = {
+          script = `
+          coroutine.wrap(function()
+              wait(7200)
+              player:Kick("You have been kicked after 120 minutes.")
+          end)()
+          getgenv().Config = {
     ["Time To Sell"] = 35, -- Seconds
     ["Craft Event"] = {
         ["Crafters Seed Pack"] = true,
