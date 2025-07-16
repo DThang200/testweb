@@ -1272,7 +1272,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
     },
     ["Note"] = "Cyndral Hub",
     ["Pet Mode"] = {
-        ["Sell Pet"] = true,
+        ["Sell Pet"] = false,
         ["Equip Pet"] = true,
         ["Name Pet Equip"] = {
             ["Night Owl"] = true,
