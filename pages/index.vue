@@ -1322,7 +1322,7 @@ end)
         ["Name Pet Equip"] = {
             ["Night Owl"] = true,
             ["Starfish"] = true,
-            ["Chicken"] = true
+            ["Chicken"] = false
         },
         ["Max Slot Pet To Sell"] = 2, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
         ["Upgrade Slot Egg"] = {
