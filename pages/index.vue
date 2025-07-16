@@ -1126,7 +1126,16 @@ export default {
 //           this.countAstdKeyMaru += 1
 //           break;
         case 'astd' :
-          script = `getgenv().Configs = {
+          script = `
+          repeat wait() until game:IsLoaded()
+spawn(function()
+    while wait() do
+  local old = tick()
+repeat wait() until tick() - old >= 3600
+game.Players.LocalPlayer:Kick("...")
+end
+end)
+getgenv().Configs = {
     ["Join Map"] = {
         ["Select Map"] = {
             ["Map Name"] = "World1",
@@ -1167,6 +1176,14 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd6
 //           break;
         case 'gag-bone' :
           script = `
+          repeat wait() until game:IsLoaded()
+spawn(function()
+    while wait() do
+  local old = tick()
+repeat wait() until tick() - old >= 7200
+game.Players.LocalPlayer:Kick("...")
+end
+end)
           getgenv().Config = {
     ["Time To Sell"] = 35,
     ["Craft Event"] = {
