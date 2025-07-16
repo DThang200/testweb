@@ -1190,6 +1190,14 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
                       ["Pink Lily"] = 20,
                       ["Rose"] = 20,
                       ["Purple Dahlia"] = 20,
+                      ["Paradise Petal"]     = 10,
+                      ["Horned Dinoshroom"]  = 10,
+                      ["Firefly Fern"]       = 10,
+                      ["Fossilight Fruit"]   = 10,
+                      ["Amber Spine"]        = 10,
+                      ["Bone Blossom"]       = 10,
+                      ["Burning Bud"]        = 10,
+
     },
     ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom"},
     ["Egg"] = {
@@ -1226,8 +1234,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10
             ["Priority"] = 3
         },
         ["Dinosaur Egg"] = {
-            ["Place"] = true,
-            ["Priority"] = 1
+            ["Place"] = false,
+            ["Priority"] = 6
         }
     },
 
