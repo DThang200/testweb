@@ -1116,14 +1116,34 @@ export default {
 
       loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()`
           break;
+//         case 'astd' :
+//             const listKey = ["RGxCJzKwtutSTuMcDxFxoWVkhgggoarB","MYSFscJhfMNcOUlbJehBxhsfmFEUQIan","pYfnEAyemxXpbbfICPodbBixbVFWljAh"]
+//           if (this.countAstdKeyMaru > listKey.length -1){
+//             this.countAstdKeyMaru = 0
+//           }
+//           script = `script_key="${listKey[this.countAstdKeyMaru]}";
+// loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10f1a10dbb55c265b1f0.lua"))()`
+//           this.countAstdKeyMaru += 1
+//           break;
         case 'astd' :
-            const listKey = ["RGxCJzKwtutSTuMcDxFxoWVkhgggoarB","MYSFscJhfMNcOUlbJehBxhsfmFEUQIan","pYfnEAyemxXpbbfICPodbBixbVFWljAh"]
-          if (this.countAstdKeyMaru > listKey.length -1){
-            this.countAstdKeyMaru = 0
-          }
-          script = `script_key="${listKey[this.countAstdKeyMaru]}";
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2a15f4a97e3a10f1a10dbb55c265b1f0.lua"))()`
-          this.countAstdKeyMaru += 1
+          script = `getgenv().Configs = {
+    ["Join Map"] = {
+        ["Select Map"] = {
+            ["Map Name"] = "World1",
+            ["Chapter"] = 1,
+            ["Difficulty"] = "Hard"
+        }
+    },
+    ["Auto Upgrade"] = {
+        ["Focus unit"] = {"Uryu", "Goku"}
+    },
+
+    ["Codes"] = {"AFIRSTTIME3001", "FREENIMBUSMOUNT", "somanylikes", "FORTYFIVELIKES", "ONEEIGHTYFIVELIKES",
+                 "VERYHIGHLIKEB", "UPD1", "LIKEF5", "THANKYOUFORSUPPORT", "THREEHUNDREDTHOUSANDPLAYERS"},
+    ["Black Screen"] = true
+}
+script_key="PRhCqhbhYdUOwKKDuzliwSiFJGcsYegZ";
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
           break;
 
 //         case 'astd' :
