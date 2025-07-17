@@ -1133,7 +1133,7 @@ spawn(function()
     while wait() do
   local old = tick()
 repeat wait() until tick() - old >= 3600
-game.Players.LocalPlayer:Kick("...")
+game.Players.LocalPlayer:Kick("kick sau 1h")
 end
 end)
 getgenv().Configs = {
@@ -1183,7 +1183,7 @@ spawn(function()
     while wait() do
   local old = tick()
 repeat wait() until tick() - old >= 7200
-game.Players.LocalPlayer:Kick("...")
+game.Players.LocalPlayer:Kick("kick sau 2h")
 end
 end)
           getgenv().Config = {
@@ -1275,7 +1275,7 @@ end)
             ["Priority"] = 4
         },
         ["Dinosaur Egg"] = {
-            ["Place"] = true,
+            ["Place"] = false,
             ["Priority"] = 6
         }
     },
