@@ -27,6 +27,15 @@
         </table>
       </div>
     </div>
+    <div style="display: flex;gap: 10px;flex-shrink: 1">
+      <textarea v-model="readServerVip" style="width: 500px;height: 300px">
+
+      </textarea>
+      <button>Render</button>
+      <textarea v-if="renderSvvfinish" v-model="serverVipOutput" style="width: 500px;height: 300px">
+
+      </textarea>
+    </div>
   </div>
 </template>
 
@@ -56,6 +65,9 @@ export default {
       listAccountNotHasServer: [],
       listServerUsed: [],
       notHasServerCount: [],
+      readServerVip: "",
+      serverVipOutput: "",
+      renderSvvfinish: false,
     };
   },
   beforeDestroy() {
@@ -123,6 +135,16 @@ export default {
         });
       }
     },
+    renderServer(){
+      const data = JSON.parse(this.readServerVip)
+      this.serverVipOutput = ""
+      this.renderSvvfinish = false
+      if (data.messages){
+        data.messages.forEach(mss => {
+          this.serverVipOutput += mss.content + '\n'
+        })
+      }
+    }
   }
 };
 </script>

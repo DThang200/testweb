@@ -1234,12 +1234,10 @@ end)
                       ["Paradise Petal"]     = 10,
                       ["Horned Dinoshroom"]  = 10,
                       ["Firefly Fern"]       = 10,
-                      ["Fossilight Fruit"]   = 10,
                       ["Amber Spine"]        = 10,
-                      ["Burning Bud"]        = 10,
-
+                      ["Burning Bud"]        = 10
     },
-    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom"},
+    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom", "Fossilight"},
     ["Egg"] = {
         ["Mythical Egg"] = {
             ["Buy"] = true,
@@ -1298,7 +1296,7 @@ end)
         ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
         ["Mode Destroy"] = "Auto",
         ["Trees"] = {"Strawberry", "Blueberry", "Orange Tulip", "Corn", "Tomato", "Apple", "Banana", "Carrot", "Coconut","Cactus"},
-        ["Rarity Destroy Auto"] = {"Common", "Uncommon", "Rare", "Legendary"},
+        ["Rarity Destroy Auto"] = {"Common", "Uncommon"},
         ["Destroy Untill"] = 150
     },
     ["Dino Quest Farm"] = true,
