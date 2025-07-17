@@ -31,8 +31,8 @@
       <textarea v-model="readServerVip" style="width: 500px;height: 300px">
 
       </textarea>
-      <button>Render</button>
-      <textarea v-if="renderSvvfinish" v-model="serverVipOutput" style="width: 500px;height: 300px">
+      <button @click="renderServer">Render</button>
+      <textarea v-if="serverVipOutput" v-model="serverVipOutput" style="width: 500px;height: 300px">
 
       </textarea>
     </div>
@@ -141,7 +141,7 @@ export default {
       this.renderSvvfinish = false
       if (data.messages){
         data.messages.forEach(mss => {
-          this.serverVipOutput += mss.content + '\n'
+          this.serverVipOutput += "https://www.roblox.com/games/126884695634066/Grow-a-Garden?" + mss.content + '\n'
         })
       }
     }
