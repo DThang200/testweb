@@ -112,7 +112,7 @@ export default {
         {code : 'petgum',label : 'TTD-PvP',game_id: '13775256536',total_account: 28},
         {code : 'awp-gag',label : 'TTD-PvP',game_id: '13775256536',total_account: 65},
         {code : 'awp-bgsi',label : 'TTD-PvP',game_id: '13775256536',total_account: 65},
-        {code : 'awp-bf-2650',label : 'TTD-PvP',game_id: '13775256536',total_account: 40},
+        {code : 'awp-bf-2650',label : 'TTD-PvP',game_id: '13775256536',total_account: 35},
         {code : 'astd',label : 'astd',game_id: '17687504411',total_account: 35},
         {code : 'farm-gag',label : 'farm-gag',game_id: '126884695634066',total_account: 30},
         {code : 'gag-bone',label : 'GAG-Bone',game_id: '126884695634066',total_account: 35},
