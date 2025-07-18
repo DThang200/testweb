@@ -1147,10 +1147,18 @@ getgenv().Configs = {
     ["Auto Upgrade"] = {
         ["Focus unit"] = {"Uryu", "Goku"}
     },
-
     ["Codes"] = {"AFIRSTTIME3001", "FREENIMBUSMOUNT", "somanylikes", "FORTYFIVELIKES", "ONEEIGHTYFIVELIKES",
                  "VERYHIGHLIKEB", "UPD1", "LIKEF5", "THANKYOUFORSUPPORT", "THREEHUNDREDTHOUSANDPLAYERS"},
-    ["Black Screen"] = true
+    ["Black Screen"] = true,
+    ["Webhook"] = {
+        ["Enabled"] = true,
+        ["Url"] = "https://discord.com/api/webhooks/1395570996143980645/Nj9H1NIhFYScGXU-kuJVI8bXcVpZuF--Jhl-9xfmVmRlxEP3HPeo8rMK4QYFiK-AgQ5_",
+        ["Note"] = "Cyndral",
+    },
+    ["Change Account"] = {
+        ["Enabled"] = true,
+        ["Gem Change"] = 20000,
+    }
 }
 script_key="PRhCqhbhYdUOwKKDuzliwSiFJGcsYegZ";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
