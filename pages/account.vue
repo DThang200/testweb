@@ -618,13 +618,16 @@ export default {
     },
     async renderFindUser() {
       const listUserFind = this.findUser.split('\n')
+      listUserFind.forEach(username => {
+        username = username.replace(/\s+/g, '')
+      })
       if (listUserFind.length > 0) {
         this.findUserResultInvalid = ""
         this.findUserResultCookie = ""
         this.findUserResultUPC = ""
         let temp = []
         this.roblox_data_account.accounts.forEach(acc => {
-          if (listUserFind.includes(acc?.username.replace(/\s+/g, '')) && acc?.cookie){
+          if (listUserFind.includes(acc?.username) && acc?.cookie){
             // temp[acc.username] = acc.cookie
             temp.push({username :acc.username,password :acc.password,cookie :acc.cookie})
           }
