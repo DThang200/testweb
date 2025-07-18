@@ -1,33 +1,33 @@
 <template>
   <div style="display: flex;flex-direction: row">
     <div style="border-right:  black solid 1px;flex: 1">
-      <div class="field-acc">
-        <div style="font-size: 24px;font-weight: bold">
-          <button @click="copyContent(listNoMythicFruit)">Copy</button>
-          List no fruit
-        </div>
-        <textarea  style="width: 500px;height: 300px" disabled v-model="listNoMythicFruit">
+<!--      <div class="field-acc">-->
+<!--        <div style="font-size: 24px;font-weight: bold">-->
+<!--          <button @click="copyContent(listNoMythicFruit)">Copy</button>-->
+<!--          List no fruit-->
+<!--        </div>-->
+<!--        <textarea  style="width: 500px;height: 300px" disabled v-model="listNoMythicFruit">-->
 
-      </textarea>
-      </div>
-      <div class="field-acc">
-        <div style="font-size: 24px;font-weight: bold">
-          <button @click="copyContent(list3TrashMythic)">Copy</button>
-          List 3 trash mythic
-        </div>
-        <textarea  style="width: 500px;height: 300px" disabled v-model="list3TrashMythic">
+<!--      </textarea>-->
+<!--      </div>-->
+<!--      <div class="field-acc">-->
+<!--        <div style="font-size: 24px;font-weight: bold">-->
+<!--          <button @click="copyContent(list3TrashMythic)">Copy</button>-->
+<!--          List 3 trash mythic-->
+<!--        </div>-->
+<!--        <textarea  style="width: 500px;height: 300px" disabled v-model="list3TrashMythic">-->
 
-      </textarea>
-      </div>
-      <div class="field-acc">
-        <div style="font-size: 24px;font-weight: bold">
-          <button @click="copyContent(listGodMaxNoMythicFruit)">Copy</button>
-          List god max no mythic
-        </div>
-        <textarea  style="width: 500px;height: 300px" disabled v-model="listGodMaxNoMythicFruit">
+<!--      </textarea>-->
+<!--      </div>-->
+<!--      <div class="field-acc">-->
+<!--        <div style="font-size: 24px;font-weight: bold">-->
+<!--          <button @click="copyContent(listGodMaxNoMythicFruit)">Copy</button>-->
+<!--          List god max no mythic-->
+<!--        </div>-->
+<!--        <textarea  style="width: 500px;height: 300px" disabled v-model="listGodMaxNoMythicFruit">-->
 
-      </textarea>
-      </div>
+<!--      </textarea>-->
+<!--      </div>-->
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
           <button @click="copyContent(listDisable)">Copy</button>
@@ -37,26 +37,26 @@
 
       </textarea>
       </div>
-      <div class="field-acc">
-        <div style="font-size: 24px;font-weight: bold">
-          <button @click="copyContent(list1TrashMythicGod)">Copy</button>
-          List 1 trash god-mythic
-          <button @click="deleteAccount(list1TrashMythicGod,'list1TrashMythicGod')">Delete</button>
-        </div>
-        <textarea  style="width: 500px;height: 300px" disabled v-model="list1TrashMythicGod">
+<!--      <div class="field-acc">-->
+<!--        <div style="font-size: 24px;font-weight: bold">-->
+<!--          <button @click="copyContent(list1TrashMythicGod)">Copy</button>-->
+<!--          List 1 trash god-mythic-->
+<!--          <button @click="deleteAccount(list1TrashMythicGod,'list1TrashMythicGod')">Delete</button>-->
+<!--        </div>-->
+<!--        <textarea  style="width: 500px;height: 300px" disabled v-model="list1TrashMythicGod">-->
 
-      </textarea>
-      </div>
-      <div class="field-acc">
-        <div style="font-size: 24px;font-weight: bold">
-          <button @click="copyContent(ListBothMythic)">Copy</button>
-          List both mythic
-        </div>
-        <textarea  style="width: 500px;height: 300px" disabled v-model="ListBothMythic">
+<!--      </textarea>-->
+<!--      </div>-->
+<!--      <div class="field-acc">-->
+<!--        <div style="font-size: 24px;font-weight: bold">-->
+<!--          <button @click="copyContent(ListBothMythic)">Copy</button>-->
+<!--          List both mythic-->
+<!--        </div>-->
+<!--        <textarea  style="width: 500px;height: 300px" disabled v-model="ListBothMythic">-->
 
-      </textarea>
-        {{countListBoth}}
-      </div>
+<!--      </textarea>-->
+<!--        {{countListBoth}}-->
+<!--      </div>-->
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
           User pass cookie => user pass
@@ -82,16 +82,27 @@
       </div>
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
-          User pass cookie => user
-          <button @click="copyContent(acc_nopass)">Copy</button>
-          input : ({{this.input_nopass || 0}}) --- output : ({{this.output_nopass || 0}}) --- need : ({{this.input_nopass - this.output_nopass || 0}})
+          User Yummy => user
+          <button @click="copyContent(user_only_yummy)">Copy</button>
         </div>
-        <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie4" @change="renderUPCtoNP">
+        <textarea  style="width: 500px;height: 300px" v-model="user_yummy" @change="renderUYtoU">
 
       </textarea>
-        <textarea  style="width: 500px;height: 300px" v-model="acc_nopass">
+        <textarea  style="width: 500px;height: 300px" v-model="user_only_yummy">
       </textarea>
       </div>
+<!--      <div class="field-acc">-->
+<!--        <div style="font-size: 24px;font-weight: bold">-->
+<!--          User pass cookie => user-->
+<!--          <button @click="copyContent(acc_nopass)">Copy</button>-->
+<!--          input : ({{this.input_nopass || 0}}) -&#45;&#45; output : ({{this.output_nopass || 0}}) -&#45;&#45; need : ({{this.input_nopass - this.output_nopass || 0}})-->
+<!--        </div>-->
+<!--        <textarea  style="width: 500px;height: 300px" v-model="user_pass_cookie4" @change="renderUPCtoNP">-->
+
+<!--      </textarea>-->
+<!--        <textarea  style="width: 500px;height: 300px" v-model="acc_nopass">-->
+<!--      </textarea>-->
+<!--      </div>-->
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
           User pass cookie => cookie
@@ -273,6 +284,8 @@ export default {
       findUserResultUPC: '',
       findUserResultCookie: '',
       findUserResultInvalid: '',
+      user_yummy: '',
+      user_only_yummy: '',
       listAccSelected: [],
 
       numberAccountGet:0,
@@ -431,6 +444,19 @@ export default {
         }
       })
       this.user_only = result
+    },
+    renderUYtoU(){
+      const user_yummy_list = this.user_yummy.split('\n')
+      let result = ''
+      user_yummy_list.forEach(item => {
+        if (item){
+          const acc_arr = item.split('|');
+          if (acc_arr?.length > 0){
+            result += `${acc_arr[0].replace(/\s+/g, '')}` + '\n'
+          }
+        }
+      })
+      this.user_only_yummy = result
     },
     renderUPCtoNP(){
       this.input_nopass = 0
