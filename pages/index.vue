@@ -1160,7 +1160,7 @@ getgenv().Configs = {
         ["Gem Change"] = 15000,
     }
 }
-script_key="PRhCqhbhYdUOwKKDuzliwSiFJGcsYegZ";
+script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
           break;
 
