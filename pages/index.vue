@@ -1157,7 +1157,7 @@ getgenv().Configs = {
     },
     ["Change Account"] = {
         ["Enabled"] = true,
-        ["Gem Change"] = 20000,
+        ["Gem Change"] = 15000,
     }
 }
 script_key="PRhCqhbhYdUOwKKDuzliwSiFJGcsYegZ";
