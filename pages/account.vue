@@ -617,10 +617,12 @@ export default {
       console.log('resultData',result)
     },
     async renderFindUser() {
-      const listUserFind = this.findUser.split('\n')
-      listUserFind.forEach(username => {
-        username = username.replace(/\s+/g, '')
+      let listUserFind = this.findUser.split('\n').map(username => {
+        return username.replace(/\s+/g, '')
       })
+      // listUserFind = listUserFind.map(username => {
+      //   return username.replace(/\s+/g, '')
+      // })
       if (listUserFind.length > 0) {
         this.findUserResultInvalid = ""
         this.findUserResultCookie = ""
