@@ -624,7 +624,7 @@ export default {
         this.findUserResultUPC = ""
         let temp = []
         this.roblox_data_account.accounts.forEach(acc => {
-          if (listUserFind.includes(acc?.username) && acc?.cookie){
+          if (listUserFind.includes(acc?.username.replace(/\s+/g, '')) && acc?.cookie){
             // temp[acc.username] = acc.cookie
             temp.push({username :acc.username,password :acc.password,cookie :acc.cookie})
           }
