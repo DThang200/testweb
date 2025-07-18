@@ -1283,7 +1283,7 @@ end)
             ["Priority"] = 4
         },
         ["Dinosaur Egg"] = {
-            ["Place"] = false,
+            ["Place"] = true,
             ["Priority"] = 6
         }
     },
@@ -1337,7 +1337,7 @@ end)
         ["Pet Dont Delete"] = {"Starfish","Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
           "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon", "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus"},
-        ["Dont Sell Pet If Weight > x"] = 20 -- Script dont sell pet if this weight >= 10
+        ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
     },
     ["Webhook Mode"] = {
         ["Enable Send Pet Weight"] = true,
