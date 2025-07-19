@@ -1319,7 +1319,7 @@ end)
         ["Auto Restart Quest"] = true,
         ["Auto Submit"] = true,
         ["Auto Trade Eggs"] = true,
-        ["Pet Dont Trade"] = {"Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
+        ["Pet Dont Trade"] = {"Dragonfly","Seal", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
                               "Fennec Fox", "Capybara", "Hyacinth Macaw",
                               "Golden Lab", "T-Rex", "Spinosaurus"}
     },
@@ -1334,11 +1334,11 @@ end)
         ["Max Slot Pet To Sell"] = 2, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
         ["Upgrade Slot Egg"] = {
             ["Enable"] = true,
-            ["Black List Pet For Upgrade Slots"] = {"Queen Bee", "Red Fox", "Dragonfly", "Raccoon", "Disco Bee",
+            ["Black List Pet For Upgrade Slots"] = {"Queen Bee", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
                                                     "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus"}
         },
-        ["Pet Dont Delete"] = {"Starfish","Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
+        ["Pet Dont Delete"] = {"Starfish","Ostrich","Seal", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
           "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus"},
@@ -1346,7 +1346,7 @@ end)
     },
     ["Webhook Mode"] = {
         ["Enable Send Pet Weight"] = true,
-        ["Weight"] = 20
+        ["Weight"] = 10
     },
     ["Rejoin Mode"] = {
         ["Auto Rejoin When Error Module Egg"] = true,
