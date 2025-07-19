@@ -1277,6 +1277,11 @@ end)
             ["Place"] = true,
             ["Priority"] = 2
         },
+        ["Rare Summer Egg"] = {
+            ["Buy"] = true,
+            ["Place"] = true,
+            ["Priority"] = 2
+        },
         ["Bee Egg"] = {
             ["Buy"] = true,
             ["Place"] = false,
@@ -1314,8 +1319,8 @@ end)
         ["Auto Restart Quest"] = true,
         ["Auto Submit"] = true,
         ["Auto Trade Eggs"] = true,
-        ["Pet Dont Trade"] = {"Starfish","Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
-                              "Fennec Fox", "Axolotl", "Hyacinth Macaw",
+        ["Pet Dont Trade"] = {"Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
+                              "Fennec Fox", "Capybara", "Hyacinth Macaw",
                               "Golden Lab", "T-Rex", "Spinosaurus"}
     },
     ["Note"] = "Cyndral Hub",
@@ -1323,9 +1328,8 @@ end)
         ["Sell Pet"] = true,
         ["Equip Pet"] = true,
         ["Name Pet Equip"] = {
-            ["Night Owl"] = false,
+            ["Capybara"] = true,
             ["Starfish"] = true,
-            ["Chicken"] = false
         },
         ["Max Slot Pet To Sell"] = 2, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
         ["Upgrade Slot Egg"] = {
