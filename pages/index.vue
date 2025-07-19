@@ -1319,9 +1319,9 @@ end)
     ["Black Screen"] = false,
     ["Zen Event"] = {
         ["Restock Max Cost"] = 16000000,
-        ["Zen Seed Pack"] = true,
+        ["Zen Seed Pack"] = false,
         ["Zen Egg"] = true,
-        ["Koi"] = true,
+        ["Koi"] = false,
         ["Spiked Mango"] = false
     },
     ["Note"] = "Cyndral Hub",
