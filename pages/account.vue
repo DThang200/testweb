@@ -554,7 +554,7 @@ export default {
 
     Findaccbyusername(){
       //
-      this.usernameFindData = this.listCompletedAcc.find( acc => acc.username === this.usernameFind)
+      this.usernameFindData = this.roblox_data_account.accounts.find( acc => acc.username === this.usernameFind)
     },
     getDetailAcc(){
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
