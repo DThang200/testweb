@@ -1209,7 +1209,6 @@ end)
                       ["Carrot"] = 44,
                       ["Strawberry"] = 5,
                       ["Blueberry"] = 5,
-                      ["Orange Tulip"] = 5,
                       ["Corn"] = 5,
                       ["Daffodil"] = 5,
                       ["Coconut"] = 5,
@@ -1243,7 +1242,7 @@ end)
                       ["Amber Spine"]        = 10,
                       ["Burning Bud"]        = 10
     },
-    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom", "Fossilight"},
+    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom", "Fossilight", "Maple Apple"},
     ["Egg"] = {
         ["Mythical Egg"] = {
             ["Buy"] = true,
@@ -1256,7 +1255,7 @@ end)
         },
         ["Anti Bee Egg"] = {
             ["Place"] = true,
-            ["Priority"] = 1
+            ["Priority"] = 2
         },
         ["Night Egg"] = {
             ["Place"] = true,
@@ -1265,7 +1264,7 @@ end)
         ["Common Summer Egg"] = {
             ["Place"] = true,
             ["Buy"] = true,
-            ["Priority"] = 1
+            ["Priority"] = 2
         },
         ["Bug Egg"] = {
             ["Buy"] = true,
@@ -1290,6 +1289,10 @@ end)
         ["Dinosaur Egg"] = {
             ["Place"] = true,
             ["Priority"] = 6
+        },
+        ["Zen Egg"] = {
+            ["Place"] = true,
+            ["Priority"] = 1
         }
     },
 
@@ -1302,26 +1305,24 @@ end)
         ["Godly Sprinkler"] = true
     },
     ["Plant Candy"] = false,
-    ["PetNeedSend"] = {"Queen Bee", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus", "Fennec Fox", "T-Rex", "Spinosaurus"},
+    ["PetNeedSend"] = {"Queen Bee", "Dragonfly", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus", "Fennec Fox", "T-Rex", "Spinosaurus", "Kitsune"},
     ["Destroy Mode"] = {
         ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
         ["Mode Destroy"] = "Auto",
-        ["Trees"] = {"Orange Tulip", "Corn", "Tomato", "Banana", "Cactus"},
+        ["Trees"] = {"Blueberry", "Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Serenity", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop", "Monoblooma"},
         ["Rarity Destroy Auto"] = {"Common", "Uncommon"},
-        ["Destroy Untill"] = 150
+        ["Destroy Untill"] = 100
     },
     ["Dino Quest Farm"] = true,
     ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m",
     ["Boost FPS"] = true,
     ["Black Screen"] = false,
-    ["Dino Event"] = {
-        ["Auto Claim Quest"] = true,
-        ["Auto Restart Quest"] = true,
-        ["Auto Submit"] = true,
-        ["Auto Trade Eggs"] = true,
-        ["Pet Dont Trade"] = {"Dragonfly","Seal", "Raccoon", "Disco Bee", "Butterfly", "Mimic Octopus",
-                              "Fennec Fox", "Capybara", "Hyacinth Macaw",
-                              "Golden Lab", "T-Rex", "Spinosaurus"}
+    ["Zen Event"] = {
+        ["Restock Max Cost"] = 16000000,
+        ["Zen Seed Pack"] = true,
+        ["Zen Egg"] = true,
+        ["Koi"] = true,
+        ["Spiked Mango"] = false
     },
     ["Note"] = "Cyndral Hub",
     ["Pet Mode"] = {
@@ -1331,17 +1332,17 @@ end)
             ["Capybara"] = true,
             ["Starfish"] = true,
         },
-        ["Max Slot Pet To Sell"] = 55, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
+        ["Max Slot Pet To Sell"] = 50, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
         ["Upgrade Slot Egg"] = {
             ["Enable"] = true,
-            ["Black List Pet For Upgrade Slots"] = {"Queen Bee", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
+            ["Black List Pet For Upgrade Slots"] = {"Queen Bee","Koi", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
-                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus"}
+                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune"}
         },
-        ["Pet Dont Delete"] = {"Starfish","Ostrich","Seal", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
+        ["Pet Dont Delete"] = {"Starfish","Koi","Ostrich","Seal", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
           "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
-           "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus"},
+           "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus", "Kitsune"},
         ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
     },
     ["Webhook Mode"] = {
@@ -1354,7 +1355,7 @@ end)
         ["Enable Rejoin After X Time"] = true,
         ["Rejoin After X Time"] = 60 -- Minutes
     },
-    ["Limit Tree"] = 200,
+    ["Limit Tree"] = 150,
     ["White Screen"] = true
 }
 script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";
