@@ -175,12 +175,9 @@
           </select>
           <input v-model="selectBGSIAcc" type="checkbox">
           <label>With bgsi acc?</label>
-          <select v-model="">
-
-          </select>
           <button @click="getDetailAcc">Copy username pass</button>
           <button @click="getDetailAllAcc">Copy All</button>
-          <button @click="getDetailAllAcc">Copy All</button>
+          <button @click="getDetailAllAcc">Copy All GAG</button>
         </div>
       </div>
       <div class="field-action">
