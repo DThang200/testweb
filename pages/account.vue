@@ -621,7 +621,7 @@ export default {
       let result = ''
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
       this.roblox_data_account.accounts.forEach(acc => {
-        if (!acc.device_id || map_device_data[acc?.device_id].script.includes("gag")){
+        if (acc.device_id && map_device_data[acc?.device_id]?.script?.includes("gag")){
           result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
         }
         // acc?.password
