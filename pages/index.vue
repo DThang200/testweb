@@ -1329,10 +1329,8 @@ end)
         ["Sell Pet"] = true,
         ["Equip Pet"] = true,
         ["Name Pet Equip"] = {
-            ["Capybara"] = true,
-            ["Starfish"] = true,
-            ["Seal"] = true,
-            ["Tanchozuru"] = true,
+            ["Starfish"] = 2,
+            "Seal","Tanchozuru","Capybara"
         },
         ["Max Slot Pet To Sell"] = 50, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
         ["Upgrade Slot Egg"] = {
