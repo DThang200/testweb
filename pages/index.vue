@@ -1339,8 +1339,8 @@ end)
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
                                                     "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune"}
         },
-        ["Pet Dont Delete"] = {"Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Triceratops", "Stegosaurus", "Pterodactyl", "Raptor",
-         "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
+        ["Pet Dont Delete"] = {"Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
+         "Brontosaurus", "Pachycephalosaurus", "Iguanodon",  "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
           "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune"},
         ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
