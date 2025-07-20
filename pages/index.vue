@@ -1332,11 +1332,12 @@ end)
             ["Capybara"] = true,
             ["Starfish"] = true,
             ["Seal"] = true,
+            ["Tanchozuru"] = true,
         },
         ["Max Slot Pet To Sell"] = 50, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
         ["Upgrade Slot Egg"] = {
             ["Enable"] = true,
-            ["Black List Pet For Upgrade Slots"] = {"Queen Bee","Koi", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
+            ["Black List Pet For Upgrade Slots"] = {"Queen Bee","Tanchozur","Koi", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
                                                     "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune"}
         },
