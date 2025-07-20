@@ -1314,7 +1314,7 @@ end)
         ["Destroy Untill"] = 50
     },
     ["Dino Quest Farm"] = true,
-    ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m",
+    ["Url"] = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
     ["Boost FPS"] = true,
     ["Black Screen"] = false,
     ["Zen Event"] = {
