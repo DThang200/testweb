@@ -1309,9 +1309,9 @@ end)
     ["Destroy Mode"] = {
         ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
         ["Mode Destroy"] = "Auto",
-        ["Trees"] = {"Blueberry", "Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Serenity", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop", "Monoblooma"},
+        ["Trees"] = {"Blueberry", "Coconut","Pineapple","Cactus","Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Serenity", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop", "Monoblooma"},
         ["Rarity Destroy Auto"] = {"Common", "Uncommon"},
-        ["Destroy Untill"] = 100
+        ["Destroy Untill"] = 50
     },
     ["Dino Quest Farm"] = true,
     ["Url"] = "https://discord.com/api/webhooks/1394750086432559226/UnnnaVhaNGV87ztf9tMFGu3WskhulaOEt7sK-JHvS9bidUX2mDNvw9XeMKkGoSkx4m7m",
@@ -1355,7 +1355,7 @@ end)
         ["Enable Rejoin After X Time"] = true,
         ["Rejoin After X Time"] = 60 -- Minutes
     },
-    ["Limit Tree"] = 150,
+    ["Limit Tree"] = 100,
     ["White Screen"] = true
 }
 script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";
