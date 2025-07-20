@@ -1318,7 +1318,7 @@ end)
     ["Boost FPS"] = true,
     ["Black Screen"] = false,
     ["Zen Event"] = {
-        ["Restock Max Cost"] = 16000000,
+        ["Restock Max Cost"] = 64000000,
         ["Zen Seed Pack"] = false,
         ["Zen Egg"] = true,
         ["Koi"] = false,
