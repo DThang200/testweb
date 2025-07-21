@@ -1235,6 +1235,7 @@ end)
                       ["Lilac"] = 20,
                       ["Pink Lily"] = 20,
                       ["Rose"] = 20,
+                      ["Giant Pinecone"] = 20,
                       ["Purple Dahlia"] = 20,
                       ["Paradise Petal"]     = 10,
                       ["Horned Dinoshroom"]  = 10,
