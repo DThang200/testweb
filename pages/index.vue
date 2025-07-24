@@ -1414,7 +1414,7 @@ getgenv().gagConfig = {
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune" },
     KEEP_PETS_WEIGHT = 8,
 
-    EQUIP_PETS = { "Bald Eagle", ["Blood Kiwi"] = 2, ["Capybara"] = 1, ["Starfish"] = 2, ["Chicken"] = 2 },
+    EQUIP_PETS = { "Bald Eagle","Seal", ["Blood Kiwi"] = 2, ["Capybara"] = 1, ["Starfish"] = 2, ["Chicken"] = 2 },
     REMOVE_PET_MAX_UPGRADE = { "Capybara", "Starfish" },
 
     BUY_GEAR_SHOP = { "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler", "Basic Sprinkler" },
@@ -1424,7 +1424,7 @@ getgenv().gagConfig = {
     SEED_WEBHOOK_URL = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
     NOTIFY_PETS = { "Kitsune", "Spinosaurus" },
     NOTIFY_PETS_WEIGHT = 8,
-    DISCORD_ID = "",
+    DISCORD_ID = "663236418499379240",
     WEBHOOK_NOTE = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
     SHOW_WEBHOOK_USERNAME = true,
     SHOW_WEBHOOK_JOBID = true,
