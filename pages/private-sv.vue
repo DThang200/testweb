@@ -75,7 +75,7 @@ export default {
   mounted() {
     const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
     Object.entries(map_device_data).forEach((device,index) => {
-      if (device[1]?.script.includes("gag-bone")){
+      if (device[1]?.script && device[1]?.script.includes("gag-bone")){
         this.listDevice.push(device[0])
       }
     })
