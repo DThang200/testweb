@@ -1318,7 +1318,7 @@ end)
     ["Dino Quest Farm"] = true,
     ["Url"] = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
     ["Boost FPS"] = true,
-    ["Black Screen"] = false,
+    ["Black Screen"] = true,
     ["Zen Event"] = {
         ["Restock Max Cost"] = 64000000,
         ["Zen Seed Pack"] = false,
@@ -1342,8 +1342,8 @@ end)
                                                     "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune"}
         },
         ["Pet Dont Delete"] = {"Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
-         "Brontosaurus", "Pachycephalosaurus", "Iguanodon",  "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox",
-          "Snail", "Squirrel", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
+         "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
+          "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune"},
         ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
     },

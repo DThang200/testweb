@@ -78,6 +78,7 @@
       <button type="button" v-if="finishRender" @click="setupConfigChange">Setup Config Change</button>
       <button type="button" v-if="finishRender" @click="getEmptyAcc">Get Empty acc Bf</button>
       <button type="button" v-if="finishRender" @click="deleteAcc">Delete acc</button>
+      <button type="button" @click="deleteConfigIDStorage">Delete config storage</button>
     </div>
 
   </div>
@@ -718,6 +719,15 @@ export default {
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
+    },
+    deleteConfigIDStorage(){
+      let map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      const map_device_data_temp = {}
+      Object.entries(map_device_data).forEach((device,index) => {
+        map_device_data_temp[device[0]] = {script:device[1]?.script,script_label:device[1]?.script_label}
+      })
+      console.log('map_device_data_temp',map_device_data_temp)
+      localStorage.setItem('map_device_data', JSON.stringify(map_device_data_temp));
     }
   }
 };
