@@ -12,6 +12,7 @@
       <select v-model="showOption">
         <option value="">All</option>
         <option value="astd">ASTD</option>
+        <option value="gag-bone">ASTD</option>
       </select>
     </div>
     <div style="display: none;flex-direction: row; gap: 16px;align-items: center;margin: 12px 0">
