@@ -1415,7 +1415,7 @@ getgenv().gagConfig = {
     KEEP_PETS_WEIGHT = 8,
 
     EQUIP_PETS = { "Bald Eagle","Seal", ["Blood Kiwi"] = 2, ["Capybara"] = 1, ["Starfish"] = 2, ["Chicken"] = 2 },
-    REMOVE_PET_MAX_UPGRADE = { "Capybara", "Starfish" },
+    REMOVE_PET_MAX_UPGRADE = { "Starfish" },
 
     BUY_GEAR_SHOP = { "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler", "Basic Sprinkler" },
     USE_SPRINKLER = { "Basic Sprinkler", "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler" },
