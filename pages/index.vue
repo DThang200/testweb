@@ -1184,187 +1184,252 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd6
 // script_key="PRhCqhbhYdUOwKKDuzliwSiFJGcsYegZ";
 // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
 //           break;
-        case 'gag-bone' :
-          script = `
-          repeat wait() until game:IsLoaded()
-         setfpscap(2)
-spawn(function()
-    while wait() do
-  local old = tick()
-repeat wait() until tick() - old >= 7200
-game.Players.LocalPlayer:Kick("kick sau 2h")
-end
-end)
-          getgenv().Config = {
-    ["Time To Sell"] = 35,
-    ["Craft Event"] = {
-        ["Crafters Seed Pack"] = true,
-        ["Anti Bee Egg"] = true,
-        ["Ancient Seed Pack"] = true
-    },
-    ["Dont Open Pack"] = false,
-    ["Dont Use Flower Seed Pack"] = true,
-    ["Mode Plant"] = "Auto",
-
-["Seed"] = {
-                      ["Carrot"] = 44,
-                      ["Strawberry"] = 5,
-                      ["Blueberry"] = 5,
-                      ["Corn"] = 5,
-                      ["Daffodil"] = 5,
-                      ["Coconut"] = 5,
-                      ["Apple"] = 5,
-                      ["Tomato"] = 5,
-                      ["Mushroom"] = 5,
-                      ["Pepper"] = 5,
-                      ["Cacao"] = 5,
-                      ["Dragon Fruit"] = 5,
-                      ["Mango"] = 10,
-                      ["Loquat"] = 10,
-                      ["Cactus"] = 10,
-                      ["Beanstalk"] = 10,
-                      ["Grape"] = 10,
-                      ["Bell Pepper"] = 10,
-                      ["Bamboo"] = 10,
-                      ["Feijoa"] = 10,
-                      ["Avocado"] = 10,
-                      ["Prickly Pear"] = 10,
-                      ["Kiwi"] = 10,
-                      ["Foxglove"] = 20,
-                      ["Sugar Apple"] = 20,
-                      ["Lilac"] = 20,
-                      ["Lilac"] = 20,
-                      ["Pink Lily"] = 20,
-                      ["Rose"] = 20,
-                      ["Giant Pinecone"] = 20,
-                      ["Purple Dahlia"] = 20,
-                      ["Paradise Petal"]     = 10,
-                      ["Horned Dinoshroom"]  = 10,
-                      ["Firefly Fern"]       = 10,
-                      ["Amber Spine"]        = 10,
-                      ["Burning Bud"]        = 10
-    },
-    ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom", "Fossilight", "Maple Apple"},
-    ["Egg"] = {
-        ["Mythical Egg"] = {
-            ["Buy"] = true,
-            ["Place"] = true,
-            ["Priority"] = 5
-        },
-        ["Oasis Egg"] = {
-            ["Place"] = true,
-            ["Priority"] = 7
-        },
-        ["Anti Bee Egg"] = {
-            ["Place"] = true,
-            ["Priority"] = 2
-        },
-        ["Night Egg"] = {
-            ["Place"] = true,
-            ["Priority"] = 5
-        },
-        ["Common Summer Egg"] = {
-            ["Place"] = true,
-            ["Buy"] = true,
-            ["Priority"] = 2
-        },
-        ["Bug Egg"] = {
-            ["Buy"] = true,
-            ["Place"] = true,
-            ["Priority"] = 3
-        },
-        ["Paradise Egg"] = {
-            ["Buy"] = true,
-            ["Place"] = true,
-            ["Priority"] = 2
-        },
-        ["Rare Summer Egg"] = {
-            ["Buy"] = true,
-            ["Place"] = true,
-            ["Priority"] = 2
-        },
-        ["Bee Egg"] = {
-            ["Buy"] = true,
-            ["Place"] = false,
-            ["Priority"] = 4
-        },
-        ["Dinosaur Egg"] = {
-            ["Place"] = true,
-            ["Priority"] = 6
-        },
-        ["Zen Egg"] = {
-            ["Place"] = true,
-            ["Priority"] = 1
-        }
-    },
-
-    ["Sprinkler"] = {
-        ["Place Sprinkler"] = true,
-        ["Buy Sprinkler"] = true,
-        ["Basic Sprinkler"] = true,
-        ["Advanced Sprinkler"] = true,
-        ["Master Sprinkler"] = true,
-        ["Godly Sprinkler"] = true
-    },
-    ["Plant Candy"] = false,
-    ["PetNeedSend"] = {"Kitsune"},
-    ["Destroy Mode"] = {
-        ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
-        ["Mode Destroy"] = "Auto",
-        ["Trees"] = {"Blueberry", "Coconut","Pineapple","Cactus","Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Serenity", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop", "Monoblooma"},
-        ["Rarity Destroy Auto"] = {"Common", "Uncommon"},
-        ["Destroy Untill"] = 50
-    },
-    ["Dino Quest Farm"] = true,
-    ["Url"] = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
-    ["Boost FPS"] = true,
-    ["Black Screen"] = true,
-    ["Zen Event"] = {
-        ["Restock Max Cost"] = 64000000,
-        ["Zen Seed Pack"] = false,
-        ["Zen Egg"] = true,
-        ["Koi"] = false,
-        ["Spiked Mango"] = false
-    },
-    ["Note"] = "Cyndral Hub",
-    ["Pet Mode"] = {
-        ["Sell Pet"] = true,
-        ["Equip Pet"] = true,
-        ["Name Pet Equip"] = {
-            ["Starfish"] = 2,
-            "Seal","Tanchozuru","Capybara"
-        },
-        ["Max Slot Pet To Sell"] = 50, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
-        ["Upgrade Slot Egg"] = {
-            ["Enable"] = true,
-            ["Black List Pet For Upgrade Slots"] = {"Queen Bee","Capybara","Tanchozur","Koi", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
-                                                    "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
-                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune"}
-        },
-        ["Pet Dont Delete"] = {"Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
-         "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
-          "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
-           "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune"},
-        ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
-    },
-    ["Webhook Mode"] = {
-        ["Enable Send Pet Weight"] = true,
-        ["Weight"] = 10
-    },
-    ["Rejoin Mode"] = {
-        ["Auto Rejoin When Error Module Egg"] = true,
-        ["Auto rejoin on script update"] = true,
-        ["Enable Rejoin After X Time"] = true,
-        ["Rejoin After X Time"] = 60 -- Minutes
-    },
-    ["Limit Tree"] = 100,
-    ["White Screen"] = true
-}
-script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";
-loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/gag.lua"))()`
+//         case 'gag-bone' :
+//           script = `
+//           repeat wait() until game:IsLoaded()
+//          setfpscap(2)
+// spawn(function()
+//     while wait() do
+//   local old = tick()
+// repeat wait() until tick() - old >= 7200
+// game.Players.LocalPlayer:Kick("kick sau 2h")
+// end
+// end)
+//           getgenv().Config = {
+//     ["Time To Sell"] = 35,
+//     ["Craft Event"] = {
+//         ["Crafters Seed Pack"] = true,
+//         ["Anti Bee Egg"] = true,
+//         ["Ancient Seed Pack"] = true
+//     },
+//     ["Dont Open Pack"] = false,
+//     ["Dont Use Flower Seed Pack"] = true,
+//     ["Mode Plant"] = "Auto",
+//
+// ["Seed"] = {
+//                       ["Carrot"] = 44,
+//                       ["Strawberry"] = 5,
+//                       ["Blueberry"] = 5,
+//                       ["Corn"] = 5,
+//                       ["Daffodil"] = 5,
+//                       ["Coconut"] = 5,
+//                       ["Apple"] = 5,
+//                       ["Tomato"] = 5,
+//                       ["Mushroom"] = 5,
+//                       ["Pepper"] = 5,
+//                       ["Cacao"] = 5,
+//                       ["Dragon Fruit"] = 5,
+//                       ["Mango"] = 10,
+//                       ["Loquat"] = 10,
+//                       ["Cactus"] = 10,
+//                       ["Beanstalk"] = 10,
+//                       ["Grape"] = 10,
+//                       ["Bell Pepper"] = 10,
+//                       ["Bamboo"] = 10,
+//                       ["Feijoa"] = 10,
+//                       ["Avocado"] = 10,
+//                       ["Prickly Pear"] = 10,
+//                       ["Kiwi"] = 10,
+//                       ["Foxglove"] = 20,
+//                       ["Sugar Apple"] = 20,
+//                       ["Lilac"] = 20,
+//                       ["Lilac"] = 20,
+//                       ["Pink Lily"] = 20,
+//                       ["Rose"] = 20,
+//                       ["Giant Pinecone"] = 20,
+//                       ["Purple Dahlia"] = 20,
+//                       ["Paradise Petal"]     = 10,
+//                       ["Horned Dinoshroom"]  = 10,
+//                       ["Firefly Fern"]       = 10,
+//                       ["Amber Spine"]        = 10,
+//                       ["Burning Bud"]        = 10
+//     },
+//     ["Keep Seed"] = {"Dragon Pepper", "Elephant Ears", "Sunflower", "Candy Blossom", "Bone Blossom", "Fossilight", "Maple Apple"},
+//     ["Egg"] = {
+//         ["Mythical Egg"] = {
+//             ["Buy"] = true,
+//             ["Place"] = true,
+//             ["Priority"] = 5
+//         },
+//         ["Oasis Egg"] = {
+//             ["Place"] = true,
+//             ["Priority"] = 7
+//         },
+//         ["Anti Bee Egg"] = {
+//             ["Place"] = true,
+//             ["Priority"] = 2
+//         },
+//         ["Night Egg"] = {
+//             ["Place"] = true,
+//             ["Priority"] = 5
+//         },
+//         ["Common Summer Egg"] = {
+//             ["Place"] = true,
+//             ["Buy"] = true,
+//             ["Priority"] = 2
+//         },
+//         ["Bug Egg"] = {
+//             ["Buy"] = true,
+//             ["Place"] = true,
+//             ["Priority"] = 3
+//         },
+//         ["Paradise Egg"] = {
+//             ["Buy"] = true,
+//             ["Place"] = true,
+//             ["Priority"] = 2
+//         },
+//         ["Rare Summer Egg"] = {
+//             ["Buy"] = true,
+//             ["Place"] = true,
+//             ["Priority"] = 2
+//         },
+//         ["Bee Egg"] = {
+//             ["Buy"] = true,
+//             ["Place"] = false,
+//             ["Priority"] = 4
+//         },
+//         ["Dinosaur Egg"] = {
+//             ["Place"] = true,
+//             ["Priority"] = 6
+//         },
+//         ["Zen Egg"] = {
+//             ["Place"] = true,
+//             ["Priority"] = 1
+//         }
+//     },
+//
+//     ["Sprinkler"] = {
+//         ["Place Sprinkler"] = true,
+//         ["Buy Sprinkler"] = true,
+//         ["Basic Sprinkler"] = true,
+//         ["Advanced Sprinkler"] = true,
+//         ["Master Sprinkler"] = true,
+//         ["Godly Sprinkler"] = true
+//     },
+//     ["Plant Candy"] = false,
+//     ["PetNeedSend"] = {"Kitsune"},
+//     ["Destroy Mode"] = {
+//         ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
+//         ["Mode Destroy"] = "Auto",
+//         ["Trees"] = {"Blueberry", "Coconut","Pineapple","Cactus","Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Serenity", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop", "Monoblooma"},
+//         ["Rarity Destroy Auto"] = {"Common", "Uncommon"},
+//         ["Destroy Untill"] = 50
+//     },
+//     ["Dino Quest Farm"] = true,
+//     ["Url"] = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+//     ["Boost FPS"] = true,
+//     ["Black Screen"] = true,
+//     ["Zen Event"] = {
+//         ["Restock Max Cost"] = 64000000,
+//         ["Zen Seed Pack"] = false,
+//         ["Zen Egg"] = true,
+//         ["Koi"] = false,
+//         ["Spiked Mango"] = false
+//     },
+//     ["Note"] = "Cyndral Hub",
+//     ["Pet Mode"] = {
+//         ["Sell Pet"] = true,
+//         ["Equip Pet"] = true,
+//         ["Name Pet Equip"] = {
+//             ["Starfish"] = 2,
+//             "Seal","Tanchozuru","Capybara"
+//         },
+//         ["Max Slot Pet To Sell"] = 50, -- If Total Pet In Inventory >= ["Max Slot Pet To Sell"] script will sell pet
+//         ["Upgrade Slot Egg"] = {
+//             ["Enable"] = true,
+//             ["Black List Pet For Upgrade Slots"] = {"Queen Bee","Capybara","Tanchozur","Koi", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
+//                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
+//                                                     "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune"}
+//         },
+//         ["Pet Dont Delete"] = {"Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
+//          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
+//           "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
+//            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune"},
+//         ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
+//     },
+//     ["Webhook Mode"] = {
+//         ["Enable Send Pet Weight"] = true,
+//         ["Weight"] = 10
+//     },
+//     ["Rejoin Mode"] = {
+//         ["Auto Rejoin When Error Module Egg"] = true,
+//         ["Auto rejoin on script update"] = true,
+//         ["Enable Rejoin After X Time"] = true,
+//         ["Rejoin After X Time"] = 60 -- Minutes
+//     },
+//     ["Limit Tree"] = 100,
+//     ["White Screen"] = true
+// }
+// script_key="sODGQPHiISgNdIfWpuWQoqzVtdBZZQeg";
+// loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/gag.lua"))()`
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
+          case 'gag-bone' :
+          script = `
+          repeat wait() until game:IsLoaded()
+          setfpscap(2)
+          spawn(function()
+              while wait() do
+                local old = tick()
+                repeat wait() until tick() - old >= 7200
+                game.Players.LocalPlayer:Kick("kick sau 2h")
+              end
+          end)
+script_key="NYgqcTmeaiEtDNGBOyOPTlKRtVydjxzB";
+setfpscap(3)
+
+getgenv().gagConfig = {
+    -- Event:
+    CRAFT_EVENT = { "Anti Bee Egg" },
+    BUY_TRAVELING_MERCHANT = { "Bee Egg", "Loquat", "Feijoa", "Pitcher Plant" },
+    BUY_EVENT_SHOP = { "Zen Egg" },
+    MAX_EVENT_RESTOCK_SHECKLES = 64000000,
+
+    -- General:
+    AUTO_UPDATE_RESTART = true,
+    REDEEM_CODES = {},
+    EXTRA_PET_SLOTS = 6,
+    EXTRA_EGG_SLOTS = 6,
+    ADD_FRIEND = true,
+    OPEN_ALL_SEED_PACK = true,
+
+    MAX_PLANTS = 150,
+    DESTROY_UNTIL_MIN_PLANTS = 130,
+    DELETE_PLANTS_AFTER_MAX = { "Blueberry", "Coconut","Pineapple","Cactus","Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Serenity", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop", "Monoblooma" },
+
+    BUY_EGGS = { "Bug Egg", "Bee Egg", "Paradise Egg", "Mythical Egg", "Rare Summer Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
+    PLANT_EGGS = { "Dinosaur Egg", "Zen Egg", "Primal Egg", "Anti Bee Egg", "Bee Egg", "Night Egg", "Bug Egg", "Paradise Egg", "Mythical Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
+
+    BUY_SEED_SHOP = { "Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Apple"] = 50,["Cactus"] = 50,["Bamboo"] = 50,["Daffodil"] = 50, ["Tomato"] = 50, ["Orange Tulip"] = 50, ["Blueberry"] = 50, ["Strawberry"] = 50, ["Carrot"] = 50 },
+    KEEP_SEEDS = {},
+    KEEP_SEEDS_AFTER_MAX_PLANTS = { "Carrot", "Orange Tulip", "Tomato", "Daffodil" },
+
+    FAVOURITE_FRUIT_MUTATIONS = {},  -- Stop Autosell
+    SKIP_HARVEST_MUTATIONS = {},  -- Stop Harvest
+
+    KEEP_PETS = { "Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
+          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
+           "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
+            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune" },
+    KEEP_PETS_WEIGHT = 8,
+
+    EQUIP_PETS = { "Bald Eagle", ["Blood Kiwi"] = 2, ["Capybara"] = 1, ["Starfish"] = 2, ["Chicken"] = 2 },
+    REMOVE_PET_MAX_UPGRADE = { "Capybara", "Starfish" },
+
+    BUY_GEAR_SHOP = { "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler", "Basic Sprinkler" },
+    USE_SPRINKLER = { "Basic Sprinkler", "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler" },
+
+    PET_WEBHOOK_URL = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+    SEED_WEBHOOK_URL = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+    NOTIFY_PETS = { "Kitsune", "Spinosaurus" },
+    NOTIFY_PETS_WEIGHT = 8,
+    DISCORD_ID = "",
+    WEBHOOK_NOTE = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+    SHOW_WEBHOOK_USERNAME = true,
+    SHOW_WEBHOOK_JOBID = true,
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c916e5b90dc37c71ecf1ec00dfce3d5d.lua"))()`
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
