@@ -1162,7 +1162,7 @@ getgenv().Configs = {
     }
 }
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
+loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/astdx.lua"))()`
           break;
 
 //         case 'astd' :
