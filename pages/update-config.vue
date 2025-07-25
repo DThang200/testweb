@@ -470,37 +470,58 @@ export default {
           //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           //   },
           // });
-          const configId = await this.getData(pc?.deviceId, "config_id")
-          const response = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
-            headers: {
-              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-            },
-          });
-          let checkValid = false
-          if (response?.scripts){
-            for (let j = 0; j < response?.scripts?.length; j++) {
-              console.log('response?.scripts[i]?.script_data',response?.scripts[j]?.script_data)
-              if (response?.scripts[j]?.script_data === this.scriptFixLagBase64){
-                checkValid = true
-              }
-            }
+          // const configId = await this.getData(pc?.deviceId, "config_id")
+          // const response = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
+          //   headers: {
+          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //   },
+          // });
+          const config_id = await this.getData(pc?.deviceId, "config_id")
+          const script_id = await this.getData(pc?.deviceId, "script_id1");
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${script_id}/scripts`, {
+              "script_name": "Fix lag",
+              script_data: this.scriptFixLagBase64
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
+              "script_name": "Fix lag",
+              script_data: this.scriptFixLagBase64
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
           }
-          if (!checkValid){
-            console.log('device?.deviceName',pc?.deviceName)
-
-            if (configId){
-              const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
-                "script_name": "Fix lag",
-                "script_data": this.scriptFixLagBase64
-              },{
-                headers: {
-                  'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-                },
-              });
-              console.log('device?.deviceName',pc?.deviceName)
-              console.log('responseCreateScriptFixLag',responseCreateScriptFixLag)
-            }
-          }
+          // let checkValid = false
+          // if (response?.scripts){
+          //   for (let j = 0; j < response?.scripts?.length; j++) {
+          //     console.log('response?.scripts[i]?.script_data',response?.scripts[j]?.script_data)
+          //     if (response?.scripts[j]?.script_data === this.scriptFixLagBase64){
+          //       checkValid = true
+          //     }
+          //   }
+          // }
+          // if (!checkValid){
+          //   console.log('device?.deviceName',pc?.deviceName)
+          //
+          //   if (configId){
+          //     const responseCreateScriptFixLag = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
+          //       "script_name": "Fix lag",
+          //       "script_data": this.scriptFixLagBase64
+          //     },{
+          //       headers: {
+          //         'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //       },
+          //     });
+          //     console.log('device?.deviceName',pc?.deviceName)
+          //     console.log('responseCreateScriptFixLag',responseCreateScriptFixLag)
+          //   }
+          // }
           let checkValidOpenCreate = false
           // if (response?.scripts){
           //   for (let j = 0; j < response?.scripts?.length; j++) {

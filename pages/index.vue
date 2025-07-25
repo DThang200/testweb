@@ -1590,7 +1590,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c916e5b90dc37c
         }
         if (option?.yummyTrack) {
           const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
-          const script_id = await this.getData(device_id, (option.code === "bloxFruit-maru" ? "script_id2" : "script_id1"));
+          const script_id = await this.getData(device_id, "script_id2");
           if(!script_id){
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
