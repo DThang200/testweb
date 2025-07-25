@@ -559,9 +559,9 @@ export default {
           //   "script_name": "Fix lag",
           //     "script_data": "this.scriptFixLagBase64"
           // }
-          if (response) {
-            status = true
-          }
+          // if (response) {
+          //   status = true
+          // }
         }
         this.enableDeviceStatus[i] = {
           name: pc.deviceName,
