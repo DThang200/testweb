@@ -1148,8 +1148,8 @@ getgenv().Configs = {
     ["Auto Upgrade"] = {
         ["Focus unit"] = {"Uryu", "Goku"}
     },
-    ["Codes"] = {"AFIRSTTIME3001", "FREENIMBUSMOUNT", "somanylikes", "FORTYFIVELIKES", "ONEEIGHTYFIVELIKES",
-                 "VERYHIGHLIKEB", "UPD1", "LIKEF5", "THANKYOUFORSUPPORT", "THREEHUNDREDTHOUSANDPLAYERS", "LIKEF5", "FOLLOWS10KBREAD", "UPD2", "NEXTLIKEGOAL500K", "THANKYOUFORLIKES123", "MBSHUTDOWNB", "2MGROUPMEMBERS", "THANKYOUFOR500MVISITS", "MADAO90YAY"},
+    ["Codes"] = {"AFIRSTTIME3001", "FREENIMBUSMOUNT",
+                   "UPD2", "NEXTLIKEGOAL500K", "THANKYOUFORLIKES123", "2MGROUPMEMBERS", "THANKYOUFOR500MVISITS"},
     ["Black Screen"] = true,
     ["Webhook"] = {
         ["Enabled"] = true,
