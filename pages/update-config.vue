@@ -392,18 +392,21 @@ export default {
             map_device_data[device_id].config_id = config_id
             localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
             return config_id
-          } else if (key === "script_id"){
+          } else if (key.includes("script_id")){
             const config_id = await this.getData(device_id, "config_id");
             const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-            const script_id = resScript?.scripts[0]?.script_id
             map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
-            map_device_data[device_id].script_id = script_id
+            for (let i = 0; i < resScript?.scripts.length; i++) {
+              map_device_data[device_id]["script_id" + (i === 0 ? '' : i)  ] = resScript?.scripts[i]?.script_id
+            }
+            // const script_id = resScript?.scripts[0]?.script_id
+            // map_device_data[device_id].script_id = script_id
             localStorage.setItem('map_device_data', JSON.stringify(map_device_data));
-            return script_id
+            return map_device_data[device_id][key] || ""
           }
         }
       }
@@ -476,8 +479,11 @@ export default {
           //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           //   },
           // });
-          const config_id = await this.getData(pc?.deviceId, "config_id")
+          const config_id = await this.getData(pc?.deviceId, "config_id");
           const script_id = await this.getData(pc?.deviceId, "script_id1");
+          console.log('map_device_id_code',this.map_device_id_code[pc?.deviceId])
+          console.log('config_id',config_id)
+          console.log('script_id',script_id)
           if(!script_id){
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${script_id}/scripts`, {
               "script_name": "Fix lag",
