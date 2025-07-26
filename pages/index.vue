@@ -1307,7 +1307,7 @@ end)
         ["Godly Sprinkler"] = true
     },
     ["Plant Candy"] = false,
-    ["PetNeedSend"] = {"Kitsune"},
+    ["PetNeedSend"] = {"Kitsune", "Corrupted Kitsune"},
     ["Destroy Mode"] = {
         ["Auto Destroy when have money"] = 100000000, -- its will destroy all trees select when money >= select
         ["Mode Destroy"] = "Auto",
@@ -1339,12 +1339,12 @@ end)
             ["Enable"] = true,
             ["Black List Pet For Upgrade Slots"] = {"Queen Bee","Capybara","Tanchozur","Koi", "Red Fox","Seal", "Dragonfly", "Raccoon", "Disco Bee",
                                                     "Butterfly", "Mimic Octopus", "Meerkat", "Sand Snake", "Fennec Fox",
-                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune"}
+                                                    "Axolotl", "Hyacinth Macaw", "Hamster", "T-Rex", "Spinosaurus", "Kitsune", "Corrupted Kitsune", "Kodama"}
         },
         ["Pet Dont Delete"] = {"Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
           "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
-           "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune"},
+           "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune", "Corrupted Kitsune", "Kodama"},
         ["Dont Sell Pet If Weight > x"] = 10 -- Script dont sell pet if this weight >= 10
     },
     ["Webhook Mode"] = {
@@ -1386,7 +1386,7 @@ getgenv().gagConfig = {
     BUY_TRAVELING_MERCHANT = { "Bee Egg", "Loquat", "Feijoa", "Pitcher Plant" },
     BUY_EVENT_SHOP = { "Zen Egg" },
     MAX_EVENT_RESTOCK_SHECKLES = 64000000,
-
+    PLACE_ALL_EVENT_STAFF = true,
     -- General:
     AUTO_UPDATE_RESTART = true,
     REDEEM_CODES = {},
@@ -1412,7 +1412,7 @@ getgenv().gagConfig = {
     KEEP_PETS = { "Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
           "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
            "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
-            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune" },
+            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune", "Corrupted Kitsune", "Kodama" },
     KEEP_PETS_WEIGHT = 6,
 
     EQUIP_PETS = { "Bald Eagle","Seal", ["Blood Kiwi"] = 2, ["Capybara"] = 1, ["Starfish"] = 2, ["Chicken"] = 2 },
@@ -1423,7 +1423,7 @@ getgenv().gagConfig = {
 
     PET_WEBHOOK_URL = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
     SEED_WEBHOOK_URL = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
-    NOTIFY_PETS = { "Kitsune", "Spinosaurus" },
+    NOTIFY_PETS = { "Kitsune", "Spinosaurus", "Corrupted Kitsune" },
     NOTIFY_PETS_WEIGHT = 10,
     DISCORD_ID = "663236418499379240",
     WEBHOOK_NOTE = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
