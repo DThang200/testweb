@@ -1184,7 +1184,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
 // script_key="PRhCqhbhYdUOwKKDuzliwSiFJGcsYegZ";
 // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20875dc958bfd605e0fe3ed9f784caf7.lua"))()`
 //           break;
-        case 'gag-bone' :
+        case 'gag-bone1' :
           script = `
           repeat wait() until game:IsLoaded()
          setfpscap(2)
@@ -1366,7 +1366,7 @@ end)
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
-          case 'gag-bone1' :
+          case 'gag-bone' :
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1430,7 +1430,7 @@ getgenv().gagConfig = {
     SHOW_WEBHOOK_USERNAME = true,
     SHOW_WEBHOOK_JOBID = true,
 }
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c916e5b90dc37c71ecf1ec00dfce3d5d.lua"))()`
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff932327c20f197e426686.lua"))()`
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
