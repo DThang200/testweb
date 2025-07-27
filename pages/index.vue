@@ -1389,6 +1389,7 @@ getgenv().gagConfig = {
     PLACE_ALL_EVENT_STAFF = true,
     -- General:
     AUTO_UPDATE_RESTART = true,
+    FOCUS_KITSUNE_NPC = true,
     REDEEM_CODES = {},
     EXTRA_PET_SLOTS = 8,
     EXTRA_EGG_SLOTS = 8,
