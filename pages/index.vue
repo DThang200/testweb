@@ -1370,13 +1370,6 @@ end)
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
-          spawn(function()
-              while wait() do
-                local old = tick()
-                repeat wait() until tick() - old >= 7200
-                game.Players.LocalPlayer:Kick("kick sau 2h")
-              end
-          end)
 script_key="NYgqcTmeaiEtDNGBOyOPTlKRtVydjxzB";
 setfpscap(3)
 
@@ -1388,7 +1381,7 @@ getgenv().gagConfig = {
     MAX_EVENT_RESTOCK_SHECKLES = 64000000,
     PLACE_ALL_EVENT_STAFF = true,
     -- General:
-    AUTO_UPDATE_RESTART = false,
+    AUTO_UPDATE_RESTART = true,
     FOCUS_KITSUNE_NPC = true,
     REDEEM_CODES = {},
     EXTRA_PET_SLOTS = 8,
