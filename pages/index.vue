@@ -1402,7 +1402,7 @@ getgenv().gagConfig = {
     BUY_EGGS = { "Bug Egg", "Bee Egg", "Paradise Egg", "Mythical Egg", "Rare Summer Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
     PLANT_EGGS = { "Dinosaur Egg", "Zen Egg","Rare Summer Egg", "Primal Egg", "Anti Bee Egg", "Night Egg", "Bug Egg", "Paradise Egg", "Mythical Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
 
-    BUY_SEED_SHOP = { "Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Hinomai","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Coconut"] = 50,["Apple"] = 50,["Cactus"] = 50,["Bamboo"] = 50,["Daffodil"] = 50, ["Tomato"] = 50, ["Orange Tulip"] = 50, ["Blueberry"] = 50, ["Strawberry"] = 50, ["Carrot"] = 50 },
+    BUY_SEED_SHOP = { "Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Hinomai","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 50,["Coconut"] = 50,["Apple"] = 50,["Cactus"] = 50,["Bamboo"] = 50,["Daffodil"] = 50, ["Tomato"] = 50, ["Orange Tulip"] = 50, ["Blueberry"] = 50, ["Strawberry"] = 50, ["Carrot"] = 50 },
     KEEP_SEEDS = {},
     KEEP_SEEDS_AFTER_MAX_PLANTS = { "Beanstalk", "Ember Lily", "Sugar Apple", "Burning Bud", "Giant Pinecone", "Grape", "Loquat", "Mushroom", "Pepper", "Cacao", "Feijoa", "Pitcher Plant", "Grand Volcania", "Sunflower", "Mango" },
 
@@ -1431,6 +1431,222 @@ getgenv().gagConfig = {
     SHOW_WEBHOOK_JOBID = true,
 }
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff932327c20f197e426686.lua"))()`
+          break;
+          case 'gag-bone2' :
+          script = `getgenv().ConfigsKaitun = {
+            ["Block Pet Gift"] = true,
+
+            ["Low Cpu"] = true,
+            ["Auto Rejoin"] = true,
+
+            ["Rejoin When Update"] = false,
+            ["Limit Tree"] = {
+              ["Limit"] = 300,
+              ["Destroy Untill"] = 280,
+
+              ["Safe Tree"] = {
+                "Moon Blossom",
+                "Fossilight",
+              }
+            },
+
+            Seed = {
+              Buy = {
+                Mode = "Auto", -- Custom , Auto
+              Custom = {
+                "Carrot",
+                "Bamboo",
+                "Pumpkin",
+                "Daffodil",
+                "Orange Tulip",
+                "Watermelon",
+                "Mushroom",
+                "Avocado",
+                "Feijoa",
+                "Cauliflower",
+                "Loquat",
+                "Green Apple",
+                "Nightshade",
+                "Firefly Fern",
+                "Soft Sunshine",
+                "Zen Rocks",
+                "Hinomai",
+                "Beanstalk",
+                "Ember Lily",
+                "Sunflower",
+                "Sugar Apple",
+                "Burning Bud",
+                "Giant Pinecone",
+                "Spiked Mango",
+              }
+            },
+            Place = {
+              Mode = "Lock", -- Select , Lock
+            Select = {
+              "Carrot"
+            },
+            Lock = {
+              "Maple Apple",
+              "Sunflower",
+              "Dragon Pepper",
+              "Elephant Ears",
+              "Moon Melon",
+              "Easter Egg",
+              "Moon Mango",
+              "Bone Blossom",
+              "Fossilight",
+            }
+          }
+      },
+
+      ["Seed Pack"] = {
+        Locked = {
+
+        }
+      },
+
+          Events = {
+            ["Zen Event"] = {
+              ["Restocking"] = { -- Minimumthing to restock
+              Max_Restocks_Price = 50_000_000,
+              Minimum_Money = 10_000_000,
+              Minimum_Chi = 200
+            },
+            ["Doing"] = {
+              Minimum_Money = 30_000_000, -- minimum money to start play this event
+            First_Upgrade_Tree = 4,
+            Maximum_Chi = 250,
+          }
+    },
+      ["Traveling Shop"] = {
+        "Bee Egg",
+      },
+          Craft = {
+            "Ancient Seed Pack",
+            "Anti Bee Egg",
+            "Primal Egg",
+          },
+          Shop = {
+            "Zen Egg",
+            "Zen Seed Pack",
+            "Spiked Mango",
+            "Pet Shard Tranquil",
+            "Pet Shard Corrupted",
+            "Koi",
+            "Soft Sunshine",
+            "Sakura Bush",
+            "Raiju",
+          },
+          Start_Do_Honey = 2_000_000 -- start trade fruit for honey at money
+    },
+
+      Gear = {
+        Buy = {
+          "Master Sprinkler",
+          "Godly Sprinkler",
+          "Advanced Sprinkler",
+          "Basic Sprinkler",
+          "Lightning Rod",
+          "Level Up Lollipop",
+          "Medium Treat",
+          "Medium Toy",
+        },
+        Lock = {
+          "Master Sprinkler",
+          "Godly Sprinkler",
+          "Advanced Sprinkler",
+          "Basic Sprinkler",
+          "Lightning Rod",
+        },
+      },
+
+          Eggs = {
+            Place = {
+              "Zen Egg",
+              "Primal Egg",
+              "Dinosaur Egg",
+              "Oasis Egg",
+              "Anti Bee Egg",
+              "Night Egg",
+              "Bug Egg",
+              "Paradise Egg",
+              "Bee Egg",
+              "Rare Summer Egg",
+              "Mythical Egg",
+              "Common Egg",
+            },
+            Buy = {
+              "Bee Egg",
+              "Oasis Egg",
+              "Paradise Egg",
+              "Anti Bee Egg",
+              "Night Egg",
+              "Rare Summer Egg",
+              "Bug Egg",
+              "Mythical Egg",
+              "Common Egg",
+            }
+          },
+
+          Pets = {
+            ["Start Delete Pet At"] = 40,
+            ["Upgrade Slot"] = {
+              ["Pet"] = {
+                ["Starfish"] = { 5, 75, 2 },
+                ["Capybara"] = { 5, 100, 1 },
+              },
+              ["Limit Upgrade"] = 8,
+              ["Equip When Done"] = {
+                ["Seal"] = { 1, 70, 1 }, -- 1 mean equip only 1 pet , 70 mean equip only level pet lower than 70 the one on the last mean first priority will ues first if possible
+                  ["Starfish"] = { 1, 70 },
+              ["Tanchozuru"] = { 1, 70 },
+              ["Kappa"] = { 1, 70 },
+              ["Dilophosaurus"] = { 1, 70 },
+            },
+          },
+          Locked_Pet_Age = 60, -- pet that age > 60 will lock
+      Locked = {"Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
+          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
+           "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
+            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune", "Corrupted Kitsune", "Kodama", "Corrupted Kodama"
+        ["Starfish"] = 10,
+      },
+          LockPet_Weight = 7, -- if Weight >= 10 they will locked,
+          Instant_Sell = {
+            "Shiba Inu",
+          }
+    },
+
+      Webhook = {
+        UrlPet = "xxx",
+        UrlSeed = "xxx",
+        PcName = "xxx",
+
+        Noti = {
+          Seeds = {
+            "Sunflower",
+            "Dragon Pepper",
+            "Elephant Ears",
+          },
+          SeedPack = {
+            "Idk"
+          },
+          Pets = {
+            "Disco Bee",
+            "Butterfly",
+            "Mimic Octopus",
+            "Queen Bee",
+            "Dragonfly",
+            "Raccoon",
+            "Fennec Fox",
+          },
+          Pet_Weight_Noti = true,
+        }
+      },
+    }
+    License = "sLvWZ0WO0W6OAnGysjVmLtTws1PGYBPP"
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()`
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
