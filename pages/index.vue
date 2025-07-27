@@ -1388,7 +1388,7 @@ getgenv().gagConfig = {
     MAX_EVENT_RESTOCK_SHECKLES = 64000000,
     PLACE_ALL_EVENT_STAFF = true,
     -- General:
-    AUTO_UPDATE_RESTART = true,
+    AUTO_UPDATE_RESTART = false,
     FOCUS_KITSUNE_NPC = true,
     REDEEM_CODES = {},
     EXTRA_PET_SLOTS = 8,
