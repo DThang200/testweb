@@ -1403,7 +1403,7 @@ getgenv().gagConfig = {
     BUY_EGGS = { "Bug Egg", "Bee Egg", "Paradise Egg", "Mythical Egg", "Rare Summer Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
     PLANT_EGGS = { "Dinosaur Egg", "Zen Egg","Rare Summer Egg", "Primal Egg", "Anti Bee Egg", "Night Egg", "Bug Egg", "Paradise Egg", "Mythical Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
 
-    BUY_SEED_SHOP = { "Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Hinomai","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 50,["Coconut"] = 50,["Apple"] = 50,["Cactus"] = 50,["Bamboo"] = 50,["Daffodil"] = 50, ["Tomato"] = 50, ["Orange Tulip"] = 50, ["Blueberry"] = 50, ["Strawberry"] = 50, ["Carrot"] = 50 },
+    BUY_SEED_SHOP = { "Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Hinomai","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 10,["Coconut"] = 10,["Apple"] = 10,["Cactus"] = 10,["Bamboo"] = 10,["Daffodil"] = 10, ["Tomato"] = 10, ["Orange Tulip"] = 10, ["Blueberry"] = 10, ["Strawberry"] = 10, ["Carrot"] = 10 },
     KEEP_SEEDS = {},
     KEEP_SEEDS_AFTER_MAX_PLANTS = { "Beanstalk", "Ember Lily", "Sugar Apple", "Burning Bud", "Giant Pinecone", "Grape", "Loquat", "Mushroom", "Pepper", "Cacao", "Feijoa", "Pitcher Plant", "Grand Volcania", "Sunflower", "Mango" },
 
