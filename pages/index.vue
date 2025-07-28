@@ -1391,19 +1391,19 @@ getgenv().gagConfig = {
 
     MAX_PLANTS = 150,
     DESTROY_UNTIL_MIN_PLANTS = 130,
-    DELETE_PLANTS_AFTER_MAX = { "Blueberry", "Coconut","Pineapple","Cactus","Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop" },
+    DELETE_PLANTS_AFTER_MAX = { "Blueberry", "Coconut","Pineapple","Cactus","Rose", "Orange Tulip", "Stonebite", "Carrot", "Strawberry", "Tomato", "Daffodil", "Cauliflower", "Raspberry", "Foxglove", "Peace Lily", "Corn", "Paradise Petal", "Horsetail", "Watermelon", "Pumpkin", "Avocado", "Green Apple", "Apple", "Banana", "Lilac", "Aloe Vera", "Bamboo", "Rafflesia", "Horned Dinoshroom", "Boneboo", "Lingonberry", "Red Lollipop", "Nightshade", "Crocus", "Lavender", "Manuka Flower", "Wild Carrot", "Blue Lollipop", "Cacao","Pepper", "Mushroom", "Grape"},
 
     BUY_EGGS = { "Bug Egg", "Bee Egg", "Paradise Egg", "Mythical Egg", "Rare Summer Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
     PLANT_EGGS = { "Dinosaur Egg", "Zen Egg","Rare Summer Egg", "Primal Egg", "Anti Bee Egg", "Night Egg", "Bug Egg", "Paradise Egg", "Mythical Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
 
-    BUY_SEED_SHOP = { "Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Hinomai","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 10,["Coconut"] = 10,["Apple"] = 10,["Cactus"] = 10,["Bamboo"] = 10,["Daffodil"] = 10, ["Tomato"] = 10, ["Orange Tulip"] = 10, ["Blueberry"] = 10, ["Strawberry"] = 10, ["Carrot"] = 10 },
+    BUY_SEED_SHOP = { "Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Hinomai","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 10,["Coconut"] = 10,["Apple"] = 10,["Cactus"] = 10,["Bamboo"] = 10,["Daffodil"] = 10, ["Tomato"] = 10, ["Orange Tulip"] = 10, ["Blueberry"] = 10, ["Strawberry"] = 10, ["Carrot"] = 10 },
     KEEP_SEEDS = {},
-    KEEP_SEEDS_AFTER_MAX_PLANTS = { "Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Beanstalk", "Ember Lily", "Sugar Apple", "Burning Bud", "Giant Pinecone", "Grape", "Mushroom", "Pepper", "Cacao", "Feijoa", "Pitcher Plant", "Grand Volcania", "Sunflower"},
+    KEEP_SEEDS_AFTER_MAX_PLANTS = { "Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Beanstalk", "Ember Lily", "Sugar Apple", "Burning Bud", "Giant Pinecone", "Grape", "Mushroom", "Pepper", "Cacao", "Feijoa", "Pitcher Plant", "Grand Volcania", "Sunflower"},
 
     FAVOURITE_FRUIT_MUTATIONS = {},  -- Stop Autosell
     SKIP_HARVEST_MUTATIONS = {},  -- Stop Harvest
 
-    KEEP_PETS = { "Starfish","Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
+    KEEP_PETS = { ["Starfish"]= 4,"Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
           "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
            "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune", "Corrupted Kitsune", "Kodama", "Corrupted Kodama" },
