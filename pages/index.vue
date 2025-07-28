@@ -1423,7 +1423,7 @@ getgenv().gagConfig = {
     SHOW_WEBHOOK_USERNAME = true,
     SHOW_WEBHOOK_JOBID = true,
 }
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff932327c20f197e426686.lua"))()`
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cce06c6250967a6cf79d49aa08c7c904.lua"))()`
           break;
           case 'gag-bone1' :
           script = `getgenv().ConfigsKaitun = {
