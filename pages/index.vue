@@ -1366,7 +1366,7 @@ end)
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
-          case 'gag-bone' :
+          case 'gag-bone1' :
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1425,7 +1425,7 @@ getgenv().gagConfig = {
 }
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cce06c6250967a6cf79d49aa08c7c904.lua"))()`
           break;
-          case 'gag-bone1' :
+          case 'gag-bone' :
           script = `getgenv().ConfigsKaitun = {
             ["Block Pet Gift"] = true,
 
