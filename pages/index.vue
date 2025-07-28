@@ -1366,7 +1366,7 @@ end)
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
-          case 'gag-bone' :
+          case 'gag-bone1' :
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1425,22 +1425,19 @@ getgenv().gagConfig = {
 }
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff932327c20f197e426686.lua"))()`
           break;
-          case 'gag-bone2' :
+          case 'gag-bone' :
           script = `getgenv().ConfigsKaitun = {
             ["Block Pet Gift"] = true,
 
             ["Low Cpu"] = true,
             ["Auto Rejoin"] = true,
 
-            ["Rejoin When Update"] = false,
+            ["Rejoin When Update"] = true,
             ["Limit Tree"] = {
               ["Limit"] = 300,
               ["Destroy Untill"] = 280,
 
-              ["Safe Tree"] = {
-                "Moon Blossom",
-                "Fossilight",
-              }
+              ["Safe Tree"] = {"Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk"}
             },
 
             Seed = {
@@ -1501,7 +1498,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff93
           Events = {
             ["Zen Event"] = {
               ["Restocking"] = { -- Minimumthing to restock
-              Max_Restocks_Price = 50_000_000,
+              Max_Restocks_Price = 100_000_000,
               Minimum_Money = 10_000_000,
               Minimum_Chi = 200
             },
@@ -1530,7 +1527,6 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff93
             "Sakura Bush",
             "Raiju",
           },
-          Start_Do_Honey = 2_000_000 -- start trade fruit for honey at money
     },
 
       Gear = {
@@ -1545,11 +1541,6 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff93
           "Medium Toy",
         },
         Lock = {
-          "Master Sprinkler",
-          "Godly Sprinkler",
-          "Advanced Sprinkler",
-          "Basic Sprinkler",
-          "Lightning Rod",
         },
       },
 
@@ -1595,15 +1586,16 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff93
               ["Tanchozuru"] = { 1, 70 },
               ["Kappa"] = { 1, 70 },
               ["Dilophosaurus"] = { 1, 70 },
+              ["Kodama"]= { 1, 100 ,1},
+              ["Corrupted Kodama"]= { 1, 100 ,1}
             },
           },
           Locked_Pet_Age = 60, -- pet that age > 60 will lock
-      Locked = {"Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
-          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Giant Ant", "Red Fox",
-           "Snail", "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
+      Locked = { ["Starfish"]= 2,"Tanchozuru","Koi","Ostrich","Seal", "Peacock", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
+          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox",
+           "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex", "Spinosaurus","Kappa", "Kitsune", "Corrupted Kitsune", "Kodama", "Corrupted Kodama"
-        ["Starfish"] = 10,
-      },
+            },
           LockPet_Weight = 7, -- if Weight >= 10 they will locked,
           Instant_Sell = {
             "Shiba Inu",
@@ -1640,6 +1632,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6b71bc8fa2ff93
     License = "sLvWZ0WO0W6OAnGysjVmLtTws1PGYBPP"
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()`
+          break;
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
