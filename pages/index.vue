@@ -1366,7 +1366,7 @@ end)
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
-          case 'gag-bone' :
+          case 'gag-bone1' :
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1425,7 +1425,7 @@ getgenv().gagConfig = {
 }
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cce06c6250967a6cf79d49aa08c7c904.lua"))()`
           break;
-          case 'gag-bone1' :
+          case 'gag-bone' :
           script = `getgenv().ConfigsKaitun = {
             ["Block Pet Gift"] = true,
 
@@ -1522,10 +1522,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cce06c6250967a
             "Spiked Mango",
             "Pet Shard Tranquil",
             "Pet Shard Corrupted",
-            "Koi",
             "Soft Sunshine",
             "Sakura Bush",
-            "Raiju",
           },
     },
 
@@ -1535,10 +1533,6 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cce06c6250967a
           "Godly Sprinkler",
           "Advanced Sprinkler",
           "Basic Sprinkler",
-          "Lightning Rod",
-          "Level Up Lollipop",
-          "Medium Treat",
-          "Medium Toy",
         },
         Lock = {
         },
@@ -1603,7 +1597,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cce06c6250967a
     },
 
       Webhook = {
-        UrlPet = "xxx",
+        UrlPet = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
         UrlSeed = "xxx",
         PcName = "xxx",
 
@@ -1616,15 +1610,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/cce06c6250967a
           SeedPack = {
             "Idk"
           },
-          Pets = {
-            "Disco Bee",
-            "Butterfly",
-            "Mimic Octopus",
-            "Queen Bee",
-            "Dragonfly",
-            "Raccoon",
-            "Fennec Fox",
-          },
+          Pets = {"Kitsune", "Spinosaurus", "Corrupted Kitsune"},
           Pet_Weight_Noti = true,
         }
       },
