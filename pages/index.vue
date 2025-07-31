@@ -1371,6 +1371,14 @@ end)
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
+          spawn(function()
+                while wait() do
+                  local old = tick()
+                  repeat wait() until tick() - old >= 7200
+                  game.Players.LocalPlayer:Kick("kick sau 2h")
+                end
+          end)
+          setfpscap(2)
 script_key="NYgqcTmeaiEtDNGBOyOPTlKRtVydjxzB";
 setfpscap(3)
 
