@@ -36,6 +36,26 @@
 
       </textarea>
     </div>
+    <div style="display: flex;gap: 10px;flex-shrink: 1">
+      <table>
+        <thead>
+        <tr>
+          <th>User name</th>
+          <th>Game</th>
+          <th>Device</th>
+          <th>Server</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="acc in needCheck">
+          <td>{{acc.username}}</td>
+          <td>GAG</td>
+          <td>{{deviceDown[acc.device_id] > 30 ? "check Device" : ""}}</td>
+          <td>{{acc.private_server_link}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -68,6 +88,8 @@ export default {
       readServerVip: "",
       serverVipOutput: "",
       renderSvvfinish: false,
+      needCheck: [],
+      deviceDown: {}
     };
   },
   beforeDestroy() {
@@ -88,9 +110,20 @@ export default {
     ]),
     async getDataByDevice() {
       const listAccount = []
+      const needCheckAccount = []
+      const needCheckDevice = {}
       this.notHasServerCount = 0
       console.log('this.roblox_data_account',this.roblox_data_account)
+      const trackingTime = Math.round((new Date().getTime() - ((this.time_off) * 3600  * 1000)) / 1000)
       this.roblox_data_account.accounts.forEach(account => {
+        if (trackingTime > account?.last_updated){
+          needCheckAccount.push({username : account.username,device_id: account.device_id,private_server_link : account.private_server_link})
+          if (!this.deviceDown[account.device_id]){
+            this.deviceDown[account.device_id] = 1
+          } else {
+            this.deviceDown[account.device_id] += 1
+          }
+        }
         if (account.device_id && this.listDevice.includes(account.device_id) && account.enabled === true){
           listAccount.push({username : account.username,device_id: account.device_id,private_server_link : account.private_server_link})
           if (account.private_server_link){
@@ -99,15 +132,22 @@ export default {
             this.listAccountNotHasServer.push(account.username)
             this.notHasServerCount +=1
           }
-          listAccount.sort((a, b) => {
-            const aHasLink = !!a.private_server_link;
-            const bHasLink = !!b.private_server_link;
-
-            return aHasLink - bHasLink;
-          });
-          this.listAccount = listAccount
         }
       })
+
+      listAccount.sort((a, b) => {
+        const aHasLink = !!a.private_server_link;
+        const bHasLink = !!b.private_server_link;
+
+        return aHasLink - bHasLink;
+      });
+      this.listAccount = listAccount
+      needCheckAccount.sort((a, b) => {
+        const aDevice = !!a.device_id;
+        const bDevice = !!b.device_id;
+        return aDevice - bDevice;
+      });
+      this.needCheck = needCheckAccount
     },
     async insertServer() {
       const inputListServer = [...new Set(this.inputServer.split('\n'))]
