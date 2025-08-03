@@ -111,7 +111,6 @@ export default {
     async getDataByDevice() {
       const listAccount = []
       const needCheckAccount = []
-      const needCheckDevice = {}
       this.notHasServerCount = 0
       console.log('this.roblox_data_account',this.roblox_data_account)
       const trackingTime = Math.round((new Date().getTime() - ((this.time_off) * 3600  * 1000)) / 1000)
@@ -134,7 +133,6 @@ export default {
           }
         }
       })
-
       listAccount.sort((a, b) => {
         const aHasLink = !!a.private_server_link;
         const bHasLink = !!b.private_server_link;
@@ -148,6 +146,7 @@ export default {
         return aDevice - bDevice;
       });
       this.needCheck = needCheckAccount
+      console.log("needCheckAccount",needCheckAccount)
     },
     async insertServer() {
       const inputListServer = [...new Set(this.inputServer.split('\n'))]
