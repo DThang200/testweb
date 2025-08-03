@@ -89,7 +89,8 @@ export default {
       serverVipOutput: "",
       renderSvvfinish: false,
       needCheck: [],
-      deviceDown: {}
+      deviceDown: {},
+      time_off : 3
     };
   },
   beforeDestroy() {
@@ -114,6 +115,7 @@ export default {
       this.notHasServerCount = 0
       console.log('this.roblox_data_account',this.roblox_data_account)
       const trackingTime = Math.round((new Date().getTime() - ((this.time_off) * 3600  * 1000)) / 1000)
+      console.log('trackingTime',trackingTime)
       this.roblox_data_account.accounts.forEach(account => {
         if (trackingTime > account?.last_updated){
           needCheckAccount.push({username : account.username,device_id: account.device_id,private_server_link : account.private_server_link})
