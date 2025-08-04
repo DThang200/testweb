@@ -36,6 +36,9 @@
 
       </textarea>
     </div>
+    <div>
+      CHECK ACTIVE
+    </div>
     <div style="display: flex;gap: 10px;flex-shrink: 1">
       <table>
         <thead>
@@ -43,7 +46,7 @@
           <th>User name</th>
           <th>Game</th>
           <th>Device</th>
-          <th>Server</th>
+          <th>Server <button @click="copyLinkCheck">Copy</button></th>
         </tr>
         </thead>
         <tbody>
@@ -55,6 +58,15 @@
         </tr>
         </tbody>
       </table>
+    </div>
+    <div style="display: flex;gap: 10px;flex-shrink: 1">
+      <textarea v-model="readServerVip" style="width: 500px;height: 300px">
+
+      </textarea>
+      <button @click="renderServer">Render</button>
+      <textarea v-if="serverVipOutput" v-model="serverVipOutput" style="width: 500px;height: 300px">
+
+      </textarea>
     </div>
   </div>
 </template>
@@ -90,7 +102,8 @@ export default {
       renderSvvfinish: false,
       needCheck: [],
       deviceDown: {},
-      time_off : 3
+      time_off : 3,
+      inputRemoveLink : "",
     };
   },
   beforeDestroy() {
@@ -185,6 +198,16 @@ export default {
           this.serverVipOutput += "https://www.roblox.com/games/126884695634066/Grow-a-Garden?" + mss.content + '\n'
         })
       }
+    },
+    copyLinkCheck(){
+      let result = ""
+      this.needCheck.forEach(acc => {
+        if (acc.private_server_link){
+          result += acc.private_server_link + "\n"
+        }
+      })
+      console.log('result',result)
+      navigator.clipboard.writeText(result);
     }
   }
 };

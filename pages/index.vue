@@ -1411,10 +1411,10 @@ getgenv().gagConfig = {
           "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox",
            "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kappa", "Kitsune", "Corrupted Kitsune","French Fry Ferret", "Mochi Mouse",["Kodama"] = 5, "Corrupted Kodama"},
-    EQUIP_PETS = {["Seal"] = 1,["Starfish"] = 2,["Kodama"] = 5,["Tanchozuru"]= 2,["Koi"] = 2,"Chicken"},
+    EQUIP_PETS = {["Seal"] = 4,["Starfish"] = 4,["Koi"] = 2,"Chicken","Capybara"},
     KEEP_PETS_WEIGHT = { ["Sea Turtle"] = 5,["Ostrich"] = 5,["Stegosaurus"] = 5 },
     KEEP_PETS_AGE = { ["Starfish"] = 75 },
-    REMOVE_PET_MAX_UPGRADE = { "Starfish" },
+    REMOVE_PET_MAX_UPGRADE = { "Starfish","Capybara" },
     BUY_GEAR_SHOP = { "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler", "Basic Sprinkler" },
     USE_SPRINKLER = { "Basic Sprinkler", "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler" },
 
