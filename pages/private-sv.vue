@@ -68,6 +68,12 @@
 
       </textarea>
     </div>
+    <div style="display: flex;gap: 10px;flex-shrink: 1">
+      <textarea v-model="inputRemoveLink" style="width: 500px;height: 300px">
+
+      </textarea>
+      <button @click="removeServerLinkSelect">Remove link</button>
+    </div>
   </div>
 </template>
 
@@ -187,6 +193,21 @@ export default {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
         });
+      }
+    },
+    async removeServerLinkSelect() {
+      const inputRemoveLink = [...new Set(this.inputRemoveLink.split('\n'))]
+      for (let i = 0; i < this.listAccount.length; i++) {
+        const acc = this.listAccount[i]
+        if (acc?.private_server_link && inputRemoveLink.includes(acc.private_server_link)){
+          await this.$axios.$put(`https://api.robloxmanager.com/v1/accounts/${acc.username}`, {
+            private_server_link: ""
+          }, {
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+        }
       }
     },
     renderServer(){
