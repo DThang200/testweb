@@ -1150,7 +1150,7 @@ getgenv().Configs = {
         ["Focus unit"] = {"Uryu", "Goku"}
     },
     ["Codes"] = {"AFIRSTTIME3001", "FREENIMBUSMOUNT",
-                   "UPD2", "NEXTLIKEGOAL500K", "THANKYOUFORLIKES123", "2MGROUPMEMBERS", "THANKYOUFOR500MVISITS"},
+                   "UPD2", "NEXTLIKEGOAL500K", "THANKYOUFORLIKES123", "2MGROUPMEMBERS", "THANKYOUFOR500MVISITS","SORRY4DELAYZ","NEWMODENEXTUPDATE","THANKYOUFOR500KLIKES","UPDNEXTWEEKEND"},
     ["Black Screen"] = true,
     ["Webhook"] = {
         ["Enabled"] = true,
