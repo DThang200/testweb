@@ -113,7 +113,7 @@ export default {
         {code : 'awp-gag',label : 'TTD-PvP',game_id: '13775256536',total_account: 65},
         {code : 'awp-bgsi',label : 'TTD-PvP',game_id: '13775256536',total_account: 65},
         {code : 'awp-bf-2650',label : 'TTD-PvP',game_id: '13775256536',total_account: 35},
-        {code : 'astd',label : 'astd',game_id: '17687504411',total_account: 35},
+        {code : 'astd',label : 'astd',game_id: '17687504411',total_account: 30},
         {code : 'farm-gag',label : 'farm-gag',game_id: '126884695634066',total_account: 30},
         {code : 'gag-bone',label : 'GAG-Bone',game_id: '126884695634066',total_account: 45},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
