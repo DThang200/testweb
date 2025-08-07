@@ -177,7 +177,7 @@ export default {
     },
     async insertServer() {
       const inputListServer = [...new Set(this.inputServer.split('\n'))]
-      const listUnUse = inputListServer.filter(item => this.linkCount[item] < 2);
+      const listUnUse = inputListServer.filter(item => !this.linkCount[item] || this.linkCount[item] < 2);
       for (let i = 0; i < this.listAccountNotHasServer.length; i++) {
         const username = this.listAccountNotHasServer[i]
         await this.$axios.$put(`https://api.robloxmanager.com/v1/accounts/${username}`, {
