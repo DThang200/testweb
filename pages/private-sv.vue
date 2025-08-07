@@ -108,6 +108,7 @@ export default {
       renderSvvfinish: false,
       needCheck: [],
       deviceDown: {},
+      linkCount: {},
       time_off : 3,
       inputRemoveLink : "",
     };
@@ -143,11 +144,16 @@ export default {
           } else {
             this.deviceDown[account.device_id] += 1
           }
+          if (this.linkCount[account.private_server_link]){
+            this.linkCount[account.private_server_link] += 1
+          } else {
+            this.linkCount[account.private_server_link] =1
+          }
         }
         if (account.device_id && this.listDevice.includes(account.device_id) && account.enabled === true){
           listAccount.push({username : account.username,device_id: account.device_id,private_server_link : account.private_server_link})
           if (account.private_server_link){
-            this.listServerUsed.push(account.private_server_link)
+            // this.listServerUsed.push(account.private_server_link)
           } else {
             this.listAccountNotHasServer.push(account.username)
             this.notHasServerCount +=1
@@ -171,7 +177,7 @@ export default {
     },
     async insertServer() {
       const inputListServer = [...new Set(this.inputServer.split('\n'))]
-      const listUnUse = inputListServer.filter(item => !this.listServerUsed.includes(item));
+      const listUnUse = inputListServer.filter(item => this.linkCount[item] < 2);
       for (let i = 0; i < this.listAccountNotHasServer.length; i++) {
         const username = this.listAccountNotHasServer[i]
         await this.$axios.$put(`https://api.robloxmanager.com/v1/accounts/${username}`, {
