@@ -1317,7 +1317,7 @@ end)
         ["Destroy Untill"] = 50
     },
     ["Dino Quest Farm"] = true,
-    ["Url"] = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+    ["Url"] = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
     ["Boost FPS"] = true,
     ["Black Screen"] = true,
     ["Zen Event"] = {
@@ -1412,18 +1412,18 @@ getgenv().gagConfig = {
            "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kappa", "Kitsune", "Corrupted Kitsune","French Fry Ferret", "Mochi Mouse",["Kodama"] = 5, "Corrupted Kodama"},
     EQUIP_PETS = {["Seal"] = 4,["Starfish"] = 4,["Koi"] = 2,"Chicken","Capybara"},
-    KEEP_PETS_WEIGHT = { ["Sea Turtle"] = 5,["Ostrich"] = 5,["Stegosaurus"] = 5 },
-    KEEP_PETS_AGE = { ["Starfish"] = 75 },
-    REMOVE_PET_MAX_UPGRADE = {},
+    KEEP_PETS_WEIGHT = { ["Sea Turtle"] = 5,["Ostrich"] = 5,["Stegosaurus"] = 5,["Starfish"]= 18 },
+    KEEP_PETS_AGE = {},
+    REMOVE_PET_MAX_UPGRADE = {"Starfish"},
     BUY_GEAR_SHOP = { "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler", "Basic Sprinkler" },
     USE_SPRINKLER = { "Basic Sprinkler", "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler" },
 
-    PET_WEBHOOK_URL = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
-    SEED_WEBHOOK_URL = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+    PET_WEBHOOK_URL = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
+    SEED_WEBHOOK_URL = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
     NOTIFY_PETS = { "Kitsune", "Spinosaurus", "Corrupted Kitsune","French Fry Ferret"},
     NOTIFY_PETS_WEIGHT = 10,
     DISCORD_ID = "663236418499379240",
-    WEBHOOK_NOTE = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+    WEBHOOK_NOTE = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
     SHOW_WEBHOOK_USERNAME = true,
     SHOW_WEBHOOK_JOBID = true,
 }
@@ -1604,7 +1604,7 @@ until success`
     },
 
       Webhook = {
-        UrlPet = "https://discord.com/api/webhooks/1396445774220366046/UNXkEUjmoFgyTaC5sKcD6Qf6wYVfcBJckkRJz1fwzfRbOGGkwfzDD0lVbSDYMJNDYr0u",
+        UrlPet = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
         UrlSeed = "xxx",
         PcName = "xxx",
 
