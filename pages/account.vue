@@ -200,7 +200,7 @@
       </div>
       <div class="field-action">
         <div style="font-size: 24px;font-weight: bold">
-          Find By user ({{}})
+          Find By user ({{findUserResultCookieCount}})
           <button @click="copyContent(findUserResultCookie)">Copy</button>
         </div>
         <textarea  style="width: 400px;height: 300px" v-model="findUser" @change="renderFindUser">
