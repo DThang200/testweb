@@ -200,7 +200,7 @@
       </div>
       <div class="field-action">
         <div style="font-size: 24px;font-weight: bold">
-          Find By user
+          Find By user ({{}})
           <button @click="copyContent(findUserResultCookie)">Copy</button>
         </div>
         <textarea  style="width: 400px;height: 300px" v-model="findUser" @change="renderFindUser">
@@ -213,7 +213,7 @@
 
       </textarea>
         <div>
-          Cant find
+          Cant find ({{findUserResultInvalidCount || 0}})
           <textarea  style="width: 400px;height: 300px" v-model="findUserResultInvalid">
 
       </textarea>
@@ -284,7 +284,9 @@ export default {
       findUser: '',
       findUserResultUPC: '',
       findUserResultCookie: '',
+      findUserResultCookieCount: '',
       findUserResultInvalid: '',
+      findUserResultInvalidCount: 0,
       user_yummy: '',
       user_only_yummy: '',
       listAccSelected: [],
@@ -639,6 +641,8 @@ export default {
       // })
       if (listUserFind.length > 0) {
         this.findUserResultInvalid = ""
+        this.findUserResultInvalidCount = 0
+        this.findUserResultCookieCount = 0
         this.findUserResultCookie = ""
         this.findUserResultUPC = ""
         let temp = []
@@ -654,6 +658,7 @@ export default {
             const acc = temp[i]
             if (user === acc?.username){
               cookie = acc?.cookie
+              this.findUserResultCookieCount += 1
               this.findUserResultCookie += cookie + '\n'
               this.findUserResultUPC += acc?.username + ":" + acc?.password + ":" + cookie + '\n'
               break;
@@ -661,6 +666,7 @@ export default {
           }
           if (!cookie){
             this.findUserResultInvalid += user + '\n'
+            this.findUserResultInvalidCount += 1
           }
         })
       }
