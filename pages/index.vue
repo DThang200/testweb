@@ -243,6 +243,7 @@ export default {
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',private_server : false},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
         {code : 'astd',label : 'ASTD',game_id: '17687504411',private_server : false, shoukoTrack :true},
+        {code : '99night',label : '99 Night',game_id: '79546208627805',private_server : false, shoukoTrack :true},
         {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
         {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
@@ -1164,6 +1165,10 @@ getgenv().Configs = {
 }
 script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
 loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/astdx.lua"))()`
+          break;
+        case '99night' :
+          script = `getgenv().Diamondchange = 1000
+loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/evRCn4hRbk3G.lua"))()`
           break;
 
 //         case 'astd' :
