@@ -1417,7 +1417,7 @@ getgenv().gagConfig = {
     FAVOURITE_FRUIT_MUTATIONS = {},  -- Stop Autosell
     SKIP_HARVEST_MUTATIONS = {},  -- Stop Harvest
     KEEP_PETS = { ["Starfish"]= 4,["Chicken"] = 5,["Tanchozuru"]= 2,"Koi","Seal", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
-          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox","Sunny-Side Chicken","Lobster Thermidor","Junkbot","Spaghetti Sloth"
+          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox","Sunny-Side Chicken","Lobster Thermidor","Junkbot","Spaghetti Sloth",
            "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kappa", "Kitsune", "Corrupted Kitsune","French Fry Ferret", "Mochi Mouse",["Kodama"] = 5, "Corrupted Kodama"},
     EQUIP_PETS = {["Sunny-Side Chicken"]= 4,"Koi","Seal",["Starfish"] = 4,"Chicken","Capybara"},
@@ -1429,7 +1429,7 @@ getgenv().gagConfig = {
 
     PET_WEBHOOK_URL = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
     SEED_WEBHOOK_URL = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
-    NOTIFY_PETS = { "Kitsune"},
+    NOTIFY_PETS = { "Lobster Thermidor","Kitsune"},
     NOTIFY_PETS_WEIGHT = 10,
     DISCORD_ID = "663236418499379240",
     WEBHOOK_NOTE = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
