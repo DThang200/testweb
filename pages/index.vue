@@ -1167,7 +1167,10 @@ script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
 loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/astdx.lua"))()`
           break;
         case '99night' :
-          script = `getgenv().Diamondchange = 1000
+          script = `
+          repeat wait() until game:IsLoaded()
+getgenv().Diamondchange = 1000
+setfpscap(15)
 loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/evRCn4hRbk3G.lua"))()`
           break;
 
