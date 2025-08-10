@@ -1407,7 +1407,11 @@ getgenv().gagConfig = {
     ADD_FRIEND = true,
     OPEN_ALL_SEED_PACK = true,
     MAX_PLANTS = 150,
+    PLACE_COSMETIC = {"Cooking Pot","Cooking Cauldron",Pancake Stack},
+    --event
     CLAIM_FOOD_CONNOISSEUR_REWARD = { "Culinarian Chest", "Gourmet Egg", "Sunny-Side Chicken"},
+    FORCE_COOK_MUTATION_ONLY = true,
+    --event
     DESTROY_UNTIL_MIN_PLANTS = 130,
     DELETE_PLANTS_AFTER_MAX = { "Carrot", "Strawberry", "Blueberry", "Tomato", "Apple", "Dragon Fruit","Mango","Dezen","Lucky Bamboo","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Zenflare", "Soft Sunshine"},
     LIMIT_PLANT_SEED = { ["Strawberry"] = 5, ["Blueberry"] = 5, ["Apple"] = 5, ["Tomato"] = 5, ["Corn"] = 5, ["Bamboo"] = 5, ["Coconut"] = 5, ["Pumpkin"] = 5, ["Watermelon"] = 5, ["Pepper"] = 5 },
