@@ -1168,10 +1168,14 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
           break;
         case '99night' :
           script = `
-          repeat wait() until game:IsLoaded()
-getgenv().Diamondchange = 1000
-setfpscap(15)
-loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/evRCn4hRbk3G.lua"))()`
+    repeat
+    getgenv().Diamondchange = 1000
+    setfpscap(15)
+    local success, err = pcall(function()
+        loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/evRCn4hRbk3G.lua"))()
+    end)
+    task.wait(20)
+    until success`
           break;
 
 //         case 'astd' :
