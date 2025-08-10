@@ -10,7 +10,8 @@
           <option value="astd">ASTD</option>
 <!--          <option value="gag">GAG</option>-->
           <option value="gag-bone">GAG-Bone</option>
-          <option value="99night">99night</option>
+          <option value="99night">99night
+          </option>
 <!--          <option value="bloxFruit">BloxFruit</option>-->
         </select>
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
