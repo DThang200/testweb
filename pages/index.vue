@@ -1416,11 +1416,11 @@ getgenv().gagConfig = {
     KEEP_SEEDS_AFTER_MAX_PLANTS = {"Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Carrot", "Strawberry", "Blueberry", "Tomato", "Apple"},
     FAVOURITE_FRUIT_MUTATIONS = {},  -- Stop Autosell
     SKIP_HARVEST_MUTATIONS = {},  -- Stop Harvest
-    KEEP_PETS = { ["Starfish"]= 4,["Chicken"] = 5,["Tanchozuru"]= 2,"Koi","Seal", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
+    KEEP_PETS = { ["Starfish"]= 4,["Chicken"] = 5,["Tanchozuru"]= 2,["Kappa"]= 2,"Koi","Seal", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
           "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox","Sunny-Side Chicken","Lobster Thermidor","Junkbot","Spaghetti Sloth",
            "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
-            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kappa", "Kitsune", "Corrupted Kitsune","French Fry Ferret", "Mochi Mouse",["Kodama"] = 5, "Corrupted Kodama"},
-    EQUIP_PETS = {["Sunny-Side Chicken"]= 4,"Koi","Seal",["Starfish"] = 4,"Chicken","Capybara"},
+            "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kitsune", "Corrupted Kitsune","French Fry Ferret"},
+    EQUIP_PETS = {["Spaghetti Sloth"]=3,["Kappa"]= 1,["Sunny-Side Chicken"]= 4,"Koi","Seal",["Starfish"] = 4,"Chicken","Capybara"},
     KEEP_PETS_WEIGHT = { ["Sea Turtle"] = 5,["Ostrich"] = 5,["Stegosaurus"] = 5},
     KEEP_PETS_AGE = {},
     REMOVE_PET_MAX_UPGRADE = {"Starfish"},
