@@ -1171,7 +1171,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     spawn(function()
         while wait() do
           local old = tick()
-          repeat wait() until tick() - old >= 7200
+          repeat wait() until tick() - old >= 1800
           game.Players.LocalPlayer:Kick("kick sau 2h")
         end
     end)
