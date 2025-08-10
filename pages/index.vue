@@ -1407,9 +1407,9 @@ getgenv().gagConfig = {
     ADD_FRIEND = true,
     OPEN_ALL_SEED_PACK = true,
     MAX_PLANTS = 150,
-    PLACE_COSMETIC = {"Cooking Pot","Cooking Cauldron",Pancake Stack},
+    PLACE_COSMETIC = {"Cooking Pot","Cooking Cauldron","Pancake Stack"},
     --event
-    CLAIM_FOOD_CONNOISSEUR_REWARD = { "Culinarian Chest", "Gourmet Egg", "Sunny-Side Chicken"},
+    CLAIM_FOOD_CONNOISSEUR_REWARD = { "Culinarian Chest", "Gourmet Egg", "Sunny-Side Chicken","Gorilla Chef","Cooking Cauldron"},
     FORCE_COOK_MUTATION_ONLY = true,
     --event
     DESTROY_UNTIL_MIN_PLANTS = 130,
@@ -1425,10 +1425,10 @@ getgenv().gagConfig = {
     FAVOURITE_FRUIT_MUTATIONS = {},  -- Stop Autosell
     SKIP_HARVEST_MUTATIONS = {},  -- Stop Harvest
     KEEP_PETS = { ["Starfish"]= 4,["Chicken"] = 5,["Tanchozuru"]= 2,["Kappa"]= 2,"Koi","Seal", "Capybara", "Mimic Octopus", "Meerkat",  "Triceratops", "Stegosaurus", "Pterodactyl",
-          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox","Sunny-Side Chicken","Lobster Thermidor","Junkbot","Spaghetti Sloth",
+          "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox","Sunny-Side Chicken","Lobster Thermidor","Junkbot","Spaghetti Sloth",["Gorilla Chef"]=4,
            "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kitsune", "Corrupted Kitsune","French Fry Ferret"},
-    EQUIP_PETS = {["Spaghetti Sloth"]=3,["Kappa"]= 1,["Sunny-Side Chicken"]= 4,"Koi","Seal",["Starfish"] = 4,"Chicken","Capybara"},
+    EQUIP_PETS = {["Starfish"] = 4,["Gorilla Chef"]=4,["Spaghetti Sloth"]=3,["Kappa"]= 1,["Sunny-Side Chicken"]= 4,"Koi","Seal","Chicken","Capybara"},
     KEEP_PETS_WEIGHT = { ["Sea Turtle"] = 5,["Ostrich"] = 5,["Stegosaurus"] = 5},
     KEEP_PETS_AGE = {},
     REMOVE_PET_MAX_UPGRADE = {"Starfish"},
