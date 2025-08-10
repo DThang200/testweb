@@ -1168,6 +1168,13 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
           break;
         case '99night' :
           script = `
+    spawn(function()
+        while wait() do
+          local old = tick()
+          repeat wait() until tick() - old >= 7200
+          game.Players.LocalPlayer:Kick("kick sau 2h")
+        end
+    end)
     repeat
     getgenv().Diamondchange = 1000
     setfpscap(15)
