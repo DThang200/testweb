@@ -1413,20 +1413,20 @@ getgenv().gagConfig = {
     EXTRA_EGG_SLOTS = 8,
     ADD_FRIEND = true,
     OPEN_ALL_SEED_PACK = true,
-    MAX_PLANTS = 200,
+    MAX_PLANTS = 120,
     PLACE_COSMETIC = {"Cooking Pot","Cooking Cauldron","Pancake Stack"},
     --event
     CLAIM_FOOD_CONNOISSEUR_REWARD = { "Culinarian Chest", "Gourmet Egg", "Sunny-Side Chicken","Gorilla Chef","Cooking Cauldron"},
     FORCE_COOK_MUTATION_ONLY = true,
     --event
-    DESTROY_UNTIL_MIN_PLANTS = 180,
+    DESTROY_UNTIL_MIN_PLANTS = 100,
     DELETE_PLANTS_AFTER_MAX = { "Carrot", "Strawberry", "Blueberry", "Tomato", "Apple", "Dragon Fruit","Mango","Cactus","Ember Lily","Pepper","Burning Bud","Coconu"},
     LIMIT_PLANT_SEED = {},
     BUY_EGGS = { "Bug Egg", "Bee Egg", "Paradise Egg", "Mythical Egg", "Rare Summer Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
     PLANT_EGGS = { "Gourmet Egg","Dinosaur Egg", "Zen Egg","Rare Summer Egg", "Primal Egg", "Anti Bee Egg", "Night Egg", "Bug Egg", "Paradise Egg", "Mythical Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
 
     --BUY_SEED_SHOP = {"Serenity","Spiked Mango", "Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 10,["Coconut"] = 10,["Apple"] = 10,["Cactus"] = 10,["Bamboo"] = 10,["Daffodil"] = 10, ["Tomato"] = 10, ["Orange Tulip"] = 10, ["Blueberry"] = 10, ["Strawberry"] = 10, ["Carrot"] = 10 },
-    BUY_SEED_SHOP = {"Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Sugar Apple"},
+    BUY_SEED_SHOP = {"Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Sugar Apple",["Strawberry"] = 10, ["Carrot"] = 10},
     KEEP_SEEDS = {},
     BUY_EVENT_SHOP = { "Zen Egg" ,"Zen Seed Pack","Zenflare ","Soft Sunshine","Spiked Mango" },
     KEEP_SEEDS_AFTER_MAX_PLANTS = {"Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Carrot", "Strawberry", "Blueberry", "Tomato", "Apple"},
