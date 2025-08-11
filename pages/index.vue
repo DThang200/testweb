@@ -1459,6 +1459,15 @@ until success`
           break;
           case 'gag-bone' :
           script =`
+                    repeat wait() until game:IsLoaded()
+          setfpscap(2)
+          spawn(function()
+                while wait() do
+                  local old = tick()
+                  repeat wait() until tick() - old >= 7200
+                  game.Players.LocalPlayer:Kick("kick sau 2h")
+                end
+          end)
               getgenv().ConfigsKaitun = {
                 Beta_Fix_Data_Sync = true,
                 NoDeletePlayer = false,
