@@ -605,7 +605,7 @@ end
           console.log('config_id',config_id)
           console.log('script_id',script_id)
           if(!script_id){
-            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${script_id}/scripts`, {
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "Fix lag",
               script_data: this.scriptFixLagBase64
             },{
@@ -715,7 +715,7 @@ end
           const script_id = await this.getData(pc?.deviceId, "script_id3");
           console.log("script_id",script_id,"config_id",config_id,"pc?.deviceId",pc?.deviceId)
           if(!script_id){
-            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${script_id}/scripts`, {
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "Add friend",
               script_data: this.scriptAddFriendBase64
             },{
