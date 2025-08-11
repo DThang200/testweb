@@ -1386,7 +1386,7 @@ end)
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
-          case 'gag-bone1' :
+          case 'gag-bone' :
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1457,7 +1457,7 @@ repeat
     task.wait(20)
 until success`
           break;
-          case 'gag-bone' :
+          case 'gag-bone1' :
           script =`
                     repeat wait() until game:IsLoaded()
           setfpscap(2)
