@@ -81,6 +81,7 @@
       <button type="button" v-if="finishRender" @click="deleteAcc">Delete acc</button>
       <input v-model="deleteOption" placeholder="DeleteOption">
       <button type="button" @click="deleteConfigIDStorage">Delete config storage</button>
+      <button type="button" @click="updateConfigId">Update config storage</button>
     </div>
 
   </div>
@@ -387,15 +388,14 @@ end
     }
   },
   async mounted() {
-    this.updateConfigId();
-    // console.log('this.scriptFixLagBase64',this.scriptFixLagBase64)
-    // this.initListLink();
-    // if (!this.roblox_data?.devices) {
-    //   await this.getDataRoblox();
-    //   await this.initListDevice();
-    // } else {
-    //   await this.initListDevice();
-    // }
+    console.log('this.scriptFixLagBase64',this.scriptFixLagBase64)
+    this.initListLink();
+    if (!this.roblox_data?.devices) {
+      await this.getDataRoblox();
+      await this.initListDevice();
+    } else {
+      await this.initListDevice();
+    }
   },
   methods: {
     ...mapActions([
