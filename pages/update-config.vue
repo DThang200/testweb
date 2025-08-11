@@ -709,6 +709,7 @@ end
         if (pc?.listAcc) {
           const config_id = await this.getData(pc?.deviceId, "config_id");
           const script_id = await this.getData(pc?.deviceId, "script_id3");
+          console.log("script_id",script_id,config_id,pc?.deviceId)
           if(!script_id){
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${script_id}/scripts`, {
               "script_name": "Add friend",
