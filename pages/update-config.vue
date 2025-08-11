@@ -704,17 +704,6 @@ end
         const pc = listDevice[i]
         let status = false
         if (pc?.listAcc) {
-          // const responseConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${pc?.deviceId}/configs`, {
-          //   headers: {
-          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //   },
-          // });
-          // const configId = await this.getData(pc?.deviceId, "config_id")
-          // const response = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
-          //   headers: {
-          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //   },
-          // });
           const config_id = await this.getData(pc?.deviceId, "config_id");
           const script_id = await this.getData(pc?.deviceId, "script_id3");
           if(!script_id){
@@ -736,10 +725,6 @@ end
               },
             });
           }
-        }
-        this.enableDeviceStatus[i] = {
-          name: pc.deviceName,
-          status: status
         }
       }
     },
