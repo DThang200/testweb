@@ -31,6 +31,7 @@
           <div>Enable per Device : <input type="number" v-model="enable_per_device"></div>
           <button type="button" v-if="finishRender" @click="renderEnable">Render enable</button>
           <button type="button" @click="addFixLag">Add fix lag</button>
+          <button type="button" @click="addAddFriend">Add add friend</button>
           <div>
             <div v-for="statusDv in enableDeviceStatus">
               {{statusDv?.name}} - {{statusDv?.status ? 'Done' : 'False'}}
@@ -268,6 +269,118 @@ export default {
                         v.Transparency = 1
                     end)
                 end)`
+      ))),
+      scriptAddFriendBase64 : btoa(unescape(encodeURIComponent(
+          `local delayBetweenRequests = 5
+local maxFriendRequests = 10
+local hoursBetweenRuns = 1
+local lastRunTimeKey = "AutoFriendLastRunTime"
+local lastRunTime = 0
+
+local success, result = pcall(function()
+    if game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui") then
+        if _G[lastRunTimeKey] then
+            return _G[lastRunTimeKey]
+        end
+    end
+    return 0
+end)
+
+if success and type(result) == "number" then
+    lastRunTime = result
+end
+
+local function sendFriendRequest(player)
+    local success, result = pcall(function()
+        if typeof(player) == "Instance" and player:IsA("Player") then
+            local Players = game:GetService("Players")
+            local LocalPlayer = Players.LocalPlayer
+            if LocalPlayer:IsFriendsWith(player.UserId) then
+                return false
+            end
+            success = pcall(function()
+                game:GetService("StarterGui"):SetCore("PromptRequestFriendship", player)
+            end)
+            if success then return true end
+            if typeof(LocalPlayer.RequestFriendship) == "function" then
+                LocalPlayer:RequestFriendship(player)
+                return true
+            end
+            success = pcall(function()
+                game:GetService("CoreGui").PromptRequestFriendship(player)
+            end)
+            if success then return true end
+            local FriendService = game:GetService("FriendService")
+            if FriendService then
+                FriendService:RequestFriendship(LocalPlayer, player)
+                return true
+            end
+            return false
+        else
+            return false
+        end
+    end)
+    if success and result then
+        return true
+    else
+        return false
+    end
+end
+
+local function getPlayersInServer()
+    local playersList = {}
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            table.insert(playersList, player)
+        end
+    end
+    return playersList
+end
+
+local function canRunNow()
+    local currentTime = os.time()
+    local hoursPassed = (currentTime - lastRunTime) / 3600
+    if lastRunTime == 0 or hoursPassed >= hoursBetweenRuns then
+        return true
+    else
+        return false
+    end
+end
+
+local function autoFriend()
+    if not canRunNow() then
+        return
+    end
+    local players = getPlayersInServer()
+    local requestCount = 0
+    for _, player in pairs(players) do
+        if requestCount >= maxFriendRequests then
+            break
+        end
+        local sentRequest = sendFriendRequest(player)
+        if sentRequest then
+            requestCount = requestCount + 1
+        end
+        wait(delayBetweenRequests)
+    end
+    lastRunTime = os.time()
+    _G[lastRunTimeKey] = lastRunTime
+end
+
+local function checkLoggedIn()
+    local player = game:GetService("Players").LocalPlayer
+    if not player then
+        return false
+    end
+    return true
+end
+
+if checkLoggedIn() then
+    autoFriend()
+end
+`
       ))),
     }
   },
@@ -568,6 +681,61 @@ export default {
           // if (response) {
           //   status = true
           // }
+        }
+        this.enableDeviceStatus[i] = {
+          name: pc.deviceName,
+          status: status
+        }
+      }
+    },
+    async addAddFriend() {
+
+      this.enableDeviceStatus = []
+      const listDevice = []
+      if (this.select_pc) {
+        const data = this.pcDetail.find(pc => pc.deviceId == this.select_pc)
+        listDevice.push(data)
+      } else {
+        this.pcDetail.forEach(pc => {
+          listDevice.push(pc)
+        })
+      }
+      for (let i = 0; i < listDevice.length; i++) {
+        const pc = listDevice[i]
+        let status = false
+        if (pc?.listAcc) {
+          // const responseConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${pc?.deviceId}/configs`, {
+          //   headers: {
+          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //   },
+          // });
+          // const configId = await this.getData(pc?.deviceId, "config_id")
+          // const response = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${configId}/scripts`, {
+          //   headers: {
+          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          //   },
+          // });
+          const config_id = await this.getData(pc?.deviceId, "config_id");
+          const script_id = await this.getData(pc?.deviceId, "script_id3");
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${script_id}/scripts`, {
+              "script_name": "Add friend",
+              script_data: this.scriptAddFriendBase64
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
+              "script_name": "Add friend",
+              script_data: this.scriptAddFriendBase64
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
         }
         this.enableDeviceStatus[i] = {
           name: pc.deviceName,
