@@ -79,6 +79,7 @@
       <button type="button" v-if="finishRender" @click="setupConfigChange">Setup Config Change</button>
       <button type="button" v-if="finishRender" @click="getEmptyAcc">Get Empty acc Bf</button>
       <button type="button" v-if="finishRender" @click="deleteAcc">Delete acc</button>
+      <input v-model="deleteOption" placeholder="DeleteOption">
       <button type="button" @click="deleteConfigIDStorage">Delete config storage</button>
     </div>
 
@@ -128,6 +129,7 @@ export default {
       enableDeviceStatus : [],
       finishRender: false,
       responseAll :[],
+      deleteOption :"",
       link_private_data : [],
       scriptOpenCreateBase64Delete: 'Z2V0Z2VudigpLldlYmhvb2sgPSAnaHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM2NDY4NDM4MjEwNjk0NzU4NC96LUVIbVdab2VoOEstVG9aZzdOWlVwZGNlbmJpX0NRdzlMeDZWS1NTYzlXc2xOVUJCUW9RZHFDeWxnQ0hsblpmd3hSVScKICAgICAgICByZXBlYXQgd2FpdCgpIHVudGlsIGdhbWU6SXNMb2FkZWQoKQogICAgICAgIHJlcGVhdCB3YWl0KCkgdW50aWwgZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyCiAgICAgICAgbG9jYWwgUGxyID0gZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyCiAgICAgICAgcmVwZWF0IHdhaXQoKSB1bnRpbCBQbHIuQ2hhcmFjdGVyCiAgICAgICAgcmVwZWF0IHdhaXQoKSB1bnRpbCBQbHIuQ2hhcmFjdGVyOkZpbmRGaXJzdENoaWxkKCJIdW1hbm9pZFJvb3RQYXJ0IikKICAgICAgICByZXBlYXQgd2FpdCgpIHVudGlsIFBsci5DaGFyYWN0ZXI6RmluZEZpcnN0Q2hpbGQoIkh1bWFub2lkIikKICAgICAgICBsb2NhbCBQbHJndWkgPWdhbWU6R2V0U2VydmljZSgiUGxheWVycyIpLkxvY2FsUGxheWVyLlBsYXllckd1aQogICAgICAgIGZ1bmN0aW9uIENoZWNrUmFyaXR5KHJhcml0eSkKICAgICAgICAgICBpZiByYXJpdHkgPT0iVWx0aW1hdGUiIG9yIHJhcml0eT09IkdvZGx5IiB0aGVuCiAgICAgICAgICAgICAgICAgcmV0dXJuIHRydWUKICAgICAgICAgICBlbmQKICAgICAgICAgICByZXR1cm4gZmFsc2UKICAgICAgICBlbmQKICAgICAgICBmdW5jdGlvbiBTZW5kV2ViSG9vayh2KQogICAgICAgICAgIGxvY2FsIG1zZyA9IHsKICAgICAgICAgICAgICAgWydjb250ZW50J10gPSB2LkhvbGRlci5SYXJpdHlGcmFtZS5SYXJpdHkuVGV4dCA9PSJVbHRpbWF0ZSIgYW5kICdAZXZlcnlvbmUnIG9yICcnLAogICAgICAgICAgICAgICBbImVtYmVkcyJdID0ge3sKICAgICAgICAgICAgICAgICAgIFsidGl0bGUiXSA9ICJUaGFuZ2NhY2hlcHAiLAogICAgICAgICAgICAgICAgICAgWyJkZXNjcmlwdGlvbiJdID0gIkNyYXRlIE9wZW5lZCIsCiAgICAgICAgICAgICAgICAgICBbInR5cGUiXSA9ICJyaWNoIiwKICAgICAgICAgICAgICAgICAgIFsiY29sb3IiXSA9IHRvbnVtYmVyKDB4YmRjZTQ0KSwKICAgICAgICAgICAgICAgICAgIFsiZmllbGRzIl0gPSB7CiAgICAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICAgICBbIm5hbWUiXSA9ICJVc2VyIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJ2YWx1ZSJdID0gZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyLk5hbWUsCiAgICAgICAgICAgICAgICAgICAgICAgICAgIFsiaW5saW5lIl0gPSBmYWxzZQogICAgICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICAgICBbIm5hbWUiXSA9ICJOYW1lIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJ2YWx1ZSJdID0gdi5Ib2xkZXIuVW5pdE5hbWUuVGV4dCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJpbmxpbmUiXSA9IHRydWUKICAgICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJuYW1lIl0gPSAiUmFyaXR5IiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJ2YWx1ZSJdID0gdi5Ib2xkZXIuUmFyaXR5RnJhbWUuUmFyaXR5LlRleHQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgIFsiaW5saW5lIl0gPSB0cnVlCiAgICAgICAgICAgICAgICAgICAgICAgfSwKCiAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgIH19CiAgICAgICAgICAgfQogICAgICAgICAgIHJlcXVlc3QoewogICAgICAgICAgICAgICBVcmwgPSBnZXRnZW52KCkuV2ViaG9vaywKICAgICAgICAgICAgICAgTWV0aG9kID0gIlBPU1QiLAogICAgICAgICAgICAgICBIZWFkZXJzID0ge1siQ29udGVudC1UeXBlIl0gPSAiYXBwbGljYXRpb24vanNvbiJ9LAogICAgICAgICAgICAgICBCb2R5ID0gZ2FtZTpHZXRTZXJ2aWNlKCJIdHRwU2VydmljZSIpOkpTT05FbmNvZGUobXNnKQogICAgICAgICAgIH0pCiAgICAgICAgZW5kCiAgICAgICAgUGxyZ3VpLlJlc3VsdHNHdWkuVHJvb3BSZXN1bHRzRnJhbWUuU3VtbW9uUmVzdWx0cy5DaGlsZEFkZGVkOmNvbm5lY3QoZnVuY3Rpb24oVW5pdCkKICAgICAgICAgICAgICBpZiBVbml0OklzQSgiRnJhbWUiKSB0aGVuCiAgICAgICAgICAgICAgICAgaWYgQ2hlY2tSYXJpdHkoVW5pdC5Ib2xkZXIuUmFyaXR5RnJhbWUuUmFyaXR5LlRleHQpIHRoZW4KICAgICAgICAgICAgICAgICAgICAgICBTZW5kV2ViSG9vayhVbml0KQogICAgICAgICAgICAgICAgIGVuZAogICAgICAgICAgICAgIGVuZAoKICAgICAgICBlbmQp',
       scriptOpenCreateBase64New : btoa(unescape(encodeURIComponent(
@@ -385,14 +387,15 @@ end
     }
   },
   async mounted() {
-    console.log('this.scriptFixLagBase64',this.scriptFixLagBase64)
-    this.initListLink();
-    if (!this.roblox_data?.devices) {
-      await this.getDataRoblox();
-      await this.initListDevice();
-    } else {
-      await this.initListDevice();
-    }
+    this.updateConfigId();
+    // console.log('this.scriptFixLagBase64',this.scriptFixLagBase64)
+    // this.initListLink();
+    // if (!this.roblox_data?.devices) {
+    //   await this.getDataRoblox();
+    //   await this.initListDevice();
+    // } else {
+    //   await this.initListDevice();
+    // }
   },
   methods: {
     ...mapActions([
@@ -899,6 +902,37 @@ end
           'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
         },
       });
+    },
+    async updateConfigId() {
+      let map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
+      const map_device_data_temp = {}
+      Object.entries(map_device_data).forEach((device, index) => {
+        map_device_data_temp[device[0]] = {script: device[1]?.script, script_label: device[1]?.script_label}
+      })
+      let map_device_data_list = Object.entries(map_device_data_temp)
+      for (let i = 0; i < map_device_data_list.length; i++) {
+        const item = map_device_data_list[i]
+        const config_id = await this.getData(item[0], "config_id");
+        const data = await this.$axios.$get(`https://api.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+          headers: {
+            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+          },
+        });
+        map_device_data_temp[item[0]]["config_id"] = await data?.scripts[0]?.config_id
+        if (await data && data?.scripts){
+          for (let j = 0; j < data?.scripts.length; j++) {
+            if (data?.scripts[j]?.script_id){
+              map_device_data_temp[item[0]][("script_id" + (j > 0 ? j : ""))] = data?.scripts[j]?.script_id
+            }
+          }
+        }
+      }
+      // console.log("map_device_data_list",map_device_data_list)
+      // // for (let i = 0; i < map_device_data_list.length; i++) {
+      // //   map_device_data
+      // // }
+      console.log('map_device_data_temp', map_device_data_temp)
+      localStorage.setItem('map_device_data', JSON.stringify(map_device_data_temp));
     },
     deleteConfigIDStorage(){
       let map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
