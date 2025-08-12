@@ -1416,7 +1416,7 @@ getgenv().gagConfig = {
     MAX_PLANTS = 120,
     PLACE_COSMETIC = {"Cooking Pot","Cooking Cauldron","Pancake Stack"},
     --event
-    CLAIM_FOOD_CONNOISSEUR_REWARD = { "Culinarian Chest", "Gourmet Egg", "Sunny-Side Chicken","Gorilla Chef","Cooking Cauldron"},
+    CLAIM_FOOD_CONNOISSEUR_REWARD = { "Culinarian Chest", "Gorilla Chef", "Gourmet Egg", "Sunny-Side Chicken", "Pet Shard Aromatic", "Cooking Cauldron", "Gourmet Seed Pack", "Bitter Melon Seed", "Pricklefruit Seed", "Butternut Squash Seed", "Spring Onion Seed", "Kitchen Crate", "Kitchen Flooring", "Kitchen Cart", "Smoothie Fountain" },
     FORCE_COOK_MUTATION_ONLY = true,
     --event
     DESTROY_UNTIL_MIN_PLANTS = 100,
