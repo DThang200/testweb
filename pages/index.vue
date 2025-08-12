@@ -1608,9 +1608,10 @@ until success`
             ["Start Delete Pet At"] = 40,
             ["Upgrade Slot"] = {
               ["Pet"] = {
-                ["Starfish"] = { 8, 75, 1 },
-                ["Kodama"] = { 4, 100 },
-                ["Sunny-Side Chicken"] = {3, 100},
+                ["Kodama"] = { 4, 100 ,1},
+                ["Starfish"] = { 3, 75, 2 },
+                ["Gorilla Chef"] = { 8, 100 ,5},
+                ["Sunny-Side Chicken"] = {8, 100},
               },
               ["Limit Upgrade"] = 5, -- max is 5 (more than or lower than 1 will do nothing)
       ["Equip When Done"] = {
