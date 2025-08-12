@@ -274,7 +274,8 @@ export default {
       isRunningPlayStop: false,
       intervalRunAndStop: null,
       showAllDevice: false,
-      countAstdKeyMaru : 0
+      countAstdKeyMaru : 0,
+      switchayaya : true
     }
   },
   async mounted() {
@@ -510,6 +511,10 @@ export default {
           scriptOption = option
         }
       })
+      if (this.switchayaya && script_sl === "gag-bone") {
+        this.switchayaya = !this.switchayaya
+        script_sl = "gag-bone-ayaya"
+      }
       switch (script_sl) {
         case 'princess' :
           script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
@@ -1457,7 +1462,7 @@ repeat
     task.wait(20)
 until success`
           break;
-          case 'gag-bone1' :
+          case 'gag-bone-ayaya' :
           script =`
                     repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1623,6 +1628,7 @@ until success`
         "Corrupted Kitsune",
         "Corrupted Kodama",
         "Raiju",
+        "Junkbot",
         "Kodama",
         "Kitsune",
         "Koi",
@@ -1674,6 +1680,9 @@ until success`
       License = "sLvWZ0WO0W6OAnGysjVmLtTws1PGYBPP"
       loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()`
       break;
+      }
+      if (script_sl === "gag-bone-ayaya"){
+        script_sl = "gag-bone"
       }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
