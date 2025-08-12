@@ -1178,7 +1178,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     spawn(function()
         while wait() do
           local old = tick()
-          repeat wait() until tick() - old >= 1800
+          repeat wait() until tick() - old >= 3600
           game.Players.LocalPlayer:Kick("kick sau 2h")
         end
     end)
@@ -1484,15 +1484,15 @@ until success`
                 ["Auto Rejoin"] = true,
                 ["Rejoin When Update"] = true,
                 ["Limit Tree"] = {
-                  ["Limit"] = 290,
-                  ["Destroy Untill"] = 275,
+                  ["Limit"] = 130,
+                  ["Destroy Untill"] = 120,
                   ["Safe Tree"] = {
                     "Moon Blossom",
                     "Fossilight",
                     "Tranquil Bloom",
                     "Maple Apple",
                     "Serenity",
-
+                    "Sugar Apple",
                   }
                 },
 
