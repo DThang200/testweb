@@ -1672,7 +1672,6 @@ until success`
           },
           Pets = {
             "Lobster Thermidor",
-            "French Fry Ferret",
             "Kitsune"
           },
           Pet_Weight_Noti = true,
