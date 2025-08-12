@@ -511,12 +511,12 @@ export default {
           scriptOption = option
         }
       })
-      if (script_sl === "gag-bone"){
-        this.switchayaya = !this.switchayaya
-      }
-      if (this.switchayaya && script_sl === "gag-bone") {
-        script_sl = "gag-bone-ayaya"
-      }
+      // if (script_sl === "gag-bone"){
+      //   this.switchayaya = !this.switchayaya
+      // }
+      // if (this.switchayaya && script_sl === "gag-bone") {
+      //   script_sl = "gag-bone-ayaya"
+      // }
       switch (script_sl) {
         case 'princess' :
           script = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
@@ -1393,7 +1393,7 @@ end)
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
-          case 'gag-bone' :
+          case 'gag-bone1' :
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1406,7 +1406,6 @@ end)
           end)
           setfpscap(2)
 script_key="vFaTUxSNbgNpDcfvweTZMJWhCllzRHSP";
-setfpscap(3)
 
 getgenv().gagConfig = {
     -- Event:
@@ -1464,7 +1463,7 @@ repeat
     task.wait(20)
 until success`
           break;
-          case 'gag-bone-ayaya' :
+          case 'gag-bone' :
           script =`
                     repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1682,9 +1681,9 @@ until success`
       loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()`
       break;
       }
-      if (script_sl === "gag-bone-ayaya"){
-        script_sl = "gag-bone"
-      }
+      // if (script_sl === "gag-bone-ayaya"){
+      //   script_sl = "gag-bone"
+      // }
       if (script_sl === 'Toilet'){
         this.setStatusDevice({device_id: device_id,key: 'script_label',value: scriptOption?.label})
         if (!save_script){
