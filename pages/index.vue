@@ -511,7 +511,9 @@ export default {
           scriptOption = option
         }
       })
-      this.switchayaya = !this.switchayaya
+      if (script_sl === "gag-bone"){
+        this.switchayaya = !this.switchayaya
+      }
       if (this.switchayaya && script_sl === "gag-bone") {
         script_sl = "gag-bone-ayaya"
       }
