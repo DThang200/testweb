@@ -1492,7 +1492,6 @@ until success`
                     "Tranquil Bloom",
                     "Maple Apple",
                     "Serenity",
-                    "Sugar Apple",
                   }
                 },
 
@@ -1509,6 +1508,16 @@ until success`
         "Carrot"
       },
           Lock = {
+            "Grand Tomato",
+            "Pepper",
+            "Mango",
+            "Grape",
+            "Beanstalk",
+            "Giant Pinecone",
+            "Elder Strawberry",
+            "Ember Lily",
+            "Burning Bud",
+            "Sugar Apple",
             "King Cabbage",
             "Taco Fern",
             "Maple Apple",
