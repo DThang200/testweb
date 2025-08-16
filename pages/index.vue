@@ -1528,17 +1528,26 @@ until success`
         }
       },
 
-          Events = {
-            ["Cook Event"] = {
-              Minimum_Money = 10_000_000, -- minimum money to start play this event
-            Rewards_Item = { -- The top is the most top mean prefered.
-            "Culinarian Chest",
-            "Gourmet Egg",
-            "Gourmet Seed Pack",
-            "Sunny-Side Chicken",
-            "Gorilla Chef",
-      -- u can add it more as u want, if it not in list.
-    }
+      Events = {
+            ["Bean Event"] = {
+               Minimum_Money = 10_000_000, -- minimum money to start play this event
+            },
+            Shop = { -- un comment to buy
+               "Sprout Egg",
+               "Sprout Seed Pack",
+               -- "Mandrake",
+               "Silver Fertilizer",
+               -- "Canary Melon",
+               "Spriggan",
+               "Amberheart",
+            },
+            ["Traveling Shop"] = {
+               "Bee Egg",
+            },
+            Craft = {
+               "Anti Bee Egg",
+            },
+            Start_Do_Honey = 2_000_000 -- start trade fruit for honey at money
     },
       ["Traveling Shop"] = {
         "Bald Eagle",
@@ -1579,6 +1588,7 @@ until success`
 
           Eggs = {
             Place = {
+              "Sprout Egg",
               "Zen Egg",
               "Gourmet Egg",
               "Dinosaur Egg",
@@ -1624,6 +1634,8 @@ until success`
       Favorite_LockedPet = true,
           Locked_Pet_Age = 60, -- pet that age > 60 will lock
       Locked = {
+        "Golden Goose",
+        "Golem",
         "Lobster Thermidor",
         "French Fry Ferret",
         "Spaghetti Sloth",
@@ -1655,6 +1667,7 @@ until success`
         ["Rooster"] = 5,
         ["Starfish"] = 5,
         ["Capybara"] = 5,
+        ["Spriggan"] = 3,
       },
           LockPet_Weight = 7, -- if Weight >= 10 they will locked
     },
@@ -1671,6 +1684,7 @@ until success`
             "Idk"
           },
           Pets = {
+            "Golden Goose",
             "Lobster Thermidor",
             "Kitsune"
           },
