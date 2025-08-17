@@ -1698,8 +1698,8 @@ until success`
             "Kitsune"
           },
           Pet_Weight_Noti = true,
-        }
-      },
+        },
+      }
       License = "sLvWZ0WO0W6OAnGysjVmLtTws1PGYBPP"
       loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()`
       break;
