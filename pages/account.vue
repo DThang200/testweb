@@ -177,7 +177,8 @@
           <label>With bgsi acc?</label>
           <button @click="getDetailAcc">Copy username pass</button>
           <button @click="getDetailAllAcc">Copy All</button>
-          <button @click="getDetailAllAccGAG">Copy All ASTD</button>
+          <button @click="getDetailAllAccGAG('gag-bone')">Copy All GAG</button>
+          <button @click="getDetailAllAccGAG('astd')">Copy All ASTD</button>
         </div>
       </div>
       <div class="field-action">
@@ -619,11 +620,11 @@ export default {
       navigator.clipboard.writeText(result);
       console.log('resultData',result)
     },
-    getDetailAllAccGAG(){
+    getDetailAllAccGAG(key){
       let result = ''
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
       this.roblox_data_account.accounts.forEach(acc => {
-        if (acc.device_id && map_device_data[acc?.device_id]?.script?.includes("astd")){
+        if (acc.device_id && map_device_data[acc?.device_id]?.script?.includes("key")){
           result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
         }
         // acc?.password
