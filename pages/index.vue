@@ -1393,7 +1393,7 @@ end)
 
           // script_key="grPApANcmFyFWdDFPtCZDubYlEJxGQQb";
           // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/153a62fe6e6f165f8aa4643955297d65.lua"))()`
-          case 'gag-bone1' :
+          case 'gag-bone' :
           script = `
           repeat wait() until game:IsLoaded()
           setfpscap(2)
@@ -1429,10 +1429,27 @@ getgenv().gagConfig = {
     DELETE_PLANTS_AFTER_MAX = { "Carrot", "Strawberry", "Blueberry", "Tomato", "Apple", "Dragon Fruit","Mango","Cactus","Ember Lily","Pepper","Burning Bud","Coconu"},
     LIMIT_PLANT_SEED = {},
     BUY_EGGS = { "Bug Egg", "Bee Egg", "Paradise Egg", "Mythical Egg", "Rare Summer Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
-    PLANT_EGGS = { "Gourmet Egg","Dinosaur Egg", "Zen Egg","Rare Summer Egg", "Primal Egg", "Anti Bee Egg", "Night Egg", "Bug Egg", "Paradise Egg", "Mythical Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
-
+    PLANT_EGGS = { "Sprout Egg","Gourmet Egg","Dinosaur Egg", "Zen Egg","Rare Summer Egg", "Primal Egg", "Anti Bee Egg", "Night Egg", "Bug Egg", "Paradise Egg", "Mythical Egg", "Common Summer Egg", "Rare Egg", "Uncommon Egg" },
     --BUY_SEED_SHOP = {"Serenity","Spiked Mango", "Giant Pinecone", "Burning Bud", "Sugar Apple", "Ember Lily", "Beanstalk", "Cacao","Maple Apple","Serenity", "Pepper", "Mushroom", "Grape", "Mango", "Dragon Fruit", "Pumpkin", "Watermelon", ["Dragon Fruit"] = 10,["Coconut"] = 10,["Apple"] = 10,["Cactus"] = 10,["Bamboo"] = 10,["Daffodil"] = 10, ["Tomato"] = 10, ["Orange Tulip"] = 10, ["Blueberry"] = 10, ["Strawberry"] = 10, ["Carrot"] = 10 },
-    BUY_SEED_SHOP = {"Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Sugar Apple",["Strawberry"] = 10, ["Carrot"] = 10},
+    BUY_SEED_SHOP = {"Grand Tomato",
+            "Pepper",
+            "Mango",
+            "Grape",
+            "Beanstalk",
+            "Giant Pinecone",
+            "Elder Strawberry",
+            "Ember Lily",
+            "Burning Bud",
+            "Sugar Apple",
+            "King Cabbage",
+            "Taco Fern",
+            "Maple Apple",
+            "Sunflower",
+            "Dragon Pepper",
+            "Elephant Ears",
+            "Bone Blossom",
+            "Fossilight",
+            "Tranquil Bloom","Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Sugar Apple",["Strawberry"] = 10, ["Carrot"] = 10},
     KEEP_SEEDS = {},
     BUY_EVENT_SHOP = { "Zen Egg" ,"Zen Seed Pack","Zenflare ","Soft Sunshine","Spiked Mango" },
     KEEP_SEEDS_AFTER_MAX_PLANTS = {"Dezen","Lucky Bamboo","Tranquil Bloom","Monoblooma", "Serenity", "Taro Flower", "Zen Rocks", "Hinomai", "Maple Apple", "Zenflare", "Soft Sunshine", "Spiked Mango","Carrot", "Strawberry", "Blueberry", "Tomato", "Apple"},
@@ -1442,7 +1459,7 @@ getgenv().gagConfig = {
           "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox","Sunny-Side Chicken","Lobster Thermidor","Junkbot","Spaghetti Sloth",["Gorilla Chef"]=4,
            "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kitsune", "Corrupted Kitsune","French Fry Ferret","Kodama"},
-    EQUIP_PETS = {["Starfish"] = 3,"Kodama",["Gorilla Chef"]=4,["Sunny-Side Chicken"]= 4,"Koi","Seal","Chicken","Capybara"},
+    EQUIP_PETS = {["Starfish"] = 3,"Kodama",["Gorilla Chef"]=4,["Sunny-Side Chicken"]= 4,"Koi","Seal","Chicken","Capybara","Golden Goose"},
     KEEP_PETS_WEIGHT = { ["Sea Turtle"] = 5,["Ostrich"] = 5,["Stegosaurus"] = 5},
     KEEP_PETS_AGE = {},
     REMOVE_PET_MAX_UPGRADE = {"Starfish"},
@@ -1451,7 +1468,7 @@ getgenv().gagConfig = {
 
     PET_WEBHOOK_URL = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
     SEED_WEBHOOK_URL = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
-    NOTIFY_PETS = { "Lobster Thermidor","Kitsune"},
+    NOTIFY_PETS = {"Golden Goose", "Lobster Thermidor","Kitsune",},
     NOTIFY_PETS_WEIGHT = 10,
     DISCORD_ID = "663236418499379240",
     WEBHOOK_NOTE = "https://discord.com/api/webhooks/1403381030731124837/wuOqYJVyBwPBDxwksEzg_kIwvbsZERxspZtQzFaeDgZh30aCA7MOGLW2vptRtPk0AcVi",
@@ -1463,7 +1480,7 @@ repeat
     task.wait(20)
 until success`
           break;
-          case 'gag-bone' :
+          case 'gag-bone1' :
           script =`
                     repeat wait() until game:IsLoaded()
           setfpscap(2)
