@@ -778,7 +778,7 @@ export default {
                 _G.MainSettings = {
                     ["EnabledHOP"] = true,
                     ['FPSBOOST'] = true,
-                    ["FPSLOCKAMOUNT"] = 10, -- Tối ưu hơn cho cày lâu dài nhiều tab/VPS
+                    ["FPSLOCKAMOUNT"] = 10,
                     ['WhiteScreen'] = true,
                     ['CloseUI'] = false,
                     ["NotifycationExPRemove"] = true,
@@ -793,7 +793,7 @@ export default {
                 }
                 _G.WebHook = {
                     ["Enabled"] = true, -- _____________
-                    ["Url"] = "https://discord.com/api/webhooks/1380465562727219250/V_0RG7csWFNArH82JHvdBq7L3cM9QrlNBfZwfPHA-SgIaBUn-EvwXwXfLMNeHNA1OmOt", -- _____________
+                    ["Url"] = "https://discord.com/api/webhooks/1407436946791338148/MTyqt3CunZMK0I3BUL192mRi1_hnGiqoG0_P1Tll5GMMKArYuqTMrNIKg0vg7MFXJH0j", -- _____________
                     ["Delay"] = 300 -- ______
                 }
                 _G.SharkAnchor_Settings = {
@@ -1459,10 +1459,10 @@ getgenv().gagConfig = {
           "Brontosaurus", "Pachycephalosaurus", "Iguanodon", "Red Fox","Sunny-Side Chicken","Lobster Thermidor","Junkbot","Spaghetti Sloth",["Gorilla Chef"]=4,
            "Hyacinth Macaw", "Axolotl", "Ankylosaurus", "Dilophosaurus","Red Fox", "Dragonfly","Raccoon",
             "Queen Bee", "Disco Bee", "Butterfly", "Dragonfly", "Fennec Fox", "T-Rex","Kitsune", "Corrupted Kitsune","French Fry Ferret","Kodama","Golden Goose"},
-    EQUIP_PETS = {["Starfish"] = 3,["Sunny-Side Chicken"]= 4,"Koi","Seal","Chicken","Capybara"},
+    EQUIP_PETS = {["Starfish"] = 3,["Dairy Cow"]= 2,"Sunny-Side Chicken","Koi","Seal","Chicken","Capybara"},
+    REMOVE_PET_MAX_UPGRADE = {"Starfish"},
     KEEP_PETS_WEIGHT = { ["Sea Turtle"] = 5,["Ostrich"] = 5,["Stegosaurus"] = 5},
     KEEP_PETS_AGE = {},
-    REMOVE_PET_MAX_UPGRADE = {"Starfish"},
     BUY_GEAR_SHOP = { "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler", "Basic Sprinkler" ,"Grandmaster Sprinkler"},
     USE_SPRINKLER = { "Basic Sprinkler", "Master Sprinkler", "Godly Sprinkler", "Advanced Sprinkler" },
 

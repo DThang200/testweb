@@ -12,6 +12,7 @@
           <option value="gag-bone">GAG-Bone</option>
           <option value="99night">99night
           </option>
+          <option value="bloxFruit-maru">bloxFruit-maru</option>
 <!--          <option value="bloxFruit">BloxFruit</option>-->
         </select>
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
@@ -106,7 +107,7 @@ export default {
       needAccountASTD: 0,
       needAccountBf: 0,
       farmOption : [
-        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 27},
+        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 30},
         {code : 'bloxFruit-2600',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-fruit',label : 'Blox Fruit-X3',game_id: '2753915549',total_account: 44,active_account : 22},
         {code : 'bloxFruit-25tab',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 25},
