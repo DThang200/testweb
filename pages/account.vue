@@ -622,9 +622,10 @@ export default {
     },
     getDetailAllAccGAG(key){
       let result = ''
+      navigator.clipboard.writeText("");
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data')) || {};
       this.roblox_data_account.accounts.forEach(acc => {
-        if (acc.device_id && map_device_data[acc?.device_id]?.script?.includes("key")){
+        if (acc.device_id && map_device_data[acc?.device_id]?.script?.includes(key)){
           result += `${acc?.username}:${acc?.password}:${acc?.cookie}`+ '\n'
         }
         // acc?.password
