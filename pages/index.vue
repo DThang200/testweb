@@ -234,7 +234,7 @@ export default {
         // {code : 'wave-61',label : 'AD-Wave-61',game_id: '17017769292',private_server : true},
         // {code : 'Roll-unit',label : 'AD-Roll-unit',game_id: '17017769292',private_server : true},
         // {code : 'Toilet',label : 'Toilet',game_id: '13775256536',private_server : true},
-        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false},
+        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/yummytrack/main/tracker"},
         // // {code : 'bloxFruit-25maru',label : 'Blox Fruit-Maruv2',game_id: '2753915549',private_server : false},
         // {code : 'bloxFruit-2600',label : 'Blox Fruit-2600',game_id: '2753915549',private_server : false},
         // {code : 'bloxFruit-25tab',label : 'Blox Fruit-25tab',game_id: '2753915549',private_server : false},
