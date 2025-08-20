@@ -847,7 +847,7 @@ export default {
                     ['Godhuman'] = true
                 }
                 _G.SwordSettings = {
-                    ['Saber'] = false,
+                    ['Saber'] = true,
                     ['Shisui'] = false,
                     ['Saddi'] = false,
                     ['Yama'] = false,
