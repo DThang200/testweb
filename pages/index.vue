@@ -774,15 +774,7 @@ export default {
         case 'bloxFruit-maru' :
           script =
               `
-          repeat wait() until game:IsLoaded()
           setfpscap(8)
-          spawn(function()
-                while wait() do
-                  local old = tick()
-                  repeat wait() until tick() - old >= 10800
-                  game.Players.LocalPlayer:Kick("kick sau 2h")
-                end
-          end)
               _G.Team = "Pirate"
                 getgenv().Script_Mode = "Kaitun_Script"
                 _G.MainSettings = {

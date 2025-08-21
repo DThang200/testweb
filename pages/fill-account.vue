@@ -107,7 +107,7 @@ export default {
       needAccountASTD: 0,
       needAccountBf: 0,
       farmOption : [
-        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 30},
+        {code : 'bloxFruit-maru',label : 'Blox Fruit-Maru',game_id: '2753915549',total_account: 35},
         {code : 'bloxFruit-2600',label : 'Blox Fruit-2550',game_id: '2753915549',total_account: 22},
         {code : 'bloxFruit-fruit',label : 'Blox Fruit-X3',game_id: '2753915549',total_account: 44,active_account : 22},
         {code : 'bloxFruit-25tab',label : 'Blox Fruit-MagmaV2',game_id: '2753915549',total_account: 25},
