@@ -177,6 +177,8 @@
           <label>With bgsi acc?</label>
           <button @click="getDetailAcc">Copy username pass</button>
           <button @click="getDetailAllAcc">Copy All</button>
+          <button @click="getDetailAllAccGAG('gagbloxFruit-maru')">Copy All BF</button>
+          <button @click="getDetailAllAccGAG('99night')">Copy All 99N</button>
           <button @click="getDetailAllAccGAG('gag-bone')">Copy All GAG</button>
           <button @click="getDetailAllAccGAG('astd')">Copy All ASTD</button>
         </div>
