@@ -1857,9 +1857,10 @@ until success`
         if (option?.shoukoTrack) {
           const scriptTrack =
               btoa(unescape(encodeURIComponent(`repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-          getgenv().Setting = getgenv().Setting or {
+          getgenv().Setting = {
+            ["UUID"] = "d6a9706a-34cd-44b5-938a-70e74cee3b13", -- #bot-commands | use /get-uuid
             ['Discord ID'] = '663236418499379240',
-                ['Device Name'] = '${this.map_device_id_code[device_id]}'
+            ['Device Name'] = '${this.map_device_id_code[device_id]}'
           }
           loadstring(game:HttpGet('https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/trackstat.lua'))()`)))
           const script_id = await this.getData(device_id, "script_id2");
