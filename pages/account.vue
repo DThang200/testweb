@@ -555,6 +555,7 @@ export default {
         },
       });
       // deleteAcc
+      this.getDataAccount();
       alert("Delete done");
     },
 
