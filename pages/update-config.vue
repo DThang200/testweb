@@ -10,6 +10,12 @@
             <div>Kill idle roblox delay : <input type="number" v-model="setting.kill_idle_roblox_delay"></div>
             <div>Relaunch delay : <input type="number" v-model="setting.relaunch_delay"></div>
             <div>Avoid joining same accounts : <input type="checkbox" v-model="setting.avoid_joining_same_accounts">{{setting.avoid_joining_same_accounts}}</div>
+            <div>Script
+              <select v-model="scriptSelect">
+                <option value="">All</option>
+                <option value="99night">99night</option>
+              </select>
+            </div>
           </div>
           <div style="width: 50%">
             <span style="font-size: 24px;font-weight: bold">Game Configs</span> <input type="checkbox" v-model="update_config">
@@ -131,6 +137,7 @@ export default {
       finishRender: false,
       responseAll :[],
       deleteOption :"",
+      scriptSelect :"",
       link_private_data : [],
       scriptOpenCreateBase64Delete: 'Z2V0Z2VudigpLldlYmhvb2sgPSAnaHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM2NDY4NDM4MjEwNjk0NzU4NC96LUVIbVdab2VoOEstVG9aZzdOWlVwZGNlbmJpX0NRdzlMeDZWS1NTYzlXc2xOVUJCUW9RZHFDeWxnQ0hsblpmd3hSVScKICAgICAgICByZXBlYXQgd2FpdCgpIHVudGlsIGdhbWU6SXNMb2FkZWQoKQogICAgICAgIHJlcGVhdCB3YWl0KCkgdW50aWwgZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyCiAgICAgICAgbG9jYWwgUGxyID0gZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyCiAgICAgICAgcmVwZWF0IHdhaXQoKSB1bnRpbCBQbHIuQ2hhcmFjdGVyCiAgICAgICAgcmVwZWF0IHdhaXQoKSB1bnRpbCBQbHIuQ2hhcmFjdGVyOkZpbmRGaXJzdENoaWxkKCJIdW1hbm9pZFJvb3RQYXJ0IikKICAgICAgICByZXBlYXQgd2FpdCgpIHVudGlsIFBsci5DaGFyYWN0ZXI6RmluZEZpcnN0Q2hpbGQoIkh1bWFub2lkIikKICAgICAgICBsb2NhbCBQbHJndWkgPWdhbWU6R2V0U2VydmljZSgiUGxheWVycyIpLkxvY2FsUGxheWVyLlBsYXllckd1aQogICAgICAgIGZ1bmN0aW9uIENoZWNrUmFyaXR5KHJhcml0eSkKICAgICAgICAgICBpZiByYXJpdHkgPT0iVWx0aW1hdGUiIG9yIHJhcml0eT09IkdvZGx5IiB0aGVuCiAgICAgICAgICAgICAgICAgcmV0dXJuIHRydWUKICAgICAgICAgICBlbmQKICAgICAgICAgICByZXR1cm4gZmFsc2UKICAgICAgICBlbmQKICAgICAgICBmdW5jdGlvbiBTZW5kV2ViSG9vayh2KQogICAgICAgICAgIGxvY2FsIG1zZyA9IHsKICAgICAgICAgICAgICAgWydjb250ZW50J10gPSB2LkhvbGRlci5SYXJpdHlGcmFtZS5SYXJpdHkuVGV4dCA9PSJVbHRpbWF0ZSIgYW5kICdAZXZlcnlvbmUnIG9yICcnLAogICAgICAgICAgICAgICBbImVtYmVkcyJdID0ge3sKICAgICAgICAgICAgICAgICAgIFsidGl0bGUiXSA9ICJUaGFuZ2NhY2hlcHAiLAogICAgICAgICAgICAgICAgICAgWyJkZXNjcmlwdGlvbiJdID0gIkNyYXRlIE9wZW5lZCIsCiAgICAgICAgICAgICAgICAgICBbInR5cGUiXSA9ICJyaWNoIiwKICAgICAgICAgICAgICAgICAgIFsiY29sb3IiXSA9IHRvbnVtYmVyKDB4YmRjZTQ0KSwKICAgICAgICAgICAgICAgICAgIFsiZmllbGRzIl0gPSB7CiAgICAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICAgICBbIm5hbWUiXSA9ICJVc2VyIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJ2YWx1ZSJdID0gZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyLk5hbWUsCiAgICAgICAgICAgICAgICAgICAgICAgICAgIFsiaW5saW5lIl0gPSBmYWxzZQogICAgICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICAgICBbIm5hbWUiXSA9ICJOYW1lIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJ2YWx1ZSJdID0gdi5Ib2xkZXIuVW5pdE5hbWUuVGV4dCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJpbmxpbmUiXSA9IHRydWUKICAgICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJuYW1lIl0gPSAiUmFyaXR5IiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgWyJ2YWx1ZSJdID0gdi5Ib2xkZXIuUmFyaXR5RnJhbWUuUmFyaXR5LlRleHQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgIFsiaW5saW5lIl0gPSB0cnVlCiAgICAgICAgICAgICAgICAgICAgICAgfSwKCiAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgIH19CiAgICAgICAgICAgfQogICAgICAgICAgIHJlcXVlc3QoewogICAgICAgICAgICAgICBVcmwgPSBnZXRnZW52KCkuV2ViaG9vaywKICAgICAgICAgICAgICAgTWV0aG9kID0gIlBPU1QiLAogICAgICAgICAgICAgICBIZWFkZXJzID0ge1siQ29udGVudC1UeXBlIl0gPSAiYXBwbGljYXRpb24vanNvbiJ9LAogICAgICAgICAgICAgICBCb2R5ID0gZ2FtZTpHZXRTZXJ2aWNlKCJIdHRwU2VydmljZSIpOkpTT05FbmNvZGUobXNnKQogICAgICAgICAgIH0pCiAgICAgICAgZW5kCiAgICAgICAgUGxyZ3VpLlJlc3VsdHNHdWkuVHJvb3BSZXN1bHRzRnJhbWUuU3VtbW9uUmVzdWx0cy5DaGlsZEFkZGVkOmNvbm5lY3QoZnVuY3Rpb24oVW5pdCkKICAgICAgICAgICAgICBpZiBVbml0OklzQSgiRnJhbWUiKSB0aGVuCiAgICAgICAgICAgICAgICAgaWYgQ2hlY2tSYXJpdHkoVW5pdC5Ib2xkZXIuUmFyaXR5RnJhbWUuUmFyaXR5LlRleHQpIHRoZW4KICAgICAgICAgICAgICAgICAgICAgICBTZW5kV2ViSG9vayhVbml0KQogICAgICAgICAgICAgICAgIGVuZAogICAgICAgICAgICAgIGVuZAoKICAgICAgICBlbmQp',
       scriptOpenCreateBase64New : btoa(unescape(encodeURIComponent(
@@ -424,36 +431,39 @@ end
       this.setting.kill_idle_roblox_delay = typeof(this.setting.kill_idle_roblox_delay) === 'number' ? this.setting.kill_idle_roblox_delay : parseInt(this.setting.kill_idle_roblox_delay)
       this.setting.relaunch_delay = typeof(this.setting.relaunch_delay) === 'number' ? this.setting.relaunch_delay : parseInt(this.setting.relaunch_delay)
       let index = 0
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       const interval = setInterval(async () => {
         const data = handleData[index]
         const devices_id = data?.device_id
-        const responseSetting = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/settings`, this.setting, {
-          headers: {
-            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          },
-        });
-        if (this.update_config) {
-          // const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs`, {
-          //   headers: {
-          //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          //   },
-          // });
-          const config_id = await this.getData(devices_id, "config_id")
-          // const config_id = resConfig?.configs[0]?.config_id
-          this.config.injection_check_timeout = parseInt(this.config.injection_check_timeout)
-          const configData = this.config
-          const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
+        // scriptSelect
+        if (!this.scriptSelect || map_device_data[devices_id]?.script === this.scriptSelect){
+          const responseSetting = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/settings`, this.setting, {
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
             },
           });
-          this.responseAll.push({
-            name: data?.name,
-            sett8ing: responseSetting ? 'Ok' : 'False',
-            config: responseConfig ? 'Ok' : 'False',
-          })
+          if (this.update_config) {
+            // const resConfig = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs`, {
+            //   headers: {
+            //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            //   },
+            // });
+            const config_id = await this.getData(devices_id, "config_id")
+            // const config_id = resConfig?.configs[0]?.config_id
+            this.config.injection_check_timeout = parseInt(this.config.injection_check_timeout)
+            const configData = this.config
+            const responseConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/configs/${config_id}`, configData, {
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+            this.responseAll.push({
+              name: data?.name,
+              sett8ing: responseSetting ? 'Ok' : 'False',
+              config: responseConfig ? 'Ok' : 'False',
+            })
+          }
         }
-
         index += 1
         if (index > handleData.length - 1) {
           clearInterval(interval)
