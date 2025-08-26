@@ -428,7 +428,13 @@ end
         alert("Mật khẩu không chính xác.");
         return false
       }
-      const handleData = this.roblox_data?.devices
+      let handleData = []
+      if (!this.scriptSelect || map_device_data[devices_id]?.script === this.scriptSelect){
+        handleData = this.roblox_data?.devices.map((data) => {return map_device_data[data?.device_id]?.script === this.scriptSelect ? data : false})
+      } else {
+        handleData = this.roblox_data?.devices
+      }
+      console.log("handleData",handleData)
       this.setting.launch_delay = typeof(this.setting.launch_delay) === 'number' ? this.setting.launch_delay : parseInt(this.setting.launch_delay)
       this.setting.kill_idle_roblox_delay = typeof(this.setting.kill_idle_roblox_delay) === 'number' ? this.setting.kill_idle_roblox_delay : parseInt(this.setting.kill_idle_roblox_delay)
       this.setting.relaunch_delay = typeof(this.setting.relaunch_delay) === 'number' ? this.setting.relaunch_delay : parseInt(this.setting.relaunch_delay)
