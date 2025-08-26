@@ -432,8 +432,8 @@ end
       // }
       let handleData = []
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
-      if (!this.scriptSelect){
-        handleData = this.roblox_data?.devices.filter((data) => map_device_data[data?.device_id]?.script === this.scriptSelect)
+      if (this.scriptSelect){
+        handleData = this.roblox_data?.devices.filter((data) => map_device_data[data?.device_id]?.script && map_device_data[data?.device_id]?.script === this.scriptSelect)
       } else {
         handleData = this.roblox_data?.devices
       }
