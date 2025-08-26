@@ -11,6 +11,7 @@
             <div>Relaunch delay : <input type="number" v-model="setting.relaunch_delay"></div>
             <div>Avoid joining same accounts : <input type="checkbox" v-model="setting.avoid_joining_same_accounts">{{setting.avoid_joining_same_accounts}}</div>
             <div>Script
+              {{scriptSelect}}
               <select v-model="scriptSelect">
                 <option value="">All</option>
                 <option value="99night">99night</option>
@@ -419,6 +420,7 @@ end
       console.log('this.link_private',this.link_private_data)
     },
     async renderConfig() {
+      console.log("this.scriptSelect",this.scriptSelect)
       const correctPassword = "matkhau123@"; // Mật khẩu cố định
       const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
 
