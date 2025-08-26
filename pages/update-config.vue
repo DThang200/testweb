@@ -431,6 +431,7 @@ end
       //   return false
       // }
       let handleData = []
+      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       if (!this.scriptSelect){
         handleData = this.roblox_data?.devices.map((data) => {return map_device_data[data?.device_id]?.script === this.scriptSelect ? data : false})
       } else {
@@ -441,7 +442,6 @@ end
       this.setting.kill_idle_roblox_delay = typeof(this.setting.kill_idle_roblox_delay) === 'number' ? this.setting.kill_idle_roblox_delay : parseInt(this.setting.kill_idle_roblox_delay)
       this.setting.relaunch_delay = typeof(this.setting.relaunch_delay) === 'number' ? this.setting.relaunch_delay : parseInt(this.setting.relaunch_delay)
       let index = 0
-      const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       const interval = setInterval(async () => {
         const data = handleData[index]
         const devices_id = data?.device_id
