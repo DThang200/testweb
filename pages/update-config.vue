@@ -437,6 +437,7 @@ end
       } else {
         handleData = this.roblox_data?.devices
       }
+      handleData.filter(data => this.hideDevice.includes((this.map_device_id_code[data.device_id]).replace(/_/g, " ")))
       console.log("handleData",handleData)
       this.setting.launch_delay = typeof(this.setting.launch_delay) === 'number' ? this.setting.launch_delay : parseInt(this.setting.launch_delay)
       this.setting.kill_idle_roblox_delay = typeof(this.setting.kill_idle_roblox_delay) === 'number' ? this.setting.kill_idle_roblox_delay : parseInt(this.setting.kill_idle_roblox_delay)
