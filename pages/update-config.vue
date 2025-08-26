@@ -439,6 +439,7 @@ end
         const devices_id = data?.device_id
         // scriptSelect
         if (!this.scriptSelect || map_device_data[devices_id]?.script === this.scriptSelect){
+          console.log(map_device_data[devices_id]?.script === this.scriptSelect,!this.scriptSelect)
           const responseSetting = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${devices_id}/settings`, this.setting, {
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
