@@ -429,7 +429,7 @@ end
         return false
       }
       let handleData = []
-      if (!this.scriptSelect || map_device_data[devices_id]?.script === this.scriptSelect){
+      if (!this.scriptSelect){
         handleData = this.roblox_data?.devices.map((data) => {return map_device_data[data?.device_id]?.script === this.scriptSelect ? data : false})
       } else {
         handleData = this.roblox_data?.devices
