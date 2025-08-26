@@ -421,13 +421,13 @@ end
     },
     async renderConfig() {
       console.log("this.scriptSelect",this.scriptSelect)
-      const correctPassword = "matkhau123@"; // Mật khẩu cố định
-      const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
-
-      if (userPassword !== correctPassword) {
-        alert("Mật khẩu không chính xác.");
-        return false
-      }
+      // const correctPassword = "matkhau123@"; // Mật khẩu cố định
+      // const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
+      //
+      // if (userPassword !== correctPassword) {
+      //   alert("Mật khẩu không chính xác.");
+      //   return false
+      // }
       let handleData = []
       if (!this.scriptSelect){
         handleData = this.roblox_data?.devices.map((data) => {return map_device_data[data?.device_id]?.script === this.scriptSelect ? data : false})
