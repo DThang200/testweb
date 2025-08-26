@@ -133,6 +133,7 @@ export default {
       last_enable_per_device : 30,
       enable_per_device : 30,
       select_pc: '',
+      hideDevice: [],
       pcDetail: [],
       enableDeviceStatus : [],
       finishRender: false,
@@ -396,6 +397,7 @@ end
     }
   },
   async mounted() {
+    this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
     console.log('this.scriptFixLagBase64',this.scriptFixLagBase64)
     this.initListLink();
     if (!this.roblox_data?.devices) {
@@ -815,40 +817,41 @@ end
         // for (let i = 0; i < 5; i++) {
           console.log('this.roblox_data.devices[i]',this.roblox_data.devices[i])
           const device = this.roblox_data.devices[i]
-          const data = await this.renderDevice(device.device_id)
-          let enable = 0
-          let disable = 0
-          let indexLastEnable = 0
-          if (data){
-            data.accounts.forEach((acc,accIndex) => {
-              if (acc?.enabled){
-                enable +=1
-                indexLastEnable = accIndex
-              } else {
-                disable +=1
-              }
-            })
-            // this.pcDetail[i] =
-            //     {
-            //       deviceName: this.map_device_id_code[device.device_id],
-            //       deviceId: device.device_id,
-            //       enable: enable,
-            //       disable: disable,
-            //       indexLastEnable: indexLastEnable,
-            //       length: data?.accounts?.length || 0,
-            //       listAcc : data?.accounts || []
-            //     }
-            this.pcDetail.push({
-              deviceName: this.map_device_id_code[device.device_id],
-              deviceId: device.device_id,
-              enable: enable,
-              disable: disable,
-              indexLastEnable: indexLastEnable,
-              length: data?.accounts?.length || 0,
-              listAcc : data?.accounts || []
-            })
-          }
-        }
+          if (this.hideDevice.includes((this.map_device_id_code[device.device_id]).replace(/_/g, " "))){
+            const data = await this.renderDevice(device.device_id)
+            let enable = 0
+            let disable = 0
+            let indexLastEnable = 0
+            if (data){
+              data.accounts.forEach((acc,accIndex) => {
+                if (acc?.enabled){
+                  enable +=1
+                  indexLastEnable = accIndex
+                } else {
+                  disable +=1
+                }
+              })
+              // this.pcDetail[i] =
+              //     {
+              //       deviceName: this.map_device_id_code[device.device_id],
+              //       deviceId: device.device_id,
+              //       enable: enable,
+              //       disable: disable,
+              //       indexLastEnable: indexLastEnable,
+              //       length: data?.accounts?.length || 0,
+              //       listAcc : data?.accounts || []
+              //     }
+              this.pcDetail.push({
+                deviceName: this.map_device_id_code[device.device_id],
+                deviceId: device.device_id,
+                enable: enable,
+                disable: disable,
+                indexLastEnable: indexLastEnable,
+                length: data?.accounts?.length || 0,
+                listAcc : data?.accounts || []
+              })
+            }
+          }}
         console.log('this.pcDetail',this.pcDetail)
             this.finishRender = true
       }
