@@ -433,11 +433,11 @@ end
       let handleData = []
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       if (this.scriptSelect){
-        handleData = this.roblox_data?.devices.filter((data) => map_device_data[data?.device_id]?.script && map_device_data[data?.device_id]?.script === this.scriptSelect)
+        handleData= handleData = this.roblox_data?.devices.filter((data) => map_device_data[data?.device_id]?.script && map_device_data[data?.device_id]?.script === this.scriptSelect)
       } else {
         handleData = this.roblox_data?.devices
       }
-      handleData.filter(data => this.hideDevice.includes((this.map_device_id_code[data.device_id]).replace(/_/g, " ")))
+      handleData = handleData.filter(data => this.hideDevice.includes((this.map_device_id_code[data.device_id]).replace(/_/g, " ")))
       console.log("handleData",handleData)
       this.setting.launch_delay = typeof(this.setting.launch_delay) === 'number' ? this.setting.launch_delay : parseInt(this.setting.launch_delay)
       this.setting.kill_idle_roblox_delay = typeof(this.setting.kill_idle_roblox_delay) === 'number' ? this.setting.kill_idle_roblox_delay : parseInt(this.setting.kill_idle_roblox_delay)
