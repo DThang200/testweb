@@ -244,7 +244,8 @@ export default {
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',private_server : false},
         {code : 'astd',label : 'ASTD',game_id: '17687504411',private_server : false, shoukoTrack :true},
         {code : '99night',label : '99 Night',game_id: '79546208627805',private_server : false, shoukoTrack :true},
-        {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
+        // {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
+        {code : 'av',label : 'AV',game_id: '16146832113',private_server : false,shoukoTrack :true},
         {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
       ],
@@ -1189,6 +1190,46 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     setfpscap(15)
     local success, err = pcall(function()
         loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/evRCn4hRbk3G.lua"))()
+    end)
+    task.wait(20)
+    until success`
+          break;
+        case 'av' :
+          script = `
+          _G.VanguardSettings = {
+    ['ClaimDaily'] = true,
+    ['ClaimQuests'] = true,
+    ['ClaimAchievement'] = true,
+    ['ClaimBattlepass'] = true,
+    ['ClaimMileStones'] = false,
+    ['RedeemCodes'] = true,
+    ['JoinGames'] = true,
+    ['Summon'] = {
+        ['LockUnits'] = false,
+        ['Name'] = {''}
+    },
+    ['Webhooks'] = {
+        ['Enabled'] = true,
+        ['Url'] = 'https://discord.com/api/webhooks/1410629253262872676/f4VsUnjK4mu1Xx5cgFz3ASeIDgyAElMIg9M-8KwRj56R0hpAOWGtFmhmPRkTseJwjRL6'
+    },
+    ["TeaFarm"] = {
+        ["Enabled"] = true,
+        ["FarmAtLevel"] = 11,
+        ["RandomUnits"] = {
+            ["SellUnitsNotLock"] = true,
+            ["RandomWhenHaveTea"] = 100000,
+            ["Lock"] = {
+                "Iscanur (Pride)"
+            }
+        }
+    }
+}
+    script_key="lRassFgkueLPKUCDFPZcDXSCvfPAqpBH";
+    if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+    wait(3)
+    setfpscap(15)
+    local success, err = pcall(function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6756a57cd51293c409a1f7627cba5572.lua"))()
     end)
     task.wait(20)
     until success`
