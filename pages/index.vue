@@ -1228,10 +1228,11 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
     wait(3)
     setfpscap(15)
+    repeat
     local success, err = pcall(function()
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6756a57cd51293c409a1f7627cba5572.lua"))()
     end)
-    task.wait(20)
+    task.wait(3)
     until success`
           break;
 
