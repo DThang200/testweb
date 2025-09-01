@@ -1196,44 +1196,637 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
           break;
         case 'av' :
           script = `
-          _G.VanguardSettings = {
-    ['ClaimDaily'] = true,
-    ['ClaimQuests'] = true,
-    ['ClaimAchievement'] = true,
-    ['ClaimBattlepass'] = true,
-    ['ClaimMileStones'] = false,
-    ['RedeemCodes'] = true,
-    ['JoinGames'] = true,
-    ['Summon'] = {
-        ['LockUnits'] = false,
-        ['Name'] = {''}
+                    repeat wait() until game:IsLoaded()
+          setfpscap(5)
+spawn(function()
+    while wait() do
+  local old = tick()
+repeat wait() until tick() - old >= 7200
+game.Players.LocalPlayer:Kick("kick sau 2h")
+end
+end)
+          getgenv().Key = "${nousigi}"
+          getgenv().Config = {
+  ["Auto Join Equipper"] = {
+    ["Macro Equipper"] = {
+      ["Enable"] = false
     },
-    ['Webhooks'] = {
-        ['Enabled'] = true,
-        ['Url'] = 'https://discord.com/api/webhooks/1410629253262872676/f4VsUnjK4mu1Xx5cgFz3ASeIDgyAElMIg9M-8KwRj56R0hpAOWGtFmhmPRkTseJwjRL6'
-    },
-    ["TeaFarm"] = {
-        ["Enabled"] = true,
-        ["FarmAtLevel"] = 11,
-        ["RandomUnits"] = {
-            ["SellUnitsNotLock"] = true,
-            ["RandomWhenHaveTea"] = 100000,
-            ["Lock"] = {
-                "Iscanur (Pride)"
-            }
-        }
+    ["Team Equipper"] = {
+      ["Enable"] = false,
+      ["Auto Join Team"] = {
+        ["Stage Joiner"] = 2
+      }
     }
-}
-    script_key="lRassFgkueLPKUCDFPZcDXSCvfPAqpBH";
-    if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
-    wait(3)
-    setfpscap(15)
-    repeat
-    local success, err = pcall(function()
-        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6756a57cd51293c409a1f7627cba5572.lua"))()
-    end)
-    task.wait(3)
-    until success`
+  },
+  ["Gold Buyer"] = {
+    ["Enable"] = false
+  },
+  ["Dungeon Joiner"] = {
+    ["Auto Join"] = false
+  },
+  ["Stage Joiner"] = {
+    ["Join Highest"] = true,
+    ["Join Lowest Clear"] = false,
+    ["Auto Join"] = true,
+    ["Nightmare Mode"] = false,
+    ["Stage"] = "Planet Namak"
+  },
+  ["Macros"] = {
+    ["Macro Retry Limit"] = 0,
+    ["Ignore Macro Timing"] = true,
+    ["No Ignore Sell Timing"] = true,
+    ["Auto Equip"] = false,
+    ["Play"] = false
+  },
+  ["Summer Event"] = {
+    ["Summer Event Joiner"] = {
+      ["Auto Join"] = false
+    }
+  },
+  ["Webhook"] = {
+    ["Unit Summoned"] = false,
+    ["Trait Rerolled"] = false,
+    ["URL"] = "https://discord.com/api/webhooks/1410629253262872676/f4VsUnjK4mu1Xx5cgFz3ASeIDgyAElMIg9M-8KwRj56R0hpAOWGtFmhmPRkTseJwjRL6",
+    ["Match Restarted"] = true,
+    ["Stage Finished"] = false,
+    ["Stat Potential Rerolled"] = false,
+    ["Unit Stat Potential"] = false
+  },
+  ["Legend Stage Joiner"] = {
+    ["Auto Join"] = false
+  },
+  ["Trait Reroller"] = {
+    ["Enable"] = false
+  },
+  ["Odyssey Joiner"] = {
+    ["Second Team"] = 2,
+    ["Auto Join"] = false,
+    ["First Team"] = 1,
+    ["Intensity"] = 200,
+    ["Cash Out Floor"] = 5
+  },
+  ["Summer Portal Joiner"] = {
+    ["Buy if out of Portal"] = false,
+    ["Tier Cap"] = 10,
+    ["Auto Join"] = false,
+    ["Ignore Modifier"] = {
+      ["Strong"] = false,
+      ["Drowsy"] = false,
+      ["Regen"] = false,
+      ["Fast"] = false,
+      ["Revitalize"] = false,
+      ["Champions"] = false,
+      ["Exploding"] = false,
+      ["Dodge"] = false,
+      ["Shielded"] = false,
+      ["Immunity"] = false,
+      ["Quake"] = false,
+      ["Thrice"] = false
+    },
+    ["Portal Reward Picker"] = {
+      ["Enable"] = false,
+      ["Ignore Modifier"] = {
+        ["Strong"] = false,
+        ["Drowsy"] = false,
+        ["Regen"] = false,
+        ["Fast"] = false,
+        ["Revitalize"] = false,
+        ["Champions"] = false,
+        ["Exploding"] = false,
+        ["Dodge"] = false,
+        ["Shielded"] = false,
+        ["Immunity"] = false,
+        ["Quake"] = false,
+        ["Thrice"] = false
+      }
+    },
+    ["Auto Next"] = false
+  },
+  ["Claimer"] = {
+    ["Auto Claim Milestone"] = true,
+    ["Auto Claim Quest"] = true,
+    ["Auto Claim Collection Milestone"] = true,
+    ["Auto Claim Daily Reward"] = true,
+    ["Auto Claim Achievement"] = true,
+    ["Auto Claim Collection"] = true,
+    ["Auto Claim Enemy Index"] = true,
+    ["Auto Claim Battle Pass"] = true
+  },
+  ["Gameplay"] = {
+    ["Double Dungeon"] = {
+      ["Auto Statue"] = false,
+      ["Leave Extra Money"] = 5000,
+      ["Upgrade Amount"] = 0
+    },
+    ["Saber Event"] = {
+      ["Servant"] = "Berserker",
+      ["Auto Select Servant"] = false
+    },
+    ["Steel Ball Run"] = {
+      ["Collect Steel Ball"] = false
+    },
+    ["Random Sacrifice Domain"] = {
+      ["Sell Units on Event"] = false
+    },
+    ["Edge of Heaven"] = {
+      ["Auto Join Lfelt Portal"] = false,
+      ["Pause instead of Joining"] = false
+    },
+    ["Auto Skip Wave"] = {
+      ["Enable"] = true,
+      ["Stop Skip Stage Type"] = {
+        ["Odyssey"] = true,
+        ["Challenge"] = true,
+        ["Portal"] = true,
+        ["Worldline"] = true,
+        ["Legend Stage"] = true,
+        ["BossEvent"] = true,
+        ["Dungeon"] = true,
+        ["Infinite"] = true,
+        ["Rift"] = true,
+        ["Raid"] = true,
+        ["Story"] = true
+      },
+      ["Stop at Wave"] = 0
+    },
+    ["Auto Use Ability"] = true,
+    ["Elemental Dimensions"] = {
+      ["Enable"] = false,
+      ["Order"] = {
+        ["Fire"] = 1,
+        ["Sand"] = 3,
+        ["Ice"] = 2
+      }
+    },
+    ["Auto Sell"] = {
+      ["Auto Sell Farm"] = {
+        ["Enable"] = false,
+        ["Wave"] = 1,
+        ["Stage Type"] = {
+          ["Odyssey"] = true,
+          ["Challenge"] = true,
+          ["Portal"] = true,
+          ["Worldline"] = true,
+          ["Legend Stage"] = true,
+          ["BossEvent"] = true,
+          ["Dungeon"] = true,
+          ["Infinite"] = true,
+          ["Rift"] = true,
+          ["Raid"] = true,
+          ["Story"] = true
+        }
+      },
+      ["Auto Sell Unit"] = {
+        ["Enable"] = false,
+        ["Wave"] = 1,
+        ["Stage Type"] = {
+          ["Odyssey"] = true,
+          ["Challenge"] = true,
+          ["Portal"] = true,
+          ["Worldline"] = true,
+          ["Legend Stage"] = true,
+          ["BossEvent"] = true,
+          ["Dungeon"] = true,
+          ["Infinite"] = true,
+          ["Rift"] = true,
+          ["Raid"] = true,
+          ["Story"] = true
+        }
+      }
+    },
+    ["Ant Island"] = {
+      ["Auto Plug Ant Tunnel"] = false
+    },
+    ["Shibuya Station"] = {
+      ["Auto Mohato"] = false,
+      ["Leave Extra Money"] = 5000,
+      ["Upgrade Amount"] = 0
+    },
+    ["Ruined City"] = {
+      ["Use Mount to Travel"] = true,
+      ["Active Tower"] = false,
+      ["Unhandcuff"] = false
+    },
+    ["The System"] = {
+      ["Auto Shadow"] = {
+        ["Enable"] = false,
+        ["Order"] = {
+          ["Steel"] = 2,
+          ["Belu"] = 4,
+          ["Healer"] = 3,
+          ["Bear"] = 1
+        }
+      }
+    },
+    ["Burn Units"] = {
+      ["Enable"] = false,
+      ["Slots"] = {
+        ["1"] = false,
+        ["3"] = false,
+        ["2"] = false,
+        ["5"] = false,
+        ["4"] = false,
+        ["6"] = false
+      },
+      ["Stage Type"] = {
+        ["Odyssey"] = true,
+        ["Challenge"] = true,
+        ["Portal"] = true,
+        ["Worldline"] = true,
+        ["Legend Stage"] = true,
+        ["BossEvent"] = true,
+        ["Dungeon"] = true,
+        ["Infinite"] = true,
+        ["Rift"] = true,
+        ["Raid"] = true,
+        ["Story"] = true
+      }
+    },
+    ["Auto Vote Start"] = true,
+    ["Martial Island"] = {
+      ["Auto Join God Portal"] = false,
+      ["Collect Rotara Earring"] = false,
+      ["Pause instead of Joining"] = false,
+      ["Restart if no Rotara Earring"] = false
+    },
+    ["Occult Hunt"] = {
+      ["Collect Talisman"] = false,
+      ["Use All Talisman"] = {
+        ["Enable"] = false,
+        ["Wave"] = 1
+      },
+      ["Use Talisman on Crab"] = false
+    },
+    ["Auto Restart"] = {
+      ["Enable"] = false,
+      ["Wave"] = 10,
+      ["Stage Type"] = {
+        ["Odyssey"] = true,
+        ["Challenge"] = true,
+        ["Portal"] = true,
+        ["Worldline"] = true,
+        ["Legend Stage"] = true,
+        ["BossEvent"] = true,
+        ["Dungeon"] = true,
+        ["Infinite"] = true,
+        ["Rift"] = true,
+        ["Raid"] = true,
+        ["Story"] = true
+      }
+    }
+  },
+  ["Daily Challenge Joiner"] = {
+    ["Auto Join"] = false
+  },
+  ["Misc"] = {
+    ["Auto Open Gift Boxes"] = true,
+    ["Right Click Move"] = false,
+    ["Max Camera Zoom"] = 40,
+    ["Auto Delete Portal"] = {
+      ["Enable"] = false,
+      ["Summer Portal"] = 500,
+      ["Spring Portal"] = 500
+    },
+    ["Redeem Code"] = true,
+    ["Right Click Teleport"] = false
+  },
+  ["Summoner"] = {
+    ["Teleport Lobby new Banner"] = false,
+    ["Unselect if Summoned"] = false,
+    ["Auto Summon Special"] = false,
+    ["Normalize Rarity"] = {
+      ["Legendary"] = false,
+      ["Mythic"] = false,
+      ["Exclusive"] = false,
+      ["Epic"] = false,
+      ["Rare"] = false
+    },
+    ["Auto Summon Summer"] = false,
+    ["Auto Summon Spring"] = false,
+    ["Delete Rarity"] = {
+      ["Legendary"] = false,
+      ["Mythic"] = false,
+      ["Exclusive"] = false,
+      ["Epic"] = true,
+      ["Rare"] = true
+    }
+  },
+  ["Unit Deleter"] = {
+    ["Enable"] = false,
+    ["Rarity"] = {
+      ["Epic"] = false,
+      ["Legendary"] = false,
+      ["Rare"] = false
+    }
+  },
+  ["Worldline Joiner"] = {
+    ["Auto Join"] = false
+  },
+  ["Regular Challenge Joiner"] = {
+    ["Auto Join"] = false,
+    ["Teleport Lobby new Challenge"] = false
+  },
+  ["Auto Play"] = {
+    ["Auto Upgrade"] = {
+      ["Upgrade Order"] = {
+        ["1"] = 1,
+        ["3"] = 3,
+        ["2"] = 2,
+        ["5"] = 5,
+        ["4"] = 4,
+        ["6"] = 6
+      },
+      ["Place and Upgrade"] = false,
+      ["Enable"] = false,
+      ["Focus on Farm"] = false,
+      ["Upgrade Method"] = "Hotbar left to right (until Max)",
+      ["Upgrade Limit"] = {
+        ["1"] = 0,
+        ["3"] = 0,
+        ["2"] = 0,
+        ["5"] = 0,
+        ["4"] = 0,
+        ["6"] = 0
+      }
+    },
+    ["Place Limit"] = {
+      ["1"] = 0,
+      ["3"] = 0,
+      ["2"] = 0,
+      ["5"] = 0,
+      ["4"] = 0,
+      ["6"] = 0
+    },
+    ["Enable"] = true,
+    ["Place Order"] = {
+      ["1"] = 1,
+      ["3"] = 3,
+      ["2"] = 2,
+      ["5"] = 5,
+      ["4"] = 4,
+      ["6"] = 6
+    },
+    ["Place Wave"] = {
+      ["1"] = 0,
+      ["3"] = 0,
+      ["2"] = 0,
+      ["5"] = 0,
+      ["4"] = 0,
+      ["6"] = 0
+    }
+  },
+  ["Match Finished"] = {
+    ["Auto Return Lobby"] = false,
+    ["Auto Next"] = true,
+    ["Replay Amount"] = 0,
+    ["Return Lobby Failsafe"] = true,
+    ["Auto Replay"] = true
+  },
+  ["Crafter"] = {
+    ["Enable"] = false,
+    ["Teleport Lobby full Essence"] = false,
+    ["Essence Stone"] = {
+      ["Pink Essence Stone"] = true,
+      ["Blue Essence Stone"] = true,
+      ["Red Essence Stone"] = true,
+      ["Yellow Essence Stone"] = true,
+      ["Purple Essence Stone"] = true
+    },
+    ["Essence Stone Limit"] = {
+      ["Pink Essence Stone"] = 50,
+      ["Blue Essence Stone"] = 50,
+      ["Red Essence Stone"] = 50,
+      ["Yellow Essence Stone"] = 50,
+      ["Purple Essence Stone"] = 50
+    }
+  },
+  ["Rift Joiner"] = {
+    ["Teleport Lobby Rift spawn"] = {
+      ["Enable"] = false,
+      ["Force teleport"] = false,
+      ["Extra Time"] = 60
+    },
+    ["Hop Server if no Rift Portal"] = false,
+    ["Auto Join"] = false,
+    ["Join Solo Only"] = false
+  },
+  ["Boss Event Joiner"] = {
+    ["Auto Join"] = false,
+    ["Nightmare Mode"] = false
+  },
+  ["Modifier"] = {
+    ["Restart Modifier"] = {
+      ["Enable"] = false,
+      ["Stage Type"] = {
+        ["Odyssey"] = true,
+        ["Challenge"] = true,
+        ["Portal"] = true,
+        ["Worldline"] = true,
+        ["Legend Stage"] = true,
+        ["BossEvent"] = true,
+        ["Dungeon"] = true,
+        ["Infinite"] = true,
+        ["Rift"] = true,
+        ["Raid"] = true,
+        ["Story"] = true
+      },
+      ["Modifier"] = {
+        ["No Trait No Problem"] = false,
+        ["Warding off Evil"] = false,
+        ["King's Burden"] = false,
+        ["Champions"] = false,
+        ["Drowsy"] = false,
+        ["Immunity"] = false,
+        ["Quake"] = false,
+        ["Dodge"] = false,
+        ["Lifeline"] = false,
+        ["Fisticuffs"] = false,
+        ["Exterminator"] = false,
+        ["Money Surge"] = false
+      }
+    },
+    ["Auto Modifier"] = {
+      ["Prioritize"] = {
+        ["Range"] = 18,
+        ["Planning Ahead"] = 15,
+        ["Unit Draw"] = 31,
+        ["Exploding"] = 2,
+        ["Immunity"] = 11,
+        ["Damage"] = 20,
+        ["Lifeline"] = 29,
+        ["Evolution"] = 32,
+        ["Regen"] = 7,
+        ["Press It"] = 14,
+        ["Nighttime"] = 30,
+        ["Shielded"] = 5,
+        ["Cooldown"] = 19,
+        ["Money Surge"] = 26,
+        ["Strong"] = 3,
+        ["Thrice"] = 4,
+        ["Warding off Evil"] = 24,
+        ["Quake"] = 9,
+        ["Fast"] = 1,
+        ["Dodge"] = 10,
+        ["Fisticuffs"] = 25,
+        ["No Trait No Problem"] = 23,
+        ["Wild Card"] = 33,
+        ["King's Burden"] = 27,
+        ["Uncommon Loot"] = 22,
+        ["Common Loot"] = 21,
+        ["Exterminator"] = 28,
+        ["Revitalize"] = 6,
+        ["Champions"] = 12,
+        ["Harvest"] = 17,
+        ["Precise Attack"] = 13,
+        ["Slayer"] = 16,
+        ["Drowsy"] = 8
+      },
+      ["Enable"] = false
+    }
+  },
+  ["Auto Join Setting"] = {
+    ["Joiner Cooldown"] = 0,
+    ["Joiner Priority"] = {
+      ["Boss Event Joiner"] = 5,
+      ["Daily Challenge Joiner"] = 14,
+      ["Boss Bounties Joiner"] = 12,
+      ["Limitless Odyssey Joiner"] = 8,
+      ["Legend Stage Joiner"] = 2,
+      ["Weekly Challenge Joiner"] = 15,
+      ["Stage Joiner"] = 1,
+      ["Odyssey Joiner"] = 7,
+      ["Summer Portal Joiner"] = 11,
+      ["Raid Joiner"] = 3,
+      ["Worldline Joiner"] = 6,
+      ["Regular Challenge Joiner"] = 13,
+      ["Dungeon Joiner"] = 4,
+      ["Summer Event Joiner"] = 10,
+      ["Spring Portal Joiner"] = 9,
+      ["Rift Joiner"] = 16
+    }
+  },
+  ["Raid Joiner"] = {
+    ["Auto Join"] = false
+  },
+  ["Stat Reroller"] = {
+    ["Stat Potential"] = 100,
+    ["Teleport Lobby reach Stat Potential"] = false,
+    ["Enable"] = false,
+    ["Type"] = {
+      ["SPA"] = false,
+      ["All"] = false,
+      ["Range"] = false,
+      ["Damage"] = false
+    },
+    ["Stat"] = {
+      ["神"] = false,
+      ["Z+"] = false,
+      ["S"] = false,
+      ["Z"] = false
+    }
+  },
+  ["Failsafe"] = {
+    ["Teleport Lobby if Player"] = false,
+    ["Disable Auto Teleport AFK Chamber"] = true
+  },
+  ["Unit Feeder"] = {
+    ["Auto Feed"] = false,
+    ["Feed Level"] = 60
+  },
+  ["Weekly Challenge Joiner"] = {
+    ["Auto Join"] = false
+  },
+  ["Secure"] = {
+    ["Walk Around"] = true,
+    ["Random Offset"] = true
+  },
+  ["Boss Bounties Joiner"] = {
+    ["Auto Join"] = false
+  },
+  ["Limitless Odyssey Joiner"] = {
+    ["Auto Force Skip Wave"] = false,
+    ["Auto Join"] = false,
+    ["Force Skip Wave"] = 1,
+    ["Leave Floor"] = 1,
+    ["Intensity"] = 25
+  },
+  ["Performance"] = {
+    ["Delete Map"] = true,
+    ["Boost FPS"] = true,
+    ["Black Screen"] = true,
+    ["Delete Entities"] = true
+  },
+  ["Performance Failsafe"] = {
+    ["Teleport Lobby FPS below"] = {
+      ["Enable"] = true,
+      ["FPS"] = 5
+    }
+  },
+  ["Spring Portal Joiner"] = {
+    ["Tier Cap"] = 10,
+    ["Auto Next"] = false,
+    ["Ignore Modifier"] = {
+      ["Strong"] = false,
+      ["Drowsy"] = false,
+      ["Regen"] = false,
+      ["Fast"] = false,
+      ["Revitalize"] = false,
+      ["Champions"] = false,
+      ["Exploding"] = false,
+      ["Dodge"] = false,
+      ["Shielded"] = false,
+      ["Immunity"] = false,
+      ["Quake"] = false,
+      ["Thrice"] = false
+    },
+    ["Buy if out of Portal"] = false,
+    ["Ignore Act"] = {
+      ["[Land of the Gods] Act2"] = false,
+      ["[Planet Namak] Act3"] = false,
+      ["[Edge of Heaven] Act5"] = false,
+      ["[Land of the Gods] Act1"] = false,
+      ["[Edge of Heaven] Act2"] = false,
+      ["[Planet Namak] Act1"] = false,
+      ["[Planet Namak] Act5"] = false,
+      ["[Land of the Gods] Act3"] = false,
+      ["[Edge of Heaven] Act3"] = false,
+      ["[Edge of Heaven] Act4"] = false,
+      ["[Planet Namak] Act2"] = false,
+      ["[Planet Namak] Act4"] = false,
+      ["[Edge of Heaven] Act1"] = false,
+      ["[Edge of Heaven] Act6"] = false,
+      ["[Planet Namak] Act6"] = false
+    },
+    ["Auto Join"] = false,
+    ["Teleport Lobby full Wooden Chest"] = false,
+    ["Teleport Lobby full Iced Box"] = false,
+    ["Portal Reward Picker"] = {
+      ["Enable"] = false,
+      ["Ignore Modifier"] = {
+        ["Strong"] = false,
+        ["Drowsy"] = false,
+        ["Regen"] = false,
+        ["Fast"] = false,
+        ["Revitalize"] = false,
+        ["Champions"] = false,
+        ["Exploding"] = false,
+        ["Dodge"] = false,
+        ["Shielded"] = false,
+        ["Immunity"] = false,
+        ["Quake"] = false,
+        ["Thrice"] = false
+      },
+      ["Prioritize"] = {
+        ["Edge of Heaven"] = 3,
+        ["Planet Namak"] = 2,
+        ["Land of the Gods"] = 1
+      }
+    }
+  },
+  ["Skin Deleter"] = {
+    ["Enable"] = false
+  }
+}`
           break;
 
 //         case 'astd' :
