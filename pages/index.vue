@@ -5,6 +5,12 @@
       <button type="button" @click="refreshScript()">
         Refresh script
       </button>
+      <button type="button" @click="refreshScript('av-next')">
+        AV auto next
+      </button>
+      <button type="button" @click="refreshScript('av-inf')">
+        AV auto inf
+      </button>
       <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
       <span v-if="interval_auto_gom_device_name">Device : {{interval_auto_gom_device_name}}</span>
     </div>
@@ -276,7 +282,8 @@ export default {
       intervalRunAndStop: null,
       showAllDevice: false,
       countAstdKeyMaru : 0,
-      switchayaya : true
+      switchayaya : true,
+      avConfig : 'av-next',
     }
   },
   async mounted() {
@@ -1197,7 +1204,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
         case 'av' :
           script = `
                     repeat wait() until game:IsLoaded()
-          setfpscap(5)
+          setfpscap(2)
 spawn(function()
     while wait() do
   local old = tick()
@@ -1247,9 +1254,9 @@ getgenv().Config = {
     ["Trait Rerolled"] = false,
     ["URL"] = "https://discord.com/api/webhooks/1410629253262872676/f4VsUnjK4mu1Xx5cgFz3ASeIDgyAElMIg9M-8KwRj56R0hpAOWGtFmhmPRkTseJwjRL6",
     ["Unit Stat Potential"] = false,
-    ["Stage Finished"] = false,
+    ["Stage Finished"] = true,
     ["Stat Potential Rerolled"] = false,
-    ["Match Restarted"] = true
+    ["Match Restarted"] = false
   },
   ["Boss Event Joiner"] = {
     ["Auto Join"] = false,
@@ -1344,7 +1351,7 @@ getgenv().Config = {
         ["Story"] = true,
         ["Raid"] = true
       },
-      ["Stop at Wave"] = 0
+      ["Stop at Wave"] = 15
     },
     ["Auto Use Ability"] = true,
     ["Elemental Dimensions"] = {
@@ -1357,8 +1364,8 @@ getgenv().Config = {
     },
     ["Auto Sell"] = {
       ["Auto Sell Farm"] = {
-        ["Enable"] = false,
-        ["Wave"] = 1,
+        ["Enable"] = true,
+        ["Wave"] = 40,
         ["Stage Type"] = {
           ["Odyssey"] = true,
           ["Challenge"] = true,
@@ -1374,8 +1381,8 @@ getgenv().Config = {
         }
       },
       ["Auto Sell Unit"] = {
-        ["Enable"] = false,
-        ["Wave"] = 1,
+        ["Enable"] = ${true},
+        ["Wave"] = 40,
         ["Stage Type"] = {
           ["Odyssey"] = true,
           ["Challenge"] = true,
@@ -1643,8 +1650,8 @@ getgenv().Config = {
   },
   ["Match Finished"] = {
     ["Auto Return Lobby"] = false,
-    ["Auto Next"] = true,
-    ["Replay Amount"] = 0,
+    ["Auto Next"] = ${this.avConfig === 'av-next' ? 'true': 'false'},
+    ["Replay Amount"] = 20,
     ["Return Lobby Failsafe"] = true,
     ["Auto Replay"] = true
   },
@@ -1756,8 +1763,8 @@ getgenv().Config = {
   },
   ["Performance Failsafe"] = {
     ["Teleport Lobby FPS below"] = {
-      ["Enable"] = true,
-      ["FPS"] = 5
+      ["Enable"] = false,
+      ["FPS"] = 3
     }
   },
   ["Spring Portal Joiner"] = {
@@ -2404,7 +2411,11 @@ until success`
         // https://frontend.robloxmanager.com/v1/devices/cd42b76bdc6ad726b6690ad474a8cafe4184a663f47336e1be8e6f931a23a64b/stop
       }
     },
-    refreshScript(){
+    refreshScript(config = null){
+      this.avConfig = config
+      if (config && (config === 'av-auto' || config === 'av-inf')){
+        this.avConfig = config
+      }
       const correctPassword = "matkhau123@"; // Mật khẩu cố định
       const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
 
