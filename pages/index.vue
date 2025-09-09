@@ -1205,16 +1205,8 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
           break;
         case 'av' :
           script = `
-                    repeat wait() until game:IsLoaded()
-          setfpscap(2)
-spawn(function()
-    while wait() do
-  local old = tick()
-repeat wait() until tick() - old >= 7200
-game.Players.LocalPlayer:Kick("kick sau 2h")
-end
-end)
-          getgenv().Key = "${nousigi}"
+repeat wait() until game:IsLoaded()
+getgenv().Key = "${nousigi}"
 
 getgenv().Config = {
   ["Auto Join Equipper"] = {
@@ -1859,7 +1851,7 @@ getgenv().Config = {
     ["Enable"] = false
   }
 }
-  repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
+  repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(3)until Joebiden`
           break;
 
 //         case 'astd' :
