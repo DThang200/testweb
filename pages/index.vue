@@ -2437,16 +2437,8 @@ until success`
       }
     },
     refreshScript(config = null){
-      this.avConfig = config
       if (config && (config === 'av-auto' || config === 'av-inf')){
         this.avConfig = config
-      }
-      const correctPassword = "matkhau123@"; // Mật khẩu cố định
-      const userPassword = prompt("Vui lòng nhập mật khẩu để chạy lệnh:");
-
-      if (userPassword !== correctPassword) {
-        alert("Mật khẩu không chính xác. Bạn sẽ được chuyển hướng về trang chủ.");
-        return false
       }
       // const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       // Object.entries(map_device_data).forEach((device,index) => {
@@ -2554,8 +2546,32 @@ until success`
             });
           }
         }
-        if (option?.yummyTrack) {
+        else if (option?.yummyTrack) {
           const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
+          const script_id = await this.getData(device_id, "script_id2");
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
+          // map_device_id_code[item.device_id] = item.device_code
+        }
+        else {
+          const scriptTrack = btoa(unescape(encodeURIComponent(`--no track`)))
           const script_id = await this.getData(device_id, "script_id2");
           if(!script_id){
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
