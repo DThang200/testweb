@@ -2,13 +2,13 @@
 <main class="page-content">
   <template  v-if="$config.DEVICE_ROLE === 'manager'">
     <div style="display: flex;flex-direction: row; gap: 16px">
-      <button type="button" @click="refreshScript()">
+      <button type="button" @click="refreshScript()" :disabled="refreshScriptStat">
         Refresh script
       </button>
-      <button type="button" @click="refreshScript('av-next')">
+      <button type="button" @click="refreshScript('av-next')" :disabled="refreshScriptStat">
         AV auto next
       </button>
-      <button type="button" @click="refreshScript('av-inf')">
+      <button type="button" @click="refreshScript('av-inf')" :disabled="refreshScriptStat">
         AV auto inf
       </button>
       <button style="width: 250px" type="button" @click="handleAutoCollect">Auto gom<span v-if="is_auto_gom" style="color: green">   (ACTIVE : {{secToTime(interval_auto_gom_time_count)}})</span> </button>
@@ -284,6 +284,7 @@ export default {
       countAstdKeyMaru : 0,
       switchayaya : true,
       avConfig : 'av-next',
+      refreshScriptStat : false,
     }
   },
   async mounted() {
@@ -509,6 +510,7 @@ export default {
     handleSelectScript(device_id,device_name,script){
     },
     setFarmScript(device_id,device_name,script_sl = 'lava',save_script=false){
+      console.log("setFarmScript")
       console.log('device_id,device_name,script_sl',device_id,device_name,script_sl)
       const token = this.map_key_token_farm.find(data => data.key == device_name)?.token
       const nousigi = this.map_key_token_farm.find(data => data.key == device_name)?.nousigi || "keabc481d8e57b0bc872c89d"
@@ -2437,6 +2439,8 @@ until success`
       }
     },
     refreshScript(config = null){
+      this.refreshScriptStat = true
+      console.log('refreshScript')
       if (config && (config === 'av-auto' || config === 'av-inf')){
         this.avConfig = config
       }
@@ -2458,6 +2462,7 @@ until success`
         if (index > list_data.length - 1){
           clearInterval(interval)
           alert('refreshScript done');
+          this.refreshScriptStat = false
         }
       },300)
     },
