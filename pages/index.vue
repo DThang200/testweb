@@ -1262,9 +1262,28 @@ getgenv().Config = {
     ["Auto Join"] = false,
     ["Nightmare Mode"] = false
   },
-  ["Trait Reroller"] = {
-    ["Enable"] = false
-  },
+ ["Trait Reroller"] = {
+  ["Enable"] = true,
+  ["Trait"] = {
+   ["Vigor 3"] = true,
+   ["Fortune"] = true,
+   ["Swift 2"] = true,
+   ["Vigor 1"] = true,
+   ["Range 2"] = true,
+   ["Blitz"] = true,
+   ["Ethereal"] = true,
+   ["Swift 3"] = true,
+   ["Vigor 2"] = true,
+   ["Swift 1"] = true,
+   ["Solar"] = true,
+   ["Scholar"] = true,
+   ["Range 3"] = true,
+   ["Range 1"] = true,
+   ["Monarch"] = true,
+   ["Deadeye"] = true,
+   ["Marksman"] = true
+  }
+ },
   ["Odyssey Joiner"] = {
     ["Second Team"] = 2,
     ["Auto Join"] = false,
@@ -1381,7 +1400,7 @@ getgenv().Config = {
         }
       },
       ["Auto Sell Unit"] = {
-        ["Enable"] = ${true},
+        ["Enable"] = true,
         ["Wave"] = 40,
         ["Stage Type"] = {
           ["Odyssey"] = true,
@@ -1499,7 +1518,10 @@ getgenv().Config = {
   },
   ["Summoner"] = {
     ["Teleport Lobby new Banner"] = false,
-    ["Unselect if Summoned"] = false,
+    ["Unselect if Summoned"] = true,
+    ["Special Unit"] = {
+      ["Roku"] = true
+    },
     ["Normalize Rarity"] = {
       ["Legendary"] = false,
       ["Mythic"] = false,
@@ -1650,7 +1672,7 @@ getgenv().Config = {
   },
   ["Match Finished"] = {
     ["Auto Return Lobby"] = false,
-    ["Auto Next"] = ${this.avConfig === 'av-next' ? 'true': 'false'},
+    ["Auto Next"] = true,
     ["Replay Amount"] = 20,
     ["Return Lobby Failsafe"] = true,
     ["Auto Replay"] = true
@@ -1714,22 +1736,25 @@ getgenv().Config = {
   ["Raid Joiner"] = {
     ["Auto Join"] = false
   },
-  ["Stat Reroller"] = {
-    ["Stat Potential"] = 100,
-    ["Teleport Lobby reach Stat Potential"] = false,
-    ["Enable"] = false,
-    ["Type"] = {
-      ["Damage"] = false,
-      ["All"] = false,
-      ["Range"] = false,
-      ["SPA"] = false
-    },
-    ["Stat"] = {
-      ["Z+"] = false,
-      ["S"] = false,
-      ["Z"] = false
-    }
-  },
+   ["Stat Reroller"] = {
+      ["Stat Potential"] = 10,
+      ["Teleport Lobby reach Stat Potential"] = false,
+      ["Enable"] = true,
+      ["Type"] = {
+         ["SPA"] = false,
+         ["All"] = true,
+         ["Range"] = false,
+         ["Damage"] = false
+      },
+      ["Stat"] = {
+         ["Z+"] = false,
+         ["S"] = true,
+         ["Z"] = false
+      },
+      ["Unit"] = {
+         ["Roku"] = true
+      }
+   },
   ["Failsafe"] = {
     ["Teleport Lobby if Player"] = false,
     ["Disable Auto Teleport AFK Chamber"] = true
