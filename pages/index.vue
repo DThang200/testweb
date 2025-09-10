@@ -2584,7 +2584,14 @@ until success`
       //   }
       // })
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
-      const list_data = Object.entries(map_device_data)
+      const list_data1 = Object.entries(map_device_data)
+      let  list_data = []
+      for (let i = 0; i < list_data1; i++) {
+        const device = list_data1[index]
+          if (device[1]?.script && this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))){
+            list_data.push(device)
+          }
+      }
       let index = 0
       const interval = setInterval(() => {
         const device = list_data[index]
