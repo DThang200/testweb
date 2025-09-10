@@ -1319,7 +1319,7 @@ function StartQuest()
         end
         if writefile then
             local ok, err = pcall(function()
-                writefile(markName, "done quest")
+                writefile(("%s_startquest.txt"):format(LocalPlayer.Name), "done quest")
             end)
             if not ok then
                 warn("Error write file:", err)
