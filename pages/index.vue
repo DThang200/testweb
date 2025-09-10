@@ -1514,7 +1514,7 @@ getgenv().Config = {
     ["Teleport Lobby new Banner"] = false,
     ["Unselect if Summoned"] = true,
     ["Special Unit"] = {
-      ["Roku"] = true
+      ["Sprintwagon"] = true
     },
     ["Normalize Rarity"] = {
       ["Legendary"] = false,
@@ -1524,14 +1524,14 @@ getgenv().Config = {
       ["Rare"] = false
     },
     ["Auto Summon Summer"] = false,
-    ["Auto Summon Special"] = false,
+    ["Auto Summon Special"] = true,
     ["Auto Summon Spring"] = false,
     ["Delete Rarity"] = {
       ["Legendary"] = false,
       ["Mythic"] = false,
       ["Exclusive"] = false,
-      ["Epic"] = true,
-      ["Rare"] = true
+      ["Epic"] = false,
+      ["Rare"] = false
     }
   },
   ["Unit Deleter"] = {
