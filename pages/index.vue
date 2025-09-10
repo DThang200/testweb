@@ -1386,7 +1386,7 @@ getgenv().Config = {
         ["Nightmare Mode"] = false
     },
     ["Trait Reroller"] = {
-        ["Enable"] = disable,
+        ["Enable"] = false,
         ["Trait"] = {
             ["Vigor 3"] = true,
             ["Fortune"] = true,
@@ -1979,8 +1979,8 @@ getgenv().Config = {
     }
 }
 if not markNameStatus then
-    getgenv().Config["Macros"]["Macro"] = "",
-    getgenv().Config["Macros"]["["Auto Equip"] = false,
+    getgenv().Config["Macros"]["Macro"] = ""
+    getgenv().Config["Macros"]["Auto Equip"] = false
     getgenv().Config["Macros"]["Stage Joiner"] = {
         ["Join Highest"] = false,
         ["Join Lowest Clear"] = false,
@@ -1988,7 +1988,7 @@ if not markNameStatus then
         ["Nightmare Mode"] = false,
         ["Stage"] = "Planet Namak",
         ["Act"] = "Act1"
-    },
+    }
 end
 repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(3)until Joebiden
 `
