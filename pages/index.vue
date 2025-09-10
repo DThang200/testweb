@@ -1352,12 +1352,12 @@ getgenv().Config = {
         ["Auto Join"] = false
     },
     ["Stage Joiner"] = {
-        ["Join Highest"] = true,
+        ["Join Highest"] = false,
         ["Join Lowest Clear"] = false,
         ["Auto Join"] = true,
         ["Nightmare Mode"] = false,
         ["Stage"] = "Planet Namak",
-        ["Act"] = ""
+        ["Act"] = "Infinite"
     },
     ["Macros"] = {
         ["Macro Retry Limit"] = 0,
@@ -1981,6 +1981,7 @@ getgenv().Config = {
 if not markNameStatus then
     getgenv().Config["Macros"]["Macro"] = ""
     getgenv().Config["Macros"]["Auto Equip"] = false
+    getgenv().Config["Match Finished"]["Replay Amount"] = 5
     getgenv().Config["Stage Joiner"] = {
         ["Join Highest"] = false,
         ["Join Lowest Clear"] = false,
