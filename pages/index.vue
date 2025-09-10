@@ -1210,6 +1210,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local LocalPlayer = Players.LocalPlayer
 local markName = ("%s_startquest.txt"):format(LocalPlayer.Name)
+local markNameStatus = isfile(markName)
 local function safeRequire(m)
     local ok, mod = pcall(require, m)
     if ok then return mod end
@@ -1977,7 +1978,7 @@ getgenv().Config = {
         ["Enable"] = false
     }
 }
-if not isfile(markName) then
+if not markNameStatus then
     getgenv().Config["Macros"]["Macro"] = "",
     getgenv().Config["Macros"]["["Auto Equip"] = false,
     getgenv().Config["Macros"]["Stage Joiner"] = {
