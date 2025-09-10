@@ -1432,7 +1432,7 @@ getgenv().Config = {
             ["Shielded"] = false,
             ["Champions"] = false
         },
-        ["Auto Next"] = false,
+        ["Auto Next"] = true,
         ["Portal Reward Picker"] = {
             ["Enable"] = false,
             ["Ignore Modifier"] = {
