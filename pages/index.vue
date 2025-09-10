@@ -1356,7 +1356,7 @@ getgenv().Config = {
         ["Join Lowest Clear"] = false,
         ["Auto Join"] = true,
         ["Nightmare Mode"] = false,
-        ["Stage"] = "",
+        ["Stage"] = "Planet Namak",
         ["Act"] = ""
     },
     ["Macros"] = {
