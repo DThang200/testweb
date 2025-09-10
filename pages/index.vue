@@ -1206,10 +1206,10 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
         case 'av' :
           script = `
 repeat wait() until game:IsLoaded()
-local Players = game:GetService("Players")
+local Players1 = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local LocalPlayer = Players.LocalPlayer
-local markName = ("%s_startquest.txt"):format(LocalPlayer.Name)
+local LocalPlayer1 = Players1.LocalPlayer
+local markName = ("%s_startquest.txt"):format(LocalPlayer1.Name)
 local markNameStatus = isfile(markName)
 local function safeRequire(m)
     local ok, mod = pcall(require, m)
@@ -1258,7 +1258,7 @@ local function fire(remotePath, args)
 end
 
 local function pickOneUnitName()
-    local unitsFolder = waitForPath(LocalPlayer, {
+    local unitsFolder = waitForPath(LocalPlayer1, {
         "PlayerGui","Windows","Units","Holder","Main","Units"
     }, 10)
     if not unitsFolder then return nil end
@@ -1320,7 +1320,7 @@ function StartQuest()
         end
         if writefile then
             local ok, err = pcall(function()
-                writefile(("%s_startquest.txt"):format(LocalPlayer.Name), "done quest")
+                writefile(("%s_startquest.txt"):format(LocalPlayer1.Name), "done quest")
             end)
             if not ok then
                 warn("Error write file:", err)
@@ -1981,7 +1981,7 @@ getgenv().Config = {
 if not markNameStatus then
     getgenv().Config["Macros"]["Macro"] = ""
     getgenv().Config["Macros"]["Auto Equip"] = false
-    getgenv().Config["Macros"]["Stage Joiner"] = {
+    getgenv().Config["Stage Joiner"] = {
         ["Join Highest"] = false,
         ["Join Lowest Clear"] = false,
         ["Auto Join"] = true,
