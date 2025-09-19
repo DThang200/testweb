@@ -1204,7 +1204,8 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     task.wait(20)
     until success`
           break;
-        case 'av-iscanur' : `
+        case 'av-iscanur' :
+          script =`
         getgenv().Key = "${nousigi}"
         getgenv().Config = {
  ["Stage Joiner"] = {
