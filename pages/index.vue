@@ -1598,6 +1598,7 @@ if game.Players.LocalPlayer:GetAttribute("Level") < 10 then
     }
 end
 repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(3)until Joebiden`
+        break;
         case 'av' :
           script = `
 repeat wait() until game:IsLoaded()
