@@ -252,6 +252,7 @@ export default {
         // {code : '99night',label : '99 Night',game_id: '79546208627805',private_server : false, shoukoTrack :true},
         // {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
         {code : 'av',label : 'AV',game_id: '16146832113',private_server : false},
+        {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
       ],
@@ -1203,6 +1204,400 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     task.wait(20)
     until success`
           break;
+        case 'av-iscanur' : `
+        getgenv().Key = "${nousigi}"
+        getgenv().Config = {
+ ["Stage Joiner"] = {
+  ["Nightmare Mode"] = false,
+  ["Auto Join"] = false,
+  ["Join Highest"] = false,
+  ["Join Lowest Clear"] = false
+ },
+ ["Macros"] = {
+  ["Macro Retry Limit"] = 0,
+  ["Ignore Macro Timing"] = true,
+  ["No Ignore Sell Timing"] = true,
+  ["Auto Equip"] = false,
+  ["Play"] = false
+ },
+ ["Summer Event"] = {
+  ["Summer Event Joiner"] = {
+   ["Auto Join"] = true
+  }
+ },
+ ["Webhook"] = {
+  ["Unit Summoned"] = true,
+  ["Trait Rerolled"] = false,
+  ["Match Restarted"] = true,
+  ["Stage Finished"] = false,
+  ["Stat Potential Rerolled"] = false,
+  ["Unit Stat Potential"] = false
+ },
+ ["Claimer"] = {
+  ["Auto Claim Milestone"] = true,
+  ["Auto Claim Quest"] = true,
+  ["Auto Claim Collection Milestone"] = true,
+  ["Auto Claim Daily Reward"] = true,
+  ["Auto Claim Achievement"] = true,
+  ["Auto Claim Collection"] = true,
+  ["Auto Claim Enemy Index"] = true,
+  ["Auto Claim Battle Pass"] = true
+ },
+ ["Gameplay"] = {
+  ["Double Dungeon"] = {
+   ["Auto Statue"] = false,
+   ["Leave Extra Money"] = 5000,
+   ["Upgrade Amount"] = 0
+  },
+  ["Saber Event"] = {
+   ["Servant"] = "Berserker",
+   ["Auto Select Servant"] = false
+  },
+  ["Steel Ball Run"] = {
+   ["Collect Steel Ball"] = false
+  },
+  ["Random Sacrifice Domain"] = {
+   ["Sell Units on Event"] = false
+  },
+  ["Edge of Heaven"] = {
+   ["Auto Join Lfelt Portal"] = false,
+   ["Pause instead of Joining"] = false
+  },
+  ["Auto Skip Wave"] = {
+   ["Enable"] = true,
+   ["Stop Skip Stage Type"] = {
+    ["Odyssey"] = true,
+    ["Challenge"] = true,
+    ["Portal"] = true,
+    ["Worldline"] = true,
+    ["Legend Stage"] = true,
+    ["BossEvent"] = true,
+    ["Dungeon"] = true,
+    ["Infinite"] = true,
+    ["Rift"] = true,
+    ["Raid"] = true,
+    ["Story"] = true
+   },
+   ["Stop at Wave"] = 0
+  },
+  ["Auto Use Ability"] = false,
+  ["Frozen Volcano"] = {
+   ["Sell Placed Friezo Unit"] = false,
+   ["Auto Friezo"] = false,
+   ["Leave Extra Money"] = 5000,
+   ["Auto Save Brolzi"] = false,
+   ["Upgrade Amount"] = 0
+  },
+  ["Auto Sell"] = {
+   ["Auto Sell Farm"] = {
+    ["Enable"] = true,
+    ["Wave"] = 9,
+    ["Stage Type"] = {
+     ["Odyssey"] = true,
+     ["Challenge"] = true,
+     ["Portal"] = true,
+     ["Worldline"] = true,
+     ["Legend Stage"] = true,
+     ["BossEvent"] = true,
+     ["Dungeon"] = true,
+     ["Infinite"] = true,
+     ["Rift"] = true,
+     ["Raid"] = true,
+     ["Story"] = true
+    }
+   },
+   ["Auto Sell Unit"] = {
+    ["Enable"] = true,
+    ["Wave"] = 9,
+    ["Stage Type"] = {
+     ["Odyssey"] = true,
+     ["Challenge"] = true,
+     ["Portal"] = true,
+     ["Worldline"] = true,
+     ["Legend Stage"] = true,
+     ["BossEvent"] = true,
+     ["Dungeon"] = true,
+     ["Infinite"] = true,
+     ["Rift"] = true,
+     ["Raid"] = true,
+     ["Story"] = true
+    }
+   }
+  },
+  ["Ruined City"] = {
+   ["Use Mount to Travel"] = true,
+   ["Active Tower"] = false,
+   ["Unhandcuff"] = false
+  },
+  ["The System"] = {
+   ["Auto Shadow"] = {
+    ["Enable"] = false,
+    ["Order"] = {
+     ["Steel"] = 2,
+     ["Belu"] = 4,
+     ["Healer"] = 3,
+     ["Bear"] = 1
+    }
+   }
+  },
+  ["Burn Units"] = {
+   ["Enable"] = false,
+   ["Slots"] = {
+    ["1"] = false,
+    ["3"] = false,
+    ["2"] = false,
+    ["5"] = false,
+    ["4"] = false,
+    ["6"] = false
+   },
+   ["Stage Type"] = {
+    ["Odyssey"] = true,
+    ["Challenge"] = true,
+    ["Portal"] = true,
+    ["Worldline"] = true,
+    ["Legend Stage"] = true,
+    ["BossEvent"] = true,
+    ["Dungeon"] = true,
+    ["Infinite"] = true,
+    ["Rift"] = true,
+    ["Raid"] = true,
+    ["Story"] = true
+   }
+  },
+  ["Auto Vote Start"] = true,
+  ["Auto Restart"] = {
+   ["Enable"] = false,
+   ["Wave"] = 10,
+   ["Stage Type"] = {
+    ["Odyssey"] = true,
+    ["Challenge"] = true,
+    ["Portal"] = true,
+    ["Worldline"] = true,
+    ["Legend Stage"] = true,
+    ["BossEvent"] = true,
+    ["Dungeon"] = true,
+    ["Infinite"] = true,
+    ["Rift"] = true,
+    ["Raid"] = true,
+    ["Story"] = true
+   }
+  }
+ },
+ ["Misc"] = {
+  ["Auto Open Gift Boxes"] = true,
+  ["Right Click Move"] = false,
+  ["Max Camera Zoom"] = 40,
+  ["Auto Delete Portal"] = {
+   ["Enable"] = false,
+   ["Summer Portal"] = 500,
+   ["Spring Portal"] = 500
+  },
+  ["Redeem Code"] = true,
+  ["Right Click Teleport"] = false
+ },
+ ["Summoner"] = {
+  ["Teleport Lobby new Banner"] = false,
+  ["Unselect if Summoned"] = true,
+  ["Auto Summon Special"] = false,
+  ["Normalize Rarity"] = {
+   ["Legendary"] = false,
+   ["Mythic"] = false,
+   ["Exclusive"] = false,
+   ["Epic"] = false,
+   ["Rare"] = false
+  },
+  ["Auto Summon Summer"] = true,
+  ["Auto Summon Spring"] = false,
+  ["Delete Rarity"] = {
+   ["Legendary"] = true,
+   ["Mythic"] = true,
+   ["Exclusive"] = false,
+   ["Epic"] = true,
+   ["Rare"] = true
+  }
+ },
+ ["Unit Deleter"] = {
+  ["Enable"] = false,
+  ["Rarity"] = {
+   ["Epic"] = false,
+   ["Legendary"] = false,
+   ["Rare"] = false
+  }
+ },
+ ["Auto Play"] = {
+  ["Auto Upgrade"] = {
+   ["Upgrade Order"] = {
+    ["1"] = 1,
+    ["3"] = 3,
+    ["2"] = 2,
+    ["5"] = 5,
+    ["4"] = 4,
+    ["6"] = 6
+   },
+   ["Place and Upgrade"] = false,
+   ["Enable"] = false,
+   ["Focus on Farm"] = false,
+   ["Upgrade Method"] = "Hotbar left to right (until Max)",
+   ["Upgrade Limit"] = {
+    ["1"] = 0,
+    ["3"] = 0,
+    ["2"] = 0,
+    ["5"] = 0,
+    ["4"] = 0,
+    ["6"] = 0
+   }
+  },
+  ["Place Limit"] = {
+   ["1"] = 0,
+   ["3"] = 0,
+   ["2"] = 0,
+   ["5"] = 0,
+   ["4"] = 0,
+   ["6"] = 0
+  },
+  ["Enable"] = true,
+  ["Place Order"] = {
+   ["1"] = 1,
+   ["3"] = 3,
+   ["2"] = 2,
+   ["5"] = 5,
+   ["4"] = 4,
+   ["6"] = 6
+  },
+  ["Place Wave"] = {
+   ["1"] = 0,
+   ["3"] = 0,
+   ["2"] = 0,
+   ["5"] = 0,
+   ["4"] = 0,
+   ["6"] = 0
+  }
+ },
+     ["Match Finished"] = {
+         ["Auto Return Lobby"] = false,
+         ["Auto Next"] = false,
+         ["Replay Amount"] = 20,
+         ["Return Lobby Failsafe"] = true,
+         ["Auto Replay"] = true
+     },
+ ["Modifier"] = {
+  ["Restart Modifier"] = {
+   ["Enable"] = false,
+   ["Stage Type"] = {
+    ["Odyssey"] = true,
+    ["Challenge"] = true,
+    ["Portal"] = true,
+    ["Worldline"] = true,
+    ["Legend Stage"] = true,
+    ["BossEvent"] = true,
+    ["Dungeon"] = true,
+    ["Infinite"] = true,
+    ["Rift"] = true,
+    ["Raid"] = true,
+    ["Story"] = true
+   },
+   ["Modifier"] = {
+    ["Tyrant Destroyer"] = false,
+    ["Sphere Finder"] = false,
+    ["King's Burden"] = false,
+    ["No Trait No Problem"] = false,
+    ["Immunity"] = false,
+    ["Warding off Evil"] = false,
+    ["Exterminator"] = false,
+    ["Quake"] = false,
+    ["Drowsy"] = false,
+    ["Tyrant Arrives"] = false,
+    ["High Class"] = false,
+    ["Dodge"] = false,
+    ["Lifeline"] = false,
+    ["Fisticuffs"] = false,
+    ["Champions"] = false,
+    ["Money Surge"] = false
+   }
+  },
+  ["Auto Modifier"] = {
+   ["Prioritize"] = {
+    ["Tyrant Destroyer"] = 30,
+    ["Champions"] = 12,
+    ["Planning Ahead"] = 15,
+    ["Unit Draw"] = 35,
+    ["High Class"] = 32,
+    ["Immunity"] = 11,
+    ["Damage"] = 20,
+    ["Lifeline"] = 29,
+    ["Evolution"] = 36,
+    ["Regen"] = 7,
+    ["Press It"] = 14,
+    ["Nighttime"] = 34,
+    ["Shielded"] = 5,
+    ["Cooldown"] = 19,
+    ["Money Surge"] = 26,
+    ["Strong"] = 3,
+    ["Thrice"] = 4,
+    ["Warding off Evil"] = 24,
+    ["Quake"] = 9,
+    ["Fast"] = 1,
+    ["Dodge"] = 10,
+    ["Fisticuffs"] = 25,
+    ["Precise Attack"] = 13,
+    ["Uncommon Loot"] = 22,
+    ["No Trait No Problem"] = 23,
+    ["Exploding"] = 2,
+    ["Tyrant Arrives"] = 33,
+    ["King's Burden"] = 27,
+    ["Range"] = 18,
+    ["Common Loot"] = 21,
+    ["Revitalize"] = 6,
+    ["Exterminator"] = 28,
+    ["Drowsy"] = 8,
+    ["Wild Card"] = 37,
+    ["Harvest"] = 17,
+    ["Slayer"] = 16,
+    ["Sphere Finder"] = 31
+   },
+   ["Enable"] = true,
+   ["Amount"] = {
+    ["Unit Draw"] = 9,
+    ["Evolution"] = 6,
+    ["Nighttime"] = 8,
+    ["Wild Card"] = 7
+   }
+  }
+ },
+ ["Secure"] = {
+  ["Walk Around"] = true,
+  ["Random Offset"] = true
+ },
+ ["Performance"] = {
+  ["Delete Map"] = true,
+  ["Boost FPS"] = true,
+  ["Black Screen"] = true,
+  ["Delete Entities"] = true
+ },
+ ["Performance Failsafe"] = {
+  ["Teleport Lobby FPS below"] = {
+   ["Enable"] = false,
+   ["FPS"] = 5
+  }
+ }
+}
+repeat wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer:GetAttribute("CurrencyLoaded")
+print(game.Players.LocalPlayer:GetAttribute("Level"))
+if game.Players.LocalPlayer:GetAttribute("Level") < 10 then
+    getgenv().Config["Macros"]["Macro"] = ""
+    getgenv().Config["Summoner"]["Auto Summon Summer"] = false
+    getgenv().Config["Macros"]["Auto Equip"] = false
+    getgenv().Config["Match Finished"]["Replay Amount"] = 20
+    getgenv().Config["Stage Joiner"] = {
+        ["Join Highest"] = false,
+        ["Join Lowest Clear"] = false,
+        ["Auto Join"] = true,
+        ["Nightmare Mode"] = false,
+        ["Stage"] = "Planet Namak",
+        ["Act"] = "Act1"
+    }
+end
+repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(3)until Joebiden`
         case 'av' :
           script = `
 repeat wait() until game:IsLoaded()
