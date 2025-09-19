@@ -1229,8 +1229,8 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
  ["Webhook"] = {
   ["Unit Summoned"] = true,
   ["Trait Rerolled"] = false,
-  ["Match Restarted"] = true,
-  ["Stage Finished"] = false,
+  ["Match Restarted"] = false,
+  ["Stage Finished"] = true,
   ["Stat Potential Rerolled"] = false,
   ["Unit Stat Potential"] = false
  },
