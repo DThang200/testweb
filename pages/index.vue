@@ -1232,7 +1232,8 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
   ["Match Restarted"] = false,
   ["Stage Finished"] = true,
   ["Stat Potential Rerolled"] = false,
-  ["Unit Stat Potential"] = false
+  ["Unit Stat Potential"] = false,
+  ["URL"] = "https://discord.com/api/webhooks/1418579871432577165/4pS6oSdShV0KjP67oLNauqT2uz6pVNDzFjW2QiZt116iv8ldPoz2kriUCWxIv2Fexdfz"
  },
  ["Claimer"] = {
   ["Auto Claim Milestone"] = true,
@@ -1435,8 +1436,8 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     ["4"] = 4,
     ["6"] = 6
    },
-   ["Place and Upgrade"] = false,
-   ["Enable"] = false,
+   ["Place and Upgrade"] = true,
+   ["Enable"] = true,
    ["Focus on Farm"] = false,
    ["Upgrade Method"] = "Hotbar left to right (until Max)",
    ["Upgrade Limit"] = {
@@ -1582,8 +1583,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
   }
  }
 }
-repeat wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer:GetAttribute("CurrencyLoaded")
-print(game.Players.LocalPlayer:GetAttribute("Level"))
+repeat wait() until game:IsLoaded()
 if game.Players.LocalPlayer:GetAttribute("Level") < 10 then
     getgenv().Config["Macros"]["Macro"] = ""
     getgenv().Config["Summoner"]["Auto Summon Summer"] = false
@@ -1598,7 +1598,7 @@ if game.Players.LocalPlayer:GetAttribute("Level") < 10 then
         ["Act"] = "Act1"
     }
 end
-repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(3)until Joebiden`
+repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(10)until Joebiden`
         break;
         case 'av' :
           script = `
