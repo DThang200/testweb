@@ -2986,7 +2986,7 @@ until success`
       console.log("list_data1",list_data1)
       let  list_data = []
       for (let i = 0; i < list_data1; i++) {
-        const device = list_data1[index]
+        const device = list_data1[i]
           if (device[1]?.script && this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))){
             list_data.push(device)
           }
