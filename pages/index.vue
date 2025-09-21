@@ -1305,7 +1305,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
      ["Infinite"] = true,
      ["Rift"] = true,
      ["Raid"] = true,
-     ["Story"] = true
+     ["Story"] = false
     }
    },
    ["Auto Sell Unit"] = {
@@ -1322,7 +1322,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
      ["Infinite"] = true,
      ["Rift"] = true,
      ["Raid"] = true,
-     ["Story"] = true
+     ["Story"] = false
     }
    }
   },
