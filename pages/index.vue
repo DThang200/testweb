@@ -1587,6 +1587,7 @@ repeat wait() until game:IsLoaded()
 if game.Players.LocalPlayer:GetAttribute("Level") < 10 then
     getgenv().Config["Macros"]["Macro"] = ""
     getgenv().Config["Summoner"]["Auto Summon Summer"] = false
+    getgenv().Config["Summer Event"]["Summer Event Joiner"]["Auto Join"] = false
     getgenv().Config["Macros"]["Auto Equip"] = false
     getgenv().Config["Match Finished"]["Replay Amount"] = 20
     getgenv().Config["Stage Joiner"] = {
