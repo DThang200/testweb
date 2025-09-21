@@ -2993,6 +2993,7 @@ until success`
           }
       }
       let index = 0
+      console.log("list_data",list_data)
       const interval = setInterval(() => {
         const device = list_data[index]
         if (device[1]?.script && this.hideDevice.includes((this.map_device_id_code[device[0]]).replace(/_/g, " "))){
