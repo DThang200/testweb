@@ -2983,6 +2983,7 @@ until success`
       // })
       const map_device_data = JSON.parse(localStorage.getItem('map_device_data'));
       const list_data1 = Object.entries(map_device_data)
+      console.log("list_data1",list_data1)
       let  list_data = []
       for (let i = 0; i < list_data1; i++) {
         const device = list_data1[index]
