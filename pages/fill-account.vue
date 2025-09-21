@@ -9,6 +9,7 @@
 <!--          <option value="bgsi">BGSI</option>-->
           <option value="astd">ASTD</option>
           <option value="av">AV</option>
+          <option value="av-iscanur">AV-Iscanur</option>
 <!--          <option value="gag">GAG</option>-->
           <option value="gag-bone">GAG-Bone</option>
           <option value="99night">99night
