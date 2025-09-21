@@ -122,6 +122,7 @@ export default {
         {code : 'farm-gag',label : 'farm-gag',game_id: '126884695634066',total_account: 30},
         {code : 'gag-bone',label : 'GAG-Bone',game_id: '126884695634066',total_account: 45},
         {code : 'av',label : 'GAG-Bone',game_id: '126884695634066',total_account: 27},
+        {code : 'av-iscanur',label : 'GAG-Bone',game_id: '126884695634066',total_account: 30},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
