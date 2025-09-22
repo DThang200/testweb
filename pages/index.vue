@@ -1583,6 +1583,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
   }
  }
 }
+setfpscap(5)
 repeat wait() until game:IsLoaded()
 if game.Players.LocalPlayer:GetAttribute("Level") < 11 then
     getgenv().Config["Macros"]["Macro"] = ""
