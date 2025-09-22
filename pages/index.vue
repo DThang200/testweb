@@ -1584,7 +1584,7 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
  }
 }
 repeat wait() until game:IsLoaded()
-if game.Players.LocalPlayer:GetAttribute("Level") < 10 then
+if game.Players.LocalPlayer:GetAttribute("Level") < 11 then
     getgenv().Config["Macros"]["Macro"] = ""
     getgenv().Config["Summoner"]["Auto Summon Summer"] = false
     getgenv().Config["Summer Event"]["Summer Event Joiner"]["Auto Join"] = false
@@ -1916,7 +1916,7 @@ getgenv().Config = {
                     ["Dungeon"] = true,
                     ["Infinite"] = true,
                     ["Rift"] = true,
-                    ["Story"] = true,
+                    ["Story"] = false,
                     ["Raid"] = true
                 }
             },
