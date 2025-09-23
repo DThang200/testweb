@@ -10,7 +10,7 @@
           <option value="astd">ASTD</option>
           <option value="av">AV</option>
           <option value="av-iscanur">AV-Iscanur</option>
-          <option value="av-iscanur-maru">AV-Iscanur</option>
+          <option value="av-maru-iscanur">AV-Maru-Iscanur</option>
 <!--          <option value="gag">GAG</option>-->
           <option value="gag-bone">GAG-Bone</option>
           <option value="99night">99night
@@ -125,7 +125,7 @@ export default {
         {code : 'gag-bone',label : 'GAG-Bone',game_id: '126884695634066',total_account: 45},
         {code : 'av',label : 'GAG-Bone',game_id: '126884695634066',total_account: 27},
         {code : 'av-iscanur',label : 'GAG-Bone',game_id: '126884695634066',total_account: 30},
-        {code : 'av-iscanur-maru',label : 'GAG-Bone',game_id: '126884695634066',total_account: 27},
+        {code : 'av-maru-iscanur',label : 'GAG-Bone',game_id: '126884695634066',total_account: 27},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
