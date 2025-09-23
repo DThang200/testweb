@@ -253,7 +253,7 @@ export default {
         // {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
         {code : 'av',label : 'AV',game_id: '16146832113',private_server : false},
         {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
-        {code : 'av-iscanur-maru',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
+        {code : 'av-iscanur-maru',label : 'AV-Iscanor-maru',game_id: '16146832113',private_server : false},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
       ],
