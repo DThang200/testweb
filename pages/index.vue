@@ -1205,6 +1205,44 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
     task.wait(20)
     until success`
           break;
+        case 'av-iscanur-maru' :
+          script = `if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+wait(3)
+setfpscap(5)
+_G.VanguardSettings = {
+    ['ClaimDaily'] = true,
+    ['ClaimQuests'] = true,
+    ['ClaimAchievement'] = true,
+    ['ClaimBattlepass'] = true,
+    ['ClaimMileStones'] = false,
+    ['RedeemCodes'] = false,
+    ['JoinGames'] = true,
+    ['Summon'] = {
+        ['LockUnits'] = false,
+        ['Name'] = {''}
+    },
+    ['Webhooks'] = {
+        ['Enabled'] = true,
+        ['Url'] = 'https://discord.com/api/webhooks/1420090969281400853/oFc6qLyemDsB-G99JI0uRtwdgYUGEPZ4rORTbgI6aPa7YM-qxzd2cjXpRkXbccLoSmWj'
+    },
+    ["TeaFarm"] = {
+        ["Enabled"] = true,
+        ["FarmAtLevel"] = 11,
+        ["RandomUnits"] = {
+            ["SellUnitsNotLock"] = true,
+            ["RandomWhenHaveTea"] = 100000,
+            ["Lock"] = {
+                "Iscanur (Pride)"
+            }
+        }
+    }
+}
+script_key="lRassFgkueLPKUCDFPZcDXSCvfPAqpBH";
+if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+wait(3)
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6756a57cd51293c409a1f7627cba5572.lua"))()
+`
+          break;
         case 'av-iscanur' :
           script =`
         getgenv().Key = "${nousigi}"
