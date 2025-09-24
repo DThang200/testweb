@@ -1209,6 +1209,10 @@ loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/as
           script = `if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 wait(3)
 setfpscap(5)
+task.spawn(function()
+  repeat task.wait(60) until game:GetService("Players").LocalPlayer:GetAttribute("NextDrop") ~= nil
+  game:GetService("Players").LocalPlayer:Kick("kick AFK")
+end)
 _G.VanguardSettings = {
     ['ClaimDaily'] = true,
     ['ClaimQuests'] = true,
