@@ -871,16 +871,18 @@ end
       const listDevice = this.roblox_data?.devices
       console.log('listDevice',listDevice)
       for (const device of listDevice) {
-        const device_id = device?.device_id
-        const resSetScriptFisch = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device_id}/updateautochange`, {
-          // auto_change_config_id: "80bcdd12f58138ee2372182a0a4f6198f87115638aaa407095fb2cf408d7c2f7",
-          // auto_change_enabled : true,
-          auto_change_cookie_dead_enabled : true
-        }, {
-          headers: {
-            'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
-          },
-        });
+        if (this.hideDevice.includes((this.map_device_id_code[device.device_id]).replace(/_/g, " "))){
+          const device_id = device?.device_id
+          const resSetScriptFisch = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device_id}/updateautochange`, {
+            // auto_change_config_id: "80bcdd12f58138ee2372182a0a4f6198f87115638aaa407095fb2cf408d7c2f7",
+            // auto_change_enabled : true,
+            auto_change_cookie_dead_enabled : false
+          }, {
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+        }
         // const resSetScriptFisch = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/devices/${device_id}/updateautochange`, {
         //   auto_change_config_id: "80bcdd12f58138ee2372182a0a4f6198f87115638aaa407095fb2cf408d7c2f7",
         //   auto_change_enabled : true
