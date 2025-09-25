@@ -3198,7 +3198,6 @@ local function unitCheck()
             print("=== Unit:", child.Name)
             for _, sub in ipairs(child:GetDescendants()) do
                 if sub:IsA("TextLabel") or sub:IsA("TextButton") then
-                    print("   Text:", sub.Text)
                     if sub.Text == "Iscanur (Pride)" then
                         SendWebHook()
                     end
