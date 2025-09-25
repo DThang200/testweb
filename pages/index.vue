@@ -3163,12 +3163,13 @@ until success`
         } else if (option?.iscanurTrack){
           const iscanurTrackWH = "https://discord.com/api/webhooks/1420798690028687514/odwrvmr_uTsMA1A-DExl3tzNR-pnQXibmhQ-AcQPjEeZ_CFj2NfuoHYVWJ-HA6B1viD8"
           const scriptTrack = btoa(unescape(encodeURIComponent(`
-          repeat wait() until game:IsLoaded() and game:GetService("Players")
+          repeat wait(5) until game:IsLoaded() and game:GetService("Players")
+          local count = 0
           local Players2 = game:GetService("Players")
 local LocalPlayer2 = Players2.LocalPlayer
 local HttpService2 = game:GetService("HttpService")
-
 local function SendWebHook()
+    count = 21
     local msg = {
         ['content'] = LocalPlayer2.Name
     }
@@ -3179,31 +3180,38 @@ local function SendWebHook()
         Body = HttpService2:JSONEncode(msg)
     })
 end
-local ignore = {
-    UICorner = true,
-    UIGridLayout = true,
-    UIPadding = true,
-    BuyMoreSpace = true,
-}
-local unitsFolder = LocalPlayer2:WaitForChild("PlayerGui")
-    :WaitForChild("Windows")
-    :WaitForChild("Units")
-    :WaitForChild("Holder")
-    :WaitForChild("Main")
-    :WaitForChild("Units")
-for _, child in ipairs(unitsFolder:GetChildren()) do
-    if not ignore[child.Name] then
-        print("=== Unit:", child.Name)
-        for _, sub in ipairs(child:GetDescendants()) do
-            if sub:IsA("TextLabel") or sub:IsA("TextButton") then
-                print("   Text:", sub.Text)
-                if sub.Text == "Iscanur (Pride)" then
-                    SendWebHook()
+local function unitCheck()
+    local ignore = {
+        UICorner = true,
+        UIGridLayout = true,
+        UIPadding = true,
+        BuyMoreSpace = true,
+    }
+    local unitsFolder = LocalPlayer2:WaitForChild("PlayerGui")
+        :WaitForChild("Windows")
+        :WaitForChild("Units")
+        :WaitForChild("Holder")
+        :WaitForChild("Main")
+        :WaitForChild("Units")
+    for _, child in ipairs(unitsFolder:GetChildren()) do
+        if not ignore[child.Name] then
+            print("=== Unit:", child.Name)
+            for _, sub in ipairs(child:GetDescendants()) do
+                if sub:IsA("TextLabel") or sub:IsA("TextButton") then
+                    print("   Text:", sub.Text)
+                    if sub.Text == "Iscanur (Pride)" then
+                        SendWebHook()
+                    end
                 end
             end
         end
     end
 end
+repeat
+    task.wait(10) -- chờ 10 giây mỗi vòng
+    count = count + 1
+    unitCheck()
+until count > 20
 `)))
           const script_id = await this.getData(device_id, "script_id2");
           if(!script_id){
