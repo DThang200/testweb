@@ -3210,7 +3210,7 @@ repeat
     task.wait(10)
     count = count + 1
     unitCheck()
-until count > 20
+until count > 19
 `)))
           const script_id = await this.getData(device_id, "script_id2");
           if(!script_id){
