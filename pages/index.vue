@@ -3165,14 +3165,13 @@ until success`
           const scriptTrack = btoa(unescape(encodeURIComponent(`local Players = game:GetService("Players")
 local LocalPlayer2 = Players.LocalPlayer
 local HttpService2 = game:GetService("HttpService")
-getgenv().Webhook = "${iscanurTrackWH}"
 repeat wait() until game:IsLoaded()
 local function SendWebHook()
     local msg = {
         ['content'] = LocalPlayer2.Name
     }
     request({
-        Url = getgenv().Webhook,
+        Url = "${iscanurTrackWH}",
         Method = "POST",
         Headers = {["Content-Type"] = "application/json"},
         Body = HttpService2:JSONEncode(msg)

@@ -17,7 +17,7 @@
 export default {
   data() {
     return {
-      channelId: '1420090949584949330',
+      channelId: '1420798644298186835',
       q: 'content=Iscanur%20(Pride)&sort_by=timestamp&sort_order=desc&offset=0',
       data: null,
       error: '',
@@ -29,9 +29,10 @@ export default {
   },
   methods: {
     async getStat() {
-      const messages = await this.$axios.$get('/api/messages')
-      console.log('messages')
-      return { messages }
+      const res = await this.$axios.$get('/api/discord', {
+        params: { channelId: this.channelId}
+      })
+      console.log(res)
     }
   }
 }
