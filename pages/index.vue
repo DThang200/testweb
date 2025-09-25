@@ -3207,7 +3207,7 @@ local function unitCheck()
     end
 end
 repeat
-    task.wait(10) -- chờ 10 giây mỗi vòng
+    task.wait(10)
     count = count + 1
     unitCheck()
 until count > 20
