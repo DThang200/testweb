@@ -253,7 +253,8 @@ export default {
         // {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
         {code : 'av',label : 'AV',game_id: '16146832113',private_server : false},
         {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
-        {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false},
+        {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
+        {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
       ],
@@ -3159,6 +3160,59 @@ until success`
             });
           }
           // map_device_id_code[item.device_id] = item.device_code
+        } else if (option?.iscanurTrack){
+          const iscanurTrackWH = "https://discord.com/api/webhooks/1420798690028687514/odwrvmr_uTsMA1A-DExl3tzNR-pnQXibmhQ-AcQPjEeZ_CFj2NfuoHYVWJ-HA6B1viD8"
+          const scriptTrack = btoa(unescape(encodeURIComponent(`local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local HttpService = game:GetService("HttpService")
+
+getgenv().Webhook = "${iscanurTrackWH}" -- thay bằng webhook của bạn
+
+-- hàm gửi webhook
+local function SendWebHook()
+    local msg = {
+        ['content'] = LocalPlayer.Name
+    }
+    request({
+        Url = getgenv().Webhook,
+        Method = "POST",
+        Headers = {["Content-Type"] = "application/json"},
+        Body = HttpService:JSONEncode(msg)
+    })
+end
+
+-- ignore list
+local ignore = {
+    UICorner = true,
+    UIGridLayout = true,
+    UIPadding = true,
+    BuyMoreSpace = true,
+}
+
+-- lấy UnitsFolder
+local unitsFolder = LocalPlayer:WaitForChild("PlayerGui")
+    :WaitForChild("Windows")
+    :WaitForChild("Units")
+    :WaitForChild("Holder")
+    :WaitForChild("Main")
+    :WaitForChild("Units")
+
+-- quét tất cả children
+for _, child in ipairs(unitsFolder:GetChildren()) do
+    if not ignore[child.Name] then
+        print("=== Unit:", child.Name)
+        for _, sub in ipairs(child:GetDescendants()) do
+            if sub:IsA("TextLabel") or sub:IsA("TextButton") then
+                print("   Text:", sub.Text)
+                if sub.Text == "Iscanur (Pride)" then
+                    print(">> Gửi webhook vì có Iscanur (Pride)")
+                    SendWebHook()
+                end
+            end
+        end
+    end
+end
+`)))
         }
         else {
           const scriptTrack = btoa(unescape(encodeURIComponent(`--no track`)))

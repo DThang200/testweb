@@ -16,8 +16,13 @@ export default {
         API_ROBLOX: process.env.API_ROBLOX,
         TOKEN_ROBLOX: process.env.TOKEN_ROBLOX,
         INTERVAL_TIME: process.env.INTERVAL_TIME,
-        API_ROBLOX_ACCOUNT: process.env.API_ROBLOX_ACCOUNT
+        API_ROBLOX_ACCOUNT: process.env.API_ROBLOX_ACCOUNT,
+        DISCORD_BOT_TOKEN: process.env.DISCORD_BOT_TOKEN
     },
+    serverMiddleware: [
+        { path: '/api/discord', handler: '~/api/discord.js' },
+        { path: '/api/messages', handler: '~/api/messages.js' }
+    ],
     head: {
         title: 'Management Information System',
         meta: [
@@ -76,6 +81,7 @@ export default {
     modules: [
         '@nuxtjs/axios',
         '@nuxtjs/proxy',
+        '@nuxtjs/dotenv',
     ],
     i18n: {
         locales: [
