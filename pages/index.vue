@@ -3165,10 +3165,7 @@ until success`
           const scriptTrack = btoa(unescape(encodeURIComponent(`local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local HttpService = game:GetService("HttpService")
-
-getgenv().Webhook = "${iscanurTrackWH}" -- thay bằng webhook của bạn
-
--- hàm gửi webhook
+getgenv().Webhook = "${iscanurTrackWH}"
 local function SendWebHook()
     local msg = {
         ['content'] = LocalPlayer.Name
@@ -3180,24 +3177,18 @@ local function SendWebHook()
         Body = HttpService:JSONEncode(msg)
     })
 end
-
--- ignore list
 local ignore = {
     UICorner = true,
     UIGridLayout = true,
     UIPadding = true,
     BuyMoreSpace = true,
 }
-
--- lấy UnitsFolder
 local unitsFolder = LocalPlayer:WaitForChild("PlayerGui")
     :WaitForChild("Windows")
     :WaitForChild("Units")
     :WaitForChild("Holder")
     :WaitForChild("Main")
     :WaitForChild("Units")
-
--- quét tất cả children
 for _, child in ipairs(unitsFolder:GetChildren()) do
     if not ignore[child.Name] then
         print("=== Unit:", child.Name)
@@ -3205,7 +3196,6 @@ for _, child in ipairs(unitsFolder:GetChildren()) do
             if sub:IsA("TextLabel") or sub:IsA("TextButton") then
                 print("   Text:", sub.Text)
                 if sub.Text == "Iscanur (Pride)" then
-                    print(">> Gửi webhook vì có Iscanur (Pride)")
                     SendWebHook()
                 end
             end
@@ -3213,6 +3203,26 @@ for _, child in ipairs(unitsFolder:GetChildren()) do
     end
 end
 `)))
+          const script_id = await this.getData(device_id, "script_id2");
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
         }
         else {
           const scriptTrack = btoa(unescape(encodeURIComponent(`--no track`)))
