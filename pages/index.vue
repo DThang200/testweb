@@ -3166,6 +3166,7 @@ until success`
 local LocalPlayer2 = Players.LocalPlayer
 local HttpService2 = game:GetService("HttpService")
 getgenv().Webhook = "${iscanurTrackWH}"
+repeat wait() until game:IsLoaded()
 local function SendWebHook()
     local msg = {
         ['content'] = LocalPlayer2.Name
