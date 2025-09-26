@@ -480,7 +480,7 @@ export default {
     renderAUNQ(){
       const list_acc = this.acc_not_unique.split('\n')
       let listUsername = {}
-      let result
+      let result = ''
       list_acc.forEach(item => {
         const acc_arr = item.split(':');
         if (!listUsername[acc_arr[0]] && item){
