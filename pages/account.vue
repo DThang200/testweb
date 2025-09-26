@@ -483,7 +483,7 @@ export default {
       let result
       list_acc.forEach(item => {
         const acc_arr = item.split(':');
-        if (!listUsername[acc_arr[0]]){
+        if (!listUsername[acc_arr[0]] && item){
           listUsername[acc_arr[0]] = true
           result += `${item}` + '\n'
         }
