@@ -91,6 +91,17 @@
         <textarea  style="width: 500px;height: 300px" v-model="user_only_yummy">
       </textarea>
       </div>
+      <div class="field-acc">
+        <div style="font-size: 24px;font-weight: bold">
+          Unique Acc
+          <button @click="copyContent(acc_unique)">Copy</button>
+        </div>
+        <textarea  style="width: 500px;height: 300px" v-model="acc_not_unique" @change="renderAUNQ">
+
+      </textarea>
+        <textarea  style="width: 500px;height: 300px" v-model="acc_unique">
+      </textarea>
+      </div>
 <!--      <div class="field-acc">-->
 <!--        <div style="font-size: 24px;font-weight: bold">-->
 <!--          User pass cookie => user-->
@@ -292,6 +303,8 @@ export default {
       findUserResultInvalidCount: 0,
       user_yummy: '',
       user_only_yummy: '',
+      acc_not_unique: '',
+      acc_unique: '',
       listAccSelected: [],
 
       numberAccountGet:0,
@@ -463,6 +476,19 @@ export default {
         }
       })
       this.user_only_yummy = result
+    },
+    renderAUNQ(){
+      const list_acc = this.acc_not_unique.split('\n')
+      let listUsername = {}
+      let result
+      list_acc.forEach(item => {
+        const acc_arr = item.split(':');
+        if (!listUsername[acc_arr[0]]){
+          listUsername[acc_arr[0]] = true
+          result += `${item}` + '\n'
+        }
+      })
+      this.acc_unique = result
     },
     renderUPCtoNP(){
       this.input_nopass = 0
