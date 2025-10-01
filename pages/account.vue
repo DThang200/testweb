@@ -93,7 +93,7 @@
       </div>
       <div class="field-acc">
         <div style="font-size: 24px;font-weight: bold">
-          Unique Acc
+          Unique Acc <template v-if="count_unique">({{count_unique}})</template>
           <button @click="copyContent(acc_unique)">Copy</button>
         </div>
         <textarea  style="width: 500px;height: 300px" v-model="acc_not_unique" @change="renderAUNQ">
@@ -304,6 +304,7 @@ export default {
       user_yummy: '',
       user_only_yummy: '',
       acc_not_unique: '',
+      count_unique: 0,
       acc_unique: '',
       listAccSelected: [],
 
@@ -478,12 +479,14 @@ export default {
       this.user_only_yummy = result
     },
     renderAUNQ(){
+      this.count_unique = 0
       const list_acc = this.acc_not_unique.split('\n')
       let listUsername = {}
       let result = ''
       list_acc.forEach(item => {
         const acc_arr = item.split(':');
         if (!listUsername[acc_arr[0]] && item){
+          this.count_unique +=1
           listUsername[acc_arr[0]] = true
           result += `${item}` + '\n'
         }
