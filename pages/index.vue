@@ -252,9 +252,9 @@ export default {
         // {code : '99night',label : '99 Night',game_id: '79546208627805',private_server : false, shoukoTrack :true},
         // {code : 'sab',label : 'SAB',game_id: '17687504411',private_server : false},
         {code : 'av',label : 'AV',game_id: '16146832113',private_server : false},
-        {code : 'av-gem',label : 'AV',game_id: '16146832113',private_server : false,gem50ktrack : true},
+        {code : 'av-gem-50',label : 'av-gem-50',game_id: '16146832113',private_server : false,gem50ktrack : true},
+        {code : 'av-gem-100',label : 'av-gem-100',game_id: '16146832113',private_server : false,gem100ktrack : true},
         {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
-        {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
         {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
@@ -3921,6 +3921,76 @@ local function gemcheck()
     if gems > 1 and level > 1 then
        count = 21
        if gems > 50000 and level > 30 then
+          SendWebHook()
+       end
+    end
+end
+repeat
+    task.wait(10)
+    count = count + 1
+    gemcheck()
+until count > 19
+`)))
+          const script_id = await this.getData(device_id, "script_id2");
+          if(!script_id){
+            const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }else {
+            const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
+              "script_name": "scriptTrack",
+              script_data: scriptTrack
+            },{
+              headers: {
+                'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+              },
+            });
+          }
+        }
+        }else if (option?.gem100ktrack){
+          const gem100ktrackWH = "https://discord.com/api/webhooks/1423567389534060554/eVMH-V7-9CQD5AX5QqZF3WgpBFB3dqIOT_sSqkQfHJFVJcJa-ugOh2xOZTf1LzSVnTZt"
+          const scriptTrack = btoa(unescape(encodeURIComponent(`local count = 0
+local function SendWebHook()
+    count = 21
+    local msg = {
+        ['content'] = LocalPlayer2.Name
+    }
+    request({
+        Url = "${gem50ktrackWH}",
+        Method = "POST",
+        Headers = {["Content-Type"] = "application/json"},
+        Body = HttpService2:JSONEncode(msg)
+    })
+end
+local function safeRequire(m)
+    local ok, mod = pcall(require, m)
+    if ok then return mod end
+    warn("StartQuest require error:", mod)
+    return nil
+end
+local function num(v) return (typeof(v) == "number") and v or 0 end
+local function getCurrencies()
+    local ch = safeRequire(game.StarterPlayer.Modules.Gameplay.CurrencyHandler)
+    if ch and typeof(ch.GetCurrencies) == "function" then
+        local ok, tbl = pcall(function() return ch:GetCurrencies() end)
+        if ok and typeof(tbl) == "table" then
+            return tbl
+        end
+    end
+    return {}
+end
+local function gemcheck()
+    local c = getCurrencies()
+    local gems = num(c.Gems or c.Gem or c.gems)
+    local level = game.Players.LocalPlayer:GetAttribute("Level")
+    if gems > 1 and level > 1 then
+       count = 21
+       if gems > 100000 and level > 70 then
           SendWebHook()
        end
     end
