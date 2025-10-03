@@ -2439,6 +2439,8 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
 `
           break;
         case 'av-gem' :
+        case 'av-gem-50' :
+        case 'av-gem-100' :
           script = `
 getgenv().Key = "${nousigi}"
 getgenv().Config = {
