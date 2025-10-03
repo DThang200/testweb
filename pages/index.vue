@@ -3884,7 +3884,11 @@ until count > 19
           }
         }else if (option?.gem50ktrack){
           const gem50ktrackWH = "https://discord.com/api/webhooks/1423567297662156821/NUoS2xZXlOcifOySiTAE2i0o5_p9CWILhb3FxPue79R9at1BnGcNTb7BOtB4F-2wAeCD"
-          const scriptTrack = btoa(unescape(encodeURIComponent(`local count = 0
+          const scriptTrack = btoa(unescape(encodeURIComponent(`
+          local count = 0
+                    local Players2 = game:GetService("Players")
+local LocalPlayer2 = Players2.LocalPlayer
+local HttpService2 = game:GetService("HttpService")
 local function SendWebHook()
     count = 21
     local msg = {
@@ -3955,6 +3959,9 @@ until count > 19
         }else if (option?.gem100ktrack){
           const gem100ktrackWH = "https://discord.com/api/webhooks/1423567389534060554/eVMH-V7-9CQD5AX5QqZF3WgpBFB3dqIOT_sSqkQfHJFVJcJa-ugOh2xOZTf1LzSVnTZt"
           const scriptTrack = btoa(unescape(encodeURIComponent(`local count = 0
+                    local Players2 = game:GetService("Players")
+local LocalPlayer2 = Players2.LocalPlayer
+local HttpService2 = game:GetService("HttpService")
 local function SendWebHook()
     count = 21
     local msg = {
