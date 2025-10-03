@@ -3961,7 +3961,7 @@ local function SendWebHook()
         ['content'] = LocalPlayer2.Name
     }
     request({
-        Url = "${gem50ktrackWH}",
+        Url = "${gem100ktrackWH}",
         Method = "POST",
         Headers = {["Content-Type"] = "application/json"},
         Body = HttpService2:JSONEncode(msg)
@@ -4021,7 +4021,7 @@ until count > 19
               },
             });
           }
-        }
+      }
         else {
           const scriptTrack = btoa(unescape(encodeURIComponent(`--no track`)))
           const script_id = await this.getData(device_id, "script_id2");
@@ -4046,7 +4046,6 @@ until count > 19
           }
           // map_device_id_code[item.device_id] = item.device_code
         }
-      }
       // const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
       //   headers: {
       //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
