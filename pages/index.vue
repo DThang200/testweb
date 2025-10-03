@@ -3749,12 +3749,12 @@ until success`
       // });
       // const config_id =  resConfig?.configs[0]?.config_id
       const config_id = await this.getData(device_id, "config_id")
-      if (option){
+      if (option) {
         const gameConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs/${config_id}`, {
           use_private_server: option.private_server,
           join_low_players_server: !option.private_server,
           place_id: option.game_id,
-        },{
+        }, {
           headers: {
             'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
           },
@@ -3769,50 +3769,49 @@ until success`
           }
           loadstring(game:HttpGet('https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/trackstat.lua'))()`)))
           const script_id = await this.getData(device_id, "script_id2");
-          if(!script_id){
+          if (!script_id) {
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-          }else {
+          } else {
             const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
           }
-        }
-        else if (option?.yummyTrack) {
+        } else if (option?.yummyTrack) {
           const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
           const script_id = await this.getData(device_id, "script_id2");
-          if(!script_id){
+          if (!script_id) {
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-          }else {
+          } else {
             const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
           }
           // map_device_id_code[item.device_id] = item.device_code
-        } else if (option?.iscanurTrack){
+        } else if (option?.iscanurTrack) {
           const iscanurTrackWH = "https://discord.com/api/webhooks/1420798690028687514/odwrvmr_uTsMA1A-DExl3tzNR-pnQXibmhQ-AcQPjEeZ_CFj2NfuoHYVWJ-HA6B1viD8"
           const scriptTrack = btoa(unescape(encodeURIComponent(`
           repeat wait(5) until game:IsLoaded() and game:GetService("Players")
@@ -3865,26 +3864,26 @@ repeat
 until count > 19
 `)))
           const script_id = await this.getData(device_id, "script_id2");
-          if(!script_id){
+          if (!script_id) {
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-          }else {
+          } else {
             const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
           }
-        }else if (option?.gem50ktrack){
+        } else if (option?.gem50ktrack) {
           const gem50ktrackWH = "https://discord.com/api/webhooks/1423567297662156821/NUoS2xZXlOcifOySiTAE2i0o5_p9CWILhb3FxPue79R9at1BnGcNTb7BOtB4F-2wAeCD"
           const scriptTrack = btoa(unescape(encodeURIComponent(`
           local count = 0
@@ -3938,27 +3937,26 @@ repeat
 until count > 19
 `)))
           const script_id = await this.getData(device_id, "script_id2");
-          if(!script_id){
+          if (!script_id) {
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-          }else {
+          } else {
             const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
           }
-        }
-        }else if (option?.gem100ktrack){
+        } else if (option?.gem100ktrack) {
           const gem100ktrackWH = "https://discord.com/api/webhooks/1423567389534060554/eVMH-V7-9CQD5AX5QqZF3WgpBFB3dqIOT_sSqkQfHJFVJcJa-ugOh2xOZTf1LzSVnTZt"
           const scriptTrack = btoa(unescape(encodeURIComponent(`local count = 0
                     local Players2 = game:GetService("Players")
@@ -4011,43 +4009,42 @@ repeat
 until count > 19
 `)))
           const script_id = await this.getData(device_id, "script_id2");
-          if(!script_id){
+          if (!script_id) {
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-          }else {
+          } else {
             const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
           }
-      }
-        else {
+        } else {
           const scriptTrack = btoa(unescape(encodeURIComponent(`--no track`)))
           const script_id = await this.getData(device_id, "script_id2");
-          if(!script_id){
+          if (!script_id) {
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
             });
-          }else {
+          } else {
             const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts/${script_id}`, {
               "script_name": "scriptTrack",
               script_data: scriptTrack
-            },{
+            }, {
               headers: {
                 'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
               },
@@ -4055,6 +4052,7 @@ until count > 19
           }
           // map_device_id_code[item.device_id] = item.device_code
         }
+      }
       // const resScript = await this.$axios.$get(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
       //   headers: {
       //     'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
