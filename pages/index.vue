@@ -256,6 +256,8 @@ export default {
         {code : 'av-gem-100',label : 'av-gem-100',game_id: '16146832113',private_server : false,gem100ktrack : true},
         {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
         {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
+        {code : 'pvb',label : 'PVB',game_id: '127742093697776',private_server : false,yummyTrack : true},
+        {code : 'fishit',label : 'FISH IT',game_id: '121864768012064',private_server : false,yummyTrack : true},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
       ],
@@ -3088,7 +3090,43 @@ getgenv().Config = {
 repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(3)until Joebiden
 `
           break;
+        case "pvb" :
+          script = `script_key="goMYIFMGIzHClAbkxSFgewTfJpBhuuBP";
 
+          getgenv().pvbConfig = {
+            AUTO_UPDATE_RESTART = true,
+            MAX_FPS = 3,  -- This will override setfpscap()
+          LOW_CPU = true,
+              MAX_REBIRTH = 99,  -- Stop rebirth at set amount
+          FORCE_REBIRTH_IGNORE_KEEP_BRAINROT = true,  -- Ignore KEEP_BRAINROT related config until max rebirth
+          FROST_GRENADE_TARGET_MAX_HP = 100000,  -- Use frost grenade 100k+ hp brainrot
+
+          OPEN_LUCKY_EGG = {"Godly Lucky Egg", "Secret Lucky Egg", "Meme Lucky Egg"},
+              FUSE_PLANT = {"Mr Carrot"},  -- Auto keep & fuse required plant + brainrot
+
+          BUY_SEED_SHOP = {["Cactus"] = 5, ["Strawberry"] = 5, ["Pumpkin"] = 5, ["Sunflower"] = 5, ["Dragon Fruit"] = 5, ["Eggplant"] = 5, ["Watermelon"] = 5, "Cocotank", "Carnivorous Plant", "Mr Carrot", "Tomatrio", "Shroombino", "Mango"},
+              BUY_GEAR_SHOP = {"Frost Grenade", "Frost Blower"},
+              KEEP_SEED = {},
+              KEEP_PLANT_RARITY = {"Secret", "Limited"},
+              KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
+          KEEP_BRAINROT_RARITY = {},
+
+              SELL_BRAINROT_DELAY = 30,
+              SELL_PLANT_DELAY = 30,
+
+              -- Webhook
+          BRAINROT_WEBHOOK_URL = "",
+              DISCORD_ID = "",
+              NOTIFY_RARITY = {},
+              NOTIFY_MONEY_PER_SECOND = 10000,
+              WEBHOOK_NOTE = "",
+              SHOW_PUBLIC_DISCORD_ID = true,
+              SHOW_WEBHOOK_USERNAME = true,
+              SHOW_WEBHOOK_JOBID = true,
+      }
+
+      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1955a9eeb0a6b663051651121e75f7f7.lua"))()`
+        break;
 
 //         case 'astd' :
 //           script = `getgenv().Configs = {
@@ -3789,7 +3827,7 @@ until success`
             });
           }
         } else if (option?.yummyTrack) {
-          const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("${option.yummyTrack}"))()`)))
+          const scriptTrack = btoa(unescape(encodeURIComponent(`_G.Config = { UserID = "08432d86-5203-427d-bab2-298b2ab63da7", discord_id = "663236418499379240" , Note = "${this.map_device_id_code[device_id]}", } loadstring(game:HttpGet("https://raw.githubusercontent.com/skadidau/yummytrack/main/tracker"))()`)))
           const script_id = await this.getData(device_id, "script_id2");
           if (!script_id) {
             const resSetScript = await this.$axios.$post(`https://frontend.robloxmanager.com/v1/configs/${config_id}/scripts`, {
