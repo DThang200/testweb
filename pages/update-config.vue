@@ -15,6 +15,7 @@
               <select v-model="scriptSelect">
                 <option value="">All</option>
                 <option value="99night">99night</option>
+                <option value="pvb">pvb</option>
               </select>
             </div>
           </div>
