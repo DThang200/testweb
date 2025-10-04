@@ -18,6 +18,7 @@
           <option value="99night">99night
           </option>
           <option value="bloxFruit-maru">bloxFruit-maru</option>
+          <option value="pvb">pvb</option>
 <!--          <option value="bloxFruit">BloxFruit</option>-->
         </select>
         <textarea v-model="fill_acc" rows="5" style="width: 500px"/>
@@ -130,6 +131,7 @@ export default {
         {code : 'av-maru-iscanur',label : 'GAG-Bone',game_id: '126884695634066',total_account: 27},
         {code : 'av-gem-50',label : 'GAG-Bone',game_id: '126884695634066',total_account: 27},
         {code : 'av-gem-100',label : 'GAG-Bone',game_id: '126884695634066',total_account: 27},
+        {code : 'pvb',label : 'GAG-Bone',game_id: '126884695634066',total_account: 40},
         // {code : 'Fisch-lv500',label : 'Fisch-lv500',game_id: '16732694052',total_account: 22},
         // {code : 'Fisch-lv750',label : 'Fisch-lv750',game_id: '16732694052',total_account: 22},
       ],
