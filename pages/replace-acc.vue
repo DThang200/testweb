@@ -69,7 +69,8 @@ export default {
       changeAccRemain: "",
       neverLogin: false,
       petgum: false,
-      time_off : 3
+      time_off : 3,
+      hideDevice: [],
     }
   },
   watch: {
@@ -78,6 +79,7 @@ export default {
     },
   },
   mounted() {
+    this.hideDevice =  JSON.parse(localStorage.getItem('hideDevice')) || [];
     console.log(new Date().getTime())
 
     this.getDataRoblox();
@@ -166,7 +168,7 @@ export default {
       const trackingTime = Math.round((new Date().getTime() - ((this.time_off) * 3600  * 1000)) / 1000)
       console.log('trackingTime',trackingTime, trackingTime - 1743326985)
       this.roblox_data_account.accounts.forEach((acc) => {
-        if (!acc?.game_instance_id || (!this.neverLogin && acc && (!acc?.game_instance_id || trackingTime > acc?.last_updated && acc?.device_id))){
+        if (!acc?.game_instance_id || (!this.neverLogin && acc && (!acc?.game_instance_id || trackingTime > acc?.last_updated && acc?.device_id && this.hideDevice.includes((this.map_device_id_code[acc?.device_id]).replace(/_/g, " "))))){
           if (!this.petgum && map_device_data[acc.device_id] && map_device_data[acc.device_id].script === 'petgum'){
             return;
           }
