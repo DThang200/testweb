@@ -256,7 +256,7 @@ export default {
         {code : 'av-gem-100',label : 'av-gem-100',game_id: '16146832113',private_server : false,gem100ktrack : true},
         {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
         {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
-        {code : 'pvb',label : 'PVB',game_id: '127742093697776',private_server : false,yummyTrack : true},
+        {code : 'pvb',label : 'PVB',game_id: '127742093697776',private_server : false,yummyTrack : true,join_low_players_server: false},
         {code : 'fishit',label : 'FISH IT',game_id: '121864768012064',private_server : false,yummyTrack : true},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
@@ -3109,7 +3109,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
               KEEP_SEED = {},
               KEEP_PLANT_RARITY = {"Secret", "Limited"},
               KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
-          KEEP_BRAINROT_RARITY = {},
+          KEEP_BRAINROT_RARITY = {"Secret", "Limited"},
 
               SELL_BRAINROT_DELAY = 30,
               SELL_PLANT_DELAY = 30,
@@ -3790,7 +3790,7 @@ until success`
       if (option) {
         const gameConfig = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device_id}/configs/${config_id}`, {
           use_private_server: option.private_server,
-          join_low_players_server: !option.private_server,
+          join_low_players_server: !option.private_server && !option.join_low_players_server,
           place_id: option.game_id,
         }, {
           headers: {
