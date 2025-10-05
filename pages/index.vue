@@ -3111,14 +3111,14 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
               KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
           KEEP_BRAINROT_RARITY = {"Secret", "Limited"},
 
-              SELL_BRAINROT_DELAY = 30,
+              SELL_BRAINROT_DELAY = 300,
               SELL_PLANT_DELAY = 30,
 
               -- Webhook
-          BRAINROT_WEBHOOK_URL = "",
+          BRAINROT_WEBHOOK_URL = "https://discord.com/api/webhooks/1424241453944799326/c4sF4ZqH6DZB6iHHbLIAstOiL3qqsYTcQ796nKGuXwVFEi3cWdOOj4UHvnAomsKxXkrd",
               DISCORD_ID = "",
-              NOTIFY_RARITY = {},
-              NOTIFY_MONEY_PER_SECOND = 10000,
+              NOTIFY_RARITY = {"Secret", "Limited"},
+              NOTIFY_MONEY_PER_SECOND = 20000,
               WEBHOOK_NOTE = "",
               SHOW_PUBLIC_DISCORD_ID = true,
               SHOW_WEBHOOK_USERNAME = true,
