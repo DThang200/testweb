@@ -261,6 +261,8 @@ export default {
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
       ],
+      pvbkey: ["goMYIFMGIzHClAbkxSFgewTfJpBhuuBP","kgYFfshnJPpoGHMaavALnooADARRfMfw"],
+      pvbKeyCountDevice: 0,
       autoGomActive: [],
       activeDevice: [],
       autoGomFrom: '',
@@ -3091,7 +3093,9 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
 `
           break;
         case "pvb" :
-          script = `script_key="goMYIFMGIzHClAbkxSFgewTfJpBhuuBP";
+          this.pvbKeyCountDevice += 1
+          const keyIndex = Math.ceil(this.pvbKeyCountDevice / 3) - 1
+          script = `script_key="${this.pvbkey[keyIndex]}";
 
           getgenv().pvbConfig = {
             AUTO_UPDATE_RESTART = true,
@@ -3107,9 +3111,9 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
           BUY_SEED_SHOP = {["Cactus"] = 5, ["Strawberry"] = 5, ["Pumpkin"] = 5, ["Sunflower"] = 5, ["Dragon Fruit"] = 5, ["Eggplant"] = 5, ["Watermelon"] = 5,["Grape"] = 5, "Cocotank", "Carnivorous Plant", "Mr Carrot", "Tomatrio", "Shroombino", "Mango"},
               BUY_GEAR_SHOP = {"Frost Grenade", "Frost Blower"},
               KEEP_SEED = {},
-              KEEP_PLANT_RARITY = {"Secret", "Limited"},
-              KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
-          KEEP_BRAINROT_RARITY = {"Secret", "Limited"},
+              KEEP_PLANT_RARITY = {"Secret"},
+              KEEP_BRAINROT_MONEY_PER_SECOND = 5000,  -- Number
+          KEEP_BRAINROT_RARITY = {"Secret"},
 
               SELL_BRAINROT_DELAY = 120,
               SELL_PLANT_DELAY = 30,
