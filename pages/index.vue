@@ -2904,7 +2904,7 @@ getgenv().Config = {
     },
     ["Match Finished"] = {
         ["Auto Return Lobby"] = false,
-        ["Auto Next"] = true,
+        ["Auto Next"] = false,
         ["Replay Amount"] = 20,
         ["Return Lobby Failsafe"] = true,
         ["Auto Replay"] = true
@@ -3104,7 +3104,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
           OPEN_LUCKY_EGG = {"Godly Lucky Egg", "Secret Lucky Egg", "Meme Lucky Egg"},
               FUSE_PLANT = {},  -- Auto keep & fuse required plant + brainrot
 
-          BUY_SEED_SHOP = {["Cactus"] = 5, ["Strawberry"] = 5, ["Pumpkin"] = 5, ["Sunflower"] = 5, ["Dragon Fruit"] = 5, ["Eggplant"] = 5, ["Watermelon"] = 5, "Cocotank", "Carnivorous Plant", "Mr Carrot", "Tomatrio", "Shroombino", "Mango"},
+          BUY_SEED_SHOP = {["Cactus"] = 5, ["Strawberry"] = 5, ["Pumpkin"] = 5, ["Sunflower"] = 5, ["Dragon Fruit"] = 5, ["Eggplant"] = 5, ["Watermelon"] = 5,["Grape"] = 5, "Cocotank", "Carnivorous Plant", "Mr Carrot", "Tomatrio", "Shroombino", "Mango"},
               BUY_GEAR_SHOP = {"Frost Grenade", "Frost Blower"},
               KEEP_SEED = {},
               KEEP_PLANT_RARITY = {"Secret", "Limited"},
