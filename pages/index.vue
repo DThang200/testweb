@@ -3112,8 +3112,9 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
               BUY_GEAR_SHOP = {"Frost Grenade", "Frost Blower"},
               KEEP_SEED = {},
               KEEP_PLANT_RARITY = {"Secret"},
-              KEEP_BRAINROT_MONEY_PER_SECOND = 5000,  -- Number
+              KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
           KEEP_BRAINROT_RARITY = {"Secret"},
+          IGNORE_PRISON_EVENT = true,
 
               SELL_BRAINROT_DELAY = 120,
               SELL_PLANT_DELAY = 30,
@@ -3121,7 +3122,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
               -- Webhook
           BRAINROT_WEBHOOK_URL = "https://discord.com/api/webhooks/1424241453944799326/c4sF4ZqH6DZB6iHHbLIAstOiL3qqsYTcQ796nKGuXwVFEi3cWdOOj4UHvnAomsKxXkrd",
               DISCORD_ID = "",
-              NOTIFY_RARITY = {"Secret", "Limited"},
+              NOTIFY_RARITY = {"Secret"},
               NOTIFY_MONEY_PER_SECOND = 20000,
               WEBHOOK_NOTE = "",
               SHOW_PUBLIC_DISCORD_ID = true,
