@@ -3115,6 +3115,8 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
               KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
           KEEP_BRAINROT_RARITY = {"Secret"},
           IGNORE_PRISON_EVENT = true,
+          PLANT_SECRET_LIMITED_SEED_EVENT = {"Frozen"},
+
 
               SELL_BRAINROT_DELAY = 120,
               SELL_PLANT_DELAY = 30,
