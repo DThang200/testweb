@@ -257,6 +257,7 @@ export default {
         {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
         {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
         {code : 'pvb',label : 'PVB',game_id: '127742093697776',private_server : false,yummyTrack : true,join_low_players_server: false},
+        {code : 'pvb-trade',label : 'PVB',game_id: '127742093697776',private_server : true,yummyTrack : true,join_low_players_server: false},
         {code : 'fishit',label : 'FISH IT',game_id: '121864768012064',private_server : false,yummyTrack : true},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
@@ -3093,22 +3094,11 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
 `
           break;
 
-        case "pvb" :
-          const listUserCollect = `"DerekHughes62234","PhilipMiles279","HollyNelson7699","SallyOchre9248","JacobPearl34329","WoodsKim12","SnoopyLam10204","DanaCain448","RandallTeagreen089","TerryPhelps16"`
-          const listsvv = ["https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=02821309576723617387258178467622",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=19435375224286447140782675910623",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=78867405043292411428221859914612",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=52383503411190972764365991575770",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=47319098145822929255395458391811",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=72447683214807773383680403706573",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=53504870607182643015027535558319",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=03148765241375935676078465173765",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=35317171338687530211449411268886",
-          "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=12263729849129363340035554701571"]
+        case "pvb-trade" :
           this.pvbKeyCountDevice += 1
-          const keyIndex = Math.ceil(this.pvbKeyCountDevice / 3) - 1
-            // script gom
-          script = `script_key="${this.pvbkey[keyIndex]}";
+          const keyIndex2 = Math.ceil(this.pvbKeyCountDevice / 3) - 1
+          const listUserCollect = `"DerekHughes62234","PhilipMiles279","HollyNelson7699","SallyOchre9248","JacobPearl34329","WoodsKim12","SnoopyLam10204","DanaCain448","RandallTeagreen089","TerryPhelps16"`
+          script = `script_key="${this.pvbkey[keyIndex2]}";
           repeat wait() until game:IsLoaded()
           repeat wait() until game.Players.LocalPlayer
           setfpscap(3)
@@ -3125,44 +3115,49 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
                 }
           loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e9de64ec1af8647119eabd5591561876.lua"))()
           `
-      //     script = `script_key="${this.pvbkey[keyIndex]}";
-      //
-      //     getgenv().pvbConfig = {
-      //       AUTO_UPDATE_RESTART = true,
-      //       MAX_FPS = 3,  -- This will override setfpscap()
-      //     LOW_CPU = true,
-      //         MAX_REBIRTH = 99,  -- Stop rebirth at set amount
-      //     FORCE_REBIRTH_IGNORE_KEEP_BRAINROT = true,  -- Ignore KEEP_BRAINROT related config until max rebirth
-      //     FROST_GRENADE_TARGET_MAX_HP = 100000,  -- Use frost grenade 100k+ hp brainrot
-      //
-      //     OPEN_LUCKY_EGG = {"Godly Lucky Egg", "Secret Lucky Egg", "Meme Lucky Egg"},
-      //         FUSE_PLANT = {},  -- Auto keep & fuse required plant + brainrot
-      //
-      //     BUY_SEED_SHOP = {["Cactus"] = 5, ["Strawberry"] = 5, ["Pumpkin"] = 5, ["Sunflower"] = 5, ["Dragon Fruit"] = 5, ["Eggplant"] = 5, ["Watermelon"] = 5,["Grape"] = 5, "Cocotank", "Carnivorous Plant", "Mr Carrot", "Tomatrio", "Shroombino", "Mango"},
-      //         BUY_GEAR_SHOP = {"Frost Grenade", "Frost Blower"},
-      //         KEEP_SEED = {},
-      //         KEEP_PLANT_RARITY = {"Secret"},
-      //         KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
-      //     KEEP_BRAINROT_RARITY = {"Secret"},
-      //     IGNORE_PRISON_EVENT = true,
-      //     PLANT_SECRET_LIMITED_SEED_EVENT = {"Frozen"},
-      //
-      //
-      //         SELL_BRAINROT_DELAY = 120,
-      //         SELL_PLANT_DELAY = 30,
-      //
-      //         -- Webhook
-      //     BRAINROT_WEBHOOK_URL = "https://discord.com/api/webhooks/1424241453944799326/c4sF4ZqH6DZB6iHHbLIAstOiL3qqsYTcQ796nKGuXwVFEi3cWdOOj4UHvnAomsKxXkrd",
-      //         DISCORD_ID = "",
-      //         NOTIFY_RARITY = {"Secret"},
-      //         NOTIFY_MONEY_PER_SECOND = 20000,
-      //         WEBHOOK_NOTE = "",
-      //         SHOW_PUBLIC_DISCORD_ID = true,
-      //         SHOW_WEBHOOK_USERNAME = true,
-      //         SHOW_WEBHOOK_JOBID = true,
-      // }
-      //
-      // loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1955a9eeb0a6b663051651121e75f7f7.lua"))()`
+        break;
+        case "pvb" :
+          this.pvbKeyCountDevice += 1
+          const keyIndex = Math.ceil(this.pvbKeyCountDevice / 3) - 1
+            // script gom
+          script = `script_key="${this.pvbkey[keyIndex]}";
+
+          getgenv().pvbConfig = {
+            AUTO_UPDATE_RESTART = true,
+            MAX_FPS = 3,  -- This will override setfpscap()
+          LOW_CPU = true,
+              MAX_REBIRTH = 2,  -- Stop rebirth at set amount
+          FORCE_REBIRTH_IGNORE_KEEP_BRAINROT = true,  -- Ignore KEEP_BRAINROT related config until max rebirth
+          FROST_GRENADE_TARGET_MAX_HP = 100000,  -- Use frost grenade 100k+ hp brainrot
+
+          OPEN_LUCKY_EGG = {"Godly Lucky Egg", "Secret Lucky Egg", "Meme Lucky Egg"},
+              FUSE_PLANT = {"Mr Carrot"},  -- Auto keep & fuse required plant + brainrot
+
+          BUY_SEED_SHOP = {["Cactus"] = 5, ["Strawberry"] = 5, ["Pumpkin"] = 5, ["Sunflower"] = 5, ["Dragon Fruit"] = 5, ["Eggplant"] = 5, ["Watermelon"] = 5,["Grape"] = 5, "Cocotank", "Carnivorous Plant", "Mr Carrot", "Tomatrio", "Shroombino", "Mango"},
+              BUY_GEAR_SHOP = {"Frost Grenade", "Frost Blower"},
+              KEEP_SEED = {},
+              KEEP_PLANT_RARITY = {"Secret"},
+              KEEP_BRAINROT_MONEY_PER_SECOND = 45000,  -- Number
+          KEEP_BRAINROT_RARITY = {"Secret"},
+          IGNORE_PRISON_EVENT = true,
+          PLANT_SECRET_LIMITED_SEED_EVENT = {"Frozen"},
+
+
+              SELL_BRAINROT_DELAY = 120,
+              SELL_PLANT_DELAY = 30,
+
+              -- Webhook
+          BRAINROT_WEBHOOK_URL = "https://discord.com/api/webhooks/1424241453944799326/c4sF4ZqH6DZB6iHHbLIAstOiL3qqsYTcQ796nKGuXwVFEi3cWdOOj4UHvnAomsKxXkrd",
+              DISCORD_ID = "",
+              NOTIFY_RARITY = {},
+              NOTIFY_MONEY_PER_SECOND = 500000,
+              WEBHOOK_NOTE = "",
+              SHOW_PUBLIC_DISCORD_ID = true,
+              SHOW_WEBHOOK_USERNAME = true,
+              SHOW_WEBHOOK_JOBID = true,
+      }
+
+      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1955a9eeb0a6b663051651121e75f7f7.lua"))()`
         break;
 
 //         case 'astd' :
