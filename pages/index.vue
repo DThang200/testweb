@@ -3111,16 +3111,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
           script = `script_key="${this.pvbkey[keyIndex]}";
           repeat wait() until game:IsLoaded()
           repeat wait() until game.Players.LocalPlayer
-          getgenv().Config["Account Main"] = {${listUserCollect}}
-          if not table.find(getgenv().Config["Account Main"], game.Players.LocalPlayer.Name) then
-            setfpscap(10)
-            getgenv().pvbConfig = {
-                LOW_CPU = false,
-                AUTO_COLLECT_GIFT = true,
-                AUTO_SELL_RARITY = {"Rare", "Epic", "Legendary"},
-            }
-          else
-            setfpscap(3)
+          setfpscap(3)
             getgenv().pvbConfig = {
                     LOW_CPU = true,
                     KICK_AFTER_GIFTED_ALL = true,
@@ -3132,7 +3123,6 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
                     GIFT_PLANT_DAMAGE = 100000,  -- 100k+ Damage -> Gift
                     GIFTING_COOLDOWN = 5,
                 }
-          end
           loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e9de64ec1af8647119eabd5591561876.lua"))()
           `
       //     script = `script_key="${this.pvbkey[keyIndex]}";
