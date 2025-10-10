@@ -3094,7 +3094,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
           break;
 
         case "pvb" :
-          const listUserCollect = [""]
+          const listUserCollect = ["DerekHughes62234","PhilipMiles279","HollyNelson7699","SallyOchre9248","JacobPearl34329","WoodsKim12","SnoopyLam10204","DanaCain448","RandallTeagreen089","TerryPhelps16"]
           const listsvv = ["https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=02821309576723617387258178467622",
           "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=19435375224286447140782675910623",
           "https://www.roblox.com/games/127742093697776/Plants-Vs-Brainrots?privateServerLinkCode=78867405043292411428221859914612",
