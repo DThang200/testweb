@@ -3111,7 +3111,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
           script = `script_key="${this.pvbkey[keyIndex]}";
           repeat wait() until game:IsLoaded()
           repeat wait() until game.Players.LocalPlayer
-          getgenv().Config["Account Main"] = [${listUserCollect}]
+          getgenv().Config["Account Main"] = {${listUserCollect}}
           if not table.find(getgenv().Config["Account Main"], game.Players.LocalPlayer.Name) then
             setfpscap(10)
             getgenv().pvbConfig = {
