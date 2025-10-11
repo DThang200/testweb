@@ -233,6 +233,27 @@
       </textarea>
         </div>
       </div>
+      <div class="field-action">
+        <div style="font-size: 24px;font-weight: bold">
+          Enable/disable acc by username
+          <button @click="copyContent(findUserResultCookie)">Enable</button>
+        </div>
+        <textarea  style="width: 400px;height: 300px" v-model="accountEnable">
+
+      </textarea>
+        <textarea  style="width: 400px;height: 300px" v-model="findUserResultCookie">
+
+      </textarea>
+        <textarea  style="width: 400px;height: 300px" v-model="findUserResultUPC">
+
+      </textarea>
+        <div>
+          Cant find ({{findUserResultInvalidCount || 0}})
+          <textarea  style="width: 400px;height: 300px" v-model="findUserResultInvalid">
+
+      </textarea>
+        </div>
+      </div>
 <!--      <div class="field-action">-->
 <!--        ByPass:-->
 <!--        <textarea  style="width: 500px;height: 300px" v-model="bypass_cookie" placeholder="Cookie"></textarea>-->
@@ -286,6 +307,7 @@ export default {
       output_ck: '',
       delete_acc: '',
       select_empty_acc: 'bf',
+      accountEnable: '',
       // bf || fisch || dead
 
 
@@ -703,6 +725,42 @@ export default {
             this.findUserResultInvalidCount += 1
           }
         })
+      }
+    },
+    async renderEnableUser() {
+      let listUserFind = this.findUser.split('\n').map(username => {
+        return username.replace(/\s+/g, '')
+      })
+      // listUserFind = listUserFind.map(username => {
+      //   return username.replace(/\s+/g, '')
+      // })
+      if (listUserFind.length > 0) {
+        this.findUserResultInvalid = ""
+        this.findUserResultInvalidCount = 0
+        this.findUserResultCookieCount = 0
+        this.findUserResultCookie = ""
+        this.findUserResultUPC = ""
+        let temp = {}
+        this.roblox_data_account.accounts.forEach(acc => {
+          if (listUserFind.includes(acc?.username) && acc?.cookie){
+            // temp[acc.username] = acc.cookie
+            if (!temp[acc.device_id]){
+              temp[acc.device_id] = []
+            }
+            temp[acc.device_id].push({enabled: true,username_look_for:acc.username})
+          }
+        })
+        let listAcc = Object.entries(temp)
+        for (let i = 0; i < listAcc.length; i++) {
+          const device = listAcc[i]
+          console.log("device[0]",device[0])
+          console.log("device[1]",device[1])
+          const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device[0]}/bulk/accounts`, device[1],{
+            headers: {
+              'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
+            },
+          });
+        }
       }
     },
     async getEmptyAcc() {
