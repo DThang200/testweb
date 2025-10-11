@@ -716,18 +716,13 @@ export default {
       }
     },
     async renderEnableUser() {
-      let listUserFind = this.findUser.split('\n').map(username => {
+      let listUserFind = this.accountEnable.split('\n').map(username => {
         return username.replace(/\s+/g, '')
       })
       // listUserFind = listUserFind.map(username => {
       //   return username.replace(/\s+/g, '')
       // })
       if (listUserFind.length > 0) {
-        this.findUserResultInvalid = ""
-        this.findUserResultInvalidCount = 0
-        this.findUserResultCookieCount = 0
-        this.findUserResultCookie = ""
-        this.findUserResultUPC = ""
         let temp = {}
         this.roblox_data_account.accounts.forEach(acc => {
           if (listUserFind.includes(acc?.username) && acc?.cookie){
