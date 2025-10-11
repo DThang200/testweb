@@ -16,6 +16,7 @@
                 <option value="">All</option>
                 <option value="99night">99night</option>
                 <option value="pvb">pvb</option>
+                <option value="pvb-trade">pvb-trade</option>
               </select>
             </div>
           </div>

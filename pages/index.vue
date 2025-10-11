@@ -257,7 +257,7 @@ export default {
         {code : 'av-iscanur',label : 'AV-Iscanor',game_id: '16146832113',private_server : false},
         {code : 'av-maru-iscanur',label : 'AV-Maru-Iscanor',game_id: '16146832113',private_server : false,iscanurTrack : true},
         {code : 'pvb',label : 'PVB',game_id: '127742093697776',private_server : false,yummyTrack : true,join_low_players_server: false},
-        {code : 'pvb-trade',label : 'PVB',game_id: '127742093697776',private_server : true,yummyTrack : true,join_low_players_server: false},
+        {code : 'pvb-trade',label : 'PVB-TRADE',game_id: '127742093697776',private_server : true,yummyTrack : true,join_low_players_server: false},
         {code : 'fishit',label : 'FISH IT',game_id: '121864768012064',private_server : false,yummyTrack : true},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, yummyTrack : "https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"},
         // {code : 'gag-bone',label : 'GAG-Bone Seed',game_id: '126884695634066',private_server : false, shoukoTrack :true},
@@ -3097,7 +3097,8 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
         case "pvb-trade" :
           this.pvbKeyCountDevice += 1
           const keyIndex2 = Math.ceil(this.pvbKeyCountDevice / 3) - 1
-          const listUserCollect = `"DerekHughes62234","PhilipMiles279","HollyNelson7699","SallyOchre9248","JacobPearl34329","WoodsKim12","SnoopyLam10204","DanaCain448","RandallTeagreen089","TerryPhelps16"`
+          // const listUserCollect = `"DerekHughes62234","PhilipMiles279","HollyNelson7699","SallyOchre9248","JacobPearl34329","WoodsKim12","SnoopyLam10204","DanaCain448","RandallTeagreen089","TerryPhelps16"`
+          const listUserCollect = `Chl0eC0deTiger","DuckMichael8"`
           script = `script_key="${this.pvbkey[keyIndex2]}";
           repeat wait() until game:IsLoaded()
           repeat wait() until game.Players.LocalPlayer
@@ -3107,10 +3108,10 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
                     KICK_AFTER_GIFTED_ALL = true,
                     AUTO_SELL_RARITY = {"Rare", "Epic", "Legendary"},
                     GIFT_USERNAME = {${listUserCollect}},  -- Add username "username1", "username2"
-                    GIFT_BRAINROT = {"Los Tralaleritos","La Tomatoro","Los Sekolitos","Garamararam","Crazylone Pizaione"},  -- Gift brainrot via name
-                    GIFT_BRAINROT_MONEY_PER_SECOND = 45000,  -- $10k+/s -> Gift
+                    GIFT_BRAINROT = {"Los Mr Carrotitos"},  -- Gift brainrot via name
+                    GIFT_BRAINROT_MONEY_PER_SECOND = 100000000,  -- $10k+/s -> Gift
                     GIFT_PLANT = {},  -- Gift plant via name
-                    GIFT_PLANT_DAMAGE = 100000,  -- 100k+ Damage -> Gift
+                    GIFT_PLANT_DAMAGE = 100000000,  -- 100k+ Damage -> Gift
                     GIFTING_COOLDOWN = 5,
                 }
           loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e9de64ec1af8647119eabd5591561876.lua"))()
