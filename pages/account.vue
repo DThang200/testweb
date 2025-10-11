@@ -237,8 +237,8 @@
         <div style="font-size: 24px;font-weight: bold">
           Enable/disable acc by username
           <select v-model="accountEnableStatus">
-            <option value="false">Disable</option>
-            <option value="true">Enable</option>
+            <option :value="false">Disable</option>
+            <option :value="true">Enable</option>
           </select>
           <button @click="renderEnableUser">Enable</button>
         </div>
