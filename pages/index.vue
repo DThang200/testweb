@@ -3142,6 +3142,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
           KEEP_BRAINROT_RARITY = {"Secret"},
           IGNORE_PRISON_EVENT = true,
           PLANT_SECRET_LIMITED_SEED_EVENT = {"Frozen"},
+          OPEN_CARD_PACK = {"Base", "Shiny Base"},
 
 
               SELL_BRAINROT_DELAY = 120,
