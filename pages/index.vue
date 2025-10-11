@@ -3098,7 +3098,7 @@ repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader
           this.pvbKeyCountDevice += 1
           const keyIndex2 = Math.ceil(this.pvbKeyCountDevice / 3) - 1
           // const listUserCollect = `"DerekHughes62234","PhilipMiles279","HollyNelson7699","SallyOchre9248","JacobPearl34329","WoodsKim12","SnoopyLam10204","DanaCain448","RandallTeagreen089","TerryPhelps16"`
-          const listUserCollect = `Chl0eC0deTiger","DuckMichael8"`
+          const listUserCollect = `"Chl0eC0deTiger","DuckMichael8"`
           script = `script_key="${this.pvbkey[keyIndex2]}";
           repeat wait() until game:IsLoaded()
           repeat wait() until game.Players.LocalPlayer
