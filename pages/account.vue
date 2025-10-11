@@ -236,23 +236,11 @@
       <div class="field-action">
         <div style="font-size: 24px;font-weight: bold">
           Enable/disable acc by username
-          <button @click="copyContent(findUserResultCookie)">Enable</button>
+          <button @click="renderEnableUser">Enable</button>
         </div>
         <textarea  style="width: 400px;height: 300px" v-model="accountEnable">
 
       </textarea>
-        <textarea  style="width: 400px;height: 300px" v-model="findUserResultCookie">
-
-      </textarea>
-        <textarea  style="width: 400px;height: 300px" v-model="findUserResultUPC">
-
-      </textarea>
-        <div>
-          Cant find ({{findUserResultInvalidCount || 0}})
-          <textarea  style="width: 400px;height: 300px" v-model="findUserResultInvalid">
-
-      </textarea>
-        </div>
       </div>
 <!--      <div class="field-action">-->
 <!--        ByPass:-->
