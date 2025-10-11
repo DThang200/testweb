@@ -236,6 +236,10 @@
       <div class="field-action">
         <div style="font-size: 24px;font-weight: bold">
           Enable/disable acc by username
+          <select v-model="accountEnableStatus">
+            <option value="false">Disable</option>
+            <option value="true">Enable</option>
+          </select>
           <button @click="renderEnableUser">Enable</button>
         </div>
         <textarea  style="width: 400px;height: 300px" v-model="accountEnable">
@@ -296,6 +300,7 @@ export default {
       delete_acc: '',
       select_empty_acc: 'bf',
       accountEnable: '',
+      accountEnableStatus: true,
       // bf || fisch || dead
 
 
@@ -730,7 +735,7 @@ export default {
             if (!temp[acc.device_id]){
               temp[acc.device_id] = []
             }
-            temp[acc.device_id].push({enabled: true,username_look_for:acc.username})
+            temp[acc.device_id].push({enabled: this.accountEnableStatus,username_look_for:acc.username})
           }
         })
         let listAcc = Object.entries(temp)
