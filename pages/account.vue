@@ -738,7 +738,7 @@ export default {
           const device = listAcc[i]
           console.log("device[0]",device[0])
           console.log("device[1]",device[1])
-          const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/configs/${device[0]}/bulk/accounts`, device[1],{
+          const resSetScript = await this.$axios.$put(`https://frontend.robloxmanager.com/v1/devices/${device[0]}/bulk/accounts`, device[1],{
             headers: {
               'x-auth-token': JSON.parse(localStorage.getItem('token_roblox')) || this.$config.TOKEN_ROBLOX,
             },
